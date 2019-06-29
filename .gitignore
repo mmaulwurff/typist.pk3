@@ -1,0 +1,17 @@
+# Ignore everything, but not directories:
+
+*
+!**/
+
+# Except the following file types:
+
+!.gitignore
+!**.txt
+!**.md
+!**.zs
+!**.sh
+
+# Do ignore this:
+
+build/*
+changelog.txt

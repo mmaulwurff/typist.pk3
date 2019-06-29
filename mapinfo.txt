@@ -1,0 +1,6 @@
+gameinfo
+{
+
+  AddEventHandlers = "tt_EventHandler"
+
+} // gameinfo
