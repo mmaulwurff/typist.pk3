@@ -25,10 +25,10 @@ class tt_EventHandler : EventHandler
   override
   void WorldTick()
   {
-    console.printf("@@Test: hello %d", i);
+    console.printf("./zscript/tt_event_handler.zs:28: @ Test: hello %d", i);
     if (i >= 10)
     {
-      console.printf("@@Test: Test finished.");
+      console.printf("./zscript/tt_event_handler.zs:31: @ Test: Test finished.");
     }
     ++i;
   }
@@ -36,7 +36,7 @@ class tt_EventHandler : EventHandler
   override
   void OnRegister()
   {
-    console.printf("@@onRegister");
+    console.printf("./zscript/tt_event_handler.zs:39: @ Test: onRegister");
   }
 
   private int i;

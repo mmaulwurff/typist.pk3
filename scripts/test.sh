@@ -34,7 +34,7 @@ function actual_run {
     time gzdoom -nosound -file $filename +"wait 1; map map01;" 2>/dev/null > pipe1 &
 
     cat < pipe1 | while read l; do
-        [[ "$l" == "Test:"* ]] && echo $l;
+        [[ "$l" == *"Test:"* ]] && echo $l;
         [[ "$l" == *"Test finished." ]] && pkill gzdoom;
     done
 

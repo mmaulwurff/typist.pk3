@@ -7,6 +7,7 @@ files=$(find . -name "*.zs" -o -name "*.md" -o -name "*.txt")
 
 scripts/make_changelog.sh
 scripts/make_zscript_head.sh
+scripts/preprocessor.sh
 
 rm -f *.pk3
 zip --quiet --compression-method store $filename $files
