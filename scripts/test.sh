@@ -12,6 +12,11 @@ function spelling {
     ./scripts/spelling_code.sh
 }
 
+function line_width {
+    echo -e "\nCode_check_2: Line width #######################################"
+    find . -name "*.zs" | while read f; do grep -nH ".\{81\}" $f; done
+}
+
 # Test functions ###############################################################
 
 function gzdoom_only {
@@ -41,7 +46,7 @@ function actual_run {
     time gzdoom -nosound -file $filename +"wait 1; map map01;" 2>/dev/null > pipe1 &
 
     cat < pipe1 | while read l; do
-        [[ "$l" == *"Test:"* ]] && echo $l;
+        [[ "$l" == *"T:"* ]] && echo $l;
         [[ "$l" == *"Test finished." ]] && pkill gzdoom;
     done
 
@@ -51,6 +56,7 @@ function actual_run {
 # Code checks ##################################################################
 
 spelling
+line_width
 
 # Tests ########################################################################
 # Comment out tests that you don't want to run.
