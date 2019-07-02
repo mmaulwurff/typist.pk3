@@ -9,6 +9,6 @@ scripts/make_changelog.sh
 scripts/make_zscript_head.sh
 
 rm -f *.pk3
-zip -Z store $filename $files
+zip --quiet --compression-method store $filename $files
 
-gzdoom -norun -nosound -file $filename
+echo $filename

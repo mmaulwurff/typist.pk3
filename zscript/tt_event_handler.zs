@@ -25,7 +25,20 @@ class tt_EventHandler : EventHandler
   override
   void WorldTick()
   {
-    console.printf("hello");
+    console.printf("@@Test: hello %d", i);
+    if (i >= 10)
+    {
+      console.printf("@@Test: Test finished.");
+    }
+    ++i;
   }
+
+  override
+  void OnRegister()
+  {
+    console.printf("@@onRegister");
+  }
+
+  private int i;
 
 } // class tt_EventHandler

@@ -1,0 +1,46 @@
+M_LoadDefaults: Load system defaults.
+W_Init: Init WADfiles.
+ adding /opt/gzdoom/gzdoom.pk3, 621 lumps
+ adding /opt/gzdoom/zd_extra.pk3, 1723 lumps
+ adding /home/.*/Programs/Games/wads/doom/DOOM2.WAD, 2919 lumps
+I_Init: Setting up machine state.
+CPU Vendor ID: AuthenticAMD
+  Name: AMD Ryzen 3 2200G with Radeon Vega Graphics
+  Family 23 (23), Model 17, Stepping 0
+  Features: SSE2 SSE3 SSSE3 SSE4.1 SSE4.2 HyperThreading
+V_Init: allocate screen.
+S_Init: Setting up sound.
+ST_Init: Init startup screen.
+Checking cmd-line parameters...
+S_InitData: Load sound definitions.
+G_ParseMapInfo: Load map definitions.
+Texman.Init: Init texture manager.
+ParseTeamInfo: Load team definitions.
+LoadActors: Load actor definitions.
+R_Init: Init Doom refresh subsystem.
+DecalLibrary: Load decals.
+M_Init: Init menus.
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
+P_Init: Init Playloop state.
+ParseSBarInfo: Loading custom status bar definition.
+D_CheckNetGame: Checking network game status.
+player 1 of 1 (1 nodes)
+I_InitSound: Initializing OpenAL
+  Opened device HD-Audio Generic Analog Stereo
+  EFX enabled
+Using video driver x11
+GL_VENDOR: NVIDIA Corporation
+GL_RENDERER: GeForce GT 710/PCIe/SSE2
+GL_VERSION: 4.6.0 NVIDIA 418.74 (Core profile)
+GL_SHADING_LANGUAGE_VERSION: 4.60 NVIDIA
+Max. texture size: 16384
+Max. texture units: 32
+Max. varying: 124
+Max. combined shader storage blocks: 96
+Max. vertex shader storage blocks: 16
+Resolution: 1920 x 1080
+fluidsynth: warning: Failed to pin the sample data to RAM; swapping is possible.
