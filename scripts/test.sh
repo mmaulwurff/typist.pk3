@@ -5,10 +5,17 @@
 filename=$(scripts/build.sh)
 filterfile=scripts/gzdoom-normal-output.txt
 
+# Code check functions #########################################################
+
+function spelling {
+    echo -e "\nCode_check_1: Spelling #########################################"
+    ./scripts/spelling_code.sh
+}
+
 # Test functions ###############################################################
 
 function gzdoom_only {
-    echo -e "\n# Test 1: GZDoom only"
+    echo -e "\nTest_1: GZDoom only ############################################"
 
     time gzdoom -norun -nosound 2>&1 |\
         grep -vf $filterfile |\
@@ -16,7 +23,7 @@ function gzdoom_only {
 }
 
 function dry_run {
-    echo -e "\n# Test 2: Dry run with mod"
+    echo -e "\nTest_2: Dry run with mod #######################################"
 
     time gzdoom -norun -nosound -file $filename 2>&1 |\
         grep -vf $filterfile |\
@@ -26,7 +33,7 @@ function dry_run {
 }
 
 function actual_run {
-    echo -e "\n# Test 3: Actual run with mod"
+    echo -e "\nTest_3: Actual run with mod ####################################"
 
     rm -f pipe1
     mkfifo pipe1
@@ -40,6 +47,10 @@ function actual_run {
 
     rm -f pipe1
 }
+
+# Code checks ##################################################################
+
+spelling
 
 # Tests ########################################################################
 # Comment out tests that you don't want to run.
