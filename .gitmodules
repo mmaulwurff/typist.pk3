@@ -1,0 +1,3 @@
+[submodule "3rdparty/clematis"]
+	path = 3rdparty/clematis
+	url = git@github.com:mmaulwurff/clematis.git

@@ -60,3 +60,15 @@ viewport
 cosvang
 subclasses
 preprocessor
+chesko
+clearscope
+enum
+eval
+instantiation
+netevent
+uint
+util
+zippey
+woot
+suff
+submodule

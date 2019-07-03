@@ -11,6 +11,10 @@
 !**.zs
 !**.sh
 
+# Do not ignore 3rdparty code:
+
+!3rdparty/*
+
 # Do ignore this:
 
 build/*
