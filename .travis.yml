@@ -1,0 +1,8 @@
+language: bash
+
+git:
+  depth: 1
+
+install: sudo ./scripts/install-dependencies.sh
+
+script: ./scripts/test.sh
