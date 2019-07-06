@@ -13,10 +13,9 @@ contents=\
 "\n"\
 "gameinfo\n"\
 "{\n\n"\
-$(echo -e "$(find . -name "$searchpattern" | while read f; do grep -iroP "(?<=class ).*(?=:.*EventHandler)" $f; done\
-      | sed 's/ //'\
-      | sed 's/\(.*\)/AddEventHandler = "\1",/')" | head -c -2)\
-"\n\n} // gameinfo\n"
-
+"  AddEventHandlers = "\
+$(echo $(find . -name "$searchpattern" | while read f; do grep -iroP "(?<=class ).*(?=:.*EventHandler)" $f; done)\
+| sed 's/\(\w*\)/\"\1\"/g' | sed 's/" "/",\n  "/')\
+"\n\n} // gameinfo"
 
 echo -e "$contents" > $filename
