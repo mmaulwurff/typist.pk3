@@ -6,6 +6,8 @@ filename=$name-$version.pk3
 files=$(find . -name "*.zs" -o -name "*.md" -o -name "*.txt")
 
 scripts/make_changelog.sh
+
+#scripts/import_clematis.sh
 scripts/make_zscript_head.sh
 scripts/make_mapinfo.sh
 scripts/preprocessor.sh
