@@ -1,6 +1,6 @@
 #!/bin/bash
 
-known_words=scripts/known-words.txt
+known_words=scripts/known-words.dat
 
 SPELL_FILES=$(find . | grep '\.zs\|.md\|.txt\|\.acs')
 

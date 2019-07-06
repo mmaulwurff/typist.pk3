@@ -3,7 +3,9 @@
 # This script builds a mod and runs tests.
 
 filename=$(scripts/build.sh)
-filterfile=scripts/gzdoom-normal-output.txt
+filterfile=scripts/gzdoom-normal-output.dat
+
+export PATH="/usr/games/:$PATH"
 
 # Code check functions #########################################################
 
@@ -32,12 +34,17 @@ function line_width {
     fi
 }
 
+function pk3_contents {
+    echo -e "\nCode_check_3: Pk3 contents: ####################################"
+    ./scripts/list_pk3_contents.sh
+}
+
 # Test functions ###############################################################
 
 function gzdoom_only {
     echo -e "\nTest_1: GZDoom only ############################################"
 
-    time gzdoom -norun -nosound 2>&1 |\
+    time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -norun -nosound 2>&1 |\
         grep -vf $filterfile |\
         grep -v "^$"
 }
@@ -45,7 +52,7 @@ function gzdoom_only {
 function dry_run {
     echo -e "\nTest_2: Dry run with mod #######################################"
 
-    time gzdoom -norun -nosound -file $filename 2>&1 |\
+    time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -norun -nosound -file $filename 2>&1 |\
         grep -vf $filterfile |\
         grep -v "^$" |\
         grep -v "GZDoom.*version" |\
@@ -58,7 +65,8 @@ function actual_run {
     rm -f pipe1
     mkfifo pipe1
 
-    time gzdoom -nosound -file $filename +"wait 1; map map01;" 2>/dev/null > pipe1 &
+    time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -nosound -file $filename +map map01\
+         2>&1 > pipe1 &
 
     cat < pipe1 | while read l; do
         [[ "$l" == *"T:"* ]] && echo $l;
@@ -72,6 +80,7 @@ function actual_run {
 
 spelling
 line_width
+pk3_contents
 
 # Tests ########################################################################
 # Comment out tests that you don't want to run.

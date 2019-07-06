@@ -9,8 +9,10 @@
 !**.txt
 !**.md
 !**.zs
+!**.zst
 !**.sh
 !**.yml
+!**.dat
 
 # Do not ignore 3rdparty code:
 

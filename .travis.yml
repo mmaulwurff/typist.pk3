@@ -4,15 +4,16 @@ os: linux
 dist: xenial
 
 git:
-  depth: 1
   # Handle git submodules yourself
   submodules: false
 
 # Use sed to replace the SSH URL with the public URL, then initialize submodules
 before_install:
-    - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
-    - git submodule update --init --recursive
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
+  - git fetch --tags
 
-install: sudo ./scripts/install-dependencies.sh
+install:
+  - sudo ./scripts/install-dependencies.sh
 
-script: ./scripts/test.sh
+script: xvfb-run --server-args "-screen 0 1920x1080x24" -a ./scripts/test.sh

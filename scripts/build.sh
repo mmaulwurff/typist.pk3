@@ -3,7 +3,7 @@
 name=typist
 version=$(git describe --abbrev=0 --tags)
 filename=$name-$version.pk3
-files=$(find . -name "*.zs" -o -name "*.md" -o -name "*.txt")
+files=$(find . -name "*.zs" -o -name "*.md" -o -name "*.txt" | grep -v "3rdparty")
 
 scripts/make_changelog.sh
 

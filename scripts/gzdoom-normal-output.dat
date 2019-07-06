@@ -3,10 +3,11 @@ W_Init: Init WADfiles.
  adding /opt/gzdoom/gzdoom.pk3, 621 lumps
  adding /opt/gzdoom/zd_extra.pk3, 1723 lumps
  adding /home/.*/Programs/Games/wads/doom/DOOM2.WAD, 2919 lumps
+ adding /usr/share/games/doom/freedoom2.wad, 3329 lumps
 I_Init: Setting up machine state.
-CPU Vendor ID: AuthenticAMD
-  Name: AMD Ryzen 3 2200G with Radeon Vega Graphics
-  Family 23 (23), Model 17, Stepping 0
+CPU Vendor ID: .*
+  Name: .*
+  Family.*, Model.*, Stepping.*
   Features: SSE2 SSE3 SSSE3 SSE4.1 SSE4.2 HyperThreading
 V_Init: allocate screen.
 S_Init: Setting up sound.
@@ -44,3 +45,17 @@ Max. combined shader storage blocks: 96
 Max. vertex shader storage blocks: 16
 Resolution: 1920 x 1080
 fluidsynth: warning: Failed to pin the sample data to RAM; swapping is possible.
+Adding dehacked patch freedoom2.wad:DEHACKED
+Patch installed
+===========================================================================
+This is Freedoom, the free content first person shooter.
+Freedoom is freely redistributable under the terms of the modified BSD
+license. Check out the Freedoom website for more information:
+    https://freedoom.github.io/
+============================================================================
+AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
