@@ -9,8 +9,7 @@ rm -rf $target_dir
 cp -r  $source_dir $target_dir
 
 cd $target_dir
-rename 's/^/tt_/'
-rename 's/ /_/' *.zsc
-rename 's/\.txt/.zs/' *.zsc
-sed -i 's/Cl/tt_Cl/g' *.zs
-cd -
+find . -name "*.zsc" | rename 's/\.zsc/_tt.zs/'
+find . -name "*.zs" | xargs sed -i 's/Clematis/tt_Clematis/g'
+find . -name "*.zs" | xargs sed -i 's/Cl_/tt_Cl_/g'
+cd - > /dev/null
