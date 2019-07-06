@@ -72,3 +72,8 @@ zippey
 woot
 suff
 submodule
+submodules
+aamer
+zain
+readme
+mapinfo
