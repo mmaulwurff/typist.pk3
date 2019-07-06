@@ -14,11 +14,11 @@ function spelling {
 
 function line_width {
     echo -e "\nCode_check_2: Line width #######################################"
-    maxwidth=80
+    maxwidth=100
 
     let checkwidth=$maxwidth+1
 
-    out=$(find . -name "*.zs" | while read f; do
+    out=$(find zscript/typist -name "*.zs" | while read f; do
         grep -nH ".\{$checkwidth\}" $f || true
     done)
 
@@ -26,7 +26,7 @@ function line_width {
 
     if [ $nlines -gt 0 ]
     then
-        echo $out
+        echo "$out"
     else
         echo "No lines longer than $maxwidth."
     fi
