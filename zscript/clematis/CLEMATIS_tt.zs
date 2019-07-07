@@ -86,9 +86,11 @@ class tt_Clematis abstract{
     }
 
     void It(Name TestCaseName, tt_Cl_Assertion Assertion, tt_Cl_ELogSeverity Severity){
-        uint DeltaTime=MSTime();
+        uint TimeBefore=MSTime();
         bool Condition=Assertion.Eval();
-        DeltaTime=DeltaTime-MSTime();
+        uint TimeAfter=MSTime();
+        uint DeltaTime=TimeAfter-TimeBefore;
+
         tt_Cl_Result Result=tt_Cl_Result.Create(TestCaseName, Condition, Severity, Assertion.ErrorMsg, DeltaTime);
         String Suff;
         if(Result.Success){
