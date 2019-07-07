@@ -1,5 +1,10 @@
 language: bash
 
+notifications:
+  email:
+    on_success: always
+    on_failure: always
+
 os: linux
 dist: xenial
 
