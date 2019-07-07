@@ -6,5 +6,4 @@ echo -e "version 4.1.3\n\n"\
 
 includes=$(find zscript -name "*.zs"| while read f; do echo "#include \"$f\""; done | sort -r)
 
-echo "$includes"
 echo "$includes" >> zscript.zs

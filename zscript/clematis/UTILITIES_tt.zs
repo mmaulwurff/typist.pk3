@@ -30,10 +30,9 @@ class tt_Cl_Util{
         if(Owner!='')
             Result="["..Owner.."] "..Result;
         LogText=Color..Result..LogText;
+        Console.PrintF(LogText);
         if(Severity==LOG_Fatal)
             ThrowAbortException(LogText);
-        else
-            Console.PrintF(LogText);
     }
 
     static

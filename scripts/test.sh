@@ -2,6 +2,8 @@
 
 # This script builds a mod and runs tests.
 
+set -e
+
 filename=$(scripts/build.sh)
 filterfile=scripts/gzdoom-normal-output.dat
 

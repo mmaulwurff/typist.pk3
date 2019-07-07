@@ -22,7 +22,7 @@ class tt_Test : tt_Clematis
     void TestSuites()
     {
       Describe('Testing Player Stats');
-        It('Math', AssertEval(1+1, '==', 2), LOG_Fatal);
+        It('Math', AssertEval(1+1, '==', 3), LOG_Error);
       EndDescribe();
 
       Describe('Testing Math');
