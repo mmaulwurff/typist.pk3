@@ -48,13 +48,19 @@ function actual_run {
     time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -nosound -file $filename +map map01\
          2>&1 > "$pipename" &
 
-    cat < "$pipename" | while read l; do
+    out=$(cat < "$pipename" | while read l; do
         [[ "$l" == "["*   ]] && echo $l
         [[ "$l" == *"T:"* ]] && echo $l
-        [[ "$l" == *"Test finished." ]] && pkill gzdoom &
-    done
+        [[ "$l" == *"Test finished." ]] && pkill gzdoom
+    done)
 
     rm -f "$pipename"
+
+    echo -e "\n$out"
+
+    status=$(echo "$out" | grep "ERROR\|WARN\|FATAL" | wc -l)
+
+    exit $status
 }
 
 # Code checks ##################################################################
