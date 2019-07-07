@@ -37,15 +37,15 @@ class tt_EventHandler : EventHandler
   override
   void OnRegister()
   {
-    console.printf("./zscript/typist/tt_event_handler.zs:40: T: onRegister");
+    tt_Clematis.Create("tt_Test");
+
+    console.printf("./zscript/typist/tt_event_handler.zs:42: T: onRegister");
 
     for (int i = 0; i < 10; ++i)
     {
-      console.printf("./zscript/typist/tt_event_handler.zs:44: T: hello %d", i);
+      console.printf("./zscript/typist/tt_event_handler.zs:46: T: hello %d", i);
     }
-    console.printf("./zscript/typist/tt_event_handler.zs:46: T: Test finished.");
-
-    tt_Clematis.Create("tt_Test");
+    console.printf("./zscript/typist/tt_event_handler.zs:48: T: Test finished.");
   }
 
   private int i;

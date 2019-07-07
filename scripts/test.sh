@@ -16,22 +16,7 @@ function spelling {
 
 function line_width {
     echo -e "\nCode_check_2: Line width #######################################"
-    maxwidth=100
-
-    let checkwidth=$maxwidth+1
-
-    out=$(find zscript/typist -name "*.zs" | while read f; do
-        grep -nH ".\{$checkwidth\}" $f || true
-    done)
-
-    nlines=$(echo "$out" | grep -v "^$" | wc -l)
-
-    if [ $nlines -gt 0 ]
-    then
-        echo "$out"
-    else
-        echo "No lines longer than $maxwidth."
-    fi
+    ./scripts/check_long_lines.sh
 }
 
 function pk3_contents {
@@ -43,38 +28,31 @@ function pk3_contents {
 
 function gzdoom_only {
     echo -e "\nTest_1: GZDoom only ############################################"
-
-    time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -norun -nosound 2>&1 |\
-        grep -vf $filterfile |\
-        grep -v "^$"
+    ./scripts/norun_gzdoom.sh "$filterfile"
 }
 
 function dry_run {
     echo -e "\nTest_2: Dry run with mod #######################################"
-
-    time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -norun -nosound -file $filename 2>&1 |\
-        grep -vf $filterfile |\
-        grep -v "^$" |\
-        grep -v "GZDoom.*version" |\
-        grep -v "Compiled on"
+    ./scripts/dry_run_gzdoom.sh "$filterfile"
 }
 
 function actual_run {
     echo -e "\nTest_3: Actual run with mod ####################################"
 
-    rm -f pipe1
-    mkfifo pipe1
+    pipename=pipe
+    rm -f  "$pipename"
+    mkfifo "$pipename"
 
     time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -nosound -file $filename +map map01\
-         2>&1 > pipe1 &
+         2>&1 > "$pipename" &
 
-    cat < pipe1 | while read l; do
-        [[ "$l" == "["*   ]] && echo $l;
-        [[ "$l" == *"T:"* ]] && echo $l;
-        [[ "$l" == *"Test finished." ]] && pkill gzdoom;
+    cat < "$pipename" | while read l; do
+        [[ "$l" == "["*   ]] && echo $l
+        [[ "$l" == *"T:"* ]] && echo $l
+        [[ "$l" == *"Test finished." ]] && pkill gzdoom &
     done
 
-    rm -f pipe1
+    rm -f "$pipename"
 }
 
 # Code checks ##################################################################
