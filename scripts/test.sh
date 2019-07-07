@@ -69,6 +69,7 @@ function actual_run {
          2>&1 > pipe1 &
 
     cat < pipe1 | while read l; do
+        [[ "$l" == "["*   ]] && echo $l;
         [[ "$l" == *"T:"* ]] && echo $l;
         [[ "$l" == *"Test finished." ]] && pkill gzdoom;
     done

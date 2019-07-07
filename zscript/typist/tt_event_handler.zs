@@ -44,6 +44,8 @@ class tt_EventHandler : EventHandler
       console.printf("./zscript/typist/tt_event_handler.zs:44: T: hello %d", i);
     }
     console.printf("./zscript/typist/tt_event_handler.zs:46: T: Test finished.");
+
+    tt_Clematis.Create("tt_Test");
   }
 
   private int i;
