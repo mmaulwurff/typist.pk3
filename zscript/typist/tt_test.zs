@@ -18,16 +18,12 @@
 class tt_Test : tt_Clematis
 {
 
-    override
-    void TestSuites()
-    {
-      Describe('Testing Player Stats');
-        It('Math', AssertEval(1+1, '==', 2), LOG_Error);
-      EndDescribe();
-
-      Describe('Testing Math');
-        It('Calculus', AssertFalse(0*1!=0), LOG_Error);
-      EndDescribe();
-    }
+  override
+  void TestSuites()
+  {
+    Describe('Testing Player Stats');
+    It('Math', AssertEval(1+1, '==', 2), LOG_Error);
+    EndDescribe();
+  }
 
 } // tt_Test

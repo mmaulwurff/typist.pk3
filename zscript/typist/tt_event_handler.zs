@@ -23,31 +23,20 @@ class tt_EventHandler : EventHandler
   // public: // EventHandler ///////////////////////////////////////////////////
 
   override
-  void WorldTick()
-  {
-    console.printf("./zscript/typist/tt_event_handler.zs:28: T: hello %d", i);
-    if (i >= 10)
-    {
-
-      console.printf("./zscript/typist/tt_event_handler.zs:32: T: Test finished.");
-    }
-    ++i;
-  }
-
-  override
   void OnRegister()
   {
-    tt_Clematis.Create("tt_Test");
-
-    console.printf("./zscript/typist/tt_event_handler.zs:42: T: onRegister");
-
-    for (int i = 0; i < 10; ++i)
-    {
-      console.printf("./zscript/typist/tt_event_handler.zs:46: T: hello %d", i);
-    }
-    console.printf("./zscript/typist/tt_event_handler.zs:48: T: Test finished.");
+    maybeRunTests();
   }
 
-  private int i;
+  // private: //////////////////////////////////////////////////////////////////
+  void maybeRunTests()
+  {
+    CVar isTestEnabledCVar = CVar.FindCVar("tt_is_test_enabled");
+    if (isTestEnabledCVar == NULL || !isTestEnabledCVar.GetBool()) { return; }
+
+    tt_Clematis.Create("tt_Test");
+
+    console.printf("./zscript/typist/tt_event_handler.zs:39: T: Test finished.");
+  }
 
 } // class tt_EventHandler

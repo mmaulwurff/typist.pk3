@@ -46,6 +46,7 @@ function actual_run {
     mkfifo "$pipename"
 
     time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -nosound -file $filename +map map01\
+         +"set tt_is_test_enabled true"\
          2>&1 > "$pipename" &
 
     out=$(cat < "$pipename" | while read l; do
