@@ -35,7 +35,7 @@ function gzdoom_only {
 
 function dry_run {
     echo -e "\nTest_2: Dry run with mod #######################################"
-    ./scripts/dry_run_gzdoom.sh "$filterfile"
+    ./scripts/dry_run_gzdoom.sh "$filterfile" "$filename"
 }
 
 function actual_run {
