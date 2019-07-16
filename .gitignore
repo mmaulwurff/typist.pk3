@@ -13,6 +13,8 @@
 !**.sh
 !**.yml
 !**.dat
+!**.png
+!**.odg
 
 # Do not ignore 3rdparty code:
 
