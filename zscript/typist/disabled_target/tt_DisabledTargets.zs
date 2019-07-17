@@ -15,28 +15,11 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** Entry point for Typist.pk3.
+/**
  */
-class tt_EventHandler : EventHandler
+class tt_DisabledTargets
 {
 
-  // public: // EventHandler ///////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  override
-  void OnRegister()
-  {
-    maybeRunTests();
-  }
-
-  // private: //////////////////////////////////////////////////////////////////
-  void maybeRunTests()
-  {
-    CVar isTestEnabledCVar = CVar.FindCVar("tt_is_test_enabled");
-    if (isTestEnabledCVar == NULL || !isTestEnabledCVar.GetBool()) { return; }
-
-    tt_Clematis.Create("tt_Test");
-
-    console.printf("./zscript/typist/tt_event_handler.zs:39: T: Test finished.");
-  }
-
-} // class tt_EventHandler
+} // class tt_DisabledTargets

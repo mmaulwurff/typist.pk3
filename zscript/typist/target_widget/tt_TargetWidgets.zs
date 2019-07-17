@@ -15,15 +15,11 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class tt_TargetSource
+/**
+ */
+class tt_TargetWidgets
 {
 
-  // public: ///////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  void getTargets(out Array<tt_Target> targets)
-  {
-    console.printf("Virtual tt_TargetSource.getTargets() is called!");
-  }
-
-} // class tt_TargetSource
+} // class tt_TargetWidgets
