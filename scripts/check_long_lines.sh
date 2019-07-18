@@ -4,7 +4,9 @@ max_width=100
 
 let check_width=$max_width+1
 
-out=$(find zscript/typist -name "*.zs" | while read f; do
+files=$(echo $(find zscript/typist -name "*.zs"); echo $(find scripts -name "*.sh"))
+
+out=$(echo "$files" | while read f; do
           grep -nH ".\{$check_width\}" $f || true
       done)
 

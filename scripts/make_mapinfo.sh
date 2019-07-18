@@ -14,8 +14,9 @@ contents=\
 "gameinfo\n"\
 "{\n\n"\
 "  AddEventHandlers = "\
-$(echo $(find . -name "$search_pattern" | while read f; do grep -iroP "(?<=class ).*(?=:.*EventHandler)" $f; done)\
-| sed 's/\(\w*\)/\"\1\"/g' | sed 's/" "/",\n  "/')\
+$(echo $(find . -name "$search_pattern" \
+             | while read f; do grep -iroP "(?<=class ).*(?=:.*EventHandler)" $f; done)\
+      | sed 's/\(\w*\)/\"\1\"/g' | sed 's/" "/",\n  "/')\
 "\n\n} // gameinfo"
 
 echo -e "$contents" > $filename
