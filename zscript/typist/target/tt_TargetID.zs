@@ -15,11 +15,65 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class represents target identifier.
+ * Target identifier is used to check if two Targets point to the same game
+ * entity. This checking is done via isEqual() function.
  */
 class tt_TargetID
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  // Create target identifier from an actor.
+  static tt_TargetID fromActor(Actor a)
+  {
+    tt_TargetID result;
+    result._type = TARGET_ACTOR;
+    result._a    = a;
+
+    return result;
+  }
+
+  // Create target identifier from a line.
+  static tt_TargetID fromLine(Line l)
+  {
+    tt_TargetID result;
+    result._type = TARGET_LINE;
+    result._l    = l;
+
+    return result;
+  }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  // Check if two target identifiers are the same.
+  bool isEqual(tt_TargetID other) const
+  {
+    if (_type != other._type) { return false; }
+
+    switch (_type)
+    {
+    case TARGET_ACTOR: return _a == other._a;
+    case TARGET_LINE:  return _l == other._l;
+    }
+
+    console.printf("./zscript/typist/target/tt_TargetID.zs:60: T: unknown target type!");
+    return false;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  enum TargetTypes
+  {
+    TARGET_ACTOR,
+    TARGET_LINE,
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private TargetTypes _type;
+
+  private Actor _a;
+  private Line  _l;
 
 } // class tt_TargetID

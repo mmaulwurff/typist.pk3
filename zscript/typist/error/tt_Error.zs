@@ -15,11 +15,29 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class represents an error.
+ * It is intended to be used as a possible result of an operation.
  */
 class tt_Error
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_Error init(string description)
+  {
+    _description = description;
+
+    return self;
+  }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  bool isOccurred() const { return _description.length() == 0; }
+
+  string description() const { return _description; }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private string _description;
 
 } // class tt_Error
