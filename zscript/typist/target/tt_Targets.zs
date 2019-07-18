@@ -15,11 +15,26 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** Represent a list of Targets.
  */
 class tt_Targets
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  // Returns a target in this list.
+  tt_Target at(int index) const { return _targets[index]; }
+
+  // Returns a number of targets in this list.
+  int size() const { return _targets.size(); }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  // Adds a target to this list.
+  void add(tt_Target target) { _targets.push(target); }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private Array<tt_Target> _targets;
 
 } // class tt_Targets

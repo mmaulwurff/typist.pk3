@@ -15,23 +15,42 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/** This class represents an attack target.
+ */
 class tt_Target
 {
 
   // public: ///////////////////////////////////////////////////////////////////
 
-  tt_Target init(Vector3 pos)
+  static tt_Target fromActor(Actor a)
   {
-    _pos = pos;
-    return self;
+    tt_Target result;
+    result._pos = a.pos;
+    result._id  = tt_TargetID.fromActor(a);
+
+    return result;
+  }
+
+  static tt_Target fromLine(Line l)
+  {
+    console.printf("./zscript/typist/target/tt_Target.zs:36: T: using unimplemented function!");
+    // TODO: implement
+    tt_Target result;
+
+    return result;
   }
 
   // public: ///////////////////////////////////////////////////////////////////
 
-  Vector3 getPos() const { return _pos; }
+  // Get position in game space of this target.
+  Vector3 position() const { return _pos; }
+
+  // Get an identifier of this target.
+  tt_TargetID id() const { return _id; }
 
   // private: //////////////////////////////////////////////////////////////////
 
-  private Vector3 _pos;
+  private Vector3     _pos;
+  private tt_TargetID _id;
 
 } // class tt_Target
