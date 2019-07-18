@@ -15,11 +15,54 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class represents the mode in which Typist operates.
  */
 class tt_Mode
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_Mode init()
+  {
+    _isAuto = true;
+    _mode   = MODE_EXPLORE;
+
+    return self;
+  }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  /** Auto mode means that Typist will select one of modes according to the
+   * current situation.
+   */
+  bool isAuto() const { return _isAuto; }
+
+  /** Current mode.
+   * @returns one of tt_Mode.Modes.
+   */
+  int mode() const { return _mode; }
+
+  enum Modes
+  {
+    MODE_COMBAT,  ///< Typist is focused on destroying the targets.
+    MODE_EXPLORE, ///< Typist is focused on movement and exploration.
+  }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  void setAuto(bool isAuto) { _isAuto = isAuto; }
+
+  void setMode(int mode)
+  {
+    if (!isAuto())
+    {
+      _mode = mode;
+    }
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private bool _isAuto;
+  private int  _mode;
 
 } // class tt_Mode

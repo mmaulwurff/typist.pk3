@@ -15,11 +15,27 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class represents a point in space.
+ * Note that the Origin position cannot change once set.
  */
 class tt_Origin
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_Origin init(Vector3 pos)
+  {
+    _pos = pos;
+
+    return self;
+  }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  Vector3 position() const { return _pos; }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private Vector3 _pos;
 
 } // class tt_Origin
