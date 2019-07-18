@@ -33,5 +33,5 @@ if [ -z "$WORDS" ]
 then
     echo "No misspelled words."
 else
-    echo "$WORDS" | while read w; do grep -nroI $w; done
+    echo "$WORDS" | while read w; do grep -n -i -r -o -I $w; done
 fi
