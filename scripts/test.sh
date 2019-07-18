@@ -26,6 +26,11 @@ function pk3_contents {
     ./scripts/list_pk3_contents.sh
 }
 
+function todo {
+    echo -e "\nCode_check_4: To do: ###########################################"
+    ./scripts/list_todo.sh
+}
+
 # Test functions ###############################################################
 
 function gzdoom_only {
@@ -69,6 +74,7 @@ function actual_run {
 spelling
 line_width
 pk3_contents
+todo
 
 # Tests ########################################################################
 # Comment out tests that you don't want to run.
