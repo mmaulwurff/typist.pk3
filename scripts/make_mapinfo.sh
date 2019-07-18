@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# This script searches for event handlers in files specified by $searchpattern
+# This script searches for event handlers in files specified by $search_pattern
 # in the current directory and its subdirectories.
 # The found event handlers are written to $filename in mapinfo format.
 
-searchpattern="*.zs"
+search_pattern="*.zs"
 filename=mapinfo.txt
 
 contents=\
@@ -14,7 +14,7 @@ contents=\
 "gameinfo\n"\
 "{\n\n"\
 "  AddEventHandlers = "\
-$(echo $(find . -name "$searchpattern" | while read f; do grep -iroP "(?<=class ).*(?=:.*EventHandler)" $f; done)\
+$(echo $(find . -name "$search_pattern" | while read f; do grep -iroP "(?<=class ).*(?=:.*EventHandler)" $f; done)\
 | sed 's/\(\w*\)/\"\1\"/g' | sed 's/" "/",\n  "/')\
 "\n\n} // gameinfo"
 

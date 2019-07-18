@@ -88,3 +88,17 @@ xvfb
 activatable
 damager
 gitattributes
+changelog
+changelogs
+drdteam
+freedoom
+gsub
+mkfifo
+rdparty
+sudo
+wget
+xargs
+subdirectories
+nosound
+norun
+pkill

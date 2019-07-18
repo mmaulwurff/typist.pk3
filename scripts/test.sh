@@ -5,7 +5,7 @@
 set -e
 
 filename=$(scripts/build.sh)
-filterfile=scripts/gzdoom-normal-output.dat
+filter_file=scripts/gzdoom-normal-output.dat
 
 export PATH="/usr/games/:$PATH"
 
@@ -30,32 +30,32 @@ function pk3_contents {
 
 function gzdoom_only {
     echo -e "\nTest_1: GZDoom only ############################################"
-    ./scripts/norun_gzdoom.sh "$filterfile"
+    ./scripts/norun_gzdoom.sh "$filter_file"
 }
 
 function dry_run {
     echo -e "\nTest_2: Dry run with mod #######################################"
-    ./scripts/dry_run_gzdoom.sh "$filterfile" "$filename"
+    ./scripts/dry_run_gzdoom.sh "$filter_file" "$filename"
 }
 
 function actual_run {
     echo -e "\nTest_3: Actual run with mod ####################################"
 
-    pipename=pipe
-    rm -f  "$pipename"
-    mkfifo "$pipename"
+    pipe_name=pipe
+    rm -f  "$pipe_name"
+    mkfifo "$pipe_name"
 
     time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -file $filename +map map01\
          +"set tt_is_test_enabled true"\
-         2>&1 > "$pipename" &
+         2>&1 > "$pipe_name" &
 
-    out=$(cat < "$pipename" | while read l; do
+    out=$(cat < "$pipe_name" | while read l; do
         [[ "$l" == "["*   ]] && echo $l
         [[ "$l" == *"T:"* ]] && echo $l
         [[ "$l" == *"Test finished." ]] && pkill gzdoom
     done)
 
-    rm -f "$pipename"
+    rm -f "$pipe_name"
 
     echo -e "\n$out"
 

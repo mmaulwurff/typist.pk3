@@ -1,18 +1,18 @@
 #!/bin/bash
 
-maxwidth=100
+max_width=100
 
-let checkwidth=$maxwidth+1
+let check_width=$max_width+1
 
 out=$(find zscript/typist -name "*.zs" | while read f; do
-          grep -nH ".\{$checkwidth\}" $f || true
+          grep -nH ".\{$check_width\}" $f || true
       done)
 
-nlines=$(echo "$out" | grep -v "^$" | wc -l)
+n_lines=$(echo "$out" | grep -v "^$" | wc -l)
 
-if [ $nlines -gt 0 ]
+if [ $n_lines -gt 0 ]
 then
     echo "$out"
 else
-    echo "No lines longer than $maxwidth."
+    echo "No lines longer than $max_width."
 fi
