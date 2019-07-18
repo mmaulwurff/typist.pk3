@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# This script prints misspelled words found in the mod files.
+# See SPELL_FILES for what files are searched for words.
+#
+# This script requires aspell with English dictionary to be installed.
+#
+# Usage: ./scripts/spelling_code.sh
+
 known_words=scripts/known-words.dat
 
 SPELL_FILES=$(find . | grep '\.zs\|.md\|.txt\|\.acs')
@@ -20,5 +27,5 @@ if [ -z "$WORDS" ]
 then
     echo "No misspelled words."
 else
-    echo "$WORDS"
+    echo "$WORDS" | while read w; do grep -nroI $w; done
 fi
