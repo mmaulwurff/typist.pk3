@@ -15,11 +15,52 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class represents a target displayed on the screen.
  */
 class tt_TargetWidget
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_TargetWidget init(tt_KnownTarget target, Vector2 position)
+  {
+    _target          = target;
+    _alpha           = 1.0;
+    _position        = position;
+    _desiredPosition = _position;
+
+    return self;
+  }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  tt_KnownTarget target() const { return _target; }
+
+  double alpha() const { return _alpha; }
+
+  Vector2 position() const { return _position; }
+
+  Vector2 desiredPosition() const { return _desiredPosition; }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  void setAlpha(double alpha) { _alpha = alpha; }
+
+  void setDesiredPosition(Vector2 position) { _desiredPosition = position; }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  void updatePosition(Vector2 position)
+  {
+    // TODO: implement
+    // this should make current position a bit closer to desired position.
+  }
+
+// private:
+
+  private tt_KnownTarget _target;
+  private double         _alpha;
+  private Vector2        _position;
+  private Vector2        _desiredPosition;
 
 } // class tt_TargetWidget

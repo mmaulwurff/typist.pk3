@@ -15,11 +15,30 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class represents a target that already has been seen and registered.
  */
-class tt_KnowTarget
+class tt_KnownTarget
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-} // class tt_KnowTarget
+  tt_KnownTarget init(tt_Target target, tt_ShootString shootString)
+  {
+    _target      = target;
+    _shootString = shootString;
+
+    return self;
+  }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  tt_Target target() const { return _target; }
+
+  tt_ShootString shootString() const { return _shootString; }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_Target      _target;
+  private tt_ShootString _shootString;
+
+} // class tt_KnownTarget

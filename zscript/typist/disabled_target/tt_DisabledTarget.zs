@@ -15,11 +15,28 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class represents a disabled target.
+ * Disabled target is an entity that may have been a target in the past and
+ * doesn't require any actions now.
  */
 class tt_DisabledTarget
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_DisabledTarget init(tt_TargetID id)
+  {
+    _id = id;
+
+    return self;
+  }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  tt_TargetID id() const { return _id; }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_TargetID _id;
 
 } // class tt_DisabledTarget

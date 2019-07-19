@@ -15,11 +15,26 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class represents a list of target widgets.
  */
 class tt_TargetWidgets
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  // Returns a target in this list.
+  tt_TargetWidget at(int index) const { return _widgets[index]; }
+
+  // Returns a number of targets in this list.
+  int size() const { return _widgets.size(); }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  // Adds a target to this list.
+  void add(tt_TargetWidget target) { _widgets.push(target); }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private Array<tt_TargetWidget> _widgets;
 
 } // class tt_TargetWidgets

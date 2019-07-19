@@ -15,11 +15,26 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class represents a list of disabled targets.
  */
 class tt_DisabledTargets
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  // Returns a target in this list.
+  tt_DisabledTarget at(int index) const { return _targets[index]; }
+
+  // Returns a number of targets in this list.
+  int size() const { return _targets.size(); }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  // Adds a target to this list.
+  void add(tt_DisabledTarget target) { _targets.push(target); }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private Array<tt_DisabledTarget> _targets;
 
 } // class tt_DisabledTargets
