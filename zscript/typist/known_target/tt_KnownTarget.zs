@@ -22,7 +22,7 @@ class tt_KnownTarget
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_KnownTarget init(tt_Target target, tt_ShootString shootString)
+  tt_KnownTarget init(tt_Target target, tt_String shootString)
   {
     _target      = target;
     _shootString = shootString;
@@ -34,11 +34,11 @@ class tt_KnownTarget
 
   tt_Target target() const { return _target; }
 
-  tt_ShootString shootString() const { return _shootString; }
+  tt_String shootString() const { return _shootString; }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_Target      _target;
-  private tt_ShootString _shootString;
+  private tt_Target _target;
+  private tt_String _shootString;
 
 } // class tt_KnownTarget
