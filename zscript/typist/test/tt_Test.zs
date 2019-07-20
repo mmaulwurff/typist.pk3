@@ -18,12 +18,12 @@
 class tt_Test : tt_Clematis
 {
 
+// public: // tt_Clematis //////////////////////////////////////////////////////
+
   override
   void TestSuites()
   {
-    Describe('Testing Player Stats');
-    It('Math', AssertEval(1+1, '==', 2), LOG_Error);
-    EndDescribe();
+    testTargetWidget();
   }
 
 } // tt_Test

@@ -20,23 +20,29 @@
 class tt_EventHandler : EventHandler
 {
 
-  // public: // EventHandler ///////////////////////////////////////////////////
+// public: // EventHandler /////////////////////////////////////////////////////
 
   override
   void OnRegister()
   {
-    maybeRunTests();
+    if (isTestingEnabled()) { runTests(); }
   }
 
-  // private: //////////////////////////////////////////////////////////////////
-  void maybeRunTests()
+// private: ////////////////////////////////////////////////////////////////////
+
+  private bool isTestingEnabled() const
   {
     CVar isTestEnabledCVar = CVar.FindCVar("tt_is_test_enabled");
-    if (isTestEnabledCVar == NULL || !isTestEnabledCVar.GetBool()) { return; }
+    return (isTestEnabledCVar != NULL && isTestEnabledCVar.GetBool());
+  }
 
+  private void runTests()
+  {
     tt_Clematis.Create("tt_Test");
 
-    console.printf("./zscript/typist/event_handler/tt_EventHandler.zs:39: T: Test finished.");
+    // This console log is required for test script to understand that it
+    // should stop GZDoom execution.
+    console.printf("./zscript/typist/event_handler/tt_EventHandler.zs:45: T: Test finished.");
   }
 
 } // class tt_EventHandler
