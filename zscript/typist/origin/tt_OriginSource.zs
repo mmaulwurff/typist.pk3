@@ -15,11 +15,18 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This interface represents a source of origins.
  */
-class tt_OriginSource
+class tt_OriginSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  virtual
+  tt_Origin getOrigin()
+  {
+    Console.Printf("./zscript/typist/origin/tt_OriginSource.zs:28: T: override this!");
+    return NULL;
+  }
 
 } // class tt_OriginSource

@@ -15,11 +15,27 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This interface represents a source of strings that charge up to damage
+ * targets.
  */
-class tt_ChargeStringSource
+class tt_ChargeStringSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  virtual
+  tt_String getString()
+  {
+    Console.Printf("./zscript/typist/charge_string/tt_ChargeStringSource.zs:29: T: override this!");
+    return NULL;
+  }
+
+  /** tells the source to return new strings.
+   */
+  virtual
+  void reset()
+  {
+    Console.Printf("./zscript/typist/charge_string/tt_ChargeStringSource.zs:38: T: override this!");
+  }
 
 } // class tt_ChargeStringSource

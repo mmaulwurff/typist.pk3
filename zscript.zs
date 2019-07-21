@@ -37,6 +37,7 @@ version 4.1.3
 #include "zscript/typist/disabled_target/tt_DisabledTargetSource.zs"
 #include "zscript/typist/disabled_target/tt_DeathReporter.zs"
 #include "zscript/typist/difficulty/tt_SelectedDifficulty.zs"
+#include "zscript/typist/difficulty/tt_Difficulty.zs"
 #include "zscript/typist/difficulty/tt_DifficultySource.zs"
 #include "zscript/typist/damager/tt_StringMatchDamager.zs"
 #include "zscript/typist/damager/tt_Damager.zs"

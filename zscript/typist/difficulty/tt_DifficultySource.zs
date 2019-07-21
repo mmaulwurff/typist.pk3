@@ -15,11 +15,18 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This interface represents a difficulty source.
  */
-class tt_DifficultySource
+class tt_DifficultySource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  virtual
+  tt_Difficulty getDifficulty()
+  {
+    Console.Printf("./zscript/typist/difficulty/tt_DifficultySource.zs:28: T: override this!");
+    return NULL;
+  }
 
 } // class tt_DifficultySource

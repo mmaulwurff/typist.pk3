@@ -15,18 +15,26 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a game element that can be activated by the same
- * way the target is damaged. Such elements can be considered pseudo-targets.
+/** This class represents game difficulty.
  */
-class tt_Activatable abstract
+class tt_Difficulty
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  void activate()
+  tt_Difficulty init(int shootStringLength)
   {
-    Console.Printf("./zscript/typist/activatable/tt_Activatable.zs:29: T: override this!");
+    _shootStringLength = shootStringLength;
+
+    return self;
   }
 
-} // class tt_Activatable
+// public: /////////////////////////////////////////////////////////////////////
+
+  int shootStringLength() const { return _shootStringLength; }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private int _shootStringLength;
+
+} // class Difficulty

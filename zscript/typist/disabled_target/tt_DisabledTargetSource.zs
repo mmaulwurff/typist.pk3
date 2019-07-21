@@ -15,11 +15,21 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This interface represents a source of disabled targets.
+ *
+ * @see tt_DisabledTarget
  */
-class tt_DisabledTargetSource
+class tt_DisabledTargetSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  virtual
+  tt_DisabledTargets getTargets()
+  {
+    Console.Printf(
+      "./zscript/typist/disabled_target/tt_DisabledTargetSource.zs:31: T: override this!");
+    return NULL;
+  }
 
 } // class tt_DisabledTargetSource

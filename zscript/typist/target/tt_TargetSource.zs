@@ -15,11 +15,21 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This interface represents a source of targets.
+ *
+ * @see tt_Target
  */
-class tt_TargetSource
+class tt_TargetSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  virtual
+  tt_Targets getTargets()
+  {
+    Console.Printf(
+      "./zscript/typist/target/tt_TargetSource.zs:31: T: override this!");
+    return NULL;
+  }
 
 } // class tt_TargetSource

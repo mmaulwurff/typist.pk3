@@ -3,7 +3,7 @@ W_Init: Init WADfiles.
  adding /opt/gzdoom/gzdoom.pk3, 621 lumps
  adding /opt/gzdoom/zd_extra.pk3, 1723 lumps
  adding /home/.*/Programs/Games/wads/doom/DOOM2.WAD, 2919 lumps
- adding /usr/share/games/doom/freedoom2.wad, 3329 lumps
+ adding /usr/share/games/doom/freedoom2.wad, .* lumps
 I_Init: Setting up machine state.
 CPU Vendor ID: .*
   Name: .*

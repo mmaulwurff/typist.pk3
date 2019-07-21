@@ -15,11 +15,20 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This interface represents a source of modes.
+ *
+ * @see tt_Mode
  */
-class tt_ModeSource
+class tt_ModeSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  virtual
+  tt_Mode getMode()
+  {
+    Console.Printf("./zscript/typist/mode/tt_ModeSource.zs:30: T: override this!");
+    return NULL;
+  }
 
 } // class tt_ModeSource

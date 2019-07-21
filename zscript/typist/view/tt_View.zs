@@ -15,11 +15,17 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This interface represents a view - something that displays target.
  */
-class tt_View
+class tt_View abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  virtual
+  void draw()
+  {
+    Console.Printf("override this!");
+  }
 
 } // class tt_View
