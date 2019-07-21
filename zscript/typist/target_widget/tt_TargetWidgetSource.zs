@@ -26,9 +26,10 @@ class tt_TargetWidgetSource abstract
    *
    * @returns a list of target widgets.
    */
+  virtual
   tt_TargetWidgets getWidgets()
   {
-    console.printf("./zscript/typist/target_widget/tt_TargetWidgetSource.zs:31: T: override this!");
+    console.printf("./zscript/typist/target_widget/tt_TargetWidgetSource.zs:32: T: override this!");
     return NULL;
   }
 
