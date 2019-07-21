@@ -15,11 +15,23 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This interface provides a source of strings intended to be assigned to
+ * targets.
  */
-class tt_ShootStringSource
+class tt_ShootStringSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  /** Get a string with a specified length from this source.
+   * String length is a recommendation, the result string is not guaranteed to
+   * be the specified length.
+   *
+   * @returns a string on success, error on failure.
+   */
+  tt_String, tt_Error getString(int length)
+  {
+    return NULL, new("tt_Error").init("call to a virtual function");
+  }
 
 } // class tt_ShootStringSource
