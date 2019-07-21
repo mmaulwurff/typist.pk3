@@ -29,9 +29,10 @@ class tt_ShootStringSource abstract
    *
    * @returns a string on success, error on failure.
    */
-  tt_String, tt_Error getString(int length)
+  tt_String getString(int length)
   {
-    return NULL, new("tt_Error").init("call to a virtual function");
+    console.printf("./zscript/typist/shoot_string/tt_ShootStringSource.zs:34: T: override this!");
+    return NULL;
   }
 
 } // class tt_ShootStringSource

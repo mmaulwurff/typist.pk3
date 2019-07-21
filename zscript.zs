@@ -32,7 +32,6 @@ version 4.1.3
 #include "zscript/typist/known_target/tt_KnownTargets.zs"
 #include "zscript/typist/known_target/tt_KnownTargetSource.zs"
 #include "zscript/typist/event_handler/tt_EventHandler.zs"
-#include "zscript/typist/error/tt_Error.zs"
 #include "zscript/typist/disabled_target/tt_DisabledTarget.zs"
 #include "zscript/typist/disabled_target/tt_DisabledTargets.zs"
 #include "zscript/typist/disabled_target/tt_DisabledTargetSource.zs"
