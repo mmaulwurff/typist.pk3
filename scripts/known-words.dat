@@ -110,3 +110,4 @@ pathlib
 rglob
 subprocess
 tokenize
+msys
