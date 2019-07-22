@@ -7,6 +7,7 @@ version 4.1.3
 #include "zscript/typist/view/tt_Screen.zs"
 #include "zscript/typist/tests/tt_Test.zs"
 #include "zscript/typist/tests/tt_TargetWidgetTest.zs"
+#include "zscript/typist/tests/mocks.zs"
 #include "zscript/typist/target_widget/tt_TargetWidget.zs"
 #include "zscript/typist/target_widget/tt_TargetWidgets.zs"
 #include "zscript/typist/target_widget/tt_TargetWidgetSource.zs"

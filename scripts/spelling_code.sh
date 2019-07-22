@@ -9,7 +9,7 @@
 
 known_words=scripts/known-words.dat
 
-SPELL_FILES=$(find . | grep '\.zs\|.md\|.txt\|\.acs\|\.sh')
+SPELL_FILES=$(find . | grep '\.zs\|.md\|.txt\|\.acs\|\.sh\|.py')
 
 LOWERCASE=$(grep -h -o -E '\w{4,}' $SPELL_FILES \
                 | sed -e 's/_/ /g' \

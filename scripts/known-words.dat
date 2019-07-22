@@ -103,3 +103,10 @@ nosound
 norun
 pkill
 todo
+args
+applaunch
+func
+pathlib
+rglob
+subprocess
+tokenize
