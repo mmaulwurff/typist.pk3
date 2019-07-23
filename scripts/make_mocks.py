@@ -108,7 +108,7 @@ def generate_mock_class(tokens):
             out += '  }\n\n'
 
             # isSatisfied
-            out += '  bool isSatisfied_' + func_name + '()\n'
+            out += '  bool isSatisfied_' + func_name + '() const\n'
             out += '  {\n'
             out += '    return ' + mock_attribute_expected + ' == ' + mock_attribute_called + ';\n'
             out += '  }\n\n'
@@ -120,7 +120,7 @@ def generate_mock_class(tokens):
             out += '  private int ' + mock_attribute_called + ';\n\n'
 
     # generate a footer
-    out += '} // ' + mock_name + '\n\n'
+    out += '} // class ' + mock_name + '\n\n'
 
     return out
 

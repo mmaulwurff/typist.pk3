@@ -33,7 +33,7 @@ class tt_DamagerMock : tt_Damager
     _mock_damage_called = 0;
   }
 
-  bool isSatisfied_damage()
+  bool isSatisfied_damage() const
   {
     return _mock_damage_expected == _mock_damage_called;
   }
@@ -41,7 +41,7 @@ class tt_DamagerMock : tt_Damager
   private int _mock_damage_expected;
   private int _mock_damage_called;
 
-} // tt_DamagerMock
+} // class tt_DamagerMock
 
 class tt_KnownTargetSourceMock : tt_KnownTargetSource
 {
@@ -60,7 +60,7 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
     _mock_getTarget_called = 0;
   }
 
-  bool isSatisfied_getTarget()
+  bool isSatisfied_getTarget() const
   {
     return _mock_getTarget_expected == _mock_getTarget_called;
   }
@@ -69,7 +69,7 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
   private int _mock_getTarget_expected;
   private int _mock_getTarget_called;
 
-} // tt_KnownTargetSourceMock
+} // class tt_KnownTargetSourceMock
 
 class tt_ActorSourceMock : tt_ActorSource
 {
@@ -88,7 +88,7 @@ class tt_ActorSourceMock : tt_ActorSource
     _mock_getActor_called = 0;
   }
 
-  bool isSatisfied_getActor()
+  bool isSatisfied_getActor() const
   {
     return _mock_getActor_expected == _mock_getActor_called;
   }
@@ -97,7 +97,7 @@ class tt_ActorSourceMock : tt_ActorSource
   private int _mock_getActor_expected;
   private int _mock_getActor_called;
 
-} // tt_ActorSourceMock
+} // class tt_ActorSourceMock
 
 class tt_ActivatableMock : tt_Activatable
 {
@@ -114,7 +114,7 @@ class tt_ActivatableMock : tt_Activatable
     _mock_activate_called = 0;
   }
 
-  bool isSatisfied_activate()
+  bool isSatisfied_activate() const
   {
     return _mock_activate_expected == _mock_activate_called;
   }
@@ -122,7 +122,7 @@ class tt_ActivatableMock : tt_Activatable
   private int _mock_activate_expected;
   private int _mock_activate_called;
 
-} // tt_ActivatableMock
+} // class tt_ActivatableMock
 
 class tt_DifficultySourceMock : tt_DifficultySource
 {
@@ -141,7 +141,7 @@ class tt_DifficultySourceMock : tt_DifficultySource
     _mock_getDifficulty_called = 0;
   }
 
-  bool isSatisfied_getDifficulty()
+  bool isSatisfied_getDifficulty() const
   {
     return _mock_getDifficulty_expected == _mock_getDifficulty_called;
   }
@@ -150,7 +150,7 @@ class tt_DifficultySourceMock : tt_DifficultySource
   private int _mock_getDifficulty_expected;
   private int _mock_getDifficulty_called;
 
-} // tt_DifficultySourceMock
+} // class tt_DifficultySourceMock
 
 class tt_DisabledTargetSourceMock : tt_DisabledTargetSource
 {
@@ -169,7 +169,7 @@ class tt_DisabledTargetSourceMock : tt_DisabledTargetSource
     _mock_getTargets_called = 0;
   }
 
-  bool isSatisfied_getTargets()
+  bool isSatisfied_getTargets() const
   {
     return _mock_getTargets_expected == _mock_getTargets_called;
   }
@@ -178,7 +178,7 @@ class tt_DisabledTargetSourceMock : tt_DisabledTargetSource
   private int _mock_getTargets_expected;
   private int _mock_getTargets_called;
 
-} // tt_DisabledTargetSourceMock
+} // class tt_DisabledTargetSourceMock
 
 class tt_TargetSourceMock : tt_TargetSource
 {
@@ -197,7 +197,7 @@ class tt_TargetSourceMock : tt_TargetSource
     _mock_getTargets_called = 0;
   }
 
-  bool isSatisfied_getTargets()
+  bool isSatisfied_getTargets() const
   {
     return _mock_getTargets_expected == _mock_getTargets_called;
   }
@@ -206,7 +206,7 @@ class tt_TargetSourceMock : tt_TargetSource
   private int _mock_getTargets_expected;
   private int _mock_getTargets_called;
 
-} // tt_TargetSourceMock
+} // class tt_TargetSourceMock
 
 class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
 {
@@ -225,7 +225,7 @@ class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
     _mock_getWidgets_called = 0;
   }
 
-  bool isSatisfied_getWidgets()
+  bool isSatisfied_getWidgets() const
   {
     return _mock_getWidgets_expected == _mock_getWidgets_called;
   }
@@ -234,7 +234,7 @@ class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
   private int _mock_getWidgets_expected;
   private int _mock_getWidgets_called;
 
-} // tt_TargetWidgetSourceMock
+} // class tt_TargetWidgetSourceMock
 
 class tt_ModeSourceMock : tt_ModeSource
 {
@@ -253,7 +253,7 @@ class tt_ModeSourceMock : tt_ModeSource
     _mock_getMode_called = 0;
   }
 
-  bool isSatisfied_getMode()
+  bool isSatisfied_getMode() const
   {
     return _mock_getMode_expected == _mock_getMode_called;
   }
@@ -262,7 +262,7 @@ class tt_ModeSourceMock : tt_ModeSource
   private int _mock_getMode_expected;
   private int _mock_getMode_called;
 
-} // tt_ModeSourceMock
+} // class tt_ModeSourceMock
 
 class tt_ShootStringSourceMock : tt_ShootStringSource
 {
@@ -281,7 +281,7 @@ class tt_ShootStringSourceMock : tt_ShootStringSource
     _mock_getString_called = 0;
   }
 
-  bool isSatisfied_getString()
+  bool isSatisfied_getString() const
   {
     return _mock_getString_expected == _mock_getString_called;
   }
@@ -290,7 +290,7 @@ class tt_ShootStringSourceMock : tt_ShootStringSource
   private int _mock_getString_expected;
   private int _mock_getString_called;
 
-} // tt_ShootStringSourceMock
+} // class tt_ShootStringSourceMock
 
 class tt_ViewMock : tt_View
 {
@@ -307,7 +307,7 @@ class tt_ViewMock : tt_View
     _mock_draw_called = 0;
   }
 
-  bool isSatisfied_draw()
+  bool isSatisfied_draw() const
   {
     return _mock_draw_expected == _mock_draw_called;
   }
@@ -315,7 +315,7 @@ class tt_ViewMock : tt_View
   private int _mock_draw_expected;
   private int _mock_draw_called;
 
-} // tt_ViewMock
+} // class tt_ViewMock
 
 class tt_ChargeStringSourceMock : tt_ChargeStringSource
 {
@@ -334,7 +334,7 @@ class tt_ChargeStringSourceMock : tt_ChargeStringSource
     _mock_getString_called = 0;
   }
 
-  bool isSatisfied_getString()
+  bool isSatisfied_getString() const
   {
     return _mock_getString_expected == _mock_getString_called;
   }
@@ -343,7 +343,7 @@ class tt_ChargeStringSourceMock : tt_ChargeStringSource
   private int _mock_getString_expected;
   private int _mock_getString_called;
 
-} // tt_ChargeStringSourceMock
+} // class tt_ChargeStringSourceMock
 
 class tt_OriginSourceMock : tt_OriginSource
 {
@@ -362,7 +362,7 @@ class tt_OriginSourceMock : tt_OriginSource
     _mock_getOrigin_called = 0;
   }
 
-  bool isSatisfied_getOrigin()
+  bool isSatisfied_getOrigin() const
   {
     return _mock_getOrigin_expected == _mock_getOrigin_called;
   }
@@ -371,5 +371,5 @@ class tt_OriginSourceMock : tt_OriginSource
   private int _mock_getOrigin_expected;
   private int _mock_getOrigin_called;
 
-} // tt_OriginSourceMock
+} // class tt_OriginSourceMock
 
