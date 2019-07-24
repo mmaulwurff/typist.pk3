@@ -25,7 +25,7 @@ class tt_KnownTargetSource abstract
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  tt_KnownTarget getTarget()
+  tt_KnownTargets getTargets()
   {
     Console.Printf("./zscript/typist/known_target/tt_KnownTargetSource.zs:30: T: override this!");
     return NULL;

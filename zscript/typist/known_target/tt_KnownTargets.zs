@@ -23,15 +23,41 @@ class tt_KnownTargets
 // public: /////////////////////////////////////////////////////////////////////
 
   // Returns a target in this list.
-  tt_KnownTarget at(int index) const { return _targets[index]; }
+  tt_KnownTarget at(uint index) const { return _targets[index]; }
 
   // Returns a number of targets in this list.
-  int size() const { return _targets.size(); }
+  uint size() const { return _targets.size(); }
+
+  bool contains(tt_TargetID target) const { return find(target) != size(); }
 
 // public: /////////////////////////////////////////////////////////////////////
 
   // Adds a target to this list.
   void add(tt_KnownTarget target) { _targets.push(target); }
+
+  // Removes a target from the list.
+  // If the target is not in the list, does nothing.
+  void remove(tt_TargetID target)
+  {
+    uint index = find(target);
+    if (index != size()) { _targets.Delete(index); }
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  /** Searches for a target with a particular id.
+   * @returns index on success, the total number of targets on failure.
+   */
+  private
+  uint find(tt_TargetID target) const
+  {
+    uint nTargets = size();
+    for (uint i = 0; i < nTargets; ++i)
+    {
+      if (_targets[i].target().id() == target) { return i; }
+    }
+    return nTargets;
+  }
 
 // private: ////////////////////////////////////////////////////////////////////
 

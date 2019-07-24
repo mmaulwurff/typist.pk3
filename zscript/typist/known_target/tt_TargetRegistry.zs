@@ -17,9 +17,92 @@
 
 /**
  */
-class tt_TargetRegistry
+class tt_TargetRegistry : tt_KnownTargetSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_TargetRegistry init( tt_TargetSource         targetSource
+                        , tt_ShootStringSource    shootStringSource
+                        , tt_DifficultySource     difficultySource
+                        , tt_DisabledTargetSource disabledTargetSource
+                        )
+  {
+    _targetSource         = targetSource;
+    _shootStringSource    = shootStringSource;
+    _difficultySource     = difficultySource;
+    _disabledTargetSource = disabledTargetSource;
+
+    return self;
+  }
+
+// public: // tt_KnownTargetSource /////////////////////////////////////////////
+
+  override
+  tt_KnownTargets getTargets()
+  {
+    let newTargets = _targetSource.getTargets();
+    merge(newTargets);
+
+    let disabledTargets = _disabledTargetSource.getTargets();
+    subtract(disabledTargets);
+
+    return _registry;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  // Adds targets that are not already registered to the registry.
+  private
+  void merge(tt_Targets targets)
+  {
+    // Given that tt_KnownTargets.contains() is O(n), this function is O(n^2).
+    // There is a room for optimization.
+
+    int nTargets = targets.size();
+    for (int i = 0; i < nTargets; ++i)
+    {
+      let target = targets.at(i);
+      if (_registry.contains(target.id())) { continue; }
+      let newKnownTarget = makeKnownTarget(target);
+      _registry.add(newKnownTarget);
+    }
+  }
+
+  private
+  void subtract(tt_DisabledTargets targets)
+  {
+    // Given that tt_KnownTargets.remove() is at least O(n), this function is
+    // at least O(n^2).
+    // There is a room for optimization.
+
+    int nTargets = targets.size();
+    for (int i = 0; i < nTargets; ++i)
+    {
+      _registry.remove(targets.at(i).id());
+    }
+  }
+
+  private
+  tt_KnownTarget makeKnownTarget(tt_Target target) const
+  {
+    let difficulty        = _difficultySource.getDifficulty();
+    int shootStringLength = difficulty.shootStringLength();
+    let shootString       = _shootStringSource.getString(shootStringLength);
+    let newKnownTarget    = new("tt_KnownTarget").init(target, shootString);
+
+    return newKnownTarget;
+  }
+
+// private: // dependencies ////////////////////////////////////////////////////
+
+  private tt_TargetSource         _targetSource;
+  private tt_ShootStringSource    _shootStringSource;
+  private tt_DifficultySource     _difficultySource;
+  private tt_DisabledTargetSource _disabledTargetSource;
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_KnownTargets _registry;
 
 } // class tt_TargetRegistry

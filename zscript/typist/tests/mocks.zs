@@ -47,27 +47,27 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
 {
 
   override
-  tt_KnownTarget getTarget()
+  tt_KnownTargets getTargets()
   {
-    ++_mock_getTarget_called;
-    return _mock_getTarget;
+    ++_mock_getTargets_called;
+    return _mock_getTargets;
   }
 
-  void Expect_getTarget(tt_KnownTarget value, int expected = 1)
+  void Expect_getTargets(tt_KnownTargets value, int expected = 1)
   {
-    _mock_getTarget = value;
-    _mock_getTarget_expected = expected;
-    _mock_getTarget_called = 0;
+    _mock_getTargets = value;
+    _mock_getTargets_expected = expected;
+    _mock_getTargets_called = 0;
   }
 
-  bool isSatisfied_getTarget() const
+  bool isSatisfied_getTargets() const
   {
-    return _mock_getTarget_expected == _mock_getTarget_called;
+    return _mock_getTargets_expected == _mock_getTargets_called;
   }
 
-  private tt_KnownTarget _mock_getTarget;
-  private int _mock_getTarget_expected;
-  private int _mock_getTarget_called;
+  private tt_KnownTargets _mock_getTargets;
+  private int _mock_getTargets_expected;
+  private int _mock_getTargets_called;
 
 } // class tt_KnownTargetSourceMock
 
