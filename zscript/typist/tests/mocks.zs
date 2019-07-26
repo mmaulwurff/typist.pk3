@@ -236,6 +236,34 @@ class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
 
 } // class tt_TargetWidgetSourceMock
 
+class tt_StringSourceMock : tt_StringSource
+{
+
+  override
+  tt_String getString()
+  {
+    ++_mock_getString_called;
+    return _mock_getString;
+  }
+
+  void Expect_getString(tt_String value, int expected = 1)
+  {
+    _mock_getString = value;
+    _mock_getString_expected = expected;
+    _mock_getString_called = 0;
+  }
+
+  bool isSatisfied_getString() const
+  {
+    return _mock_getString_expected == _mock_getString_called;
+  }
+
+  private tt_String _mock_getString;
+  private int _mock_getString_expected;
+  private int _mock_getString_called;
+
+} // class tt_StringSourceMock
+
 class tt_ModeSourceMock : tt_ModeSource
 {
 
@@ -264,34 +292,6 @@ class tt_ModeSourceMock : tt_ModeSource
 
 } // class tt_ModeSourceMock
 
-class tt_ShootStringSourceMock : tt_ShootStringSource
-{
-
-  override
-  tt_String getString(int length)
-  {
-    ++_mock_getString_called;
-    return _mock_getString;
-  }
-
-  void Expect_getString(tt_String value, int expected = 1)
-  {
-    _mock_getString = value;
-    _mock_getString_expected = expected;
-    _mock_getString_called = 0;
-  }
-
-  bool isSatisfied_getString() const
-  {
-    return _mock_getString_expected == _mock_getString_called;
-  }
-
-  private tt_String _mock_getString;
-  private int _mock_getString_expected;
-  private int _mock_getString_called;
-
-} // class tt_ShootStringSourceMock
-
 class tt_ViewMock : tt_View
 {
 
@@ -316,34 +316,6 @@ class tt_ViewMock : tt_View
   private int _mock_draw_called;
 
 } // class tt_ViewMock
-
-class tt_ChargeStringSourceMock : tt_ChargeStringSource
-{
-
-  override
-  tt_String getString()
-  {
-    ++_mock_getString_called;
-    return _mock_getString;
-  }
-
-  void Expect_getString(tt_String value, int expected = 1)
-  {
-    _mock_getString = value;
-    _mock_getString_expected = expected;
-    _mock_getString_called = 0;
-  }
-
-  bool isSatisfied_getString() const
-  {
-    return _mock_getString_expected == _mock_getString_called;
-  }
-
-  private tt_String _mock_getString;
-  private int _mock_getString_expected;
-  private int _mock_getString_called;
-
-} // class tt_ChargeStringSourceMock
 
 class tt_OriginSourceMock : tt_OriginSource
 {

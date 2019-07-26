@@ -15,25 +15,26 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface provides a source of strings intended to be assigned to
- * targets.
+/** This interface represents a source of strings.
  */
-class tt_ShootStringSource abstract
+class tt_StringSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  /** Get a string with a specified length from this source.
-   * String length is a recommendation, the result string is not guaranteed to
-   * be the specified length.
-   *
-   * @returns a string on success, error on failure.
-   */
   virtual
-  tt_String getString(int length)
+  tt_String getString()
   {
-    console.printf("./zscript/typist/shoot_string/tt_ShootStringSource.zs:35: T: override this!");
+    Console.Printf("./zscript/typist/string/tt_StringSource.zs:28: T: override this!");
     return NULL;
   }
 
-} // class tt_ShootStringSource
+  /** tells the source to return new strings.
+   */
+  virtual
+  void reset()
+  {
+    Console.Printf("./zscript/typist/string/tt_StringSource.zs:37: T: override this!");
+  }
+
+} // class tt_StringSource
