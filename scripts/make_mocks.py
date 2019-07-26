@@ -8,10 +8,10 @@ import re
 from pathlib import Path
 
 
-def tokenize(filename):
+def tokenize(file_name):
     """This function reads a file and converts it to a list of tokens."""
 
-    src = open(filename, 'r')
+    src = open(file_name, 'r')
     contents = src.read()
 
     # remove single-line comments

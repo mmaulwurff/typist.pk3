@@ -2,7 +2,7 @@
 
 name=typist
 version=$(git describe --abbrev=0 --tags)
-filename=$name-$version.pk3
+file_name=$name-$version.pk3
 files=$(find . -name "*.zs" -o -name "*.md" -o -name "*.txt" | grep -v "3rdparty")
 
 scripts/make_changelog.sh
@@ -14,6 +14,6 @@ scripts/make_mapinfo.sh
 scripts/preprocessor.sh
 
 rm -f *.pk3
-zip --quiet --compression-method store $filename $files
+zip --quiet --compression-method store $file_name $files
 
-echo $filename
+echo $file_name

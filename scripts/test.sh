@@ -4,7 +4,7 @@
 
 set -e
 
-filename=$(scripts/build.sh)
+file_name=$(scripts/build.sh)
 filter_file=scripts/gzdoom-normal-output.dat
 
 export PATH="/usr/games/:$PATH"
@@ -31,6 +31,11 @@ function todo {
     ./scripts/list_todo.sh
 }
 
+function python_version {
+    echo -e "\nCode_check_5: Python: ##########################################"
+    python3 --version
+}
+
 # Test functions ###############################################################
 
 function gzdoom_only {
@@ -40,7 +45,7 @@ function gzdoom_only {
 
 function dry_run {
     echo -e "\nTest_2: Dry run with mod #######################################"
-    ./scripts/dry_run_gzdoom.sh "$filter_file" "$filename"
+    ./scripts/dry_run_gzdoom.sh "$filter_file" "$file_name"
 }
 
 function actual_run {
@@ -50,7 +55,7 @@ function actual_run {
     rm -f  "$pipe_name"
     mkfifo "$pipe_name"
 
-    time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -file $filename +map map01\
+    time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -file $file_name +map map01\
          +"set tt_is_test_enabled true"\
          2>&1 > "$pipe_name" &
 
@@ -75,6 +80,7 @@ spelling
 line_width
 pk3_contents
 todo
+python_version
 
 # Tests ########################################################################
 # Comment out tests that you don't want to run.

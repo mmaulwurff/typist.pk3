@@ -5,9 +5,9 @@
 # create_class_file.sh ClassName
 
 className="$1"
-fileName="zscript/typist/tt_$className.zs"
+file_name="zscript/typist/tt_$className.zs"
 
-cat docs/source-template.zst > "$fileName"
+cat docs/source-template.zst > "$file_name"
 
 contents="\n"\
 "/**\n"\
@@ -19,4 +19,4 @@ contents="\n"\
 "\n"\
 "} // class tt_$className"
 
-echo -e "$contents" >> "$fileName"
+echo -e "$contents" >> "$file_name"
