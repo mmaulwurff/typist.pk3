@@ -2,7 +2,10 @@
 
 """This script makes mock implementation for ZScript interfaces classes.
 In this project, a class is considered an interface if it is marked as
-'abstract'."""
+'abstract'.
+
+At least Python 3.5.2 is required.
+"""
 
 import re
 from pathlib import Path
@@ -11,8 +14,7 @@ from pathlib import Path
 def tokenize(file_name):
     """This function reads a file and converts it to a list of tokens."""
 
-    src = open(file_name, 'r')
-    contents = src.read()
+    contents = open(str(file_name), 'r').read()
 
     # remove single-line comments
     contents = re.sub('//.*', '', contents)

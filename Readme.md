@@ -20,7 +20,9 @@ Required tools:
 - Git
 - Bash
 - Python 3
+- pylint3
 - aspell with English (UK) dictionaries
+- ShellCheck
 
 ```
 ./scripts/build.sh

@@ -6,9 +6,9 @@
 
 FILES=$(find . | grep '\.zs$\|.md$\|.txt$\|\.acs$\|\.sh$')
 
-echo "$FILES" | while read f; do
+echo "$FILES" | while read -r f; do
     # \(\) is used for grep not to find this very line.
-    grep -n -H "//\(\) TODO" $f;
+    grep -n -H '//\(\) TODO' "$f";
 done
 
 exit 0

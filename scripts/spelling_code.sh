@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script prints misspelled words found in the mod files.
-# See SPELL_FILES for what files are searched for words.
+# See files_to_check for what files are searched for words.
 #
 # This script requires aspell with English dictionary to be installed.
 #
@@ -9,29 +9,35 @@
 
 known_words=scripts/known-words.dat
 
-SPELL_FILES=$(find . | grep '\.zs\|.md\|.txt\|\.acs\|\.sh\|.py')
+files_to_check=$(find . -name '*.zs' \
+                      -o -name '*.md' \
+                      -o -name '*.txt' \
+                      -o -name '*.sh' \
+                      -o -name '*.py')
 
-LOWERCASE=$(grep -h -o -E '\w{4,}' $SPELL_FILES \
-                | sed -e 's/_/ /g' \
-                | sed -e 's/[0-9]/ /g' \
-                | perl -ne 'print lc(join(" ", split(/(?=[A-Z])/)))' \
-                | grep -o -E '\w{4,}')
+lowercase_words=$(echo "$files_to_check" | while read -r file; do
+    grep -h -o -E '\w{4,}' "$file" \
+        | sed -e 's/_/ /g' \
+        | sed -e 's/[0-9]/ /g' \
+        | perl -ne 'print lc(join(" ", split(/(?=[A-Z])/)))' \
+        | grep -o -E '\w{4,}'
 
-#UPPERCASE=$(grep -h -o -E '[A-Z]{4,}' $SPELL_FILES | tr '[:upper:]' '[:lower:]')
+    grep -h -o -E '[A-Z]{4,}' "$file" | tr '[:upper:]' '[:lower:]'
+done)
 
-WORDS=$(echo "$LOWERCASE" "$UPPERCASE" \
+words=$(echo "$lowercase_words" "$UPPERCASE" \
             | sort -u -f \
             | aspell --lang=en_UK --ignore-case --home-dir=. --personal=$known_words list)
 
-while [[ $# > 0 ]]
+while [[ $# -gt 0 ]]
 do
-    WORDS=$(comm -13 <(sort "$1") <(echo "$WORDS" | sort))
+    words=$(comm -13 <(sort "$1") <(echo "$words" | sort))
     shift
 done
 
-if [ -z "$WORDS" ]
+if [ -z "$words" ]
 then
     echo "No misspelled words."
 else
-    echo "$WORDS" | while read w; do grep -n -i -r -o -I $w; done
+    echo "$words" | while read -r w; do grep -n -i -r -o -I "$w"; done
 fi

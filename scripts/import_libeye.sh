@@ -7,15 +7,13 @@
 libeye_source_dir=$1
 libeye_target_dir=zscript/libeye
 
-echo $libeye_dir
-
 rm -rf $libeye_target_dir
-cp -r  $libeye_source_dir $libeye_target_dir
+cp -r  "$libeye_source_dir" "$libeye_target_dir"
 
-cd $libeye_target_dir
-rename 's/^/tt_/' *.txt
-rename 's/ /_/' *.txt
-rename 's/\.txt/.zs/' *.txt
+cd $libeye_target_dir || return
+rename 's/^/tt_/' ./*.txt
+rename 's/ /_/' ./*.txt
+rename 's/\.txt/.zs/' ./*.txt
 mv tt_libeye.zs tt_libeye.txt
-sed -i 's/Le_/tt_Le_/g' *.zs
-cd -
+sed -i 's/Le_/tt_Le_/g' ./*.zs
+cd - || return
