@@ -79,9 +79,9 @@ function actual_run {
 
     echo -e "\\n$out"
 
-    status=$(echo "$out" | grep -c "ERROR\\|WARN\\|FATAL")
+    status=$(echo "$out" | grep -c "ERROR\\|WARN\\|FATAL" || true)
 
-    exit "$status"
+    [[ "$status" == 0 ]]
 }
 
 # Code checks ##################################################################
