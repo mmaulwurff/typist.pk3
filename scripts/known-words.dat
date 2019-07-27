@@ -140,3 +140,6 @@ shellcheck
 merchantability
 notnull
 wipo
+dotall
+gamedata
+ignorecase
