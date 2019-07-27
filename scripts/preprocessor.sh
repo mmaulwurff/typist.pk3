@@ -7,6 +7,7 @@
 # Features:
 # - putting file name and line number inside between '"' and '@' characters, if found on one line.
 
-find . -name "*.zs" | while read f; do
-    ( rm $f && awk -v f="$f" '{gsub("\".*T:","\""f":"NR": T:");print;}' > $f ) < $f
+find . -name "*.zs" | while read -r f; do
+    modified=$(awk -v f="$f" '{gsub("\".*T:","\""f":"NR": T:");print;}' - < "$f")
+    echo "$modified" > "$f"
 done

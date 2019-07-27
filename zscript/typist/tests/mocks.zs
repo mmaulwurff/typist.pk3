@@ -344,4 +344,3 @@ class tt_OriginSourceMock : tt_OriginSource
   private int _mock_getOrigin_called;
 
 } // class tt_OriginSourceMock
-

@@ -5,6 +5,6 @@ gameinfo
 {
 
   AddEventHandlers = "tt_EventHandler",
-  "tt_ClematisTestHandler"
+    "tt_ClematisTestHandler"
 
 } // gameinfo
