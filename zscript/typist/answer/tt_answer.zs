@@ -15,11 +15,27 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class represents an answer to a tt_Question.
+ * @see tt_Question
  */
 class tt_Answer
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_Answer init(String answer)
+  {
+    _answer = answer;
+
+    return self;
+  }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  String getString() const { return _answer; }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private String _answer;
 
 } // class tt_Answer

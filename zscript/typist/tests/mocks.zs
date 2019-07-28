@@ -43,6 +43,34 @@ class tt_DamagerMock : tt_Damager
 
 } // class tt_DamagerMock
 
+class tt_AnswerSourceMock : tt_AnswerSource
+{
+
+  override
+  tt_Answer getAnswer()
+  {
+    ++_mock_getAnswer_called;
+    return _mock_getAnswer;
+  }
+
+  void Expect_getAnswer(tt_Answer value, int expected = 1)
+  {
+    _mock_getAnswer = value;
+    _mock_getAnswer_expected = expected;
+    _mock_getAnswer_called = 0;
+  }
+
+  bool isSatisfied_getAnswer() const
+  {
+    return _mock_getAnswer_expected == _mock_getAnswer_called;
+  }
+
+  private tt_Answer _mock_getAnswer;
+  private int _mock_getAnswer_expected;
+  private int _mock_getAnswer_called;
+
+} // class tt_AnswerSourceMock
+
 class tt_KnownTargetSourceMock : tt_KnownTargetSource
 {
 
@@ -207,6 +235,34 @@ class tt_TargetSourceMock : tt_TargetSource
   private int _mock_getTargets_called;
 
 } // class tt_TargetSourceMock
+
+class tt_QuestionMock : tt_Question
+{
+
+  override
+  bool isRight(tt_Answer answer)
+  {
+    ++_mock_isRight_called;
+    return _mock_isRight;
+  }
+
+  void Expect_isRight(bool value, int expected = 1)
+  {
+    _mock_isRight = value;
+    _mock_isRight_expected = expected;
+    _mock_isRight_called = 0;
+  }
+
+  bool isSatisfied_isRight() const
+  {
+    return _mock_isRight_expected == _mock_isRight_called;
+  }
+
+  private bool _mock_isRight;
+  private int _mock_isRight_expected;
+  private int _mock_isRight_called;
+
+} // class tt_QuestionMock
 
 class tt_QuestionSourceMock : tt_QuestionSource
 {

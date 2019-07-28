@@ -15,11 +15,18 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This interface represents a question.
  */
-class tt_Question
+class tt_Question abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  virtual
+  bool isRight(tt_Answer answer)
+  {
+    Console.Printf("zscript/typist/question/tt_question.zs:28: T: override this!");
+    return false;
+  }
 
 } // class tt_Question

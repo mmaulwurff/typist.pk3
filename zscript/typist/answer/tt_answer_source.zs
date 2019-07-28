@@ -15,11 +15,26 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This interface represents a source of answers.
  */
-class tt_AnswerSource
+class tt_AnswerSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  virtual
+  tt_Answer getAnswer()
+  {
+    Console.Printf("zscript/typist/answer/tt_answer_source.zs:28: T: override this!");
+    return NULL;
+  }
+
+  /** This function asks the AnswerSource to try begin to return another answer.
+   */
+  virtual
+  void reset()
+  {
+    Console.Printf("zscript/typist/answer/tt_answer_source.zs:37: T: override this!");
+  }
 
 } // class tt_AnswerSource
