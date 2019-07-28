@@ -15,26 +15,18 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a source of strings.
+/**
  */
-class tt_StringSource abstract
+class tt_QuestionSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  tt_String getString()
+  tt_Question getQuestion()
   {
-    Console.Printf("./zscript/typist/string/tt_StringSource.zs:28: T: override this!");
+    console.printf("./zscript/typist/question/tt_QuestionSource.zs:28: T: override this!");
     return NULL;
   }
 
-  /** tells the source to return new strings.
-   */
-  virtual
-  void reset()
-  {
-    Console.Printf("./zscript/typist/string/tt_StringSource.zs:37: T: override this!");
-  }
-
-} // class tt_StringSource
+} // class tt_QuestionSource

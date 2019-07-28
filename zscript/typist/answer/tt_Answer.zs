@@ -17,9 +17,9 @@
 
 /**
  */
-class tt_Strings
+class tt_Answer
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-} // class tt_Strings
+} // class tt_Answer

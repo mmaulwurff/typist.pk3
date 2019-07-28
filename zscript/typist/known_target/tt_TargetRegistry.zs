@@ -23,12 +23,12 @@ class tt_TargetRegistry : tt_KnownTargetSource
 // public: /////////////////////////////////////////////////////////////////////
 
   tt_TargetRegistry init( tt_TargetSource         targetSource
-                        , tt_StringSource         shootStringSource
+                        , tt_QuestionSource       questionSource
                         , tt_DisabledTargetSource disabledTargetSource
                         )
   {
     _targetSource         = targetSource;
-    _shootStringSource    = shootStringSource;
+    _questionSource       = questionSource;
     _disabledTargetSource = disabledTargetSource;
 
     return self;
@@ -84,8 +84,8 @@ class tt_TargetRegistry : tt_KnownTargetSource
   private
   tt_KnownTarget makeKnownTarget(tt_Target target) const
   {
-    let shootString       = _shootStringSource.getString();
-    let newKnownTarget    = new("tt_KnownTarget").init(target, shootString);
+    let question       = _questionSource.getQuestion();
+    let newKnownTarget = new("tt_KnownTarget").init(target, question);
 
     return newKnownTarget;
   }
@@ -93,7 +93,7 @@ class tt_TargetRegistry : tt_KnownTargetSource
 // private: // dependencies ////////////////////////////////////////////////////
 
   private tt_TargetSource         _targetSource;
-  private tt_StringSource         _shootStringSource;
+  private tt_QuestionSource       _questionSource;
   private tt_DisabledTargetSource _disabledTargetSource;
 
 // private: ////////////////////////////////////////////////////////////////////

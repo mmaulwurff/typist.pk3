@@ -208,6 +208,34 @@ class tt_TargetSourceMock : tt_TargetSource
 
 } // class tt_TargetSourceMock
 
+class tt_QuestionSourceMock : tt_QuestionSource
+{
+
+  override
+  tt_Question getQuestion()
+  {
+    ++_mock_getQuestion_called;
+    return _mock_getQuestion;
+  }
+
+  void Expect_getQuestion(tt_Question value, int expected = 1)
+  {
+    _mock_getQuestion = value;
+    _mock_getQuestion_expected = expected;
+    _mock_getQuestion_called = 0;
+  }
+
+  bool isSatisfied_getQuestion() const
+  {
+    return _mock_getQuestion_expected == _mock_getQuestion_called;
+  }
+
+  private tt_Question _mock_getQuestion;
+  private int _mock_getQuestion_expected;
+  private int _mock_getQuestion_called;
+
+} // class tt_QuestionSourceMock
+
 class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
 {
 
@@ -235,34 +263,6 @@ class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
   private int _mock_getWidgets_called;
 
 } // class tt_TargetWidgetSourceMock
-
-class tt_StringSourceMock : tt_StringSource
-{
-
-  override
-  tt_String getString()
-  {
-    ++_mock_getString_called;
-    return _mock_getString;
-  }
-
-  void Expect_getString(tt_String value, int expected = 1)
-  {
-    _mock_getString = value;
-    _mock_getString_expected = expected;
-    _mock_getString_called = 0;
-  }
-
-  bool isSatisfied_getString() const
-  {
-    return _mock_getString_expected == _mock_getString_called;
-  }
-
-  private tt_String _mock_getString;
-  private int _mock_getString_expected;
-  private int _mock_getString_called;
-
-} // class tt_StringSourceMock
 
 class tt_ModeSourceMock : tt_ModeSource
 {

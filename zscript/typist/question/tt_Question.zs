@@ -15,29 +15,11 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class represents a string.
+/**
  */
-class tt_String
+class tt_Question
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_String init(string str)
-  {
-    _string = str;
-
-    return self;
-  }
-
-// public: /////////////////////////////////////////////////////////////////////
-
-  bool isEqual(tt_String other)
-  {
-    return _string == other._string;
-  }
-
-// private: ////////////////////////////////////////////////////////////////////
-
-  private string _string;
-
-} // class tt_String
+} // class tt_Question
