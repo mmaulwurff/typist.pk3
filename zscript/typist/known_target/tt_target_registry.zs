@@ -37,15 +37,19 @@ class tt_TargetRegistry : tt_KnownTargetSource
 // public: // tt_KnownTargetSource /////////////////////////////////////////////
 
   override
-  tt_KnownTargets getTargets()
+  tt_KnownTargets getTargets() const
+  {
+    return _registry;
+  }
+
+  override
+  void update()
   {
     let newTargets = _targetSource.getTargets();
     merge(newTargets);
 
     let disabledTargets = _disabledTargetSource.getTargets();
     subtract(disabledTargets);
-
-    return _registry;
   }
 
 // private: ////////////////////////////////////////////////////////////////////

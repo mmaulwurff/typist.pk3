@@ -25,7 +25,7 @@ def tokenize(file_name):
     contents = re.sub(r'\/\*.*?\*\/', '', contents)
 
     # remove strings
-    contents = re.sub('\".*\"', '', contents)
+    contents = re.sub('\".*?\"', '', contents)
 
     # tokenize
     contents = re.split(r'([ {};()])', contents)
@@ -54,6 +54,16 @@ def make_mock_name(name):
     return name + "Mock"
 
 
+def get_function_starts(token_list):
+    """This function searches for virtual functions in a class represented by a token list."""
+
+    functions = []
+    for i, token in enumerate(token_list):
+        if token == 'virtual':
+            functions.append(i)
+    return functions
+
+
 def generate_mock_class(tokens):
     """This class generates a mock class for the class represented by a token list.
     Mock class contains:
@@ -67,58 +77,59 @@ def generate_mock_class(tokens):
     mock_name = make_mock_name(class_name)
     out = 'class ' + mock_name + ' : ' + class_name + '\n{\n\n'
 
+    functions = get_function_starts(tokens)
+
     # generate methods
-    for i, token in enumerate(tokens):
-        if token == 'abstract':
-            return_type = tokens[i + 3]
-            func_name = tokens[i + 4]
-            is_void = return_type == 'void'
+    for i in functions:
+        return_type = tokens[i + 1]
+        func_name = tokens[i + 2]
+        is_void = return_type == 'void'
 
-            # implementation for the interface
-            mock_attribute = '_mock_' + func_name
-            mock_attribute_expected = mock_attribute + '_expected'
-            mock_attribute_called = mock_attribute + '_called'
+        # implementation for the interface
+        mock_attribute = '_mock_' + func_name
+        mock_attribute_expected = mock_attribute + '_expected'
+        mock_attribute_called = mock_attribute + '_called'
 
-            out += '  override\n  ' + return_type + ' ' + func_name + '('
-            args_index = i + 6
-            pairs = []
-            while tokens[args_index] != ')':
-                pairs.append(tokens[args_index] + ' ' + tokens[args_index + 1])
-                args_index += 2
+        out += '  override\n  ' + return_type + ' ' + func_name + '('
+        args_index = i + 4
+        pairs = []
+        while tokens[args_index] != ')':
+            pairs.append(tokens[args_index] + ' ' + tokens[args_index + 1])
+            args_index += 2
 
-            out += ' '.join(pairs)
-            out += ')\n'
+        out += ' '.join(pairs)
+        out += ')\n'
 
-            out += '  {\n'
-            out += '    ++' + mock_attribute_called + ';\n'
-            if not is_void:
-                out += '    return ' + mock_attribute + ';\n'
-            out += '  }\n\n'
+        out += '  {\n'
+        out += '    ++' + mock_attribute_called + ';\n'
+        if not is_void:
+            out += '    return ' + mock_attribute + ';\n'
+        out += '  }\n\n'
 
-            # setter for mock attribute
-            setter_name = 'Expect_' + func_name
-            out += '  void ' + setter_name + '('
-            if not is_void:
-                out += return_type + ' value, '
-            out += 'int expected = 1)\n'
-            out += '  {\n'
-            if not is_void:
-                out += '    ' + mock_attribute + ' = value;\n'
-            out += '    ' + mock_attribute_expected + ' = expected;\n'
-            out += '    ' + mock_attribute_called+ ' = 0;\n'
-            out += '  }\n\n'
+        # setter for mock attribute
+        setter_name = 'Expect_' + func_name
+        out += '  void ' + setter_name + '('
+        if not is_void:
+            out += return_type + ' value, '
+        out += 'int expected = 1)\n'
+        out += '  {\n'
+        if not is_void:
+            out += '    ' + mock_attribute + ' = value;\n'
+        out += '    ' + mock_attribute_expected + ' = expected;\n'
+        out += '    ' + mock_attribute_called+ ' = 0;\n'
+        out += '  }\n\n'
 
-            # isSatisfied
-            out += '  bool isSatisfied_' + func_name + '() const\n'
-            out += '  {\n'
-            out += '    return ' + mock_attribute_expected + ' == ' + mock_attribute_called + ';\n'
-            out += '  }\n\n'
+        # isSatisfied
+        out += '  bool isSatisfied_' + func_name + '() const\n'
+        out += '  {\n'
+        out += '    return ' + mock_attribute_expected + ' == ' + mock_attribute_called + ';\n'
+        out += '  }\n\n'
 
-            # mock attributes
-            if not is_void:
-                out += '  private ' + return_type + ' ' + mock_attribute + ';\n'
-            out += '  private int ' + mock_attribute_expected + ';\n'
-            out += '  private int ' + mock_attribute_called + ';\n\n'
+        # mock attributes
+        if not is_void:
+            out += '  private ' + return_type + ' ' + mock_attribute + ';\n'
+        out += '  private int ' + mock_attribute_expected + ';\n'
+        out += '  private int ' + mock_attribute_called + ';\n\n'
 
     # generate a footer
     out += '} // class ' + mock_name + '\n\n'

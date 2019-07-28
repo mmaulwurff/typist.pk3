@@ -24,11 +24,21 @@ class tt_KnownTargetSource abstract
 
 // public: /////////////////////////////////////////////////////////////////////
 
+  /** This function the currently registered (known) targets.
+   */
   virtual
-  tt_KnownTargets getTargets()
+  tt_KnownTargets getTargets() const
   {
-    Console.Printf("zscript/typist/known_target/tt_known_target_source.zs:30: T: override this!");
+    Console.Printf("zscript/typist/known_target/tt_known_target_source.zs:32: T: override this!");
     return NULL;
+  }
+
+  /** This function asks the source to refresh the list of targets.
+   */
+  virtual
+  void update()
+  {
+    Console.Printf("zscript/typist/known_target/tt_known_target_source.zs:41: T: override this!");
   }
 
 } // class tt_KnownTargetSource
