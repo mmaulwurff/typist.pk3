@@ -15,21 +15,18 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a source of targets.
- *
- * @see tt_Target
+/** This interface represents a difficulty source.
  */
-class tt_TargetSource abstract
+class tt_DifficultySource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  tt_Targets getTargets()
+  tt_Difficulty getDifficulty()
   {
-    Console.Printf(
-      "./zscript/typist/target/tt_TargetSource.zs:31: T: override this!");
+    Console.Printf("zscript/typist/difficulty/tt_difficulty_source.zs:28: T: override this!");
     return NULL;
   }
 
-} // class tt_TargetSource
+} // class tt_DifficultySource

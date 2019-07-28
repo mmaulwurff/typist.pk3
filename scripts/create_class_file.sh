@@ -7,7 +7,10 @@
 # create_class_file.sh ClassName
 
 className="$1"
-file_name="zscript/typist/tt_$className.zs"
+# camelCase to under_score
+file_name="zscript/typist/$(echo "tt_$className.zs" \
+    | sed -r 's/([a-z0-9])([A-Z])/\1_\L\2/g' \
+    | tr '[:upper:]' '[:lower:]')"
 
 cat docs/source-template.zst > "$file_name"
 

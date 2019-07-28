@@ -26,7 +26,7 @@ class tt_Activatable abstract
   virtual
   void activate()
   {
-    Console.Printf("./zscript/typist/activatable/tt_Activatable.zs:29: T: override this!");
+    Console.Printf("zscript/typist/activatable/tt_activatable.zs:29: T: override this!");
   }
 
 } // class tt_Activatable

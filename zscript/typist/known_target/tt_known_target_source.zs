@@ -15,22 +15,20 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface provides a source of target widgets.
+/** This interface represents a source of known targets.
+ *
+ * @see tt_KnownTarget
  */
-class tt_TargetWidgetSource abstract
+class tt_KnownTargetSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  /** Get a list of target widgets.
-   *
-   * @returns a list of target widgets.
-   */
   virtual
-  tt_TargetWidgets getWidgets()
+  tt_KnownTargets getTargets()
   {
-    console.printf("./zscript/typist/target_widget/tt_TargetWidgetSource.zs:32: T: override this!");
+    Console.Printf("zscript/typist/known_target/tt_known_target_source.zs:30: T: override this!");
     return NULL;
   }
 
-} // class tt_TargetWidgetSource
+} // class tt_KnownTargetSource

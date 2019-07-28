@@ -15,18 +15,18 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a source of actors.
+/**
  */
-class tt_ActorSource abstract
+class tt_QuestionSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  Actor getActor()
+  tt_Question getQuestion()
   {
-    Console.Printf("./zscript/typist/actor/tt_ActorSource.zs:28: T: override this!");
+    console.printf("zscript/typist/question/tt_question_source.zs:28: T: override this!");
     return NULL;
   }
 
-} // class tt_ActorSource
+} // class tt_QuestionSource

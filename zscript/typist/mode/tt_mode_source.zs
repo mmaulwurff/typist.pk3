@@ -15,18 +15,20 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a difficulty source.
+/** This interface represents a source of modes.
+ *
+ * @see tt_Mode
  */
-class tt_DifficultySource abstract
+class tt_ModeSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  tt_Difficulty getDifficulty()
+  tt_Mode getMode()
   {
-    Console.Printf("./zscript/typist/difficulty/tt_DifficultySource.zs:28: T: override this!");
+    Console.Printf("zscript/typist/mode/tt_mode_source.zs:30: T: override this!");
     return NULL;
   }
 
-} // class tt_DifficultySource
+} // class tt_ModeSource

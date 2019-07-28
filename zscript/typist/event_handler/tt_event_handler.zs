@@ -42,7 +42,7 @@ class tt_EventHandler : EventHandler
 
     // This console log is required for test script to understand that it
     // should stop GZDoom execution.
-    console.printf("./zscript/typist/event_handler/tt_EventHandler.zs:45: T: Test finished.");
+    console.printf("zscript/typist/event_handler/tt_event_handler.zs:45: T: Test finished.");
   }
 
 } // class tt_EventHandler

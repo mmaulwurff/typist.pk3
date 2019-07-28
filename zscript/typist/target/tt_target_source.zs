@@ -15,17 +15,21 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface provides an entity to damage targets.
+/** This interface represents a source of targets.
+ *
+ * @see tt_Target
  */
-class tt_Damager abstract
+class tt_TargetSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  void damage()
+  tt_Targets getTargets()
   {
-    console.printf("./zscript/typist/damager/tt_Damager.zs:28: T: override this!");
+    Console.Printf(
+      "zscript/typist/target/tt_target_source.zs:31: T: override this!");
+    return NULL;
   }
 
-} // class tt_Damager
+} // class tt_TargetSource

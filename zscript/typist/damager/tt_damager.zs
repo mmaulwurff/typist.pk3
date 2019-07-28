@@ -15,20 +15,17 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a source of modes.
- *
- * @see tt_Mode
+/** This interface provides an entity to damage targets.
  */
-class tt_ModeSource abstract
+class tt_Damager abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  tt_Mode getMode()
+  void damage()
   {
-    Console.Printf("./zscript/typist/mode/tt_ModeSource.zs:30: T: override this!");
-    return NULL;
+    console.printf("zscript/typist/damager/tt_damager.zs:28: T: override this!");
   }
 
-} // class tt_ModeSource
+} // class tt_Damager

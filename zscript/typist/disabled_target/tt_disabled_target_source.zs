@@ -15,18 +15,21 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a source of origins.
+/** This interface represents a source of disabled targets.
+ *
+ * @see tt_DisabledTarget
  */
-class tt_OriginSource abstract
+class tt_DisabledTargetSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  tt_Origin getOrigin()
+  tt_DisabledTargets getTargets()
   {
-    Console.Printf("./zscript/typist/origin/tt_OriginSource.zs:28: T: override this!");
+    Console.Printf(
+      "zscript/typist/disabled_target/tt_disabled_target_source.zs:31: T: override this!");
     return NULL;
   }
 
-} // class tt_OriginSource
+} // class tt_DisabledTargetSource
