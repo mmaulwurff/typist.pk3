@@ -31,8 +31,7 @@ def tokenize(file_name):
     contents = re.split(r'([ {};()])', contents)
 
     # remove empty elements
-    contents = [x for x in contents if x != '']
-    contents = [x for x in contents if x != ' ']
+    contents = [x for x in contents if x not in ('', ' ')]
 
     return contents
 
