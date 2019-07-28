@@ -29,7 +29,7 @@ class tt_TargetWidgetSource abstract
   virtual
   tt_TargetWidgets getWidgets()
   {
-    console.printf("zscript/typist/target_widget/tt_target_widget_source.zs:32: T: override this!");
+    Console.Printf("zscript/typist/target_widget/tt_target_widget_source.zs:32: T: override this!");
     return NULL;
   }
 

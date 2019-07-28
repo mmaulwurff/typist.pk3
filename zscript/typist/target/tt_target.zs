@@ -33,7 +33,7 @@ class tt_Target
 
   //static tt_Target fromLine(Line l)
   //{
-  //  console.printf("zscript/typist/target/tt_target.zs:36: T: using unimplemented function!");
+  //  Console.Printf("zscript/typist/target/tt_target.zs:36: T: using unimplemented function!");
   //  tt_Target result;
 
   //  return result;

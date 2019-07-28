@@ -57,7 +57,7 @@ class tt_TargetID
     case TARGET_LINE:  return _l == other._l;
     }
 
-    console.printf("zscript/typist/target/tt_target_id.zs:60: T: unknown target type!");
+    Console.Printf("zscript/typist/target/tt_target_id.zs:60: T: unknown target type!");
     return false;
   }
 

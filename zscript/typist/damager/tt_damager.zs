@@ -25,7 +25,7 @@ class tt_Damager abstract
   virtual
   void damage()
   {
-    console.printf("zscript/typist/damager/tt_damager.zs:28: T: override this!");
+    Console.Printf("zscript/typist/damager/tt_damager.zs:28: T: override this!");
   }
 
 } // class tt_Damager
