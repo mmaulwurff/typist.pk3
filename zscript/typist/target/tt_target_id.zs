@@ -27,7 +27,7 @@ class tt_TargetID
   // Create target identifier from an actor.
   static tt_TargetID fromActor(Actor a)
   {
-    tt_TargetID result;
+    let result = new("tt_TargetID");
     result._type = TARGET_ACTOR;
     result._a    = a;
 
@@ -37,9 +37,18 @@ class tt_TargetID
   // Create target identifier from a line.
   static tt_TargetID fromLine(Line l)
   {
-    tt_TargetID result;
+    let result = new("tt_TargetID");
     result._type = TARGET_LINE;
     result._l    = l;
+
+    return result;
+  }
+
+  // Create a target identifier identified by a number.
+  static tt_TargetID fromNumber(int id)
+  {
+    let result = new("tt_TargetID");
+    result._type = id;
 
     return result;
   }
@@ -55,9 +64,10 @@ class tt_TargetID
     {
     case TARGET_ACTOR: return _a == other._a;
     case TARGET_LINE:  return _l == other._l;
+    default:           return _type == other._type;
     }
 
-    Console.Printf("zscript/typist/target/tt_target_id.zs:60: T: unknown target type!");
+    Console.Printf("zscript/typist/target/tt_target_id.zs:70: T: unreachable code!");
     return false;
   }
 
@@ -67,6 +77,7 @@ class tt_TargetID
   {
     TARGET_ACTOR,
     TARGET_LINE,
+    TARGET_USER, ///< May be used to create unique targets.
   }
 
 // private: ////////////////////////////////////////////////////////////////////

@@ -31,6 +31,8 @@ class tt_TargetRegistry : tt_KnownTargetSource
     _questionSource       = questionSource;
     _disabledTargetSource = disabledTargetSource;
 
+    _registry = new("tt_KnownTargets");
+
     return self;
   }
 

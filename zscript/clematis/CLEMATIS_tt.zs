@@ -85,7 +85,7 @@ class tt_Clematis abstract{
         Failures.Pop();
     }
 
-    void It(Name TestCaseName, tt_Cl_Assertion Assertion, tt_Cl_ELogSeverity Severity){
+    void It(Name TestCaseName, tt_Cl_Assertion Assertion, tt_Cl_ELogSeverity Severity = LOG_Error){
         uint TimeBefore=MSTime();
         bool Condition=Assertion.Eval();
         uint TimeAfter=MSTime();

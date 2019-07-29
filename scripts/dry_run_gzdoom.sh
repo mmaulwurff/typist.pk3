@@ -17,4 +17,4 @@ time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -norun -nosound -file "$fi
     grep -v "GZDoom.*version" |\
     grep -v "Compiled on" |\
     sed "s|$file_name:||" | sed "s|, line |:|" |\
-    sed "s|Script error, \"||" | sed "s|\"line |:|"
+    sed "s|Script error, \"||" | sed "s|\" line |:|" | sed "s|\"line |:|"

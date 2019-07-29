@@ -24,6 +24,7 @@ class tt_Test : tt_Clematis
   void TestSuites()
   {
     testTargetWidget();
+    testTargetRegistry();
   }
 
 } // tt_Test

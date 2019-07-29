@@ -15,27 +15,33 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class represents an attack target.
+/**
  */
-class tt_Target abstract
+class tt_ActorTarget : tt_Target
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  // Get position in game space of this target.
-  virtual
-  Vector3 position() const
+  tt_Target init(Actor a)
   {
-    Console.Printf("zscript/typist/target/tt_target.zs:29: T: override this!");
-    return (0, 0, 0);
+    tt_ActorTarget result;
+    result._pos = a.pos;
+    result._id  = tt_TargetID.fromActor(a);
+
+    return result;
   }
 
-  // Get an identifier of this target.
-  virtual
-  tt_TargetID id() const
-  {
-    Console.Printf("zscript/typist/target/tt_target.zs:37: T: override this!");
-    return NULL;
-  }
+// public: // tt_Target ////////////////////////////////////////////////////////
 
-} // class tt_Target
+  override
+  Vector3 position() const { return _pos; }
+
+  override
+  tt_TargetID id() const { return _id; }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private Vector3     _pos;
+  private tt_TargetID _id;
+
+} // class tt_ActorTarget

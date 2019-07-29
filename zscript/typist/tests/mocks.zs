@@ -27,7 +27,7 @@ class tt_DamagerMock : tt_Damager
     ++_mock_damage_called;
   }
 
-  void Expect_damage(int expected = 1)
+  void expect_damage(int expected = 1)
   {
     _mock_damage_expected = expected;
     _mock_damage_called = 0;
@@ -53,7 +53,7 @@ class tt_AnswerSourceMock : tt_AnswerSource
     return _mock_getAnswer;
   }
 
-  void Expect_getAnswer(tt_Answer value, int expected = 1)
+  void expect_getAnswer(tt_Answer value, int expected = 1)
   {
     _mock_getAnswer = value;
     _mock_getAnswer_expected = expected;
@@ -75,7 +75,7 @@ class tt_AnswerSourceMock : tt_AnswerSource
     ++_mock_reset_called;
   }
 
-  void Expect_reset(int expected = 1)
+  void expect_reset(int expected = 1)
   {
     _mock_reset_expected = expected;
     _mock_reset_called = 0;
@@ -101,7 +101,7 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
     return _mock_getTargets;
   }
 
-  void Expect_getTargets(tt_KnownTargets value, int expected = 1)
+  void expect_getTargets(tt_KnownTargets value, int expected = 1)
   {
     _mock_getTargets = value;
     _mock_getTargets_expected = expected;
@@ -123,7 +123,7 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
     ++_mock_update_called;
   }
 
-  void Expect_update(int expected = 1)
+  void expect_update(int expected = 1)
   {
     _mock_update_expected = expected;
     _mock_update_called = 0;
@@ -149,7 +149,7 @@ class tt_ActorSourceMock : tt_ActorSource
     return _mock_getActor;
   }
 
-  void Expect_getActor(Actor value, int expected = 1)
+  void expect_getActor(Actor value, int expected = 1)
   {
     _mock_getActor = value;
     _mock_getActor_expected = expected;
@@ -176,7 +176,7 @@ class tt_ActivatableMock : tt_Activatable
     ++_mock_activate_called;
   }
 
-  void Expect_activate(int expected = 1)
+  void expect_activate(int expected = 1)
   {
     _mock_activate_expected = expected;
     _mock_activate_called = 0;
@@ -202,7 +202,7 @@ class tt_DifficultySourceMock : tt_DifficultySource
     return _mock_getDifficulty;
   }
 
-  void Expect_getDifficulty(tt_Difficulty value, int expected = 1)
+  void expect_getDifficulty(tt_Difficulty value, int expected = 1)
   {
     _mock_getDifficulty = value;
     _mock_getDifficulty_expected = expected;
@@ -230,7 +230,7 @@ class tt_DisabledTargetSourceMock : tt_DisabledTargetSource
     return _mock_getTargets;
   }
 
-  void Expect_getTargets(tt_DisabledTargets value, int expected = 1)
+  void expect_getTargets(tt_DisabledTargets value, int expected = 1)
   {
     _mock_getTargets = value;
     _mock_getTargets_expected = expected;
@@ -248,6 +248,57 @@ class tt_DisabledTargetSourceMock : tt_DisabledTargetSource
 
 } // class tt_DisabledTargetSourceMock
 
+class tt_TargetMock : tt_Target
+{
+
+  override
+  Vector3 position()
+  {
+    ++_mock_position_called;
+    return _mock_position;
+  }
+
+  void expect_position(Vector3 value, int expected = 1)
+  {
+    _mock_position = value;
+    _mock_position_expected = expected;
+    _mock_position_called = 0;
+  }
+
+  bool isSatisfied_position() const
+  {
+    return _mock_position_expected == _mock_position_called;
+  }
+
+  private Vector3 _mock_position;
+  private int _mock_position_expected;
+  private int _mock_position_called;
+
+  override
+  tt_TargetID id()
+  {
+    ++_mock_id_called;
+    return _mock_id;
+  }
+
+  void expect_id(tt_TargetID value, int expected = 1)
+  {
+    _mock_id = value;
+    _mock_id_expected = expected;
+    _mock_id_called = 0;
+  }
+
+  bool isSatisfied_id() const
+  {
+    return _mock_id_expected == _mock_id_called;
+  }
+
+  private tt_TargetID _mock_id;
+  private int _mock_id_expected;
+  private int _mock_id_called;
+
+} // class tt_TargetMock
+
 class tt_TargetSourceMock : tt_TargetSource
 {
 
@@ -258,7 +309,7 @@ class tt_TargetSourceMock : tt_TargetSource
     return _mock_getTargets;
   }
 
-  void Expect_getTargets(tt_Targets value, int expected = 1)
+  void expect_getTargets(tt_Targets value, int expected = 1)
   {
     _mock_getTargets = value;
     _mock_getTargets_expected = expected;
@@ -286,7 +337,7 @@ class tt_QuestionMock : tt_Question
     return _mock_isRight;
   }
 
-  void Expect_isRight(bool value, int expected = 1)
+  void expect_isRight(bool value, int expected = 1)
   {
     _mock_isRight = value;
     _mock_isRight_expected = expected;
@@ -314,7 +365,7 @@ class tt_QuestionSourceMock : tt_QuestionSource
     return _mock_getQuestion;
   }
 
-  void Expect_getQuestion(tt_Question value, int expected = 1)
+  void expect_getQuestion(tt_Question value, int expected = 1)
   {
     _mock_getQuestion = value;
     _mock_getQuestion_expected = expected;
@@ -342,7 +393,7 @@ class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
     return _mock_getWidgets;
   }
 
-  void Expect_getWidgets(tt_TargetWidgets value, int expected = 1)
+  void expect_getWidgets(tt_TargetWidgets value, int expected = 1)
   {
     _mock_getWidgets = value;
     _mock_getWidgets_expected = expected;
@@ -370,7 +421,7 @@ class tt_ModeSourceMock : tt_ModeSource
     return _mock_getMode;
   }
 
-  void Expect_getMode(tt_Mode value, int expected = 1)
+  void expect_getMode(tt_Mode value, int expected = 1)
   {
     _mock_getMode = value;
     _mock_getMode_expected = expected;
@@ -397,7 +448,7 @@ class tt_ViewMock : tt_View
     ++_mock_draw_called;
   }
 
-  void Expect_draw(int expected = 1)
+  void expect_draw(int expected = 1)
   {
     _mock_draw_expected = expected;
     _mock_draw_called = 0;
@@ -423,7 +474,7 @@ class tt_OriginSourceMock : tt_OriginSource
     return _mock_getOrigin;
   }
 
-  void Expect_getOrigin(tt_Origin value, int expected = 1)
+  void expect_getOrigin(tt_Origin value, int expected = 1)
   {
     _mock_getOrigin = value;
     _mock_getOrigin_expected = expected;

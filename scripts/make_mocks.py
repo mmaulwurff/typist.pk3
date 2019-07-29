@@ -68,7 +68,7 @@ def generate_mock_class(tokens):
     """This class generates a mock class for the class represented by a token list.
     Mock class contains:
     - an implementation for interface methods;
-    - Expect_... function for setting expected function call result;
+    - expect_... function for setting expected function call result;
     - bool isSatisfied_...() function to check if the expected number of calls is done.
     """
 
@@ -107,7 +107,7 @@ def generate_mock_class(tokens):
         out += '  }\n\n'
 
         # setter for mock attribute
-        setter_name = 'Expect_' + func_name
+        setter_name = 'expect_' + func_name
         out += '  void ' + setter_name + '('
         if not is_void:
             out += return_type + ' value, '

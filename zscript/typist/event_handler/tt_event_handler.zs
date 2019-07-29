@@ -30,19 +30,21 @@ class tt_EventHandler : EventHandler
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private bool isTestingEnabled() const
+  private
+  bool isTestingEnabled() const
   {
     CVar isTestEnabledCVar = CVar.FindCVar("tt_is_test_enabled");
     return (isTestEnabledCVar != NULL && isTestEnabledCVar.GetBool());
   }
 
-  private void runTests()
+  private
+  void runTests()
   {
     tt_Clematis.Create("tt_Test");
 
     // This console log is required for test script to understand that it
     // should stop GZDoom execution.
-    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:45: T: Test finished.");
+    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:47: T: Test finished.");
   }
 
 } // class tt_EventHandler

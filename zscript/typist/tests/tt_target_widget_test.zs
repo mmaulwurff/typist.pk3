@@ -21,7 +21,8 @@ class tt_Test
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private void testTargetWidget()
+  private
+  void testTargetWidget()
   {
     Describe("Testing Target Widget");
 
