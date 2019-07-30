@@ -23,10 +23,10 @@ class tt_DisabledTargets
 // public: /////////////////////////////////////////////////////////////////////
 
   // Returns a target in this list.
-  tt_DisabledTarget at(int index) const { return _targets[index]; }
+  tt_DisabledTarget at(uint index) const { return _targets[index]; }
 
   // Returns a number of targets in this list.
-  int size() const { return _targets.size(); }
+  uint size() const { return _targets.size(); }
 
 // public: /////////////////////////////////////////////////////////////////////
 

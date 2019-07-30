@@ -26,6 +26,8 @@ class tt_Test
   {
     targetRegistryEmptyCheck();
     targetRegistryAddCheck();
+    targetRegistryAddExistingCheck();
+    targetRegistryRemoveCheck();
   }
 
   private
@@ -42,29 +44,116 @@ class tt_Test
   private
   void targetRegistryAddCheck()
   {
-    targetRegistrySetUp("Checking adding to Target Registry ");
+    targetRegistrySetUp("Checking adding to Target Registry");
 
     let target1 = new("tt_TargetMock");
     let target2 = new("tt_TargetMock");
+    target1.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
+    target2.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
+
     let targets = new("tt_Targets");
     targets.add(target1);
     targets.add(target2);
 
-    target1.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
-    target2.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
     _targetSource.expect_getTargets(targets);
-
-    let disabledTargets = new("tt_DisabledTargets");
-    _disabledTargetSource.expect_getTargets(disabledTargets);
-
-    let question = new("tt_QuestionMock");
-    _questionSource.expect_getQuestion(question, 2);
+    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets"));
+    _questionSource.expect_getQuestion(new("tt_QuestionMock"), 2);
 
     _targetRegistry.update();
-
     let knownTargets = _targetRegistry.getTargets();
 
     It("Is two targets", AssertEval(knownTargets.size(), "==", 2));
+    It("Target1 ID", Assert(target1.isSatisfied_id()));
+    It("Target2 ID", Assert(target2.isSatisfied_id()));
+
+    targetRegistryTearDown();
+  }
+
+  private
+  void targetRegistryAddExistingCheck()
+  {
+    targetRegistrySetUp("Checking adding an existing target to Target Registry");
+
+    // First, add a single target.
+    let target = new("tt_TargetMock");
+    target.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
+
+    let targets = new("tt_Targets");
+    targets.add(target);
+
+    _targetSource.expect_getTargets(targets);
+    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets"));
+    _questionSource.expect_getQuestion(new("tt_QuestionMock"), 1);
+
+    _targetRegistry.update();
+    let knownTargets = _targetRegistry.getTargets();
+
+    It("Is one targets", AssertEval(knownTargets.size(), "==", 1));
+    It("Target ID", Assert(target.isSatisfied_id()));
+
+    assertSourcesSatisfied();
+
+    // Second, add the same target again. Only a single target must remain
+    // registered.
+    _targetSource.expect_getTargets(targets);
+    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets"));
+    _questionSource.expect_getQuestion(NULL, 0);
+    target.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER), 2);
+
+    _targetRegistry.update();
+    knownTargets = _targetRegistry.getTargets();
+    let target1 = new("tt_TargetMock");
+    let target2 = new("tt_TargetMock");
+    target1.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
+    target2.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
+
+    It("Is one targets", AssertEval(knownTargets.size(), "==", 1));
+    It("Target ID", Assert(target.isSatisfied_id()));
+
+    targetRegistryTearDown();
+  }
+
+  private
+  void targetRegistryRemoveCheck()
+  {
+    targetRegistrySetUp("Checking removing a target from Target Registry");
+
+    // First, add two targets.
+    let target1 = new("tt_TargetMock");
+    let target2 = new("tt_TargetMock");
+    target1.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
+    target2.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
+
+    let targets = new("tt_Targets");
+    targets.add(target1);
+    targets.add(target2);
+
+    _targetSource.expect_getTargets(targets);
+    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets"));
+    _questionSource.expect_getQuestion(new("tt_QuestionMock"), 2);
+
+    _targetRegistry.update();
+    let knownTargets = _targetRegistry.getTargets();
+
+    It("Is two targets", AssertEval(knownTargets.size(), "==", 2));
+    It("Target1 ID", Assert(target1.isSatisfied_id()));
+    It("Target2 ID", Assert(target2.isSatisfied_id()));
+
+    assertSourcesSatisfied();
+
+    // Second, remove one target.
+    let disabledTarget = new("tt_DisabledTarget").init(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
+    let disabledTargets = new("tt_DisabledTargets");
+    disabledTargets.add(disabledTarget);
+
+    _targetSource.expect_getTargets(new("tt_Targets"));
+    _disabledTargetSource.expect_getTargets(disabledTargets);
+    _questionSource.expect_getQuestion(NULL, 0);
+
+    _targetRegistry.update();
+    knownTargets = _targetRegistry.getTargets();
+
+    It("Is one target now", AssertEval(knownTargets.size(), "==", 1));
 
     targetRegistryTearDown();
   }
@@ -89,12 +178,7 @@ class tt_Test
   private
   void targetRegistryTearDown()
   {
-    It("Target Source is satisfied",
-       Assert(_targetSource.isSatisfied_getTargets()));
-    It("Question Source is satisfied",
-       Assert(_questionSource.isSatisfied_getQuestion()));
-    It("Disabled Target Source is satisfied",
-       Assert(_disabledTargetSource.isSatisfied_getTargets()));
+    assertSourcesSatisfied();
 
     _targetSource         = NULL;
     _questionSource       = NULL;
@@ -102,6 +186,17 @@ class tt_Test
     _targetRegistry       = NULL;
 
     EndDescribe();
+  }
+
+  private
+  void assertSourcesSatisfied()
+  {
+    It("Target Source is satisfied",
+       Assert(_targetSource.isSatisfied_getTargets()));
+    It("Question Source is satisfied",
+       Assert(_questionSource.isSatisfied_getQuestion()));
+    It("Disabled Target Source is satisfied",
+       Assert(_disabledTargetSource.isSatisfied_getTargets()));
   }
 
 // private: ////////////////////////////////////////////////////////////////////

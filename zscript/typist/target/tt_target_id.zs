@@ -18,6 +18,9 @@
 /** This class represents target identifier.
  * Target identifier is used to check if two Targets point to the same game
  * entity. This checking is done via isEqual() function.
+ *
+ * @attention Do not compare tt_TargetID instances by "==" and "!=".
+ * It will check object equality, not ID equality. Use isEqual().
  */
 class tt_TargetID
 {
@@ -64,10 +67,10 @@ class tt_TargetID
     {
     case TARGET_ACTOR: return _a == other._a;
     case TARGET_LINE:  return _l == other._l;
-    default:           return _type == other._type;
+    default:           return true; // type equality check is done already.
     }
 
-    Console.Printf("zscript/typist/target/tt_target_id.zs:70: T: unreachable code!");
+    Console.Printf("zscript/typist/target/tt_target_id.zs:73: T: unreachable code!");
     return false;
   }
 

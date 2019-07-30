@@ -106,10 +106,10 @@ class tt_Clematis abstract{
 
     void AddTestsRunTotal(bool Success){
         if(Success)
-            for(int i=0; i<Successes.Size(); i++)
+            for(uint i=0; i<Successes.Size(); i++)
                 Successes[i]++;
         else
-            for(int i=0; i<Failures.Size(); i++)
+            for(uint i=0; i<Failures.Size(); i++)
                 Failures[i]++;
     }
 

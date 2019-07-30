@@ -63,14 +63,17 @@ class tt_TargetRegistry : tt_KnownTargetSource
     // Given that tt_KnownTargets.contains() is O(n), this function is O(n^2).
     // There is a room for optimization.
 
-    int nTargets = targets.size();
-    for (int i = 0; i < nTargets; ++i)
+    uint nTargets = targets.size();
+    let newKnownTargets = new("tt_KnownTargets");
+
+    for (uint i = 0; i < nTargets; ++i)
     {
       let target = targets.at(i);
       if (_registry.contains(target.id())) { continue; }
-      let newKnownTarget = makeKnownTarget(target);
-      _registry.add(newKnownTarget);
+      newKnownTargets.add(makeKnownTarget(target));
     }
+
+    _registry.addMany(newKnownTargets);
   }
 
   private
@@ -80,8 +83,8 @@ class tt_TargetRegistry : tt_KnownTargetSource
     // at least O(n^2).
     // There is a room for optimization.
 
-    int nTargets = targets.size();
-    for (int i = 0; i < nTargets; ++i)
+    uint nTargets = targets.size();
+    for (uint i = 0; i < nTargets; ++i)
     {
       _registry.remove(targets.at(i).id());
     }

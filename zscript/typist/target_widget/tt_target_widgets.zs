@@ -23,10 +23,10 @@ class tt_TargetWidgets
 // public: /////////////////////////////////////////////////////////////////////
 
   // Returns a target in this list.
-  tt_TargetWidget at(int index) const { return _widgets[index]; }
+  tt_TargetWidget at(uint index) const { return _widgets[index]; }
 
   // Returns a number of targets in this list.
-  int size() const { return _widgets.size(); }
+  uint size() const { return _widgets.size(); }
 
 // public: /////////////////////////////////////////////////////////////////////
 

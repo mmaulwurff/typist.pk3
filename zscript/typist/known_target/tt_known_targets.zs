@@ -35,6 +35,15 @@ class tt_KnownTargets
   // Adds a target to this list.
   void add(tt_KnownTarget target) { _targets.push(target); }
 
+  void addMany(tt_KnownTargets targets)
+  {
+    uint nTargets = targets.size();
+    for (uint i = 0; i < nTargets; ++i)
+    {
+      _targets.push(targets.at(i));
+    }
+  }
+
   // Removes a target from the list.
   // If the target is not in the list, does nothing.
   void remove(tt_TargetID target)
@@ -54,7 +63,7 @@ class tt_KnownTargets
     uint nTargets = size();
     for (uint i = 0; i < nTargets; ++i)
     {
-      if (_targets[i].target().id() == target) { return i; }
+      if (_targets[i].target().id().isEqual(target)) { return i; }
     }
     return nTargets;
   }
