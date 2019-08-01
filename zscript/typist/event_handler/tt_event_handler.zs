@@ -25,26 +25,54 @@ class tt_EventHandler : EventHandler
   override
   void OnRegister()
   {
-    if (isTestingEnabled()) { runTests(); }
+    if (isStaticTestingEnabled())  { runStaticTests();  }
+  }
+
+  override
+  void WorldTick()
+  {
+    if (Level.mapTime == 1) { onFirstTick(); }
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private
-  bool isTestingEnabled() const
+  void onFirstTick()
   {
-    CVar isTestEnabledCVar = CVar.FindCVar("tt_is_test_enabled");
-    return (isTestEnabledCVar != NULL && isTestEnabledCVar.GetBool());
+    if (isDynamicTestingEnabled()) { runDynamicTests(); }
   }
 
   private
-  void runTests()
+  bool isStaticTestingEnabled() const
   {
-    tt_Clematis.Create("tt_Test");
+    let isEnabled = CVar.FindCVar("tt_is_static_test_enabled");
+    return (isEnabled != NULL && isEnabled.GetBool());
+  }
+
+  private
+  void runStaticTests()
+  {
+    tt_Clematis.Create("tt_StaticTest");
 
     // This console log is required for test script to understand that it
     // should stop GZDoom execution.
-    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:47: T: Test finished.");
+    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:59: T: Test finished.");
+  }
+
+  private bool isDynamicTestingEnabled() const
+  {
+    let isEnabled = CVar.FindCVar("tt_is_dynamic_test_enabled");
+    return (isEnabled != NULL && isEnabled.GetBool());
+  }
+
+  private
+  void runDynamicTests()
+  {
+    tt_Clematis.Create("tt_DynamicTest");
+
+    // This console log is required for test script to understand that it
+    // should stop GZDoom execution.
+    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:75: T: Test finished.");
   }
 
 } // class tt_EventHandler

@@ -15,35 +15,19 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements tt_ActorSource.
- * It returns the player actor.
+/** This class contains tests that can be run independently of GZDoom being
+ * able to tick.
  */
-class tt_PlayerActorSource : tt_ActorSource
+class tt_StaticTest : tt_Clematis
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  tt_ActorSource init(int playerNumber)
-  {
-    _playerNumber = playerNumber;
-
-    return self;
-  }
-
-// public: /////////////////////////////////////////////////////////////////////
+// public: // tt_Clematis //////////////////////////////////////////////////////
 
   override
-  Actor getActor()
+  void TestSuites()
   {
-    PlayerInfo p = players[_playerNumber];
-    if (p == NULL) { return NULL; }
-
-    let a = p.mo;
-    return a;
+    testTargetWidget();
+    testTargetRegistry();
   }
 
-// private: ////////////////////////////////////////////////////////////////////
-
-  private int _playerNumber;
-
-} // class tt_PlayerActorSource
+} // tt_StaticTest

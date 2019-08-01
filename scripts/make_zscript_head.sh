@@ -9,6 +9,14 @@ echo -e "version 4.1.3
 // Do not edit it by hand: your changes will be overwritten.
 " > zscript.zs
 
-includes=$(find zscript -name "*.zs"| while read -r f; do echo "#include \"$f\""; done | sort -r)
+sources=$(find zscript -name "*.zs")
+extends=$(grep -nrPzl "extend.*\\nclass" zscript | grep -v "~" | sort)
+sources=$(echo "$sources" | grep -v "$extends" | sort)
 
-echo "$includes" >> zscript.zs
+includes=$(echo "$sources" | while read -r f; do echo "#include \"$f\""; done)
+
+includes_extends=$(echo "$extends" | while read -r f; do echo "#include \"$f\""; done)
+
+echo "$includes
+// class extensions:
+$includes_extends" >> zscript.zs

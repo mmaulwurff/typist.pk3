@@ -16,7 +16,7 @@
  */
 
 extend
-class tt_Test
+class tt_StaticTest
 {
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -142,7 +142,8 @@ class tt_Test
     assertSourcesSatisfied();
 
     // Second, remove one target.
-    let disabledTarget = new("tt_DisabledTarget").init(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
+    let disabledTarget =
+      new("tt_DisabledTarget").init(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
     let disabledTargets = new("tt_DisabledTargets");
     disabledTargets.add(disabledTarget);
 
@@ -206,4 +207,4 @@ class tt_Test
   private tt_DisabledTargetSourceMock _disabledTargetSource;
   private tt_KnownTargetSource        _targetRegistry;
 
-} // class tt_Test
+} // class tt_StaticTest

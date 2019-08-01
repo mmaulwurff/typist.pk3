@@ -15,7 +15,9 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class tt_Test : tt_Clematis
+/** This file contains tests that require GZDoom to be able to tick.
+ */
+class tt_DynamicTest : tt_Clematis
 {
 
 // public: // tt_Clematis //////////////////////////////////////////////////////
@@ -23,8 +25,7 @@ class tt_Test : tt_Clematis
   override
   void TestSuites()
   {
-    testTargetWidget();
-    testTargetRegistry();
+    testPlayerActorSource();
   }
 
-} // tt_Test
+} // class tt_DynamicTest

@@ -58,15 +58,15 @@ function dry_run {
     ./scripts/dry_run_gzdoom.sh "$filter_file" "$file_name"
 }
 
-function actual_run {
-    echo -e "\\nTest_3: Actual run with mod ####################################"
+function static_tests {
+    echo -e "\\nTest_3: Static tests ###########################################"
 
     pipe_name=pipe
     rm -f  "$pipe_name"
     mkfifo "$pipe_name"
 
     time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -file "$file_name" +map map01\
-         +"set tt_is_test_enabled true"\
+         +"set tt_is_static_test_enabled true"\
          > "$pipe_name" 2>&1 &
 
     out=$(cat < "$pipe_name" | while read -r l; do
@@ -78,9 +78,31 @@ function actual_run {
     rm -f "$pipe_name"
 
     echo -e "\\n$out"
-
     status=$(echo "$out" | grep -c "ERROR\\|WARN\\|FATAL" || true)
+    [[ "$status" == 0 ]]
+}
 
+function dynamic_tests {
+    echo -e "\\nTest_4: Dynamic tests ##########################################"
+
+    pipe_name=pipe
+    rm -f  "$pipe_name"
+    mkfifo "$pipe_name"
+
+    time gzdoom -iwad /usr/share/games/doom/freedoom2.wad -file "$file_name" +map map01\
+         +"set tt_is_dynamic_test_enabled true"\
+         > "$pipe_name" 2>&1 &
+
+    out=$(cat < "$pipe_name" | while read -r l; do
+        [[ "$l" == "["*   ]] && echo "$l"
+        [[ "$l" == *"T:"* ]] && echo "$l"
+        [[ "$l" == *"Test finished." ]] && pkill gzdoom
+    done)
+
+    rm -f "$pipe_name"
+
+    echo -e "\\n$out"
+    status=$(echo "$out" | grep -c "ERROR\\|WARN\\|FATAL" || true)
     [[ "$status" == 0 ]]
 }
 
@@ -99,4 +121,10 @@ shell_lint
 
 gzdoom_only
 dry_run
-actual_run
+static_tests
+
+# Dynamic tests ################################################################
+# Cannot be run on Travis CI because GZDoom doesn't tick there.
+# The reason for this is yet to be discovered.
+
+#dynamic_tests

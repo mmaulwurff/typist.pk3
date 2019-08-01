@@ -16,7 +16,7 @@
  */
 
 extend
-class tt_Test
+class tt_StaticTest
 {
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -51,4 +51,4 @@ class tt_Test
     EndDescribe();
   }
 
-} // class tt_Test
+} // class tt_StaticTest
