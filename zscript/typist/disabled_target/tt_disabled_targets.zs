@@ -37,6 +37,8 @@ class tt_DisabledTargets
   // Adds a target to this list.
   void add(tt_DisabledTarget target) { _targets.push(target); }
 
+  void clear() { _targets.clear(); }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private Array<tt_DisabledTarget> _targets;

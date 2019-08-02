@@ -28,6 +28,7 @@ class tt_DynamicTest : tt_Clematis
     testPlayerActorSource();
     testActorOriginSource();
     testTargetRadar();
+    testDeathReporter();
   }
 
 // private: //////////////////////////////////////////////////////////////////

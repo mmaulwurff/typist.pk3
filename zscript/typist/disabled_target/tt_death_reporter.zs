@@ -15,11 +15,40 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class implements tt_DisabledTargetSource by collecting reports of
+ * dead things as a list of DisabledTargets.
  */
-class tt_DeathReporter
+class tt_DeathReporter : tt_DisabledTargetSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_DeathReporter init()
+  {
+    _targets = new("tt_DisabledTargets").init();
+
+    return self;
+  }
+
+  void reportDead(Actor thing)
+  {
+    let targetID    = tt_TargetID.fromActor(thing);
+    let newDisabled = new("tt_DisabledTarget").init(targetID);
+    _targets.add(newDisabled);
+  }
+
+// public: // tt_DisabledTargetSource //////////////////////////////////////////
+
+  override
+  tt_DisabledTargets getTargets()
+  {
+    let result = _targets;
+    _targets = new("tt_DisabledTargets").init();
+    return result;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_DisabledTargets _targets;
 
 } // class tt_DeathReporter
