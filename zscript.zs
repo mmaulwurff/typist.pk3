@@ -68,4 +68,5 @@ version 4.1.3
 #include "zscript/typist/actor/tt_player_actor_source_test.zs"
 #include "zscript/typist/known_target/tt_target_registry_test.zs"
 #include "zscript/typist/origin/tt_actor_origin_source_test.zs"
+#include "zscript/typist/target/tt_target_radar_test.zs"
 #include "zscript/typist/target_widget/tt_target_widget_test.zs"

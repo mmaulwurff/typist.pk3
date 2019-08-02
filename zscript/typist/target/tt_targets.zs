@@ -32,10 +32,29 @@ class tt_Targets
   // Returns a number of targets in this list.
   uint size() const { return _targets.size(); }
 
+  // Returns true if this target list contains a target with the specified id.
+  bool contains(tt_TargetID target) const { return find(target) != size(); }
+
 // public: /////////////////////////////////////////////////////////////////////
 
   // Adds a target to this list.
   void add(tt_Target target) { _targets.push(target); }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  /** Searches for a target with a particular id.
+   * @returns index on success, the total number of targets on failure.
+   */
+  private
+  uint find(tt_TargetID target) const
+  {
+    uint nTargets = size();
+    for (uint i = 0; i < nTargets; ++i)
+    {
+      if (_targets[i].id().isEqual(target)) { return i; }
+    }
+    return nTargets;
+  }
 
 // private: ////////////////////////////////////////////////////////////////////
 

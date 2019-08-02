@@ -47,12 +47,4 @@ class tt_DynamicTest
     EndDescribe();
   }
 
-// private: //////////////////////////////////////////////////////////////////
-
-  private play
-  Actor Spawn(class<Actor> type, vector3 pos) const
-  {
-    return Actor.Spawn(type, pos);
-  }
-
 } // class tt_DynamicTest

@@ -15,11 +15,70 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class implements tt_TargetSource by scanning the world around the
+ * supplied origin for actors suitable to be targets.
  */
-class tt_TargetRadar
+class tt_TargetRadar : tt_TargetSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_TargetRadar init(tt_OriginSource originSource)
+  {
+    _originSource = originSource;
+
+    return self;
+  }
+
+// public: // tt_TargetSource //////////////////////////////////////////////////
+
+  override
+  tt_Targets getTargets()
+  {
+    let result = new("tt_Targets").init();
+
+    let origin = _originSource.getOrigin().position();
+
+    let iterator = ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT);
+    Actor a;
+    while (a = Actor(iterator.Next()))
+    {
+      if (!isInRange(a.pos, origin) || !isSuitableForTargeting(a)) { continue; }
+
+      result.add(new("tt_ActorTarget").init(a));
+    }
+
+    return result;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private static
+  bool isInRange(Vector3 p1, Vector3 p2)
+  {
+    double dx       = p1.x - p2.x;
+    double dy       = p1.y - p2.y;
+    double dz       = p1.z - p2.z;
+    double distance = dx * dx + dy * dy + dz * dz;
+    bool   inRange  = distance < MAX_DISTANCE;
+
+    return inRange;
+  }
+
+  private static
+  bool isSuitableForTargeting(Actor a)
+  {
+    bool isMonster  = a.bIsMonster;
+    bool isAlive    = (a.Health > 0);
+    bool isSuitable = (isMonster && isAlive);
+
+    return isSuitable;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_OriginSource _originSource;
+
+  const MAX_DISTANCE = 500;
 
 } // class tt_TargetRadar

@@ -24,11 +24,11 @@ class tt_ActorTarget : tt_Target
 
   tt_Target init(Actor a)
   {
-    tt_ActorTarget result;
-    result._pos = a.pos;
-    result._id  = tt_TargetID.fromActor(a);
+    _pos    = a.pos;
+    _pos.z += a.height / 2;
+    _id     = tt_TargetID.fromActor(a);
 
-    return result;
+    return self;
   }
 
 // public: // tt_Target ////////////////////////////////////////////////////////

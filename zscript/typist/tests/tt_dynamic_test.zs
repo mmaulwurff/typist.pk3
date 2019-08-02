@@ -27,6 +27,21 @@ class tt_DynamicTest : tt_Clematis
   {
     testPlayerActorSource();
     testActorOriginSource();
+    testTargetRadar();
+  }
+
+// private: //////////////////////////////////////////////////////////////////
+
+  private play
+  Actor Spawn(class<Actor> type, vector3 pos) const
+  {
+    return Actor.Spawn(type, pos);
+  }
+
+  private play
+  void Kill(Actor a) const
+  {
+    a.A_Die();
   }
 
 } // class tt_DynamicTest
