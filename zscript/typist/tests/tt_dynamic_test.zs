@@ -26,6 +26,7 @@ class tt_DynamicTest : tt_Clematis
   void TestSuites()
   {
     testPlayerActorSource();
+    testActorOriginSource();
   }
 
 } // class tt_DynamicTest

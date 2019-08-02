@@ -15,11 +15,35 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class implements tt_OriginSource.
+ * It takes the center of the actor.
  */
-class tt_ActorOriginSource
+class tt_ActorOriginSource : tt_OriginSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_OriginSource init(tt_ActorSource actorSource)
+  {
+    _actorSource = actorSource;
+
+    return self;
+  }
+
+// public: // tt_OriginSource //////////////////////////////////////////////////
+
+  override
+  tt_Origin getOrigin()
+  {
+    let a   = _actorSource.getActor();
+    let pos = a.pos;
+    pos.z += a.height / 2;
+
+    return new("tt_Origin").init(pos);
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_ActorSource _actorSource;
 
 } // class tt_ActorOriginSource
