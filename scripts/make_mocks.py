@@ -75,7 +75,9 @@ def generate_mock_class(tokens):
     # generate a header
     class_name = get_class_name(tokens)
     mock_name = make_mock_name(class_name)
-    out = 'class ' + mock_name + ' : ' + class_name + '\n{\n\n'
+    out = 'class {} : {}\n{{\n\n'.format(mock_name, class_name)
+
+    out += '  {} init() {{ return self; }}\n\n'.format(mock_name)
 
     functions = get_function_starts(tokens)
 
@@ -90,20 +92,18 @@ def generate_mock_class(tokens):
         mock_attribute_expected = mock_attribute + '_expected'
         mock_attribute_called = mock_attribute + '_called'
 
-        out += '  override\n  ' + return_type + ' ' + func_name + '('
+        out += '  override\n  {} {}('.format(return_type, func_name)
         args_index = i + 4
         pairs = []
         while tokens[args_index] != ')':
             pairs.append(tokens[args_index] + ' ' + tokens[args_index + 1])
             args_index += 2
 
-        out += ' '.join(pairs)
-        out += ')\n'
+        out += '{})\n'.format(' '.join(pairs))
 
-        out += '  {\n'
-        out += '    ++' + mock_attribute_called + ';\n'
+        out += '  {{\n    ++{};\n'.format(mock_attribute_called)
         if not is_void:
-            out += '    return ' + mock_attribute + ';\n'
+            out += '    return {};\n'.format(mock_attribute)
         out += '  }\n\n'
 
         # setter for mock attribute
@@ -111,19 +111,16 @@ def generate_mock_class(tokens):
         out += '  void ' + setter_name + '('
         if not is_void:
             out += return_type + ' value, '
-        out += 'int expected = 1)\n'
-        out += '  {\n'
+        out += 'int expected = 1)\n  {\n'
         if not is_void:
             out += '    ' + mock_attribute + ' = value;\n'
-        out += '    ' + mock_attribute_expected + ' = expected;\n'
-        out += '    ' + mock_attribute_called+ ' = 0;\n'
-        out += '  }\n\n'
+
+        out += '    {} = expected;\n    {} = 0;\n  }}\n\n'.\
+            format(mock_attribute_expected, mock_attribute_called)
 
         # isSatisfied
-        out += '  bool isSatisfied_' + func_name + '() const\n'
-        out += '  {\n'
-        out += '    return ' + mock_attribute_expected + ' == ' + mock_attribute_called + ';\n'
-        out += '  }\n\n'
+        out += '  bool isSatisfied_{}() const\n  {{\n    return {} == {};\n  }}\n\n'.\
+            format(func_name, mock_attribute_expected, mock_attribute_called)
 
         # mock attributes
         if not is_void:

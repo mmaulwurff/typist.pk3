@@ -21,6 +21,8 @@
 class tt_DamagerMock : tt_Damager
 {
 
+  tt_DamagerMock init() { return self; }
+
   override
   void damage()
   {
@@ -45,6 +47,8 @@ class tt_DamagerMock : tt_Damager
 
 class tt_AnswerSourceMock : tt_AnswerSource
 {
+
+  tt_AnswerSourceMock init() { return self; }
 
   override
   tt_Answer getAnswer()
@@ -94,6 +98,8 @@ class tt_AnswerSourceMock : tt_AnswerSource
 class tt_KnownTargetSourceMock : tt_KnownTargetSource
 {
 
+  tt_KnownTargetSourceMock init() { return self; }
+
   override
   tt_KnownTargets getTargets()
   {
@@ -142,6 +148,8 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
 class tt_ActorSourceMock : tt_ActorSource
 {
 
+  tt_ActorSourceMock init() { return self; }
+
   override
   Actor getActor()
   {
@@ -170,6 +178,8 @@ class tt_ActorSourceMock : tt_ActorSource
 class tt_ActivatableMock : tt_Activatable
 {
 
+  tt_ActivatableMock init() { return self; }
+
   override
   void activate()
   {
@@ -194,6 +204,8 @@ class tt_ActivatableMock : tt_Activatable
 
 class tt_DifficultySourceMock : tt_DifficultySource
 {
+
+  tt_DifficultySourceMock init() { return self; }
 
   override
   tt_Difficulty getDifficulty()
@@ -223,6 +235,8 @@ class tt_DifficultySourceMock : tt_DifficultySource
 class tt_DisabledTargetSourceMock : tt_DisabledTargetSource
 {
 
+  tt_DisabledTargetSourceMock init() { return self; }
+
   override
   tt_DisabledTargets getTargets()
   {
@@ -250,6 +264,8 @@ class tt_DisabledTargetSourceMock : tt_DisabledTargetSource
 
 class tt_TargetMock : tt_Target
 {
+
+  tt_TargetMock init() { return self; }
 
   override
   Vector3 position()
@@ -302,6 +318,8 @@ class tt_TargetMock : tt_Target
 class tt_TargetSourceMock : tt_TargetSource
 {
 
+  tt_TargetSourceMock init() { return self; }
+
   override
   tt_Targets getTargets()
   {
@@ -329,6 +347,8 @@ class tt_TargetSourceMock : tt_TargetSource
 
 class tt_QuestionMock : tt_Question
 {
+
+  tt_QuestionMock init() { return self; }
 
   override
   bool isRight(tt_Answer answer)
@@ -358,6 +378,8 @@ class tt_QuestionMock : tt_Question
 class tt_QuestionSourceMock : tt_QuestionSource
 {
 
+  tt_QuestionSourceMock init() { return self; }
+
   override
   tt_Question getQuestion()
   {
@@ -385,6 +407,8 @@ class tt_QuestionSourceMock : tt_QuestionSource
 
 class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
 {
+
+  tt_TargetWidgetSourceMock init() { return self; }
 
   override
   tt_TargetWidgets getWidgets()
@@ -414,6 +438,8 @@ class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
 class tt_ModeSourceMock : tt_ModeSource
 {
 
+  tt_ModeSourceMock init() { return self; }
+
   override
   tt_Mode getMode()
   {
@@ -442,6 +468,8 @@ class tt_ModeSourceMock : tt_ModeSource
 class tt_ViewMock : tt_View
 {
 
+  tt_ViewMock init() { return self; }
+
   override
   void draw()
   {
@@ -466,6 +494,8 @@ class tt_ViewMock : tt_View
 
 class tt_OriginSourceMock : tt_OriginSource
 {
+
+  tt_OriginSourceMock init() { return self; }
 
   override
   tt_Origin getOrigin()

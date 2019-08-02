@@ -31,7 +31,7 @@ class tt_TargetRegistry : tt_KnownTargetSource
     _questionSource       = questionSource;
     _disabledTargetSource = disabledTargetSource;
 
-    _registry = new("tt_KnownTargets");
+    _registry = new("tt_KnownTargets").init();
 
     return self;
   }
@@ -64,7 +64,7 @@ class tt_TargetRegistry : tt_KnownTargetSource
     // There is a room for optimization.
 
     uint nTargets = targets.size();
-    let newKnownTargets = new("tt_KnownTargets");
+    let newKnownTargets = new("tt_KnownTargets").init();
 
     for (uint i = 0; i < nTargets; ++i)
     {

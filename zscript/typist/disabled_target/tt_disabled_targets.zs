@@ -22,6 +22,10 @@ class tt_DisabledTargets
 
 // public: /////////////////////////////////////////////////////////////////////
 
+  tt_DisabledTargets init() { return self; }
+
+// public: /////////////////////////////////////////////////////////////////////
+
   // Returns a target in this list.
   tt_DisabledTarget at(uint index) const { return _targets[index]; }
 

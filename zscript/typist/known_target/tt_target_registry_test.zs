@@ -46,18 +46,18 @@ class tt_StaticTest
   {
     targetRegistrySetUp("Checking adding to Target Registry");
 
-    let target1 = new("tt_TargetMock");
-    let target2 = new("tt_TargetMock");
+    let target1 = new("tt_TargetMock").init();
+    let target2 = new("tt_TargetMock").init();
     target1.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
     target2.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
 
-    let targets = new("tt_Targets");
+    let targets = new("tt_Targets").init();
     targets.add(target1);
     targets.add(target2);
 
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets"));
-    _questionSource.expect_getQuestion(new("tt_QuestionMock"), 2);
+    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets").init());
+    _questionSource.expect_getQuestion(new("tt_QuestionMock").init(), 2);
 
     _targetRegistry.update();
     let knownTargets = _targetRegistry.getTargets();
@@ -75,15 +75,15 @@ class tt_StaticTest
     targetRegistrySetUp("Checking adding an existing target to Target Registry");
 
     // First, add a single target.
-    let target = new("tt_TargetMock");
+    let target = new("tt_TargetMock").init();
     target.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
 
-    let targets = new("tt_Targets");
+    let targets = new("tt_Targets").init();
     targets.add(target);
 
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets"));
-    _questionSource.expect_getQuestion(new("tt_QuestionMock"), 1);
+    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets").init());
+    _questionSource.expect_getQuestion(new("tt_QuestionMock").init(), 1);
 
     _targetRegistry.update();
     let knownTargets = _targetRegistry.getTargets();
@@ -96,14 +96,14 @@ class tt_StaticTest
     // Second, add the same target again. Only a single target must remain
     // registered.
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets"));
+    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets").init());
     _questionSource.expect_getQuestion(NULL, 0);
     target.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER), 2);
 
     _targetRegistry.update();
     knownTargets = _targetRegistry.getTargets();
-    let target1 = new("tt_TargetMock");
-    let target2 = new("tt_TargetMock");
+    let target1 = new("tt_TargetMock").init();
+    let target2 = new("tt_TargetMock").init();
     target1.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
     target2.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
 
@@ -119,18 +119,18 @@ class tt_StaticTest
     targetRegistrySetUp("Checking removing a target from Target Registry");
 
     // First, add two targets.
-    let target1 = new("tt_TargetMock");
-    let target2 = new("tt_TargetMock");
+    let target1 = new("tt_TargetMock").init();
+    let target2 = new("tt_TargetMock").init();
     target1.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
     target2.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
 
-    let targets = new("tt_Targets");
+    let targets = new("tt_Targets").init();
     targets.add(target1);
     targets.add(target2);
 
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets"));
-    _questionSource.expect_getQuestion(new("tt_QuestionMock"), 2);
+    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets").init());
+    _questionSource.expect_getQuestion(new("tt_QuestionMock").init(), 2);
 
     _targetRegistry.update();
     let knownTargets = _targetRegistry.getTargets();
@@ -144,10 +144,10 @@ class tt_StaticTest
     // Second, remove one target.
     let disabledTarget =
       new("tt_DisabledTarget").init(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
-    let disabledTargets = new("tt_DisabledTargets");
+    let disabledTargets = new("tt_DisabledTargets").init();
     disabledTargets.add(disabledTarget);
 
-    _targetSource.expect_getTargets(new("tt_Targets"));
+    _targetSource.expect_getTargets(new("tt_Targets").init());
     _disabledTargetSource.expect_getTargets(disabledTargets);
     _questionSource.expect_getQuestion(NULL, 0);
 
@@ -166,9 +166,9 @@ class tt_StaticTest
   {
     Describe(description);
 
-    _targetSource         = new("tt_TargetSourceMock");
-    _questionSource       = new("tt_QuestionSourceMock");
-    _disabledTargetSource = new("tt_DisabledTargetSourceMock");
+    _targetSource         = new("tt_TargetSourceMock").init();
+    _questionSource       = new("tt_QuestionSourceMock").init();
+    _disabledTargetSource = new("tt_DisabledTargetSourceMock").init();
 
     _targetRegistry = new("tt_TargetRegistry").init( _targetSource
                                                    , _questionSource

@@ -31,7 +31,7 @@ class tt_DynamicTest
     double z   = 3;
     let    imp = Spawn("DoomImp", (x, y, z));
 
-    let actorSource  = new("tt_ActorSourceMock");
+    let actorSource  = new("tt_ActorSourceMock").init();
     let originSource = new("tt_ActorOriginSource").init(actorSource);
 
     actorSource.expect_getActor(imp);

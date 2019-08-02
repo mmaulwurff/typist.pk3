@@ -46,6 +46,11 @@ function shell_lint {
     shellcheck --color=never --format=gcc ./scripts/*.sh
 }
 
+function check_init {
+    echo -e "\\nCode_check_8: Check object initialization: #####################"
+    ./scripts/check_init.sh
+}
+
 # Test functions ###############################################################
 
 function gzdoom_only {
@@ -115,6 +120,7 @@ todo
 python_version
 python_lint
 shell_lint
+check_init
 
 # Tests ########################################################################
 # Comment out tests that you don't want to run.

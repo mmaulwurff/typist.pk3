@@ -22,6 +22,10 @@ class tt_KnownTargets
 
 // public: /////////////////////////////////////////////////////////////////////
 
+  tt_KnownTargets init() { return self; }
+
+// public: /////////////////////////////////////////////////////////////////////
+
   // Returns a target in this list.
   tt_KnownTarget at(uint index) const { return _targets[index]; }
 
