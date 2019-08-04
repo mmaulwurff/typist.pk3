@@ -15,11 +15,45 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class implement tt_QuestionSource by producing questions that contain
+ * string composed from random numbers and should match exactly to the answers.
  */
-class tt_RandomNumberSource
+class tt_RandomNumberSource : tt_QuestionSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_QuestionSource init(tt_DifficultySource difficultySource)
+  {
+    _difficultySource = difficultySource;
+
+    return self;
+  }
+
+// public: // tt_QuestionSource ////////////////////////////////////////////////
+
+  override
+  tt_Question getQuestion()
+  {
+    let difficulty   = _difficultySource.getDifficulty();
+    let stringLength = difficulty.shootStringLength();
+    let string       = "";
+
+    for (int i = 0; i < stringLength; ++i)
+    {
+      // 48 == 0
+      // 57 == 9
+      int number = Random(48, 57);
+      string.AppendFormat("%c", number);
+    }
+
+    let question = new("tt_Match").init(string);
+
+    return question;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_DifficultySource _difficultySource;
 
 } // class tt_RandomNumberSource

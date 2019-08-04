@@ -373,6 +373,29 @@ class tt_QuestionMock : tt_Question
   private int _mock_isRight_expected;
   private int _mock_isRight_called;
 
+  override
+  string getDescription()
+  {
+    ++_mock_getDescription_called;
+    return _mock_getDescription;
+  }
+
+  void expect_getDescription(string value, int expected = 1)
+  {
+    _mock_getDescription = value;
+    _mock_getDescription_expected = expected;
+    _mock_getDescription_called = 0;
+  }
+
+  bool isSatisfied_getDescription() const
+  {
+    return _mock_getDescription_expected == _mock_getDescription_called;
+  }
+
+  private string _mock_getDescription;
+  private int _mock_getDescription_expected;
+  private int _mock_getDescription_called;
+
 } // class tt_QuestionMock
 
 class tt_QuestionSourceMock : tt_QuestionSource

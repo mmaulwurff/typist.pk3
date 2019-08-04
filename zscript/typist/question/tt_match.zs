@@ -15,25 +15,40 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a question.
+/** This class implements tt_Question.
+ * The answer is right for this kind of question if it matches the string
+ * contained in this question.
  */
-class tt_Question abstract
+class tt_Match : tt_Question
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
+  tt_Question init(string question)
+  {
+    _question = question;
+
+    return self;
+  }
+
+// public: // tt_Question //////////////////////////////////////////////////////
+
+  override
   bool isRight(tt_Answer answer)
   {
-    Console.Printf("zscript/typist/question/tt_question.zs:28: T: override this!");
-    return false;
+    bool isEqual = (_question == answer.getString());
+
+    return isEqual;
   }
 
-  virtual
+  override
   string getDescription()
   {
-    Console.Printf("zscript/typist/question/tt_question.zs:35: T: override this!");
-    return "override this!";
+    return _question;
   }
 
-} // class tt_Question
+// private: ////////////////////////////////////////////////////////////////////
+
+  private string _question;
+
+} // class tt_Match
