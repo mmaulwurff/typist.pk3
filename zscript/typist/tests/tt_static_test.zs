@@ -28,6 +28,7 @@ class tt_StaticTest : tt_Clematis
   {
     testTargetWidget();
     testTargetRegistry();
+    testSelectedDifficulty();
   }
 
 } // tt_StaticTest

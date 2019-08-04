@@ -15,26 +15,25 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements tt_DifficultySource by evaluating the difficulty
- * selected by the player at the game start.
- */
-class tt_SelectedDifficulty : tt_DifficultySource
+extend
+class tt_StaticTest
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+// private: ////////////////////////////////////////////////////////////////////
 
-  tt_DifficultySource init() { return self; }
-
-// public: /////////////////////////////////////////////////////////////////////
-
-  override
-  tt_Difficulty getDifficulty()
+  private
+  void testSelectedDifficulty()
   {
-    // skill is a system CVAR.
-    int shootStringLength = 3 + skill * 2;
-    let result            = new("tt_Difficulty").init(shootStringLength);
+    Describe("Checking Selected Difficulty");
 
-    return result;
+    let difficultySource  = new("tt_SelectedDifficulty").init();
+    let difficulty        = difficultySource.getDifficulty();
+    int shootStringLength = difficulty.shootStringLength();
+
+    It("Shoot String must be not empty", AssertEval(shootStringLength, ">", 0));
+    It("Shoot String must be not too long", AssertEval(shootStringLength, "<", 100));
+
+    EndDescribe();
   }
 
-} // class tt_SelectedDifficulty
+} // class tt_StaticTest
