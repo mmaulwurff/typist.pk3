@@ -26,12 +26,28 @@ class tt_EventHandler : EventHandler
   void OnRegister()
   {
     if (isStaticTestingEnabled())  { runStaticTests();  }
+
+    // later: set to true
+    self.IsUiProcessor = false;
   }
 
   override
   void WorldTick()
   {
     if (Level.mapTime == 1) { onFirstTick(); }
+  }
+
+  override
+  bool UiProcess(UiEvent event)
+  {
+    if (event.type == UiEvent.Type_KeyDown)
+    {
+      int key = event.keyChar;
+      // later: call input handler
+      console.printf("key: %d, %c", key, key);
+    }
+
+    return false;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -56,7 +72,7 @@ class tt_EventHandler : EventHandler
 
     // This console log is required for test script to understand that it
     // should stop GZDoom execution.
-    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:59: T: Test finished.");
+    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:75: T: Test finished.");
   }
 
   private bool isDynamicTestingEnabled() const
@@ -72,7 +88,7 @@ class tt_EventHandler : EventHandler
 
     // This console log is required for test script to understand that it
     // should stop GZDoom execution.
-    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:75: T: Test finished.");
+    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:91: T: Test finished.");
   }
 
 } // class tt_EventHandler

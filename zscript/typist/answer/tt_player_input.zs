@@ -15,11 +15,43 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class implements tt_AnswerSource by receiving player key inputs and
+ * composing an answer from them.
  */
-class tt_PlayerInput
+class tt_PlayerInput : tt_AnswerSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_PlayerInput init() { return self; }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  void processKey(int key)
+  {
+    if (key > 31) // printable character
+    {
+      _answer.AppendFormat("%c", key);
+    }
+  }
+
+// public: // tt_AnswerSource //////////////////////////////////////////////////
+
+  override
+  tt_Answer getAnswer()
+  {
+    let result = new("tt_Answer").init(_answer);
+    return result;
+  }
+
+  override
+  void reset()
+  {
+    _answer = "";
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private string _answer;
 
 } // class tt_PlayerInput

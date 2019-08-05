@@ -153,6 +153,6 @@ if __name__ == "__main__":
         if is_interface(source_tokens):
             MOCK_CONTENTS += generate_mock_class(source_tokens)
 
-    OUT_FILE = open('zscript/typist/tests/mocks.zs', 'w')
+    OUT_FILE = open('zscript/typist/tests/tt_mocks.zs', 'w')
     OUT_FILE.write(MOCK_CONTENTS)
     #print(MOCK_CONTENTS)

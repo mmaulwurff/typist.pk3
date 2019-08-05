@@ -30,6 +30,7 @@ class tt_StaticTest : tt_Clematis
     testTargetRegistry();
     testSelectedDifficulty();
     testRandomNumberSource();
+    testPlayerInput();
   }
 
 } // tt_StaticTest

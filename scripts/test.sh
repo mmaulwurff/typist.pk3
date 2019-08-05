@@ -111,6 +111,12 @@ function dynamic_tests {
     [[ "$status" == 0 ]]
 }
 
+function uncontrolled_run {
+    echo -e "\\nUncontrolled GZDoom run ########################################"
+
+    gzdoom -iwad /usr/share/games/doom/freedoom2.wad -file "$file_name" +map map01
+}
+
 # Code checks ##################################################################
 
 spelling
@@ -134,3 +140,8 @@ static_tests
 # The reason for this is yet to be discovered.
 
 #dynamic_tests
+
+# Not a test ###################################################################
+# Must be commented off for CI.
+
+#uncontrolled_run
