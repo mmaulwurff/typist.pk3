@@ -25,7 +25,7 @@ class tt_SelectedDifficulty : tt_DifficultySource
 
   tt_DifficultySource init() { return self; }
 
-// public: /////////////////////////////////////////////////////////////////////
+// public: // tt_DifficultySource //////////////////////////////////////////////
 
   override
   tt_Difficulty getDifficulty()
