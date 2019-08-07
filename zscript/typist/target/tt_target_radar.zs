@@ -79,6 +79,6 @@ class tt_TargetRadar : tt_TargetSource
 
   private tt_OriginSource _originSource;
 
-  const MAX_DISTANCE = 500;
+  const MAX_DISTANCE = 500000;
 
 } // class tt_TargetRadar

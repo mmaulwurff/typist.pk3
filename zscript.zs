@@ -43,6 +43,7 @@ version 4.1.3
 #include "zscript/typist/question/tt_question_source.zs"
 #include "zscript/typist/question/tt_question.zs"
 #include "zscript/typist/question/tt_random_number_source.zs"
+#include "zscript/typist/supervisor/tt_supervisor.zs"
 #include "zscript/typist/target/tt_actor_target.zs"
 #include "zscript/typist/target/tt_target_id.zs"
 #include "zscript/typist/target/tt_target_radar.zs"

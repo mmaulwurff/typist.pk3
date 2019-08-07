@@ -26,15 +26,21 @@ class tt_EventHandler : EventHandler
   void OnRegister()
   {
     if (isStaticTestingEnabled())  { runStaticTests();  }
-
-    // later: set to true
-    self.IsUiProcessor = false;
   }
 
   override
   void WorldTick()
   {
     if (Level.mapTime == 1) { onFirstTick(); }
+
+    if (_supervisor == NULL) { return; }
+
+    _supervisor.updateTargets();
+
+    int  mode            = _supervisor.getMode();
+    bool isCapturingKeys = (mode == tt_Mode.MODE_COMBAT);
+
+    self.IsUiProcessor = isCapturingKeys;
   }
 
   override
@@ -43,11 +49,37 @@ class tt_EventHandler : EventHandler
     if (event.type == UiEvent.Type_KeyDown)
     {
       int key = event.keyChar;
-      // later: call input handler
-      console.printf("key: %d, %c", key, key);
+
+      if (_supervisor == NULL) { return false; }
+
+      _supervisor.processKey(key);
     }
 
     return false;
+  }
+
+  override
+  void PlayerEntered(PlayerEvent event)
+  {
+    if (event.PlayerNumber != consolePlayer) { return; }
+
+    _supervisor = new("tt_Supervisor").init(event.PlayerNumber);
+  }
+
+  override
+  void WorldThingDied(WorldEvent event)
+  {
+    if (_supervisor == NULL) { return; }
+
+    _supervisor.reportDead(event.Thing);
+  }
+
+  override
+  void RenderOverlay(RenderEvent event)
+  {
+    if (_supervisor == NULL) { return; }
+
+    _supervisor.draw();
   }
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -65,30 +97,17 @@ class tt_EventHandler : EventHandler
     return (isEnabled != NULL && isEnabled.GetBool());
   }
 
-  private
-  void runStaticTests()
-  {
-    tt_Clematis.Create("tt_StaticTest");
-
-    // This console log is required for test script to understand that it
-    // should stop GZDoom execution.
-    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:75: T: Test finished.");
-  }
-
   private bool isDynamicTestingEnabled() const
   {
     let isEnabled = CVar.FindCVar("tt_is_dynamic_test_enabled");
     return (isEnabled != NULL && isEnabled.GetBool());
   }
 
-  private
-  void runDynamicTests()
-  {
-    tt_Clematis.Create("tt_DynamicTest");
+  private void runStaticTests()  { tt_Clematis.Create("tt_StaticTest" ); }
+  private void runDynamicTests() { tt_Clematis.Create("tt_DynamicTest"); }
 
-    // This console log is required for test script to understand that it
-    // should stop GZDoom execution.
-    Console.Printf("zscript/typist/event_handler/tt_event_handler.zs:91: T: Test finished.");
-  }
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_Supervisor _supervisor;
 
 } // class tt_EventHandler

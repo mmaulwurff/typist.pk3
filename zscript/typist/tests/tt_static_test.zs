@@ -33,6 +33,10 @@ class tt_StaticTest : tt_Clematis
     testPlayerInput();
     testAutoModeSource();
     testTargetWidgetRegistry();
+
+    // This console log is required for test script to understand that it
+    // should stop GZDoom execution.
+    Console.Printf("zscript/typist/tests/tt_static_test.zs:39: T: Test finished.");
   }
 
 } // tt_StaticTest
