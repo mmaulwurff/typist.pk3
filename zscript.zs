@@ -76,4 +76,5 @@ version 4.1.3
 #include "zscript/typist/origin/tt_actor_origin_source_test.zs"
 #include "zscript/typist/question/tt_random_number_source_test.zs"
 #include "zscript/typist/target/tt_target_radar_test.zs"
+#include "zscript/typist/target_widget/tt_target_widget_registry_test.zs"
 #include "zscript/typist/target_widget/tt_target_widget_test.zs"

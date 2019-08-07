@@ -32,6 +32,7 @@ class tt_StaticTest : tt_Clematis
     testRandomNumberSource();
     testPlayerInput();
     testAutoModeSource();
+    testTargetWidgetRegistry();
   }
 
 } // tt_StaticTest

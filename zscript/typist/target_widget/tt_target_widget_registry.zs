@@ -15,11 +15,43 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class implements tt_TargetWidgetSource by accumulating Target Widgets.
+ * Target Widgets expire when they go out of sight.
  */
-class tt_TargetWidgetRegistry
+class tt_TargetWidgetRegistry : tt_TargetWidgetSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_TargetWidgetRegistry init(tt_KnownTargetSource knownTargetSource)
+  {
+    _knownTargetSource = knownTargetSource;
+
+    return self;
+  }
+
+// public: // tt_TargetWidgetSource ////////////////////////////////////////////
+
+  override
+  tt_TargetWidgets getWidgets()
+  {
+    let  targets  = _knownTargetSource.getTargets();
+    let  result   = new("tt_TargetWidgets").init();
+    uint nTargets = targets.size();
+
+    for (uint i = 0; i < nTargets; ++i)
+    {
+      let target   = targets.at(i);
+      let position = (10, 10 + i * 30);
+      let widget   = new("tt_TargetWidget").init(target, position);
+      result.add(widget);
+    }
+
+    return result;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_KnownTargetSource _knownTargetSource;
 
 } // class tt_TargetWidgetRegistry
