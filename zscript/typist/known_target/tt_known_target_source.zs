@@ -33,12 +33,21 @@ class tt_KnownTargetSource abstract
     return NULL;
   }
 
+  /** This function returns true if there are no targets in this source.
+   */
+  virtual
+  bool isEmpty() const
+  {
+    Console.Printf("zscript/typist/known_target/tt_known_target_source.zs:41: T: override this!");
+    return true;
+  }
+
   /** This function asks the source to refresh the list of targets.
    */
   virtual
   void update()
   {
-    Console.Printf("zscript/typist/known_target/tt_known_target_source.zs:41: T: override this!");
+    Console.Printf("zscript/typist/known_target/tt_known_target_source.zs:50: T: override this!");
   }
 
 } // class tt_KnownTargetSource

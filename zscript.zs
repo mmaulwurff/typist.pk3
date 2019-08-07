@@ -71,6 +71,7 @@ version 4.1.3
 #include "zscript/typist/difficulty/tt_selected_difficulty_test.zs"
 #include "zscript/typist/disabled_target/tt_death_reporter_test.zs"
 #include "zscript/typist/known_target/tt_target_registry_test.zs"
+#include "zscript/typist/mode/tt_auto_mode_source_test.zs"
 #include "zscript/typist/origin/tt_actor_origin_source_test.zs"
 #include "zscript/typist/question/tt_random_number_source_test.zs"
 #include "zscript/typist/target/tt_target_radar_test.zs"

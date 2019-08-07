@@ -45,6 +45,12 @@ class tt_TargetRegistry : tt_KnownTargetSource
   }
 
   override
+  bool isEmpty() const
+  {
+    return (_registry.size() == 0);
+  }
+
+  override
   void update()
   {
     let newTargets = _targetSource.getTargets();

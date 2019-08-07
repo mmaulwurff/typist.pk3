@@ -15,11 +15,34 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class implements tt_ModeSource by examining the specified
+ * tt_KnownTargetSource.
  */
-class tt_AutoModeSource
+class tt_AutoModeSource : tt_ModeSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_AutoModeSource init(tt_KnownTargetSource knownTargetSource)
+  {
+    _knownTargetSource = knownTargetSource;
+
+    return self;
+  }
+
+// public: // tt_ModeSource ////////////////////////////////////////////////////
+
+  override
+  int getMode()
+  {
+    bool isNoTargets = _knownTargetSource.isEmpty();
+    int  mode        = (isNoTargets ? tt_Mode.MODE_EXPLORE : tt_Mode.MODE_COMBAT);
+
+    return mode;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_KnownTargetSource _knownTargetSource;
 
 } // class tt_AutoModeSource

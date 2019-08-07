@@ -124,6 +124,29 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
   private int _mock_getTargets_called;
 
   override
+  bool isEmpty()
+  {
+    ++_mock_isEmpty_called;
+    return _mock_isEmpty;
+  }
+
+  void expect_isEmpty(bool value, int expected = 1)
+  {
+    _mock_isEmpty = value;
+    _mock_isEmpty_expected = expected;
+    _mock_isEmpty_called = 0;
+  }
+
+  bool isSatisfied_isEmpty() const
+  {
+    return _mock_isEmpty_expected == _mock_isEmpty_called;
+  }
+
+  private bool _mock_isEmpty;
+  private int _mock_isEmpty_expected;
+  private int _mock_isEmpty_called;
+
+  override
   void update()
   {
     ++_mock_update_called;
@@ -464,13 +487,13 @@ class tt_ModeSourceMock : tt_ModeSource
   tt_ModeSourceMock init() { return self; }
 
   override
-  tt_Mode getMode()
+  int getMode()
   {
     ++_mock_getMode_called;
     return _mock_getMode;
   }
 
-  void expect_getMode(tt_Mode value, int expected = 1)
+  void expect_getMode(int value, int expected = 1)
   {
     _mock_getMode = value;
     _mock_getMode_expected = expected;
@@ -482,7 +505,7 @@ class tt_ModeSourceMock : tt_ModeSource
     return _mock_getMode_expected == _mock_getMode_called;
   }
 
-  private tt_Mode _mock_getMode;
+  private int _mock_getMode;
   private int _mock_getMode_expected;
   private int _mock_getMode_called;
 

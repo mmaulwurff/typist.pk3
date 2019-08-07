@@ -25,10 +25,10 @@ class tt_ModeSource abstract
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  tt_Mode getMode()
+  int getMode()
   {
     Console.Printf("zscript/typist/mode/tt_mode_source.zs:30: T: override this!");
-    return NULL;
+    return tt_Mode.MODE_UNKNOWN;
   }
 
 } // class tt_ModeSource
