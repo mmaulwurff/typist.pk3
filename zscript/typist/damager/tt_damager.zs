@@ -22,7 +22,7 @@ class tt_Damager abstract
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
+  play virtual
   void damage()
   {
     Console.Printf("zscript/typist/damager/tt_damager.zs:28: T: override this!");
