@@ -15,11 +15,40 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class implement tt_View by getting a list of Target Widgets and drawing
+ * them.
  */
-class tt_Screen
+class tt_Screen : tt_View
 {
 
 // public: /////////////////////////////////////////////////////////////////////
+
+  tt_Screen init(tt_TargetWidgetSource targetWidgetSource)
+  {
+    _targetWidgetSource = targetWidgetSource;
+
+    return self;
+  }
+
+// public: // tt_View //////////////////////////////////////////////////////////
+
+  override
+  void draw()
+  {
+    let  widgets  = _targetWidgetSource.getWidgets();
+    uint nWidgets = widgets.size();
+
+    for (uint i = 0; i < nWidgets; ++i)
+    {
+      let widget   = widgets.at(i);
+      let question = widget.target().question().getDescription();
+      let position = widget.position();
+      Screen.DrawText(SmallFont, Font.CR_WHITE, position.x, position.y, question);
+    }
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_TargetWidgetSource _targetWidgetSource;
 
 } // class tt_Screen
