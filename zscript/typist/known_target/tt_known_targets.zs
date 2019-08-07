@@ -35,6 +35,12 @@ class tt_KnownTargets
   // Returns true if this target list contains a target with the specified id.
   bool contains(tt_TargetID target) const { return find(target) != size(); }
 
+  tt_KnownTarget findTarget(tt_TargetID target) const
+  {
+    uint index = find(target);
+    return (index == size()) ? NULL : at(index);
+  }
+
 // public: /////////////////////////////////////////////////////////////////////
 
   // Adds a target to this list.

@@ -38,4 +38,12 @@ class tt_Target abstract
     return NULL;
   }
 
+// public: /////////////////////////////////////////////////////////////////////
+
+  virtual
+  void setPosition(vector3 position)
+  {
+    Console.Printf("zscript/typist/target/tt_target.zs:46: T: override this!");
+  }
+
 } // class tt_Target

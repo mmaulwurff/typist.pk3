@@ -33,6 +33,10 @@ class tt_PlayerInput : tt_AnswerSource
     {
       _answer.AppendFormat("%c", key);
     }
+    else if (key == 8)
+    {
+      _answer = _answer.Left(_answer.Length() - 1);
+    }
   }
 
 // public: // tt_AnswerSource //////////////////////////////////////////////////

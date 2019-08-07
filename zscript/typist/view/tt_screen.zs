@@ -23,9 +23,10 @@ class tt_Screen : tt_View
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Screen init(tt_TargetWidgetSource targetWidgetSource)
+  tt_Screen init(tt_TargetWidgetSource targetWidgetSource, tt_AnswerSource answerSource)
   {
     _targetWidgetSource = targetWidgetSource;
+    _answerSource       = answerSource;
 
     return self;
   }
@@ -35,20 +36,29 @@ class tt_Screen : tt_View
   override
   void draw()
   {
+    let  answer   = _answerSource.getAnswer().getString();
     let  widgets  = _targetWidgetSource.getWidgets();
     uint nWidgets = widgets.size();
+
+    double x = 50;
+    double y = 50;
+    double height = BigFont.GetHeight();
 
     for (uint i = 0; i < nWidgets; ++i)
     {
       let widget   = widgets.at(i);
       let question = widget.target().question().getDescription();
       let position = widget.position();
-      Screen.DrawText(SmallFont, Font.CR_WHITE, position.x, position.y, question);
+      Screen.DrawText(BigFont, Font.CR_WHITE, x, y, question);
+      y += height;
+      Screen.DrawText(BigFont, Font.CR_BLUE, x, y, answer);
+      y += height * 2;
     }
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_TargetWidgetSource _targetWidgetSource;
+  private tt_AnswerSource       _answerSource;
 
 } // class tt_Screen

@@ -69,14 +69,23 @@ class tt_TargetRegistry : tt_KnownTargetSource
     // Given that tt_KnownTargets.contains() is O(n), this function is O(n^2).
     // There is a room for optimization.
 
-    uint nTargets = targets.size();
-    let newKnownTargets = new("tt_KnownTargets").init();
+    uint nTargets        = targets.size();
+    let  newKnownTargets = new("tt_KnownTargets").init();
 
     for (uint i = 0; i < nTargets; ++i)
     {
-      let target = targets.at(i);
-      if (_registry.contains(target.id())) { continue; }
-      newKnownTargets.add(makeKnownTarget(target));
+      let target   = targets.at(i);
+      let existing = _registry.findTarget(target.id());
+
+      if (existing == NULL)
+      {
+        newKnownTargets.add(makeKnownTarget(target));
+      }
+      else
+      {
+        let t = existing.target();
+        t.setPosition(target.position());
+      }
     }
 
     _registry.addMany(newKnownTargets);

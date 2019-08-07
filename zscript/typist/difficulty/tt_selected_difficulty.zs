@@ -31,7 +31,7 @@ class tt_SelectedDifficulty : tt_DifficultySource
   tt_Difficulty getDifficulty()
   {
     // skill is a system CVAR.
-    int shootStringLength = 3 + skill * 2;
+    int shootStringLength = 3 + skill;
     let result            = new("tt_Difficulty").init(shootStringLength);
 
     return result;

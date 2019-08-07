@@ -39,6 +39,14 @@ class tt_ActorTarget : tt_Target
   override
   tt_TargetID id() const { return _id; }
 
+// public: // tt_Target ////////////////////////////////////////////////////////
+
+  override
+  void setPosition(vector3 position)
+  {
+    _pos = position;
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private Vector3     _pos;

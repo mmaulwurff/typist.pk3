@@ -336,6 +336,26 @@ class tt_TargetMock : tt_Target
   private int _mock_id_expected;
   private int _mock_id_called;
 
+  override
+  void setPosition(vector3 position)
+  {
+    ++_mock_setPosition_called;
+  }
+
+  void expect_setPosition(int expected = 1)
+  {
+    _mock_setPosition_expected = expected;
+    _mock_setPosition_called = 0;
+  }
+
+  bool isSatisfied_setPosition() const
+  {
+    return _mock_setPosition_expected == _mock_setPosition_called;
+  }
+
+  private int _mock_setPosition_expected;
+  private int _mock_setPosition_called;
+
 } // class tt_TargetMock
 
 class tt_TargetSourceMock : tt_TargetSource
