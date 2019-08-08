@@ -39,7 +39,11 @@ To run tests:
 
 It may be possible to compile this on Windows. Install Msys or something. You're on your own :)
 
-## Acknowledgments
+# Software Used
+
+- [Slade](https://github.com/sirjuddington/SLADE)
+
+# Acknowledgments
 
 - KeksDose for [libeye](https://forum.zdoom.org/viewtopic.php?f=105&t=64566#p1102157) (Level and screen projections)
 
