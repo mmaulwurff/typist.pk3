@@ -22,7 +22,7 @@ class tt_DynamicTest
   // private: //////////////////////////////////////////////////////////////////
 
   private
-  void testPlayerActorSource()
+  void testPlayerPawnSource()
   {
     testConsolePlayer();
     testNextPlayer();
@@ -31,12 +31,12 @@ class tt_DynamicTest
   private
   void testConsolePlayer()
   {
-    Describe("Checking Player Actor Source with ConsolePlayer");
+    Describe("Checking Player Pawn Source with ConsolePlayer");
 
-    let source = new("tt_PlayerActorSource").init(consolePlayer);
-    let a      = source.getActor();
+    let source = new("tt_PlayerPawnSource").init(consolePlayer);
+    let pawn   = source.getPawn();
 
-    It(String.Format("Must get main player (%d) actor", consolePlayer), AssertNotNull(a));
+    It(String.Format("Must get main player (%d) actor", consolePlayer), AssertNotNull(pawn));
 
     EndDescribe();
   }
@@ -46,15 +46,15 @@ class tt_DynamicTest
   private
   void testNextPlayer()
   {
-    Describe("Checking Player Actor Source with other numbers");
+    Describe("Checking Player Pawn Source with other numbers");
 
     for (int i = 1; i < MAXPLAYERS; ++i)
     {
       int playerNumber = (consolePlayer + i) % MAXPLAYERS;
-      let source       = new("tt_PlayerActorSource").init(playerNumber);
-      let a            = source.getActor();
+      let source       = new("tt_PlayerPawnSource").init(playerNumber);
+      let pawn         = source.getPawn();
 
-      It(String.Format("Other player (%d) must be null", playerNumber), AssertNull(a));
+      It(String.Format("Other player (%d) must be null", playerNumber), AssertNull(pawn));
     }
 
     EndDescribe();

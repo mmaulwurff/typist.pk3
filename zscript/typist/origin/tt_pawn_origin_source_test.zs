@@ -22,19 +22,19 @@ class tt_DynamicTest
 // private: //////////////////////////////////////////////////////////////////
 
   private
-  void testActorOriginSource()
+  void testPawnOriginSource()
   {
-    Describe("Checking Actor Origin Source");
+    Describe("Checking Pawn Origin Source");
 
     double x   = 1;
     double y   = 2;
     double z   = 3;
-    let    imp = Spawn("DoomImp", (x, y, z));
+    let    imp = PlayerPawn(Spawn("DoomPlayer", (x, y, z)));
 
-    let actorSource  = new("tt_ActorSourceMock").init();
-    let originSource = new("tt_ActorOriginSource").init(actorSource);
+    let pawnSource   = new("tt_PawnSourceMock").init();
+    let originSource = new("tt_PawnOriginSource").init(pawnSource);
 
-    actorSource.expect_getActor(imp);
+    pawnSource.expect_getPawn(imp);
 
     let origin = originSource.getOrigin().position();
     let impZ   = imp.height / 2 + z;
@@ -42,7 +42,7 @@ class tt_DynamicTest
     It("X matches", AssertEval(x,    "==", origin.x));
     It("Y matches", AssertEval(y,    "==", origin.y));
     It("Z matches", AssertEval(impZ, "==", origin.z));
-    It("Actor source is satisfied", Assert(actorSource.isSatisfied_getActor()));
+    It("Pawn source is satisfied", Assert(pawnSource.isSatisfied_getPawn()));
 
     EndDescribe();
   }

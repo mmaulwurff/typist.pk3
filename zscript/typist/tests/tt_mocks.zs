@@ -168,36 +168,6 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
 
 } // class tt_KnownTargetSourceMock
 
-class tt_ActorSourceMock : tt_ActorSource
-{
-
-  tt_ActorSourceMock init() { return self; }
-
-  override
-  Actor getActor()
-  {
-    ++_mock_getActor_called;
-    return _mock_getActor;
-  }
-
-  void expect_getActor(Actor value, int expected = 1)
-  {
-    _mock_getActor = value;
-    _mock_getActor_expected = expected;
-    _mock_getActor_called = 0;
-  }
-
-  bool isSatisfied_getActor() const
-  {
-    return _mock_getActor_expected == _mock_getActor_called;
-  }
-
-  private Actor _mock_getActor;
-  private int _mock_getActor_expected;
-  private int _mock_getActor_called;
-
-} // class tt_ActorSourceMock
-
 class tt_ActivatableMock : tt_Activatable
 {
 
@@ -530,6 +500,36 @@ class tt_ModeSourceMock : tt_ModeSource
   private int _mock_getMode_called;
 
 } // class tt_ModeSourceMock
+
+class tt_PawnSourceMock : tt_PawnSource
+{
+
+  tt_PawnSourceMock init() { return self; }
+
+  override
+  PlayerPawn getPawn()
+  {
+    ++_mock_getPawn_called;
+    return _mock_getPawn;
+  }
+
+  void expect_getPawn(PlayerPawn value, int expected = 1)
+  {
+    _mock_getPawn = value;
+    _mock_getPawn_expected = expected;
+    _mock_getPawn_called = 0;
+  }
+
+  bool isSatisfied_getPawn() const
+  {
+    return _mock_getPawn_expected == _mock_getPawn_called;
+  }
+
+  private PlayerPawn _mock_getPawn;
+  private int _mock_getPawn_expected;
+  private int _mock_getPawn_called;
+
+} // class tt_PawnSourceMock
 
 class tt_ViewMock : tt_View
 {

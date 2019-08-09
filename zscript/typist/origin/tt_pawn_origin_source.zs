@@ -15,18 +15,35 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a source of actors.
+/** This class implements tt_OriginSource.
+ * It takes the center of the pawn.
  */
-class tt_ActorSource abstract
+class tt_PawnOriginSource : tt_OriginSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  Actor getActor()
+  tt_OriginSource init(tt_PawnSource pawnSource)
   {
-    Console.Printf("zscript/typist/actor/tt_actor_source.zs:28: T: override this!");
-    return NULL;
+    _pawnSource = pawnSource;
+
+    return self;
   }
 
-} // class tt_ActorSource
+// public: // tt_OriginSource //////////////////////////////////////////////////
+
+  override
+  tt_Origin getOrigin()
+  {
+    let a   = _pawnSource.getPawn();
+    let pos = a.pos;
+    pos.z += a.height / 2;
+
+    return new("tt_Origin").init(pos);
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_PawnSource _pawnSource;
+
+} // class tt_PawnOriginSource

@@ -15,35 +15,35 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements tt_OriginSource.
- * It takes the center of the actor.
+/** This class implements tt_PawnSource.
+ * It returns the player pawn.
  */
-class tt_ActorOriginSource : tt_OriginSource
+class tt_PlayerPawnSource : tt_PawnSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_OriginSource init(tt_ActorSource actorSource)
+  tt_PawnSource init(int playerNumber)
   {
-    _actorSource = actorSource;
+    _playerNumber = playerNumber;
 
     return self;
   }
 
-// public: // tt_OriginSource //////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
   override
-  tt_Origin getOrigin()
+  PlayerPawn getPawn()
   {
-    let a   = _actorSource.getActor();
-    let pos = a.pos;
-    pos.z += a.height / 2;
+    PlayerInfo p = players[_playerNumber];
+    if (p == NULL) { return NULL; }
 
-    return new("tt_Origin").init(pos);
+    let pawn = p.mo;
+    return pawn;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_ActorSource _actorSource;
+  private int _playerNumber;
 
-} // class tt_ActorOriginSource
+} // class tt_PlayerPawnSource

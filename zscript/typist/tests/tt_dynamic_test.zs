@@ -25,8 +25,8 @@ class tt_DynamicTest : tt_Clematis
   override
   void TestSuites()
   {
-    testPlayerActorSource();
-    testActorOriginSource();
+    testPlayerPawnSource();
+    testPawnOriginSource();
     testTargetRadar();
     testDeathReporter();
     testQuestionAnswerDamager();

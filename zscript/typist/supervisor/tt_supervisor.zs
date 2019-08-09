@@ -27,8 +27,8 @@ class tt_Supervisor
     _playerInput = new("tt_PlayerInput").init();
 
     let difficultySource = new("tt_SelectedDifficulty").init();
-    let actorSource      = new("tt_PlayerActorSource").init(playerNumber);
-    let originSource     = new("tt_ActorOriginSource").init(actorSource);
+    let pawnSource       = new("tt_PlayerPawnSource").init(playerNumber);
+    let originSource     = new("tt_PawnOriginSource").init(pawnSource);
     let targetSource     = new("tt_TargetRadar").init(originSource);
     let questionSource   = new("tt_RandomNumberSource").init(difficultySource);
     _deathReporter       = new("tt_DeathReporter").init();
