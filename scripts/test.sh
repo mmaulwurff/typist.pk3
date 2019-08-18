@@ -105,6 +105,7 @@ function dynamic_tests {
          > "$pipe_name" 2>&1 &
 
     out=$(cat < "$pipe_name" | while read -r l; do
+              echo "$l"
         [[ "$l" == "["*   ]] && echo "$l"
         [[ "$l" == *"T:"* ]] && echo "$l"
         [[ "$l" == *"Test finished." ]] && pkill gzdoom

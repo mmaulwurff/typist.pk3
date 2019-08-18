@@ -6,3 +6,5 @@
     -iwad /usr/share/games/doom/freedoom2.wad \
     -norun \
     +fullscreen false
+
+exit 0
