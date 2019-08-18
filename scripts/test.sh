@@ -74,7 +74,7 @@ function static_tests {
          -iwad /usr/share/games/doom/freedoom2.wad \
          -file "$file_name" \
          +map tt_test \
-         +"set tt_is_static_test_enabled true" \
+         +tt_is_static_test_enabled true \
          > "$pipe_name" 2>&1 &
 
     out=$(cat < "$pipe_name" | while read -r l; do
@@ -101,7 +101,8 @@ function dynamic_tests {
          -iwad /usr/share/games/doom/freedoom2.wad \
          -file "$file_name" \
          +map tt_test \
-         +"set tt_is_dynamic_test_enabled true" \
+         +tt_is_dynamic_test_enabled true \
+         +vid_rendermode 0
          > "$pipe_name" 2>&1 &
 
     out=$(cat < "$pipe_name" | while read -r l; do
