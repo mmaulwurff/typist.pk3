@@ -16,4 +16,4 @@ apt-cache policy gzdoom freedoom
 #    grep -vf "$filter_file" |\
 #    grep -v "^$"
 
-gzdoom -iwad /usr/share/games/doom/freedoom2.wad -norun
+gzdoom
