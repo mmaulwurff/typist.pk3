@@ -98,13 +98,13 @@ function dynamic_tests {
     rm -f  "$pipe_name"
     mkfifo "$pipe_name"
 
-    gzdoom \
+    time gzdoom \
          -iwad /usr/share/games/doom/freedoom2.wad \
          -file "$file_name" \
          -nosound \
          +map tt_test \
          +set tt_is_dynamic_test_enabled true \
-         #> "$pipe_name" 2>&1 &
+         > "$pipe_name" 2>&1 &
 
     out=$(cat < "$pipe_name" | while read -r l; do
               echo "$l"
