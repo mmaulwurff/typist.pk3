@@ -4,6 +4,7 @@
 
 /opt/gzdoom/gzdoom \
     -iwad /usr/share/games/doom/freedoom2.wad \
+    -nosound \
     -norun \
     +vid_rendermode 0 \
     +fullscreen false
