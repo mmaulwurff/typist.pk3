@@ -9,4 +9,5 @@ apt-get update
 apt-get install gzdoom aspell aspell-en zip freedoom xvfb pylint3 shellcheck
 
 # Disable GZDoom hardware survey:
+mkdir --parents ~/.config/gzdoom
 echo -e "[GlobalSettings]\nsys_statsenabled=1" > ~/.config/gzdoom/gzdoom.ini
