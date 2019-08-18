@@ -7,3 +7,5 @@ add-apt-repository 'deb http://debian.drdteam.org/ stable multiverse'
 wget -O- http://debian.drdteam.org/drdteam.gpg | apt-key add -
 apt-get update
 apt-get install gzdoom aspell aspell-en zip freedoom xvfb pylint3 shellcheck
+
+sed -i 's/sys_statsenabled=0/sys_statsenabled=1/g' ~/.config/gzdoom/gzdoom.ini
