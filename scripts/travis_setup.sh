@@ -2,6 +2,6 @@
 
 # This scripts sets up GZDoom CVars.
 
-gzdoom \
+/opt/gzdoom/gzdoom \
     -norun \
     +fullscreen false
