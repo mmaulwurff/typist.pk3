@@ -15,35 +15,30 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements tt_PawnSource.
- * It returns the player pawn.
+/**
  */
-class tt_PlayerPawnSource : tt_PawnSource
+class tt_PlayerInfoSourceImpl : tt_PlayerInfoSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_PawnSource init(tt_PlayerInfoSource playerInfoSource)
+  tt_PlayerInfoSourceImpl init(int playerNumber)
   {
-    _playerInfoSource = playerInfoSource;
+    _playerNumber = playerNumber;
 
     return self;
   }
 
-// public: /////////////////////////////////////////////////////////////////////
+// public: // tt_PlayerInfoSource //////////////////////////////////////////////
 
   override
-  PlayerPawn getPawn()
+  PlayerInfo getInfo()
   {
-    PlayerInfo p = _playerInfoSource.getInfo();
-    if (p == NULL) { return NULL; }
-
-    let pawn = p.mo;
-    return pawn;
+    return players[_playerNumber];
   }
 
-// private: ////////////////////////////////////////////////////////////////////
+// private:
 
-  private tt_PlayerInfoSource _playerInfoSource;
+  private int _playerNumber;
 
-} // class tt_PlayerPawnSource
+} // class tt_PlayerInfoSourceImpl

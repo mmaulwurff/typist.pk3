@@ -33,10 +33,15 @@ class tt_DynamicTest
   {
     Describe("Checking Player Pawn Source with ConsolePlayer");
 
-    let source = new("tt_PlayerPawnSource").init(consolePlayer);
+    let mockInfoSource = new("tt_PlayerInfoSourceMock").init();
+
+    mockInfoSource.expect_getInfo(players[consolePlayer]);
+
+    let source = new("tt_PlayerPawnSource").init(mockInfoSource);
     let pawn   = source.getPawn();
 
     It(String.Format("Must get main player (%d) actor", consolePlayer), AssertNotNull(pawn));
+    It("Player Info Source is satisfied", Assert(mockInfoSource.isSatisfied_getInfo()));
 
     EndDescribe();
   }
@@ -50,11 +55,15 @@ class tt_DynamicTest
 
     for (int i = 1; i < MAXPLAYERS; ++i)
     {
-      int playerNumber = (consolePlayer + i) % MAXPLAYERS;
-      let source       = new("tt_PlayerPawnSource").init(playerNumber);
-      let pawn         = source.getPawn();
+      int playerNumber   = (consolePlayer + i) % MAXPLAYERS;
+      let mockInfoSource = new("tt_PlayerInfoSourceMock").init();
+      mockInfoSource.expect_getInfo(players[playerNumber]);
+
+      let source = new("tt_PlayerPawnSource").init(mockInfoSource);
+      let pawn   = source.getPawn();
 
       It(String.Format("Other player (%d) must be null", playerNumber), AssertNull(pawn));
+      It("Player Info Source is satisfied", Assert(mockInfoSource.isSatisfied_getInfo()));
     }
 
     EndDescribe();

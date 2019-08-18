@@ -30,10 +30,11 @@ class tt_DynamicTest : tt_Clematis
     testTargetRadar();
     testDeathReporter();
     testQuestionAnswerDamager();
+    testPlayerInfoSourceImpl();
 
     // This console log is required for test script to understand that it
     // should stop GZDoom execution.
-    Console.Printf("zscript/typist/tests/tt_dynamic_test.zs:36: T: Test finished.");
+    Console.Printf("zscript/typist/tests/tt_dynamic_test.zs:37: T: Test finished.");
   }
 
 // private: //////////////////////////////////////////////////////////////////

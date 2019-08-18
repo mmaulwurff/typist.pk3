@@ -15,35 +15,26 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements tt_PawnSource.
- * It returns the player pawn.
- */
-class tt_PlayerPawnSource : tt_PawnSource
+extend
+class tt_DynamicTest
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  // private: //////////////////////////////////////////////////////////////////
 
-  tt_PawnSource init(tt_PlayerInfoSource playerInfoSource)
+  private
+  void testPlayerInfoSourceImpl()
   {
-    _playerInfoSource = playerInfoSource;
+    Describe("Checking Player Info Source");
 
-    return self;
+    for (int playerNumber = 0; playerNumber < MAXPLAYERS; ++playerNumber)
+    {
+      let source       = new("tt_PlayerInfoSourceImpl").init(playerNumber);
+      let info         = source.getInfo();
+
+      It(String.Format("Player info (%d) must be not NULL", playerNumber), Assert(info != NULL));
+    }
+
+    EndDescribe();
   }
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  override
-  PlayerPawn getPawn()
-  {
-    PlayerInfo p = _playerInfoSource.getInfo();
-    if (p == NULL) { return NULL; }
-
-    let pawn = p.mo;
-    return pawn;
-  }
-
-// private: ////////////////////////////////////////////////////////////////////
-
-  private tt_PlayerInfoSource _playerInfoSource;
-
-} // class tt_PlayerPawnSource
+} // class tt_DynamicTest
