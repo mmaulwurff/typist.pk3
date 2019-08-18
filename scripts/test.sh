@@ -145,7 +145,7 @@ static_tests
 # Cannot be run on Travis CI because GZDoom doesn't tick there.
 # The reason for this is yet to be discovered.
 
-#dynamic_tests
+dynamic_tests
 
 # Not a test ###################################################################
 # Must be commented off for CI.
