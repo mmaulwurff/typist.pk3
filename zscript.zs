@@ -14,6 +14,7 @@ version 4.1.3
 #include "zscript/libeye/tt_viewport.zs"
 #include "zscript/typist/activatable/tt_activatable.zs"
 #include "zscript/typist/activatable/tt_shield.zs"
+#include "zscript/typist/aimer/tt_aimer.zs"
 #include "zscript/typist/answer/tt_answer_source.zs"
 #include "zscript/typist/answer/tt_answer.zs"
 #include "zscript/typist/answer/tt_player_input.zs"
