@@ -8,7 +8,7 @@
 # Usage:
 # ./scripts/norun_gzdoom.sh <filter_file>
 
-filter_file=$1
+#filter_file=$1
 
 apt-cache policy gzdoom
 
