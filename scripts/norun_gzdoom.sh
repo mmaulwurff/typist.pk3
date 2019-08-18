@@ -16,4 +16,4 @@ apt-cache policy gzdoom freedoom
 #    grep -vf "$filter_file" |\
 #    grep -v "^$"
 
-gzdoom
+gzdoom +vid_renderer 0
