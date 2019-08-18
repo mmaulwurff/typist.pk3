@@ -66,7 +66,7 @@ function dry_run {
 function static_tests {
     echo -e "\\nTest_3: Static tests ###########################################"
 
-    pipe_name=pipe
+    pipe_name=s_pipe
     rm -f  "$pipe_name"
     mkfifo "$pipe_name"
 
@@ -93,7 +93,7 @@ function static_tests {
 function dynamic_tests {
     echo -e "\\nTest_4: Dynamic tests ##########################################"
 
-    pipe_name=pipe
+    pipe_name=d_pipe
     rm -f  "$pipe_name"
     mkfifo "$pipe_name"
 
@@ -102,7 +102,6 @@ function dynamic_tests {
          -file "$file_name" \
          +map tt_test \
          +set tt_is_dynamic_test_enabled true \
-         +vid_rendermode 0 \
          > "$pipe_name" 2>&1 &
 
     out=$(cat < "$pipe_name" | while read -r l; do
