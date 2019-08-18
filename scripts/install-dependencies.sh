@@ -8,4 +8,5 @@ wget -O- http://debian.drdteam.org/drdteam.gpg | apt-key add -
 apt-get update
 apt-get install gzdoom aspell aspell-en zip freedoom xvfb pylint3 shellcheck
 
-sed -i 's/sys_statsenabled=0/sys_statsenabled=1/g' ~/.config/gzdoom/gzdoom.ini
+# Disable GZDoom hardware survey:
+echo -e "[GlobalSettings]\nsys_statsenabled=1" > ~/.config/gzdoom/gzdoom.ini
