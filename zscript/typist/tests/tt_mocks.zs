@@ -95,6 +95,36 @@ class tt_AnswerSourceMock : tt_AnswerSource
 
 } // class tt_AnswerSourceMock
 
+class tt_PlayerInfoSourceMock : tt_PlayerInfoSource
+{
+
+  tt_PlayerInfoSourceMock init() { return self; }
+
+  override
+  PlayerInfo getInfo()
+  {
+    ++_mock_getInfo_called;
+    return _mock_getInfo;
+  }
+
+  void expect_getInfo(PlayerInfo value, int expected = 1)
+  {
+    _mock_getInfo = value;
+    _mock_getInfo_expected = expected;
+    _mock_getInfo_called = 0;
+  }
+
+  bool isSatisfied_getInfo() const
+  {
+    return _mock_getInfo_expected == _mock_getInfo_called;
+  }
+
+  private PlayerInfo _mock_getInfo;
+  private int _mock_getInfo_expected;
+  private int _mock_getInfo_called;
+
+} // class tt_PlayerInfoSourceMock
+
 class tt_KnownTargetSourceMock : tt_KnownTargetSource
 {
 
@@ -358,6 +388,33 @@ class tt_TargetSourceMock : tt_TargetSource
 
 } // class tt_TargetSourceMock
 
+class tt_AimerMock : tt_Aimer
+{
+
+  tt_AimerMock init() { return self; }
+
+  override
+  void aim()
+  {
+    ++_mock_aim_called;
+  }
+
+  void expect_aim(int expected = 1)
+  {
+    _mock_aim_expected = expected;
+    _mock_aim_called = 0;
+  }
+
+  bool isSatisfied_aim() const
+  {
+    return _mock_aim_expected == _mock_aim_called;
+  }
+
+  private int _mock_aim_expected;
+  private int _mock_aim_called;
+
+} // class tt_AimerMock
+
 class tt_QuestionMock : tt_Question
 {
 
@@ -587,3 +644,30 @@ class tt_OriginSourceMock : tt_OriginSource
   private int _mock_getOrigin_called;
 
 } // class tt_OriginSourceMock
+
+class tt_GunnerMock : tt_Gunner
+{
+
+  tt_GunnerMock init() { return self; }
+
+  override
+  void shoot()
+  {
+    ++_mock_shoot_called;
+  }
+
+  void expect_shoot(int expected = 1)
+  {
+    _mock_shoot_expected = expected;
+    _mock_shoot_called = 0;
+  }
+
+  bool isSatisfied_shoot() const
+  {
+    return _mock_shoot_expected == _mock_shoot_called;
+  }
+
+  private int _mock_shoot_expected;
+  private int _mock_shoot_called;
+
+} // class tt_GunnerMock

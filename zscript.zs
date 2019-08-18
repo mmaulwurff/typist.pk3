@@ -41,6 +41,7 @@ version 4.1.3
 #include "zscript/typist/origin/tt_pawn_origin_source.zs"
 #include "zscript/typist/pawn/tt_pawn_source.zs"
 #include "zscript/typist/pawn/tt_player_pawn_source.zs"
+#include "zscript/typist/player_info/tt_player_info_source.zs"
 #include "zscript/typist/question/tt_match.zs"
 #include "zscript/typist/question/tt_question_source.zs"
 #include "zscript/typist/question/tt_question.zs"

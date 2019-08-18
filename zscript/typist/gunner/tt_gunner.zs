@@ -17,7 +17,7 @@
 
 /** This class is an interface for Gunner. It controls the gun.
  */
-class tt_Gunner
+class tt_Gunner abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////

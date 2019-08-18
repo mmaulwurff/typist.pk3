@@ -15,17 +15,18 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class is an interface for aiming.
+/** This class is an interface for getting PlayerInfo.
  */
-class tt_Aimer abstract
+class tt_PlayerInfoSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  void aim()
+  PlayerInfo getInfo()
   {
-    Console.Printf("zscript/typist/aimer/tt_aimer.zs:28: T: override this!");
+    Console.Printf("zscript/typist/player_info/tt_player_info_source.zs:28: T: override this!");
+    return NULL;
   }
 
-} // class tt_Aimer
+} // class tt_PlayerInfoSource
