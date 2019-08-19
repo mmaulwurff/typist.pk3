@@ -16,7 +16,7 @@
  */
 
 extend
-class tt_DynamicTest
+class tt_Test
 {
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -132,4 +132,4 @@ class tt_DynamicTest
   private tt_OriginSourceMock _targetRadarTestOriginSource;
   private tt_TargetRadar      _targetRadarTestTargetRadar;
 
-} // class tt_DynamicTests
+} // class tt_Tests

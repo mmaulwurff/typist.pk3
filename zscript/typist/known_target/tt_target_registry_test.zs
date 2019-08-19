@@ -16,7 +16,7 @@
  */
 
 extend
-class tt_StaticTest
+class tt_Test
 {
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -207,4 +207,4 @@ class tt_StaticTest
   private tt_DisabledTargetSourceMock _disabledTargetSource;
   private tt_KnownTargetSource        _targetRegistry;
 
-} // class tt_StaticTest
+} // class tt_Test

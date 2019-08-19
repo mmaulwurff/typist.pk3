@@ -63,57 +63,28 @@ function dry_run {
     ./scripts/dry_run_gzdoom.sh "$filter_file" "$file_name"
 }
 
-function static_tests {
-    echo -e "\\nTest_3: Static tests ###########################################"
+function tests {
+    echo -e "\\nTest_3: Tests ###########################################"
 
-    pipe_name=s_pipe
-    rm -f  "$pipe_name"
-    mkfifo "$pipe_name"
-
-    time gzdoom \
-         -iwad /usr/share/games/doom/freedoom2.wad \
-         -file "$file_name" \
-         -nosound \
-         +map tt_test \
-         +set tt_is_static_test_enabled true \
-         > "$pipe_name" 2>&1 &
-
-    out=$(cat < "$pipe_name" | while read -r l; do
-        [[ "$l" == "["*   ]] && echo "$l"
-        [[ "$l" == *"T:"* ]] && echo "$l"
-        [[ "$l" == *"Test finished." ]] && pkill gzdoom
-    done)
-
-    rm -f "$pipe_name"
-
-    echo -e "\\n$out"
-    status=$(echo "$out" | grep -c "ERROR\\|WARN\\|FATAL" || true)
-    [[ "$status" == 0 ]]
-}
-
-function dynamic_tests {
-    echo -e "\\nTest_4: Dynamic tests ##########################################"
-
-    pipe_name=d_pipe
-    rm -f  "$pipe_name"
-    mkfifo "$pipe_name"
+    out_name=tests.log
+    rm -f  "$out_name"
 
     time gzdoom \
          -iwad /usr/share/games/doom/freedoom2.wad \
          -file "$file_name" \
          -nosound \
+         -timedemo demos/test_demo.lmp -nodraw \
          +map tt_test \
-         +set tt_is_dynamic_test_enabled true \
-         > "$pipe_name" 2>&1 &
+         +set tt_is_testing_enabled true \
+         > "$out_name" 2>&1 &
 
-    out=$(cat < "$pipe_name" | while read -r l; do
-              echo "$l"
+    sleep 3s
+
+    out=$(while read -r l; do
         [[ "$l" == "["*   ]] && echo "$l"
         [[ "$l" == *"T:"* ]] && echo "$l"
         [[ "$l" == *"Test finished." ]] && pkill gzdoom
-    done)
-
-    rm -f "$pipe_name"
+    done < "$out_name" || true)
 
     echo -e "\\n$out"
     status=$(echo "$out" | grep -c "ERROR\\|WARN\\|FATAL" || true)
@@ -142,13 +113,7 @@ check_init
 
 gzdoom_only
 dry_run
-static_tests
-
-# Dynamic tests ################################################################
-# Cannot be run on Travis CI because GZDoom doesn't tick there.
-# The reason for this is yet to be discovered.
-
-dynamic_tests
+tests
 
 # Not a test ###################################################################
 # Must be commented off for CI.

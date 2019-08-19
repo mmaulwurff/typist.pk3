@@ -80,6 +80,7 @@ multi
 multiverse
 nclass
 netevent
+nodraw
 noncommercially
 norun
 nosound
@@ -134,6 +135,7 @@ subprocess
 sudo
 suff
 texman
+timedemo
 todo
 tokenize
 uint

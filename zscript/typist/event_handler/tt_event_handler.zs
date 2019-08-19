@@ -23,12 +23,6 @@ class tt_EventHandler : EventHandler
 // public: // EventHandler /////////////////////////////////////////////////////
 
   override
-  void OnRegister()
-  {
-    if (isStaticTestingEnabled())  { runStaticTests();  }
-  }
-
-  override
   void WorldTick()
   {
     if (Level.mapTime == 1) { onFirstTick(); }
@@ -87,24 +81,24 @@ class tt_EventHandler : EventHandler
   private
   void onFirstTick()
   {
-    if (isDynamicTestingEnabled()) { runDynamicTests(); }
+    if (isTestingEnabled())
+    {
+      runTests();
+    }
   }
 
   private
-  bool isStaticTestingEnabled() const
+  bool isTestingEnabled() const
   {
-    let isEnabled = CVar.FindCVar("tt_is_static_test_enabled");
+    let isEnabled = CVar.FindCVar("tt_is_testing_enabled");
     return (isEnabled != NULL && isEnabled.GetBool());
   }
 
-  private bool isDynamicTestingEnabled() const
+  private
+  void runTests()
   {
-    let isEnabled = CVar.FindCVar("tt_is_dynamic_test_enabled");
-    return (isEnabled != NULL && isEnabled.GetBool());
+    tt_Clematis.Create("tt_Test");
   }
-
-  private void runStaticTests()  { tt_Clematis.Create("tt_StaticTest" ); }
-  private void runDynamicTests() { tt_Clematis.Create("tt_DynamicTest"); }
 
 // private: ////////////////////////////////////////////////////////////////////
 

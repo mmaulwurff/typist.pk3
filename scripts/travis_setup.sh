@@ -7,6 +7,7 @@
     -nosound \
     -norun \
     +vid_rendermode 0 \
+    +vid_renderer 0 \
     +fullscreen false
 
 exit 0

@@ -59,9 +59,8 @@ version 4.1.3
 #include "zscript/typist/target_widget/tt_target_widget_source.zs"
 #include "zscript/typist/target_widget/tt_target_widgets.zs"
 #include "zscript/typist/target_widget/tt_target_widget.zs"
-#include "zscript/typist/tests/tt_dynamic_test.zs"
 #include "zscript/typist/tests/tt_mocks.zs"
-#include "zscript/typist/tests/tt_static_test.zs"
+#include "zscript/typist/tests/tt_test.zs"
 #include "zscript/typist/view/tt_screen.zs"
 #include "zscript/typist/view/tt_view.zs"
 // class extensions:

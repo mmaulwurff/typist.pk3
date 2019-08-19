@@ -16,7 +16,7 @@
  */
 
 extend
-class tt_StaticTest
+class tt_Test
 {
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -58,4 +58,4 @@ class tt_StaticTest
     It("There are targets -> Combat", AssertEval(mode, "==", tt_Mode.MODE_COMBAT));
   }
 
-} // class tt_StaticTest
+} // class tt_Test

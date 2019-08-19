@@ -15,9 +15,10 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This file contains tests that require GZDoom to be able to tick.
+/** This class contains tests that can be run independently of GZDoom being
+ * able to tick.
  */
-class tt_DynamicTest : tt_Clematis
+class tt_Test : tt_Clematis
 {
 
 // public: // tt_Clematis //////////////////////////////////////////////////////
@@ -25,6 +26,14 @@ class tt_DynamicTest : tt_Clematis
   override
   void TestSuites()
   {
+    testTargetWidget();
+    testTargetRegistry();
+    testSelectedDifficulty();
+    testRandomNumberSource();
+    testPlayerInput();
+    testAutoModeSource();
+    testTargetWidgetRegistry();
+
     testPlayerPawnSource();
     testPawnOriginSource();
     testTargetRadar();
@@ -34,7 +43,7 @@ class tt_DynamicTest : tt_Clematis
 
     // This console log is required for test script to understand that it
     // should stop GZDoom execution.
-    Console.Printf("zscript/typist/tests/tt_dynamic_test.zs:37: T: Test finished.");
+    Console.Printf("zscript/typist/tests/tt_test.zs:46: T: Test finished.");
   }
 
 // private: //////////////////////////////////////////////////////////////////
@@ -51,4 +60,4 @@ class tt_DynamicTest : tt_Clematis
     a.A_Die();
   }
 
-} // class tt_DynamicTest
+} // tt_Test
