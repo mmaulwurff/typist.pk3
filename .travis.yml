@@ -22,4 +22,5 @@ install:
   - sudo ./scripts/install-dependencies.sh
 
 script:
+  - ./scripts/travis_setup.sh
   - xvfb-run --server-args "-screen 0 1920x1080x24" --auto-servernum ./scripts/test.sh
