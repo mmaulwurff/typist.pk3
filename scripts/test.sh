@@ -66,24 +66,13 @@ function dry_run {
 function tests {
     echo -e "\\nTest_3: Tests ###########################################"
 
-    out_name=tests.log
-    rm -f  "$out_name"
-
-    time gzdoom \
+    out=$(time gzdoom \
          -iwad /usr/share/games/doom/freedoom2.wad \
          -file "$file_name" \
          -nosound \
-         -timedemo demos/test_demo.lmp -nodraw \
          +map tt_test \
          +set tt_is_testing_enabled true \
-         > "$out_name" 2>&1 &
-
-    sleep 3s
-
-    out=$(while read -r l; do
-        echo "$l"
-        [[ "$l" == *"Test finished." ]] && pkill gzdoom
-    done < "$out_name" || true)
+         +"wait 3; quit")
 
     echo -e "\\n$out"
     status=$(echo "$out" | grep -c "ERROR\\|WARN\\|FATAL" || true)

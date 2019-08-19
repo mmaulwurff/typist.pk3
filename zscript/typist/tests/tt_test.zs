@@ -41,9 +41,7 @@ class tt_Test : tt_Clematis
     testQuestionAnswerDamager();
     testPlayerInfoSourceImpl();
 
-    // This console log is required for test script to understand that it
-    // should stop GZDoom execution.
-    Console.Printf("zscript/typist/tests/tt_test.zs:46: T: Test finished.");
+    Console.Printf("zscript/typist/tests/tt_test.zs:44: T: Testing finished.");
   }
 
 // private: //////////////////////////////////////////////////////////////////
