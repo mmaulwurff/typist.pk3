@@ -81,8 +81,7 @@ function tests {
     sleep 3s
 
     out=$(while read -r l; do
-        [[ "$l" == "["*   ]] && echo "$l"
-        [[ "$l" == *"T:"* ]] && echo "$l"
+        echo "$l"
         [[ "$l" == *"Test finished." ]] && pkill gzdoom
     done < "$out_name" || true)
 
