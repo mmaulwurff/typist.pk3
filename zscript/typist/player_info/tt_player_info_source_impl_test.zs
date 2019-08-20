@@ -15,14 +15,13 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-extend
-class tt_Test
+class tt_PlayerInfoSourceImplTest : tt_Clematis
 {
 
-  // private: //////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  private
-  void testPlayerInfoSourceImpl()
+  override
+  void TestSuites()
   {
     Describe("Checking Player Info Source");
 
@@ -37,4 +36,4 @@ class tt_Test
     EndDescribe();
   }
 
-} // class tt_Test
+} // class tt_PlayerInfoSourceImplTest

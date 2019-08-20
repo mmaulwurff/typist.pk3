@@ -22,8 +22,8 @@ class tt_Firer abstract
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  void fire(tt_Target target)
+  play virtual
+  void fire()
   {
     Console.Printf("zscript/typist/firer/tt_firer.zs:28: T: override this!");
   }

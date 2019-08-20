@@ -15,20 +15,21 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-extend
-class tt_Test
+class tt_TargetRegistryTest : tt_Clematis
 {
 
-// private: ////////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  private
-  void testTargetRegistry()
+  override
+  void TestSuites()
   {
     targetRegistryEmptyCheck();
     targetRegistryAddCheck();
     targetRegistryAddExistingCheck();
     targetRegistryRemoveCheck();
   }
+
+// private: ////////////////////////////////////////////////////////////////////
 
   private
   void targetRegistryEmptyCheck()
@@ -207,4 +208,4 @@ class tt_Test
   private tt_DisabledTargetSourceMock _disabledTargetSource;
   private tt_KnownTargetSource        _targetRegistry;
 
-} // class tt_Test
+} // class tt_TargetRegistryTest

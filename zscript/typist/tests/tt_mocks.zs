@@ -537,7 +537,7 @@ class tt_FirerMock : tt_Firer
   tt_FirerMock init() { return self; }
 
   override
-  void fire(tt_Target target)
+  void fire()
   {
     ++_mock_fire_called;
   }

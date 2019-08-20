@@ -15,20 +15,21 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-extend
-class tt_Test
+class tt_TargetRadarTest : tt_Clematis
 {
 
-// private: ////////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  private
-  void testTargetRadar()
+  override
+  void TestSuites()
   {
     checkActorsAround();
     checkDistantActor();
     checkNonLivingActor();
     checkDeadActor();
   }
+
+// private: ////////////////////////////////////////////////////////////////////
 
   private
   void checkActorsAround()
@@ -132,4 +133,4 @@ class tt_Test
   private tt_OriginSourceMock _targetRadarTestOriginSource;
   private tt_TargetRadar      _targetRadarTestTargetRadar;
 
-} // class tt_Tests
+} // class tt_TargetRadarTest

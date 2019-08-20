@@ -63,16 +63,40 @@ function dry_run {
     ./scripts/dry_run_gzdoom.sh "$filter_file" "$file_name"
 }
 
+function make_tests_ccmd {
+    for test_class in "$@"
+    do
+        echo "map *; wait 1; netevent test:$test_class; wait 1;"
+    done
+
+    echo "echo Testing finished.; quit"
+}
+
 function tests {
     echo -e "\\nTest_3: Tests ###########################################"
+
+    tests_ccmd="$(make_tests_ccmd   \
+        tt_TargetWidgetTest         \
+        tt_TargetRegistryTest       \
+        tt_SelectedDifficultyTest   \
+        tt_RandomNumberSourceTest   \
+        tt_PlayerInputTest          \
+        tt_AutoModeSourceTest       \
+        tt_TargetWidgetRegistryTest \
+        tt_PlayerPawnSourceTest     \
+        tt_PawnOriginSourceTest     \
+        tt_TargetRadarTest          \
+        tt_DeathReporterTest        \
+        tt_PlayerInfoSourceImplTest \
+    )"
 
     out=$(time gzdoom \
          -iwad /usr/share/games/doom/freedoom2.wad \
          -file "$file_name" \
          -nosound \
          +map tt_test \
-         +set tt_is_testing_enabled true \
-         +"wait 3; quit")
+         +"$tests_ccmd"
+       )
 
     echo -e "\\n$out"
     status=$(echo "$out" | grep -c "ERROR\\|WARN\\|FATAL" || true)

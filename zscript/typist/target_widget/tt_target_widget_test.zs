@@ -15,14 +15,13 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-extend
-class tt_Test
+class tt_TargetWidgetTest : tt_Clematis
 {
 
-// private: ////////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  private
-  void testTargetWidget()
+  override
+  void TestSuites()
   {
     Describe("Testing Target Widget");
 
@@ -51,4 +50,4 @@ class tt_Test
     EndDescribe();
   }
 
-} // class tt_Test
+} // class tt_TargetWidgetTest

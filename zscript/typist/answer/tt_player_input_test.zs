@@ -15,14 +15,13 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-extend
-class tt_Test
+class tt_PlayerInputTest : tt_Clematis
 {
 
-// private: ////////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  private
-  void testPlayerInput()
+  override
+  void TestSuites()
   {
     Describe("Checking player input");
 
@@ -31,6 +30,8 @@ class tt_Test
 
     EndDescribe();
   }
+
+// private: ////////////////////////////////////////////////////////////////////
 
   private
   void testPlayerInputCheckInput()
@@ -74,4 +75,4 @@ class tt_Test
     }
   }
 
-} // class tt_Test
+} // class tt_PlayerInputTest

@@ -15,46 +15,22 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class contains tests that can be run independently of GZDoom being
- * able to tick.
- */
-class tt_Test : tt_Clematis
+extend
+class tt_Clematis
 {
 
-// public: // tt_Clematis //////////////////////////////////////////////////////
+// protected: //////////////////////////////////////////////////////////////////
 
-  override
-  void TestSuites()
-  {
-    testTargetWidget();
-    testTargetRegistry();
-    testSelectedDifficulty();
-    testRandomNumberSource();
-    testPlayerInput();
-    testAutoModeSource();
-    testTargetWidgetRegistry();
-
-    testPlayerPawnSource();
-    testPawnOriginSource();
-    testTargetRadar();
-    testDeathReporter();
-    testPlayerInfoSourceImpl();
-
-    Console.Printf("zscript/typist/tests/tt_test.zs:43: T: Testing finished.");
-  }
-
-// private: //////////////////////////////////////////////////////////////////
-
-  private play
+  protected play
   Actor Spawn(class<Actor> type, vector3 pos) const
   {
     return Actor.Spawn(type, pos);
   }
 
-  private play
+  protected play
   void Kill(Actor a) const
   {
     a.A_Die();
   }
 
-} // tt_Test
+} // class tt_Clematis

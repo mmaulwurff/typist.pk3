@@ -15,14 +15,13 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-extend
-class tt_Test
+class tt_AutoModeSourceTest : tt_Clematis
 {
 
-// private: ////////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  private
-  void testAutoModeSource()
+  override
+  void TestSuites()
   {
     Describe("Checking Auto Mode Source");
 
@@ -31,6 +30,8 @@ class tt_Test
 
     EndDescribe();
   }
+
+// private: ////////////////////////////////////////////////////////////////////
 
   private
   void testAutoModeSourceNoTargets()
@@ -58,4 +59,4 @@ class tt_Test
     It("There are targets -> Combat", AssertEval(mode, "==", tt_Mode.MODE_COMBAT));
   }
 
-} // class tt_Test
+} // class tt_AutoModeSourceTest

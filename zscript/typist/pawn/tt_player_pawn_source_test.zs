@@ -15,18 +15,19 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-extend
-class tt_Test
+class tt_PlayerPawnSourceTest : tt_Clematis
 {
 
-  // private: //////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  private
-  void testPlayerPawnSource()
+  override
+  void TestSuites()
   {
     testConsolePlayer();
     testNextPlayer();
   }
+
+// private: ////////////////////////////////////////////////////////////////////
 
   private
   void testConsolePlayer()
@@ -69,4 +70,4 @@ class tt_Test
     EndDescribe();
   }
 
-} // class tt_Test
+} // class tt_PlayerPawnSourceTest

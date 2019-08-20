@@ -15,14 +15,13 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-extend
-class tt_Test
+class tt_SelectedDifficultyTest : tt_Clematis
 {
 
-// private: ////////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  private
-  void testSelectedDifficulty()
+  override
+  void TestSuites()
   {
     Describe("Checking Selected Difficulty");
 
@@ -36,4 +35,4 @@ class tt_Test
     EndDescribe();
   }
 
-} // class tt_Test
+} // class tt_SelectedDifficultyTest

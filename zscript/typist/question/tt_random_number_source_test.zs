@@ -15,14 +15,13 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-extend
-class tt_Test
+class tt_RandomNumberSourceTest : tt_Clematis
 {
 
-// private: ////////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  private
-  void testRandomNumberSource()
+  override
+  void TestSuites()
   {
     Describe("Checking Random Number Source");
 
@@ -35,7 +34,7 @@ class tt_Test
 
     let question    = questionSource.getQuestion();
     let description = question.getDescription();
-    Console.Printf("zscript/typist/question/tt_random_number_source_test.zs:38: T: Question: %s",
+    Console.Printf("zscript/typist/question/tt_random_number_source_test.zs:37: T: Question: %s",
                    description);
 
     let wrongString = "aaa";
@@ -48,4 +47,4 @@ class tt_Test
     EndDescribe();
   }
 
-} // class tt_Test
+} // class tt_RandomNumberSourceTest

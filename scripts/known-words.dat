@@ -8,6 +8,7 @@ args
 argv
 bool
 carmack
+ccmd
 changelog
 changelogs
 chdir
@@ -143,6 +144,7 @@ undef
 unfilter
 unmodded
 util
+utils
 viewangle
 viewheight
 viewpitch

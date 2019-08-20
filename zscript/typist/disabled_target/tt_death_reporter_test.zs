@@ -15,18 +15,18 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-extend
-class tt_Test
+class tt_DeathReporterTest : tt_Clematis
 {
 
-// private: ////////////////////////////////////////////////////////////////////
+// public: /////////////////////////////////////////////////////////////////////
 
-  private
-  void testDeathReporter()
+  override
+  void TestSuites()
   {
-    testDeathReporterSetUp("Checking Death Reporter");
+    Describe("Checking Death Reporter");
 
-    let targetsBefore = _deathReporter.getTargets();
+    let _deathReporter = new("tt_DeathReporter").init();
+    let targetsBefore  = _deathReporter.getTargets();
     It("No targets before reporting", AssertEval(targetsBefore.size(), "==", 0));
 
     let something = Spawn("DoomImp", (0, 0, 0));
@@ -37,27 +37,7 @@ class tt_Test
     let targetsAfterAfter = _deathReporter.getTargets();
     It("No new targets", AssertEval(targetsAfterAfter.size(), "==", 0));
 
-    testDeathReporterTearDown();
-  }
-
-  private
-  void testDeathReporterSetUp(string description)
-  {
-    Describe(description);
-
-    _deathReporter = new("tt_DeathReporter").init();
-  }
-
-  private
-  void testDeathReporterTearDown()
-  {
-    _deathReporter = NULL;
-
     EndDescribe();
   }
 
-// private: ////////////////////////////////////////////////////////////////////
-
-  private tt_DeathReporter _deathReporter;
-
-} // class tt_Test
+} // class tt_DeathReporterTest

@@ -25,8 +25,6 @@ class tt_EventHandler : EventHandler
   override
   void WorldTick()
   {
-    if (Level.mapTime == 1) { onFirstTick(); }
-
     if (_supervisor == NULL) { return; }
 
     _supervisor.updateTargets();
@@ -74,30 +72,6 @@ class tt_EventHandler : EventHandler
     if (_supervisor == NULL) { return; }
 
     _supervisor.draw();
-  }
-
-// private: ////////////////////////////////////////////////////////////////////
-
-  private
-  void onFirstTick()
-  {
-    if (isTestingEnabled())
-    {
-      runTests();
-    }
-  }
-
-  private
-  bool isTestingEnabled() const
-  {
-    let isEnabled = CVar.FindCVar("tt_is_testing_enabled");
-    return (isEnabled != NULL && isEnabled.GetBool());
-  }
-
-  private
-  void runTests()
-  {
-    tt_Clematis.Create("tt_Test");
   }
 
 // private: ////////////////////////////////////////////////////////////////////
