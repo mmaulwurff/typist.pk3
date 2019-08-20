@@ -38,10 +38,9 @@ class tt_Test : tt_Clematis
     testPawnOriginSource();
     testTargetRadar();
     testDeathReporter();
-    testQuestionAnswerDamager();
     testPlayerInfoSourceImpl();
 
-    Console.Printf("zscript/typist/tests/tt_test.zs:44: T: Testing finished.");
+    Console.Printf("zscript/typist/tests/tt_test.zs:43: T: Testing finished.");
   }
 
 // private: //////////////////////////////////////////////////////////////////

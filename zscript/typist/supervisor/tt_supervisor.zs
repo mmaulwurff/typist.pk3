@@ -43,8 +43,6 @@ class tt_Supervisor
 
     _modeSource = new("tt_AutoModeSource").init(_targetRegistry);
 
-    _damager = new("tt_QuestionAnswerDamager").init(_targetRegistry, _playerInput);
-
     return self;
   }
 
@@ -59,7 +57,6 @@ class tt_Supervisor
   void updateTargets()
   {
     _targetRegistry.update();
-    _damager.damage();
   }
 
   void reportDead(Actor dead)
@@ -84,6 +81,5 @@ class tt_Supervisor
   private tt_DeathReporter     _deathReporter;
   private tt_View              _view;
   private tt_ModeSource        _modeSource;
-  private tt_Damager           _damager;
 
 } // class tt_Supervisor

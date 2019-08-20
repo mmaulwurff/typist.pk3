@@ -15,17 +15,17 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface provides an entity to damage targets.
+/** This is an interface for firing at target.
  */
-class tt_Damager abstract
+class tt_Firer abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  play virtual
-  void damage()
+  virtual
+  void fire(tt_Target target)
   {
-    Console.Printf("zscript/typist/damager/tt_damager.zs:28: T: override this!");
+    Console.Printf("zscript/typist/firer/tt_firer.zs:28: T: override this!");
   }
 
-} // class tt_Damager
+} // class tt_Firer
