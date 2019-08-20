@@ -29,6 +29,7 @@ version 4.1.3
 #include "zscript/typist/disabled_target/tt_disabled_targets.zs"
 #include "zscript/typist/disabled_target/tt_disabled_target.zs"
 #include "zscript/typist/event_handler/tt_event_handler.zs"
+#include "zscript/typist/firer/tt_firer_impl_test_post_check.zs"
 #include "zscript/typist/firer/tt_firer_impl_test.zs"
 #include "zscript/typist/firer/tt_firer_impl.zs"
 #include "zscript/typist/firer/tt_firer.zs"
