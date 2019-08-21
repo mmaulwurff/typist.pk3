@@ -72,5 +72,4 @@ ALSA lib conf.c:4771:(snd_config_expand) Evaluate error: No such file or directo
 ALSA lib pcm.c:2266:(snd_pcm_open_noupdate) Unknown PCM default
 AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
 fluidsynth: warning: Failed to pin the sample data to RAM; swapping is possible.
-No map
 No bots.cfg, so no bots

@@ -20,7 +20,7 @@ function make_tests_ccmd {
 
     for test_class in $test_classes
     do
-        echo "map *; wait 1; netevent test:$test_class; wait 1;"
+        echo "wait 1; map tt_test; wait 2; netevent test:$test_class; wait 1;"
 
         if grep -nrq "$test_class"PostCheck
         then
@@ -33,11 +33,11 @@ function make_tests_ccmd {
 
 file_name=$1
 tests_ccmd="$(make_tests_ccmd)"
+echo "$tests_ccmd"
 out=$(time gzdoom                                 \
         -iwad /usr/share/games/doom/freedoom2.wad \
         -file "$file_name"                        \
         -nosound                                  \
-        +map tt_test                              \
         +"$tests_ccmd"
     )
 
