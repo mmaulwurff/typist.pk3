@@ -14,7 +14,7 @@ do
     out="$out""
 class ""$test_class"'Helper : tt_TestHelper
 {
-  override void run() { tt_Clematis.Create("'"$test_class""\"); }
+  override void run() { Console.Printf("%d", level.time); tt_Clematis.Create("'"$test_class""\"); }
 }
 "
 done
