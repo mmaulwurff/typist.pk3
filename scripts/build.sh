@@ -11,6 +11,7 @@ scripts/make_changelog.sh
 
 scripts/import_clematis.sh
 scripts/make_mocks.py
+scripts/generate_test_helpers.sh
 scripts/make_zscript_head.sh
 scripts/make_mapinfo.sh
 scripts/preprocessor.sh
