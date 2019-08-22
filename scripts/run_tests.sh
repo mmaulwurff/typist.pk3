@@ -23,16 +23,18 @@ test_classes=$(find zscript/typist -name "*.zs" -print0 \
 
 for test_class in $test_classes
 do
-    tests_ccmd="wait 1;    \
-map tt_test;               \
-wait 2;                    \
-echo starting $test_class; \
-netevent test:$test_class; \
-wait 2;"
+    tests_ccmd="wait 1;            \
+        map tt_test;                \
+        wait 2;                      \
+        echo Starting $test_class...; \
+        netevent test:$test_class;     \
+        wait 15;"
 
     if grep -nrq "$test_class"PostCheck
     then
-        tests_ccmd="$tests_ccmd""wait 35; netevent test:$test_class""PostCheck""; wait 1;"
+        tests_ccmd="$tests_ccmd""wait 35;          \
+            netevent test:$test_class""PostCheck""; \
+            wait 1;"
     fi
 
     tests_ccmd="$tests_ccmd""quit"
