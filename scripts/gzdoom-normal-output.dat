@@ -1,81 +1,75 @@
-M_LoadDefaults: Load system defaults.
-W_Init: Init WADfiles.
- adding /opt/gzdoom/gzdoom.pk3, .* lumps
- adding /opt/gzdoom/zd_extra.pk3, .* lumps
- adding /opt/gzdoom/game_support.pk3, .* lumps
- adding typist-0.1.pk3, .* lumps
- adding /home/.*/Programs/Games/wads/doom/DOOM2.WAD, 2919 lumps
- adding /usr/share/games/doom/freedoom2.wad, .* lumps
-I_Init: Setting up machine state.
-CPU Vendor ID: .*
-  Name: .*
+    https://freedoom.github.io/
+  EFX enabled
   Family.*, Model.*, Stepping.*
   Features: SSE2 SSE3 SSSE3 SSE4.1 SSE4.2 HyperThreading
-V_Init: allocate screen.
-S_Init: Setting up sound.
-ST_Init: Init startup screen.
-Checking cmd-line parameters...
-S_InitData: Load sound definitions.
-G_ParseMapInfo: Load map definitions.
-Texman.Init: Init texture manager.
-ParseTeamInfo: Load team definitions.
-LoadActors: Load actor definitions.
-R_Init: Init Doom refresh subsystem.
-DecalLibrary: Load decals.
-M_Init: Init menus.
-Cannot connect to server socket err = No such file or directory
-Cannot connect to server request channel
-jack server is not running or cannot be started
-JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
-JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
-P_Init: Init Playloop state.
-ParseSBarInfo: Loading custom status bar definition.
-D_CheckNetGame: Checking network game status.
-player 1 of 1 (1 nodes)
-I_InitSound: Initializing OpenAL
+  Name: .*
   Opened device HD-Audio Generic Analog Stereo
-  EFX enabled
-Using video driver x11
-GL_VENDOR: NVIDIA Corporation
-GL_RENDERER: GeForce GT 710/PCIe/SSE2
-GL_VERSION: 4.6.0 NVIDIA 418.74 (Core profile)
-GL_SHADING_LANGUAGE_VERSION: 4.60 NVIDIA
-Max. texture size: 16384
-Max. texture units: 32
-Max. varying: 124
-Max. combined shader storage blocks: 96
-Max. vertex shader storage blocks: 16
-Resolution: 1920 x 1080
-fluidsynth: warning: Failed to pin the sample data to RAM; swapping is possible.
-Adding dehacked patch freedoom2.wad:DEHACKED
-Patch installed
+ adding /home/.*/Programs/Games/wads/doom/DOOM2.WAD, 2919 lumps
+ adding /opt/gzdoom/game_support.pk3, .* lumps
+ adding /opt/gzdoom/gzdoom.pk3, .* lumps
+ adding /opt/gzdoom/zd_extra.pk3, .* lumps
+ adding /usr/share/games/doom/freedoom2.wad, .* lumps
+ adding typist-0.1.pk3, .* lumps
 ===========================================================================
-This is Freedoom, the free content first person shooter.
-Freedoom is freely redistributable under the terms of the modified BSD
-license. Check out the Freedoom website for more information:
-    https://freedoom.github.io/
 ============================================================================
+AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
 AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
-Cannot connect to server socket err = No such file or directory
-Cannot connect to server request channel
-jack server is not running or cannot be started
-JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
-JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
-AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
-ALSA lib confmisc.c:768:(parse_card) cannot find card '0'
 ALSA lib conf.c:4292:(_snd_config_evaluate) function snd_func_card_driver returned error: No such file or directory
-ALSA lib confmisc.c:392:(snd_func_concat) error evaluating strings
 ALSA lib conf.c:4292:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
-ALSA lib confmisc.c:1251:(snd_func_refer) error evaluating name
 ALSA lib conf.c:4292:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
 ALSA lib conf.c:4771:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib confmisc.c:1251:(snd_func_refer) error evaluating name
+ALSA lib confmisc.c:392:(snd_func_concat) error evaluating strings
+ALSA lib confmisc.c:768:(parse_card) cannot find card '0'
 ALSA lib pcm.c:2266:(snd_pcm_open_noupdate) Unknown PCM default
-AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
-fluidsynth: warning: Failed to pin the sample data to RAM; swapping is possible.
-No bots.cfg, so no bots
-GZDoom g.* version
+Adding dehacked patch freedoom2.wad:DEHACKED
+CPU Vendor ID: .*
+Cannot connect to server request channel
+Cannot connect to server socket err = No such file or directory
+Checking cmd-line parameters...
 Compiled on .*
-script parsing took .*
+D_CheckNetGame: Checking network game status.
+DecalLibrary: Load decals.
+Freedoom is freely redistributable under the terms of the modified BSD
+GL_RENDERER: .*
+GL_SHADING_LANGUAGE_VERSION: .*
+GL_VENDOR: .*
+GL_VERSION: .*
+GZDoom g.* version
+G_ParseMapInfo: Load map definitions.
+I_Init: Setting up machine state.
+I_InitSound: Initializing OpenAL
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
+LoadActors: Load actor definitions.
+M_Init: Init menus.
+M_LoadDefaults: Load system defaults.
+Max. combined shader storage blocks: 96
+Max. texture size: .*
+Max. texture units: .*
+Max. uniform block size: .*
+Max. varying: .*
+Max. vertex shader storage blocks: 16
+No bots.cfg, so no bots
+P_Init: Init Playloop state.
+ParseSBarInfo: Loading custom status bar definition.
+ParseTeamInfo: Load team definitions.
+Patch installed
+R_Init: Init Doom refresh subsystem.
+Resolution: .*
+ST_Init: Init startup screen.
+S_Init: Setting up sound.
+S_InitData: Load sound definitions.
 Script warning, "gzdoom.pk3:zscript/ui/menu/conversationmenu.zs" line 159:
 Script warning, "gzdoom.pk3:zscript/ui/menu/conversationmenu.zs" line 161:
+Texman.Init: Init texture manager.
+This is Freedoom, the free content first person shooter.
 Truncation of floating point value
+Uniform block alignment: 16
+Using video driver x11
+V_Init: allocate screen.
+W_Init: Init WADfiles.
+fluidsynth: warning: Failed to pin the sample data to RAM; swapping is possible.
+jack server is not running or cannot be started
+license. Check out the Freedoom website for more information:
+player 1 of 1 (1 nodes)
+script parsing took .*

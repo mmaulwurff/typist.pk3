@@ -23,7 +23,12 @@ test_classes=$(find zscript/typist -name "*.zs" -print0 \
 
 for test_class in $test_classes
 do
-    tests_ccmd="wait 1; map tt_test; wait 2; netevent test:$test_class; wait 2;"
+    tests_ccmd="wait 1;    \
+map tt_test;               \
+wait 2;                    \
+echo starting $test_class; \
+netevent test:$test_class; \
+wait 2;"
 
     if grep -nrq "$test_class"PostCheck
     then
