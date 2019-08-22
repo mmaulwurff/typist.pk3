@@ -46,6 +46,7 @@ gameinfo
 getsomethingfromstatusbar
 gitattributes
 github
+gitmodules
 gmail
 gsub
 gzdoom
@@ -92,6 +93,7 @@ pathlib
 pixelstretch
 pkill
 playloop
+preload
 preprocess
 preprocessing
 preprocessor
@@ -111,6 +113,7 @@ rglob
 rmtree
 ryzen
 screenblocks
+servernum
 shader
 shellcheck
 shutil
@@ -158,6 +161,7 @@ whitespace
 wipo
 woot
 xargs
+xenial
 xvfb
 zain
 zdoom

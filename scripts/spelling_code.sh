@@ -10,15 +10,16 @@
 known_words=scripts/known-words.dat
 
 files_to_check=$(find . -name '*.zs' \
-                      -o -name '*.md' \
-                      -o -name '*.txt' \
-                      -o -name '*.sh' \
-                      -o -name '*.py')
+                     -o -name '*.md'  \
+                     -o -name '*.txt'  \
+                     -o -name '*.sh'    \
+                     -o -name '*.yml'    \
+                     -o -name '*.py')
 
 lowercase_words=$(echo "$files_to_check" | while read -r file; do
     grep -h -o -E '\w{4,}' "$file" \
-        | sed -e 's/_/ /g' \
-        | sed -e 's/[0-9]/ /g' \
+        | sed -e 's/_/ /g'          \
+        | sed -e 's/[0-9]/ /g'       \
         | perl -ne 'print lc(join(" ", split(/(?=[A-Z])/)))' \
         | grep -o -E '\w{4,}'
 
