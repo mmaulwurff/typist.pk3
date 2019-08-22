@@ -28,13 +28,13 @@ do
         wait 2;                      \
         echo Starting $test_class...; \
         netevent test:$test_class;     \
-        wait 15;"
+        wait 35;"
 
     if grep -nrq "$test_class"PostCheck
     then
         tests_ccmd="$tests_ccmd""wait 35;          \
             netevent test:$test_class""PostCheck""; \
-            wait 1;"
+            wait 35;"
     fi
 
     tests_ccmd="$tests_ccmd""quit"

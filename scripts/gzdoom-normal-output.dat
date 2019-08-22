@@ -9,7 +9,7 @@
  adding /opt/gzdoom/gzdoom.pk3, .* lumps
  adding /opt/gzdoom/zd_extra.pk3, .* lumps
  adding /usr/share/games/doom/freedoom2.wad, .* lumps
- adding typist-0.1.pk3, .* lumps
+ adding typist-.*pk3, .* lumps
 ===========================================================================
 ============================================================================
 AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
