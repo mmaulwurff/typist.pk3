@@ -8,7 +8,8 @@
 #   tests with "netevent test:tt_*Test" CCMD;
 # - finds all classes that are named like tt_*TestPostCheck, and runs them as
 #   Clematis tests right 1 second after the corresponding tt_*Test without map
-#   restart.
+#   restart;
+# - tests that are listed in test-blacklist file will be ignored.
 #
 # Usage:
 # ./scripts/run_tests.sh <mod.pk3> <filter-file>
@@ -20,6 +21,11 @@ filter_file=$2
 test_classes=$(find zscript/typist -name "*.zs" -print0 \
                     | xargs -0 grep -hom 1 "tt_.*Test "  \
                     | sort)
+
+if [ -f "test-blacklist" ]
+then
+    test_classes=$(echo "$test_classes" | grep -vf "test-blacklist")
+fi
 
 for test_class in $test_classes
 do
