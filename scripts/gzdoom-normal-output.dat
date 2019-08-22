@@ -73,3 +73,9 @@ ALSA lib pcm.c:2266:(snd_pcm_open_noupdate) Unknown PCM default
 AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
 fluidsynth: warning: Failed to pin the sample data to RAM; swapping is possible.
 No bots.cfg, so no bots
+GZDoom g.* version
+Compiled on .*
+script parsing took .*
+Script warning, "gzdoom.pk3:zscript/ui/menu/conversationmenu.zs" line 159:
+Script warning, "gzdoom.pk3:zscript/ui/menu/conversationmenu.zs" line 161:
+Truncation of floating point value

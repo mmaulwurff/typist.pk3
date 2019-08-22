@@ -11,33 +11,42 @@
 #   restart.
 #
 # Usage:
-# ./scripts/run_tests.sh <mod.pk3>
-
-function make_tests_ccmd {
-    test_classes=$(find zscript/typist -name "*.zs" -print0 \
-                       | xargs -0 grep -hom 1 "tt_.*Test "  \
-                       | sort)
-
-    for test_class in $test_classes
-    do
-        echo "wait 1; map tt_test; wait 2; summon $test_class""Helper""; wait 2;"
-
-        if grep -nrq "$test_class"PostCheck
-        then
-           echo "wait 35; summon $test_class""PostCheckHelper; wait 1;"
-        fi
-    done
-
-    echo "echo ---------; echo Found $(echo "$test_classes" | wc -l) tests. Testing finished.; quit"
-}
+# ./scripts/run_tests.sh <mod.pk3> <filter-file>
+#
+# filter-file contains lines that will be filtered out from the output.
 
 file_name=$1
-tests_ccmd="$(make_tests_ccmd)"
-out=$(time gzdoom                                 \
+filter_file=$2
+test_classes=$(find zscript/typist -name "*.zs" -print0 \
+                    | xargs -0 grep -hom 1 "tt_.*Test "  \
+                    | sort)
+
+for test_class in $test_classes
+do
+    tests_ccmd="wait 1; map tt_test; wait 2; netevent test:$test_class; wait 2;"
+
+    if grep -nrq "$test_class"PostCheck
+    then
+        tests_ccmd="$tests_ccmd""wait 35; netevent test:$test_class""PostCheck""; wait 1;"
+    fi
+
+    tests_ccmd="$tests_ccmd""quit"
+
+    out=$(gzdoom \
         -iwad /usr/share/games/doom/freedoom2.wad \
         -file "$file_name"                        \
         -nosound                                  \
-        +"$tests_ccmd"
-    )
+        +"$tests_ccmd"                            \
+            | grep -vf "$filter_file"             \
+            | grep -v "^$")
 
-echo -e "$out"
+    full_out="$full_out""$out"
+
+    echo "$out"
+done
+
+echo ========================================
+echo "Found $(echo "$test_classes" | wc -l) tests. Testing finished."
+
+status=$(echo "$full_out" | grep -c "ERROR\\|WARN\\|FATAL" || true)
+[[ "$status" == 0 ]]

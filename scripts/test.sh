@@ -55,7 +55,7 @@ function check_init {
 
 function gzdoom_only {
     echo -e "\\nTest_1: GZDoom only ############################################"
-    ./scripts/norun_gzdoom.sh "$filter_file"
+    ./scripts/norun_gzdoom.sh
 }
 
 function dry_run {
@@ -64,11 +64,8 @@ function dry_run {
 }
 
 function tests {
-    echo -e "\\nTest_3: Tests ###########################################"
-    out=$(./scripts/run_tests.sh "$file_name" | grep -vf "$filter_file" | grep -v "^$")
-    echo "$out"
-    status=$(echo "$out" | grep -c "ERROR\\|WARN\\|FATAL" || true)
-    [[ "$status" == 0 ]]
+    echo -e "\\nTest_3: Tests ##################################################"
+    ./scripts/run_tests.sh "$file_name" "$filter_file"
 }
 
 function uncontrolled_run {
@@ -81,17 +78,17 @@ function uncontrolled_run {
 
 spelling
 line_width
-#pk3_contents
+pk3_contents
 todo
-#python_version
-#python_lint
+python_version
+python_lint
 shell_lint
 check_init
 
 # Tests ########################################################################
 # Comment out tests that you don't want to run.
 
-#gzdoom_only
+gzdoom_only
 dry_run
 tests
 
