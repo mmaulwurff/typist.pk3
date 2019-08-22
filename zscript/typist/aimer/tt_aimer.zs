@@ -22,7 +22,7 @@ class tt_Aimer abstract
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
+  play virtual
   void aim()
   {
     Console.Printf("zscript/typist/aimer/tt_aimer.zs:28: T: override this!");
