@@ -56,6 +56,6 @@ class tt_PlayerInput : tt_AnswerSource
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private string _answer;
+  private String _answer;
 
 } // class tt_PlayerInput

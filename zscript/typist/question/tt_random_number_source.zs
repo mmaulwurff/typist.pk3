@@ -37,17 +37,17 @@ class tt_RandomNumberSource : tt_QuestionSource
   {
     let difficulty   = _difficultySource.getDifficulty();
     let stringLength = difficulty.shootStringLength();
-    let string       = "";
+    let str          = "";
 
     for (int i = 0; i < stringLength; ++i)
     {
       // 48 == 0
       // 57 == 9
       int number = Random(48, 57);
-      string.AppendFormat("%c", number);
+      str.AppendFormat("%c", number);
     }
 
-    let question = new("tt_Match").init(string);
+    let question = new("tt_Match").init(str);
 
     return question;
   }

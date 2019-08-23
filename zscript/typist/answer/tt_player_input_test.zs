@@ -38,7 +38,7 @@ class tt_PlayerInputTest : tt_Clematis
   {
 
     let    playerInput = new("tt_PlayerInput").init();
-    string input       = "Abc";
+    String input       = "Abc";
 
     throwStringIntoInput(playerInput, input);
 
@@ -52,8 +52,8 @@ class tt_PlayerInputTest : tt_Clematis
   void testPlayerInputCheckReset()
   {
     let    playerInput = new("tt_PlayerInput").init();
-    string input1      = "abc";
-    string input2      = "def";
+    String input1      = "abc";
+    String input2      = "def";
 
     throwStringIntoInput(playerInput, input1);
     playerInput.reset();
@@ -66,7 +66,7 @@ class tt_PlayerInputTest : tt_Clematis
   }
 
   private
-  void throwStringIntoInput(tt_PlayerInput input, string str)
+  void throwStringIntoInput(tt_PlayerInput input, String str)
   {
     uint inputSize = str.length();
     for (uint i = 0; i < inputSize; ++i)

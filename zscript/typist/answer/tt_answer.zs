@@ -23,7 +23,7 @@ class tt_Answer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Answer init(string answer)
+  tt_Answer init(String answer)
   {
     _answer = answer;
 
@@ -32,10 +32,10 @@ class tt_Answer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  string getString() const { return _answer; }
+  String getString() const { return _answer; }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private string _answer;
+  private String _answer;
 
 } // class tt_Answer

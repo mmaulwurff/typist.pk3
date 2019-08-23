@@ -444,13 +444,13 @@ class tt_QuestionMock : tt_Question
   private int _mock_isRight_called;
 
   override
-  string getDescription()
+  String getDescription()
   {
     ++_mock_getDescription_called;
     return _mock_getDescription;
   }
 
-  void expect_getDescription(string value, int expected = 1)
+  void expect_getDescription(String value, int expected = 1)
   {
     _mock_getDescription = value;
     _mock_getDescription_expected = expected;
@@ -462,7 +462,7 @@ class tt_QuestionMock : tt_Question
     return _mock_getDescription_expected == _mock_getDescription_called;
   }
 
-  private string _mock_getDescription;
+  private String _mock_getDescription;
   private int _mock_getDescription_expected;
   private int _mock_getDescription_called;
 

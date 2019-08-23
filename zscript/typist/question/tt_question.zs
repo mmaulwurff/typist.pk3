@@ -30,7 +30,7 @@ class tt_Question abstract
   }
 
   virtual
-  string getDescription()
+  String getDescription()
   {
     Console.Printf("zscript/typist/question/tt_question.zs:35: T: override this!");
     return "override this!";

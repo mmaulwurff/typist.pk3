@@ -163,7 +163,7 @@ class tt_TargetRegistryTest : tt_Clematis
 // private: ////////////////////////////////////////////////////////////////////
 
   private
-  void targetRegistrySetUp(string description)
+  void targetRegistrySetUp(String description)
   {
     Describe(description);
 

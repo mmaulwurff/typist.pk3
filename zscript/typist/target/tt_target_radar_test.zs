@@ -109,7 +109,7 @@ class tt_TargetRadarTest : tt_Clematis
 // private: ////////////////////////////////////////////////////////////////////
 
   private
-  void targetRadarTestSetUp(string description)
+  void targetRadarTestSetUp(String description)
   {
     Describe(description);
 
