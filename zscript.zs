@@ -47,6 +47,8 @@ version 4.1.3
 #include "zscript/typist/mode/tt_auto_mode_source.zs"
 #include "zscript/typist/mode/tt_mode_source.zs"
 #include "zscript/typist/mode/tt_mode.zs"
+#include "zscript/typist/origin/tt_origin_from_target_test.zs"
+#include "zscript/typist/origin/tt_origin_from_target.zs"
 #include "zscript/typist/origin/tt_origin_source.zs"
 #include "zscript/typist/origin/tt_origin.zs"
 #include "zscript/typist/origin/tt_pawn_origin_source_test.zs"
