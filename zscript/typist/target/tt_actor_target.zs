@@ -42,7 +42,7 @@ class tt_ActorTarget : tt_Target
 // public: // tt_Target ////////////////////////////////////////////////////////
 
   override
-  void setPosition(vector3 position)
+  void setPosition(Vector3 position)
   {
     _pos = position;
   }

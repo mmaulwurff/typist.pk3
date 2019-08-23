@@ -41,7 +41,7 @@ class tt_Target abstract
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  void setPosition(vector3 position)
+  void setPosition(Vector3 position)
   {
     Console.Printf("zscript/typist/target/tt_target.zs:46: T: override this!");
   }

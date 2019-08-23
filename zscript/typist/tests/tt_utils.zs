@@ -22,7 +22,7 @@ class tt_Clematis
 // protected: //////////////////////////////////////////////////////////////////
 
   protected play
-  Actor Spawn(class<Actor> type, vector3 pos) const
+  Actor Spawn(class<Actor> type, Vector3 pos) const
   {
     return Actor.Spawn(type, pos);
   }

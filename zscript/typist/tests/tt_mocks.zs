@@ -337,7 +337,7 @@ class tt_TargetMock : tt_Target
   private int _mock_id_called;
 
   override
-  void setPosition(vector3 position)
+  void setPosition(Vector3 position)
   {
     ++_mock_setPosition_called;
   }
