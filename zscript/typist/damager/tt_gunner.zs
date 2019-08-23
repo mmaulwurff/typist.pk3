@@ -17,7 +17,7 @@
 
 /** This class is an implementation of tt_Damager interface.
  *
- * It damages the first target received from the TargetSource (if any) with
+ * It fires at the origin received from the OriginSource with
  * the help of Aimer and Firer classes.
  */
 class tt_Gunner : tt_Damager
@@ -25,9 +25,9 @@ class tt_Gunner : tt_Damager
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Gunner init(tt_TargetSource targetSource, tt_Aimer aimer, tt_Firer firer)
+  tt_Gunner init(tt_OriginSource originSource, tt_Aimer aimer, tt_Firer firer)
   {
-    _targetSource = targetSource;
+    _originSource = originSource;
     _aimer        = aimer;
     _firer        = firer;
 
@@ -39,11 +39,8 @@ class tt_Gunner : tt_Damager
   override
   void damage()
   {
-    let targets = _targetSource.getTargets();
-    if (targets == NULL || targets.size() == 0) { return; }
-
-    let target = targets.at(0);
-    if (target == NULL) { return; }
+    let origin = _originSource.getOrigin();
+    if (origin == NULL) { return; }
 
     _aimer.aim();
     _firer.fire();
@@ -51,7 +48,7 @@ class tt_Gunner : tt_Damager
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_TargetSource _targetSource;
+  private tt_OriginSource _originSource;
   private tt_Aimer        _aimer;
   private tt_Firer        _firer;
 

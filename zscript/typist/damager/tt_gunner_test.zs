@@ -27,10 +27,8 @@ class tt_GunnerTest : tt_Clematis
   {
     Describe("Checking Gunner");
 
-    checkNullTargets();
-    checkZeroTargets();
-    checkNullTarget();
-    checkOneTarget();
+    checkNullOrigin();
+    checkValidOrigin();
 
     EndDescribe();
   }
@@ -38,51 +36,24 @@ class tt_GunnerTest : tt_Clematis
 // private: ////////////////////////////////////////////////////////////////////
 
   private
-  void checkNullTargets()
+  void checkNullOrigin()
   {
     setUp();
 
-    _targetSource.expect_getTargets(NULL);
+    _originSource.expect_getOrigin(NULL);
 
     shoot();
     tearDown();
   }
 
   private
-  void checkZeroTargets()
+  void checkValidOrigin()
   {
     setUp();
 
-    let targets = new("tt_Targets").init();
-    _targetSource.expect_getTargets(targets);
+    let origin = new("tt_Origin").init((0, 0, 0));
 
-    shoot();
-    tearDown();
-  }
-
-  private
-  void checkNullTarget()
-  {
-    setUp();
-
-    let targets = new("tt_Targets").init();
-    targets.add(NULL);
-    _targetSource.expect_getTargets(targets);
-
-    shoot();
-    tearDown();
-  }
-
-  private
-  void checkOneTarget()
-  {
-    setUp();
-
-    let targets = new("tt_Targets").init();
-    let target  = new("tt_TargetMock").init();
-    targets.add(target);
-
-    _targetSource.expect_getTargets(targets);
+    _originSource.expect_getOrigin(origin);
     _aimer.expect_aim();
     _firer.expect_fire();
 
@@ -93,16 +64,16 @@ class tt_GunnerTest : tt_Clematis
   private
   void setUp()
   {
-    _targetSource = new("tt_TargetSourceMock").init();
+    _originSource = new("tt_OriginSourceMock").init();
     _aimer        = new("tt_AimerMock").init();
     _firer        = new("tt_FirerMock").init();
-    _gunner       = new("tt_Gunner").init(_targetSource, _aimer, _firer);
+    _gunner       = new("tt_Gunner").init(_originSource, _aimer, _firer);
   }
 
   private
   void tearDown()
   {
-    It("Target Source is satisfied" , Assert(_targetSource.isSatisfied_getTargets()));
+    It("Origin Source is satisfied" , Assert(_originSource.isSatisfied_getOrigin()));
     It("Aimer is satisfied"         , Assert(_aimer.isSatisfied_aim()));
     It("Firer is satisfied"         , Assert(_firer.isSatisfied_fire()));
   }
@@ -115,7 +86,7 @@ class tt_GunnerTest : tt_Clematis
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_TargetSourceMock _targetSource;
+  private tt_OriginSourceMock _originSource;
   private tt_AimerMock        _aimer;
   private tt_FirerMock        _firer;
   private tt_Gunner           _gunner;
