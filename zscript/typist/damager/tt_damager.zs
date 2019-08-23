@@ -15,17 +15,17 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class is an interface for Gunner. It controls the gun.
+/** This class is an interface for Damager. It damages targets.
  */
-class tt_Gunner abstract
+class tt_Damager abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  void shoot()
+  play virtual
+  void damage()
   {
-    Console.Printf("zscript/typist/gunner/tt_gunner.zs:28: T: override this!");
+    Console.Printf("zscript/typist/damager/tt_damager.zs:28: T: override this!");
   }
 
-} // class tt_Gunner
+} // class tt_Damager

@@ -37,33 +37,26 @@ class tt_AimerImplTest : tt_Clematis
     targetPositions.push(new("tt_Origin").init((   0,    0, 0))); angles.push(   0);
 
     uint nTargetPositions = targetPositions.size();
-
     for (uint i = 0; i < nTargetPositions; ++i)
     {
-      let targetSource = new("tt_TargetSourceMock").init();
-      let pawnSource   = new("tt_PawnSourceMock").init();
-      let aimer        = new("tt_AimerImpl").init(targetSource, pawnSource);
-      let targets      = new("tt_Targets").init();
-      let target       = new("tt_TargetMock").init();
-      targets.add(target);
+      let    originSource  = new("tt_OriginSourceMock").init();
+      let    pawnSource    = new("tt_PawnSourceMock").init();
+      let    aimer         = new("tt_AimerImpl").init(originSource, pawnSource);
+      let    targetOrigin  = targetPositions[i];
+      let    pawn          = players[consolePlayer].mo;
+      double angle         = angles[i];
 
-      Vector3 targetPos = targetPositions[i].position();
-      let     pawn      = players[consolePlayer].mo;
-      double  angle     = angles[i];
-
-      targetSource.expect_getTargets(targets);
-      target      .expect_position(targetPos);
+      originSource.expect_getOrigin(targetOrigin);
       pawnSource  .expect_getPawn(pawn);
 
       // Just for a visual check.
-      Spawn("DoomImp", targetPos);
+      Spawn("DoomImp", targetOrigin.position());
 
       aim(aimer);
 
       String message = String.Format("Pawn is oriented at the target, angle: %f", angle);
       It(message                      , AssertEval(pawn.angle, "~==", angles[i]));
-      It("Target source is satisfied" , Assert(targetSource.isSatisfied_getTargets()));
-      It("Target is satisfied"        , Assert(target.isSatisfied_position()));
+      It("Origin source is satisfied" , Assert(originSource.isSatisfied_getOrigin()));
       It("Pawn source is satisfied"   , Assert(pawnSource.isSatisfied_getPawn()));
     }
 

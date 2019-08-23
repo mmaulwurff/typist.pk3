@@ -24,10 +24,10 @@ class tt_AimerImpl : tt_Aimer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_AimerImpl init(tt_TargetSource targetSource, tt_PawnSource pawnSource)
+  tt_AimerImpl init(tt_OriginSource targetOriginSource, tt_PawnSource pawnSource)
   {
-    _targetSource = targetSource;
-    _pawnSource   = pawnSource;
+    _targetOriginSource = targetOriginSource;
+    _pawnSource         = pawnSource;
 
     return self;
   }
@@ -37,16 +37,14 @@ class tt_AimerImpl : tt_Aimer
   override
   void aim()
   {
-    let targets = _targetSource.getTargets();
-    if (targets == NULL) { return; }
-    let target = targets.at(0);
-    if (target == NULL) { return; }
+    let targetOrigin = _targetOriginSource.getOrigin();
+    if (targetOrigin == NULL) { return; }
 
     let pawn = _pawnSource.getPawn();
     if (pawn == NULL) { return; }
 
     Vector3 myPosition    = pawn.pos;
-    Vector3 otherPosition = target.position();
+    Vector3 otherPosition = targetOrigin.position();
     double  angle         = AngleTo(myPosition.XY, otherPosition.XY);
 
     pawn.A_SetAngle(angle, SPF_INTERPOLATE);
@@ -63,7 +61,7 @@ class tt_AimerImpl : tt_Aimer
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_TargetSource _targetSource;
+  private tt_OriginSource _targetOriginSource;
   private tt_PawnSource   _pawnSource;
 
 } // class tt_AimerImpl
