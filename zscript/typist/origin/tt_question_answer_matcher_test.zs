@@ -119,6 +119,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     let answer = new("tt_Answer").init("abc");
     _answerSource.expect_getAnswer(answer);
+    _answerSource.expect_reset();
 
     let origin = _matcher.getOrigin();
 
@@ -170,7 +171,8 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
   void tearDown()
   {
     It("Known Target Source is satisfied" , Assert(_knownTargetSource.isSatisfied_getTargets()));
-    It("Answer Source is satisfied"       ,       Assert(_answerSource.isSatisfied_getAnswer()));
+    It("Answer Source is satisfied"       , Assert(_answerSource.isSatisfied_getAnswer()));
+    It("Answer Source is satisfied"       , Assert(_answerSource.isSatisfied_reset()));
 
     EndDescribe();
   }
