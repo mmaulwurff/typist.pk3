@@ -24,24 +24,33 @@ class tt_Supervisor
 
   tt_Supervisor init(int playerNumber)
   {
-    _playerInput = new("tt_PlayerInput").init();
+    let playerInput    = new("tt_PlayerInput"  ).init();
+    let deathReporter  = new("tt_DeathReporter").init();
 
-    let difficultySource = new("tt_SelectedDifficulty").init();
+    let difficultySource = new("tt_SelectedDifficulty"  ).init();
     let playerInfoSource = new("tt_PlayerInfoSourceImpl").init(playerNumber);
-    let pawnSource       = new("tt_PlayerPawnSource").init(playerInfoSource);
-    let originSource     = new("tt_PawnOriginSource").init(pawnSource);
-    let targetSource     = new("tt_TargetRadar").init(originSource);
-    let questionSource   = new("tt_RandomNumberSource").init(difficultySource);
-    _deathReporter       = new("tt_DeathReporter").init();
-    _targetRegistry      = new("tt_TargetRegistry").init( targetSource
-                                                        , questionSource
-                                                        , _deathReporter
-                                                        );
+    let pawnSource       = new("tt_PlayerPawnSource"    ).init(playerInfoSource);
+    let originSource     = new("tt_PawnOriginSource"    ).init(pawnSource);
+    let targetSource     = new("tt_TargetRadar"         ).init(originSource);
+    let questionSource   = new("tt_RandomNumberSource"  ).init(difficultySource);
 
-    let targetWidgetSource = new("tt_TargetWidgetRegistry").init(_targetRegistry);
-    _view = new("tt_Screen").init(targetWidgetSource, _playerInput);
+    let targetRegistry = new("tt_TargetRegistry").init(targetSource, questionSource, deathReporter);
+    let modeSource     = new("tt_AutoModeSource").init(targetRegistry);
 
-    _modeSource = new("tt_AutoModeSource").init(_targetRegistry);
+    let targetOriginSource = new("tt_QuestionAnswerMatcher").init(targetRegistry, playerInput);
+    let aimer              = new("tt_AimerImpl"            ).init(targetOriginSource, pawnSource);
+    let firer              = new("tt_FirerImpl"            ).init(pawnSource);
+    let damager            = new("tt_Gunner"               ).init(targetOriginSource, aimer, firer);
+
+    let targetWidgetSource = new("tt_TargetWidgetRegistry").init(targetRegistry);
+    let view               = new("tt_Screen"              ).init(targetWidgetSource, playerInput);
+
+    _playerInput    = playerInput;
+    _deathReporter  = deathReporter;
+    _targetRegistry = targetRegistry;
+    _view           = view;
+    _modeSource     = modeSource;
+    _damager        = damager;
 
     return self;
   }
@@ -57,6 +66,7 @@ class tt_Supervisor
   void updateTargets()
   {
     _targetRegistry.update();
+    _damager.damage();
   }
 
   void reportDead(Actor dead)
@@ -81,5 +91,6 @@ class tt_Supervisor
   private tt_DeathReporter     _deathReporter;
   private tt_View              _view;
   private tt_ModeSource        _modeSource;
+  private tt_Damager           _damager;
 
 } // class tt_Supervisor
