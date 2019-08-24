@@ -45,6 +45,7 @@ func
 gamedata
 gameinfo
 getsomethingfromstatusbar
+getters
 gitattributes
 github
 gitmodules
@@ -72,6 +73,7 @@ licensors
 makedirs
 mapinfo
 marrub
+matcher
 maxplayers
 medikit
 merchantability
