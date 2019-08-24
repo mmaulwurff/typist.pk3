@@ -32,9 +32,9 @@ class tt_KnownTarget
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Target target() const { return _target; }
+  tt_Target getTarget() const { return _target; }
 
-  tt_Question question() const { return _question; }
+  tt_Question getQuestion() const { return _question; }
 
 // private: ////////////////////////////////////////////////////////////////////
 

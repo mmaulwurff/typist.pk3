@@ -75,7 +75,7 @@ class tt_TargetRegistry : tt_KnownTargetSource
     for (uint i = 0; i < nTargets; ++i)
     {
       let target   = targets.at(i);
-      let existing = _registry.findTarget(target.id());
+      let existing = _registry.findTarget(target.getId());
 
       if (existing == NULL)
       {
@@ -83,8 +83,8 @@ class tt_TargetRegistry : tt_KnownTargetSource
       }
       else
       {
-        let t = existing.target();
-        t.setPosition(target.position());
+        let t = existing.getTarget();
+        t.setPosition(target.getPosition());
       }
     }
 

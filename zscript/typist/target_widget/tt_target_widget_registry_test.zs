@@ -32,7 +32,7 @@ class tt_TargetWidgetRegistryTest : tt_Clematis
     let knownTarget       = new("tt_KnownTarget").init(target, NULL);
     knownTargets.add(knownTarget);
 
-    target.expect_position((0, 100, 0));
+    target.expect_getPosition((0, 100, 0));
     knownTargetSource.expect_getTargets(knownTargets);
 
     let widgets  = registry.getWidgets();

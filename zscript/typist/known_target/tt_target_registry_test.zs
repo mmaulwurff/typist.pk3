@@ -49,8 +49,8 @@ class tt_TargetRegistryTest : tt_Clematis
 
     let target1 = new("tt_TargetMock").init();
     let target2 = new("tt_TargetMock").init();
-    target1.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
-    target2.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
+    target1.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
+    target2.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
 
     let targets = new("tt_Targets").init();
     targets.add(target1);
@@ -64,8 +64,8 @@ class tt_TargetRegistryTest : tt_Clematis
     let knownTargets = _targetRegistry.getTargets();
 
     It("Is two targets", AssertEval(knownTargets.size(), "==", 2));
-    It("Target1 ID", Assert(target1.isSatisfied_id()));
-    It("Target2 ID", Assert(target2.isSatisfied_id()));
+    It("Target1 ID", Assert(target1.isSatisfied_getId()));
+    It("Target2 ID", Assert(target2.isSatisfied_getId()));
 
     targetRegistryTearDown();
   }
@@ -77,7 +77,7 @@ class tt_TargetRegistryTest : tt_Clematis
 
     // First, add a single target.
     let target = new("tt_TargetMock").init();
-    target.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
+    target.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
 
     let targets = new("tt_Targets").init();
     targets.add(target);
@@ -90,7 +90,7 @@ class tt_TargetRegistryTest : tt_Clematis
     let knownTargets = _targetRegistry.getTargets();
 
     It("Is one targets", AssertEval(knownTargets.size(), "==", 1));
-    It("Target ID", Assert(target.isSatisfied_id()));
+    It("Target ID", Assert(target.isSatisfied_getId()));
 
     assertSourcesSatisfied();
 
@@ -99,17 +99,17 @@ class tt_TargetRegistryTest : tt_Clematis
     _targetSource.expect_getTargets(targets);
     _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets").init());
     _questionSource.expect_getQuestion(NULL, 0);
-    target.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER), 2);
+    target.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER), 2);
 
     _targetRegistry.update();
     knownTargets = _targetRegistry.getTargets();
     let target1 = new("tt_TargetMock").init();
     let target2 = new("tt_TargetMock").init();
-    target1.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
-    target2.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
+    target1.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
+    target2.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
 
     It("Is one targets", AssertEval(knownTargets.size(), "==", 1));
-    It("Target ID", Assert(target.isSatisfied_id()));
+    It("Target ID", Assert(target.isSatisfied_getId()));
 
     targetRegistryTearDown();
   }
@@ -122,8 +122,8 @@ class tt_TargetRegistryTest : tt_Clematis
     // First, add two targets.
     let target1 = new("tt_TargetMock").init();
     let target2 = new("tt_TargetMock").init();
-    target1.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
-    target2.expect_id(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
+    target1.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
+    target2.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
 
     let targets = new("tt_Targets").init();
     targets.add(target1);
@@ -137,8 +137,8 @@ class tt_TargetRegistryTest : tt_Clematis
     let knownTargets = _targetRegistry.getTargets();
 
     It("Is two targets", AssertEval(knownTargets.size(), "==", 2));
-    It("Target1 ID", Assert(target1.isSatisfied_id()));
-    It("Target2 ID", Assert(target2.isSatisfied_id()));
+    It("Target1 ID", Assert(target1.isSatisfied_getId()));
+    It("Target2 ID", Assert(target2.isSatisfied_getId()));
 
     assertSourcesSatisfied();
 

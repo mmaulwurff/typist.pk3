@@ -47,7 +47,7 @@ class tt_Screen : tt_View
     for (uint i = 0; i < nWidgets; ++i)
     {
       let widget   = widgets.at(i);
-      let question = widget.target().question().getDescription();
+      let question = widget.target().getQuestion().getDescription();
       let position = widget.position();
       Screen.DrawText(BigFont, Font.CR_WHITE, x, y, question);
       y += height;

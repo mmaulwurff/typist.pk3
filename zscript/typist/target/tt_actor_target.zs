@@ -34,10 +34,10 @@ class tt_ActorTarget : tt_Target
 // public: // tt_Target ////////////////////////////////////////////////////////
 
   override
-  Vector3 position() const { return _pos; }
+  Vector3 getPosition() const { return _pos; }
 
   override
-  tt_TargetID id() const { return _id; }
+  tt_TargetID getId() const { return _id; }
 
 // public: // tt_Target ////////////////////////////////////////////////////////
 

@@ -291,50 +291,50 @@ class tt_TargetMock : tt_Target
   tt_TargetMock init() { return self; }
 
   override
-  Vector3 position()
+  Vector3 getPosition()
   {
-    ++_mock_position_called;
-    return _mock_position;
+    ++_mock_getPosition_called;
+    return _mock_getPosition;
   }
 
-  void expect_position(Vector3 value, int expected = 1)
+  void expect_getPosition(Vector3 value, int expected = 1)
   {
-    _mock_position = value;
-    _mock_position_expected = expected;
-    _mock_position_called = 0;
+    _mock_getPosition = value;
+    _mock_getPosition_expected = expected;
+    _mock_getPosition_called = 0;
   }
 
-  bool isSatisfied_position() const
+  bool isSatisfied_getPosition() const
   {
-    return _mock_position_expected == _mock_position_called;
+    return _mock_getPosition_expected == _mock_getPosition_called;
   }
 
-  private Vector3 _mock_position;
-  private int _mock_position_expected;
-  private int _mock_position_called;
+  private Vector3 _mock_getPosition;
+  private int _mock_getPosition_expected;
+  private int _mock_getPosition_called;
 
   override
-  tt_TargetID id()
+  tt_TargetID getId()
   {
-    ++_mock_id_called;
-    return _mock_id;
+    ++_mock_getId_called;
+    return _mock_getId;
   }
 
-  void expect_id(tt_TargetID value, int expected = 1)
+  void expect_getId(tt_TargetID value, int expected = 1)
   {
-    _mock_id = value;
-    _mock_id_expected = expected;
-    _mock_id_called = 0;
+    _mock_getId = value;
+    _mock_getId_expected = expected;
+    _mock_getId_called = 0;
   }
 
-  bool isSatisfied_id() const
+  bool isSatisfied_getId() const
   {
-    return _mock_id_expected == _mock_id_called;
+    return _mock_getId_expected == _mock_getId_called;
   }
 
-  private tt_TargetID _mock_id;
-  private int _mock_id_expected;
-  private int _mock_id_called;
+  private tt_TargetID _mock_getId;
+  private int _mock_getId_expected;
+  private int _mock_getId_called;
 
   override
   void setPosition(Vector3 position)

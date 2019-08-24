@@ -74,7 +74,7 @@ class tt_KnownTargets
     uint nTargets = size();
     for (uint i = 0; i < nTargets; ++i)
     {
-      if (_targets[i].target().id().isEqual(target)) { return i; }
+      if (_targets[i].getTarget().getId().isEqual(target)) { return i; }
     }
     return nTargets;
   }

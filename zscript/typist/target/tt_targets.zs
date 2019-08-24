@@ -51,7 +51,7 @@ class tt_Targets
     uint nTargets = size();
     for (uint i = 0; i < nTargets; ++i)
     {
-      if (_targets[i].id().isEqual(target)) { return i; }
+      if (_targets[i].getId().isEqual(target)) { return i; }
     }
     return nTargets;
   }

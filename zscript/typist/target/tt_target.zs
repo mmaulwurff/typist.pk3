@@ -24,7 +24,7 @@ class tt_Target abstract
 
   // Get position in game space of this target.
   virtual
-  Vector3 position() const
+  Vector3 getPosition() const
   {
     Console.Printf("zscript/typist/target/tt_target.zs:29: T: override this!");
     return (0, 0, 0);
@@ -32,7 +32,7 @@ class tt_Target abstract
 
   // Get an identifier of this target.
   virtual
-  tt_TargetID id() const
+  tt_TargetID getId() const
   {
     Console.Printf("zscript/typist/target/tt_target.zs:37: T: override this!");
     return NULL;
