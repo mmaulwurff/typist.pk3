@@ -42,6 +42,12 @@ class tt_PawnOriginSource : tt_OriginSource
     return new("tt_Origin").init(pos);
   }
 
+  override
+  void update()
+  {
+    // do nothing, getOrigin doesn't change the origin.
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_PawnSource _pawnSource;

@@ -22,11 +22,23 @@ class tt_OriginSource abstract
 
 // public: /////////////////////////////////////////////////////////////////////
 
+  /** Returns the origin (coordinate in 3D space).
+   *
+   * Getting the origin doesn't change it.
+   */
   virtual
   tt_Origin getOrigin()
   {
-    Console.Printf("zscript/typist/origin/tt_origin_source.zs:28: T: override this!");
+    Console.Printf("zscript/typist/origin/tt_origin_source.zs:32: T: override this!");
     return NULL;
+  }
+
+  /** Update the origin.
+   */
+  virtual
+  void update()
+  {
+    Console.Printf("zscript/typist/origin/tt_origin_source.zs:41: T: override this!");
   }
 
 } // class tt_OriginSource

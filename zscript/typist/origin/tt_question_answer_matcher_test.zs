@@ -44,6 +44,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     _knownTargetSource.expect_getTargets(NULL);
 
+    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("NULL known targets -> NULL origin", AssertNull(origin));
@@ -59,6 +60,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     let targets = new("tt_KnownTargets").init();
     _knownTargetSource.expect_getTargets(targets);
 
+    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("Zero known targets -> NULL origin", AssertNull(origin));
@@ -76,6 +78,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     _knownTargetSource.expect_getTargets(targets);
     _answerSource.expect_getAnswer(NULL);
 
+    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("NULL known target -> NULL origin", AssertNull(origin));
@@ -89,13 +92,14 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     setUp("Checking Question-Answer Matcher: null answer");
 
     let knownTargets = new("tt_KnownTargets").init();
-    let target       = new("tt_TargetMock").init();
+    let target       = new("tt_TargetMock"  ).init();
     let question     = new("tt_QuestionMock").init();
-    let knownTarget  = new("tt_KnownTarget").init(target, question);
+    let knownTarget  = new("tt_KnownTarget" ).init(target, question);
     knownTargets.add(knownTarget);
     _knownTargetSource.expect_getTargets(knownTargets);
     _answerSource.expect_getAnswer(NULL);
 
+    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("NULL answer -> NULL origin", AssertNull(origin));
@@ -109,9 +113,9 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     setUp("Checking Question-Answer Matcher: target and answer match");
 
     let knownTargets = new("tt_KnownTargets").init();
-    let target       = new("tt_TargetMock").init();
+    let target       = new("tt_TargetMock"  ).init();
     let question     = new("tt_QuestionMock").init();
-    let knownTarget  = new("tt_KnownTarget").init(target, question);
+    let knownTarget  = new("tt_KnownTarget" ).init(target, question);
     knownTargets.add(knownTarget);
     _knownTargetSource.expect_getTargets(knownTargets);
     question.expect_isRight(true);
@@ -121,6 +125,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     _answerSource.expect_getAnswer(answer);
     _answerSource.expect_reset();
 
+    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("Target is satisfied"   , Assert(target.isSatisfied_getPosition()));
@@ -136,9 +141,9 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     setUp("Checking Question-Answer Matcher: no target and answer match");
 
     let knownTargets = new("tt_KnownTargets").init();
-    let target       = new("tt_TargetMock").init();
+    let target       = new("tt_TargetMock"  ).init();
     let question     = new("tt_QuestionMock").init();
-    let knownTarget  = new("tt_KnownTarget").init(target, question);
+    let knownTarget  = new("tt_KnownTarget" ).init(target, question);
     knownTargets.add(knownTarget);
     _knownTargetSource.expect_getTargets(knownTargets);
     question.expect_isRight(false);
@@ -146,6 +151,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     let answer = new("tt_Answer").init("abc");
     _answerSource.expect_getAnswer(answer);
 
+    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("Target is satisfied"   , Assert(target.isSatisfied_getPosition()));
@@ -163,7 +169,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     Describe(description);
 
     _knownTargetSource = new("tt_KnownTargetSourceMock").init();
-    _answerSource      = new("tt_AnswerSourceMock").init();
+    _answerSource      = new("tt_AnswerSourceMock"     ).init();
     _matcher           = new("tt_QuestionAnswerMatcher").init(_knownTargetSource, _answerSource);
   }
 

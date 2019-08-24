@@ -52,6 +52,7 @@ class tt_Supervisor
     _modeSource         = modeSource;
     _damager            = damager;
     _targetWidgetSource = targetWidgetSource;
+    _targetOriginSource = targetOriginSource;
 
     return self;
   }
@@ -67,6 +68,7 @@ class tt_Supervisor
   void updateTargets()
   {
     _targetRegistry.update();
+    _targetOriginSource.update();
     _damager.damage();
     _targetWidgetSource.prepare();
   }
@@ -98,5 +100,6 @@ class tt_Supervisor
   private tt_ModeSource         _modeSource;
   private tt_Damager            _damager;
   private tt_TargetWidgetSource _targetWidgetSource;
+  private tt_OriginSource       _targetOriginSource;
 
 } // class tt_Supervisor
