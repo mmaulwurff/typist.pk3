@@ -34,25 +34,23 @@ class tt_Screen : tt_View
 // public: // tt_View //////////////////////////////////////////////////////////
 
   override
-  void draw()
+  void draw(RenderEvent event)
   {
-    let  answer   = _answerSource.getAnswer().getString();
-    let  widgets  = _targetWidgetSource.getWidgets();
+    let    answer  = _answerSource.getAnswer().getString();
+    let    widgets = _targetWidgetSource.getWidgets(event);
+    double height  = BigFont.GetHeight();
+
     uint nWidgets = widgets.size();
-
-    double x = 50;
-    double y = 50;
-    double height = BigFont.GetHeight();
-
     for (uint i = 0; i < nWidgets; ++i)
     {
-      let widget   = widgets.at(i);
-      let question = widget.target().getQuestion().getDescription();
-      let position = widget.position();
+      let    widget   = widgets.at(i);
+      let    question = widget.target().getQuestion().getDescription();
+      let    position = widget.position();
+      double x        = position.x;
+      double y        = position.y;
+
       Screen.DrawText(NewSmallFont, Font.CR_WHITE, x, y, question);
-      y += height;
-      Screen.DrawText(NewSmallFont, Font.CR_BLUE, x, y, answer);
-      y += height * 2;
+      Screen.DrawText(NewSmallFont, Font.CR_BLUE,  x, y + height, answer);
     }
   }
 

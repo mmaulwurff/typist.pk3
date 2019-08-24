@@ -504,7 +504,7 @@ class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
   tt_TargetWidgetSourceMock init() { return self; }
 
   override
-  tt_TargetWidgets getWidgets()
+  tt_TargetWidgets getWidgets(RenderEvent event)
   {
     ++_mock_getWidgets_called;
     return _mock_getWidgets;
@@ -525,6 +525,26 @@ class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
   private tt_TargetWidgets _mock_getWidgets;
   private int _mock_getWidgets_expected;
   private int _mock_getWidgets_called;
+
+  override
+  void prepare()
+  {
+    ++_mock_prepare_called;
+  }
+
+  void expect_prepare(int expected = 1)
+  {
+    _mock_prepare_expected = expected;
+    _mock_prepare_called = 0;
+  }
+
+  bool isSatisfied_prepare() const
+  {
+    return _mock_prepare_expected == _mock_prepare_called;
+  }
+
+  private int _mock_prepare_expected;
+  private int _mock_prepare_called;
 
 } // class tt_TargetWidgetSourceMock
 
@@ -621,7 +641,7 @@ class tt_ViewMock : tt_View
   tt_ViewMock init() { return self; }
 
   override
-  void draw()
+  void draw(RenderEvent event)
   {
     ++_mock_draw_called;
   }

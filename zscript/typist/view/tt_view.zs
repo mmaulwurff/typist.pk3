@@ -15,17 +15,17 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a view - something that displays target.
+/** This interface represents a view - something that displays targets.
  */
 class tt_View abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  void draw()
+  ui virtual
+  void draw(RenderEvent event)
   {
-    Console.Printf("override this!");
+    Console.Printf("zscript/typist/view/tt_view.zs:28: T: override this!");
   }
 
 } // class tt_View

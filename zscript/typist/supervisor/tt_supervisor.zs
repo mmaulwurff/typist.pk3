@@ -42,15 +42,16 @@ class tt_Supervisor
     let firer              = new("tt_FirerImpl"            ).init(playerInfoSource);
     let damager            = new("tt_Gunner"               ).init(targetOriginSource, aimer, firer);
 
-    let targetWidgetSource = new("tt_TargetWidgetRegistry").init(targetRegistry);
+    let targetWidgetSource = new("tt_TargetWidgetRegistry").init(targetRegistry, playerInfoSource);
     let view               = new("tt_Screen"              ).init(targetWidgetSource, playerInput);
 
-    _playerInput    = playerInput;
-    _deathReporter  = deathReporter;
-    _targetRegistry = targetRegistry;
-    _view           = view;
-    _modeSource     = modeSource;
-    _damager        = damager;
+    _playerInput        = playerInput;
+    _deathReporter      = deathReporter;
+    _targetRegistry     = targetRegistry;
+    _view               = view;
+    _modeSource         = modeSource;
+    _damager            = damager;
+    _targetWidgetSource = targetWidgetSource;
 
     return self;
   }
@@ -67,6 +68,7 @@ class tt_Supervisor
   {
     _targetRegistry.update();
     _damager.damage();
+    _targetWidgetSource.prepare();
   }
 
   void reportDead(Actor dead)
@@ -74,23 +76,27 @@ class tt_Supervisor
     _deathReporter.reportDead(dead);
   }
 
-  void draw()
-  {
-    _view.draw();
-  }
-
   int getMode()
   {
     return _modeSource.getMode();
   }
 
+// public: // ui ///////////////////////////////////////////////////////////////
+
+  ui
+  void draw(RenderEvent event)
+  {
+    _view.draw(event);
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_PlayerInput       _playerInput;
-  private tt_KnownTargetSource _targetRegistry;
-  private tt_DeathReporter     _deathReporter;
-  private tt_View              _view;
-  private tt_ModeSource        _modeSource;
-  private tt_Damager           _damager;
+  private tt_PlayerInput        _playerInput;
+  private tt_KnownTargetSource  _targetRegistry;
+  private tt_DeathReporter      _deathReporter;
+  private tt_View               _view;
+  private tt_ModeSource         _modeSource;
+  private tt_Damager            _damager;
+  private tt_TargetWidgetSource _targetWidgetSource;
 
 } // class tt_Supervisor

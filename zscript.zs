@@ -77,7 +77,6 @@ version 4.1.3
 #include "zscript/typist/target/tt_targets.zs"
 #include "zscript/typist/target/tt_target.zs"
 #include "zscript/typist/target_widget/tt_target_projector.zs"
-#include "zscript/typist/target_widget/tt_target_widget_registry_test.zs"
 #include "zscript/typist/target_widget/tt_target_widget_registry.zs"
 #include "zscript/typist/target_widget/tt_target_widget_source.zs"
 #include "zscript/typist/target_widget/tt_target_widgets.zs"

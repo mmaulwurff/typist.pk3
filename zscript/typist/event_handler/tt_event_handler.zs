@@ -70,7 +70,7 @@ class tt_EventHandler : EventHandler
   {
     if (_supervisor == NULL) { return; }
 
-    _supervisor.draw();
+    _supervisor.draw(event);
   }
 
 // private: ////////////////////////////////////////////////////////////////////

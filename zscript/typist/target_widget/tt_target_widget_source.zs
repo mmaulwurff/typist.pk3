@@ -26,11 +26,19 @@ class tt_TargetWidgetSource abstract
    *
    * @returns a list of target widgets.
    */
-  virtual
-  tt_TargetWidgets getWidgets()
+  ui virtual
+  tt_TargetWidgets getWidgets(RenderEvent event)
   {
     Console.Printf("zscript/typist/target_widget/tt_target_widget_source.zs:32: T: override this!");
     return NULL;
+  }
+
+  /** Makes necessary preparations.
+   */
+  virtual
+  void prepare()
+  {
+    Console.Printf("zscript/typist/target_widget/tt_target_widget_source.zs:41: T: override this!");
   }
 
 } // class tt_TargetWidgetSource
