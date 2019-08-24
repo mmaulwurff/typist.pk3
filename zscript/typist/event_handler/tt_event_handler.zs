@@ -40,11 +40,10 @@ class tt_EventHandler : EventHandler
   {
     if (event.type == UiEvent.Type_KeyDown)
     {
-      int key = event.keyChar;
-
       if (_supervisor == NULL) { return false; }
 
-      _supervisor.processKey(key);
+      let character = new("tt_Character").init(event.keyChar, event.isShift);
+      _supervisor.processKey(character);
     }
 
     return false;

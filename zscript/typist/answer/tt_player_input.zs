@@ -27,15 +27,14 @@ class tt_PlayerInput : tt_AnswerSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  void processKey(int key)
+  void processKey(tt_Character character)
   {
-    if (key > 31) // printable character
+    int type = character.getType();
+    switch (type)
     {
-      _answer.AppendFormat("%c", key);
-    }
-    else if (key == 8)
-    {
-      _answer = _answer.Left(_answer.Length() - 1);
+    case tt_Character.NONE: break;
+    case tt_Character.PRINTABLE: _answer = _answer .. character.getCharacter(); break;
+    case tt_Character.BACKSPACE: _answer = _answer.Left(_answer.Length() - 1); break;
     }
   }
 

@@ -38,7 +38,7 @@ class tt_PlayerInputTest : tt_Clematis
   {
 
     let    playerInput = new("tt_PlayerInput").init();
-    String input       = "Abc";
+    String input       = "abc";
 
     throwStringIntoInput(playerInput, input);
 
@@ -71,7 +71,8 @@ class tt_PlayerInputTest : tt_Clematis
     uint inputSize = str.length();
     for (uint i = 0; i < inputSize; ++i)
     {
-      input.processKey(str.ByteAt(i));
+      let character = new("tt_Character").init(str.ByteAt(i), false);
+      input.processKey(character);
     }
   }
 

@@ -32,7 +32,7 @@ class tt_Supervisor
     let pawnSource       = new("tt_PlayerPawnSource"    ).init(playerInfoSource);
     let originSource     = new("tt_PawnOriginSource"    ).init(pawnSource);
     let targetSource     = new("tt_TargetRadar"         ).init(originSource);
-    let questionSource   = new("tt_RandomNumberSource"  ).init(difficultySource);
+    let questionSource   = new("tt_RandomLetterSource"  ).init(difficultySource);
 
     let targetRegistry = new("tt_TargetRegistry").init(targetSource, questionSource, deathReporter);
     let modeSource     = new("tt_AutoModeSource").init(targetRegistry);
@@ -57,9 +57,9 @@ class tt_Supervisor
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  void processKey(int key)
+  void processKey(tt_Character character)
   {
-    _playerInput.processKey(key);
+    _playerInput.processKey(character);
   }
 
   play
