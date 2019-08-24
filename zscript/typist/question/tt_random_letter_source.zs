@@ -43,11 +43,11 @@ class tt_RandomLetterSource : tt_QuestionSource
     {
       bool isCapital = Random(0, 1);
 
-      //  64 - 'A'
+      //  65 - 'A'
       //  90 - 'Z'
       //  97 - 'a'
       // 122 - 'z'
-      int letter = isCapital ? Random(64, 90) : Random(97, 122);
+      int letter = isCapital ? Random(65, 90) : Random(97, 122);
       str.AppendFormat("%c", letter);
     }
 
