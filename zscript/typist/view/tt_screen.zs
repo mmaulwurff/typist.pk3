@@ -52,27 +52,55 @@ class tt_Screen : tt_View
   private
   void drawWidget(tt_TargetWidget widget, String answer)
   {
-    Font   fnt      = NewSmallFont;
-    let    question = widget.getTarget().getQuestion().getDescription();
-    let    position = widget.getPosition();
-    double x        = position.x;
-    double y        = position.y;
-    int    height   = fnt.GetHeight();
-    int    width    = max(fnt.StringWidth(question), fnt.StringWidth(answer)) + 4;
-    let    black    = TexMan.CheckForTexture("tt_black", TexMan.Type_Any);
-    int    frameX   = int(round(x)) - 2;
-    int    frameY   = int(round(y));
+    Font fnt      = NewSmallFont;
+    let  question = widget.getTarget().getQuestion().getDescription();
+    let  position = widget.getPosition();
+    int  height   = fnt.GetHeight();
+    int  width    = max(fnt.StringWidth(question), fnt.StringWidth(answer)) + MARGIN * 2;
 
-    Screen.DrawTexture( black, false, x - 2, y
+    int screenWidth  = Screen.GetWidth();
+    int screenHeight = Screen.GetHeight();
+
+    double x = Clamp(position.x - width / 2, MARGIN, screenWidth - MARGIN - width);
+    double y = Clamp(position.y, MARGIN, screenHeight - MARGIN - height * 2);
+
+    drawBackground(x, y, width, height);
+    drawFrame(x, y, width, height);
+    drawText(x, y, height, fnt, question, answer);
+  }
+
+  private
+  void drawBackground(double x, double y, int width, int height)
+  {
+    let black = TexMan.CheckForTexture("tt_black", TexMan.Type_Any);
+
+    Screen.DrawTexture( black, false, x - MARGIN, y
                       , DTA_DestWidth,  width
                       , DTA_DestHeight, height * 2
                       , DTA_FillColor,  0
                       );
+  }
+
+  private
+  void drawFrame(double x, double y, int width, int height)
+  {
+    int frameX = int(round(x)) - MARGIN;
+    int frameY = int(round(y));
+
     Screen.DrawFrame(frameX, frameY, width, height);
     Screen.DrawFrame(frameX, frameY, width, height * 2);
+  }
+
+  private
+  void drawText(double x, double y, int height, Font fnt, String question, String answer)
+  {
     Screen.DrawText(fnt, Font.CR_WHITE, x, y, question);
     Screen.DrawText(fnt, Font.CR_WHITE, x, y + height, answer);
   }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  const MARGIN = 2;
 
 // private: ////////////////////////////////////////////////////////////////////
 

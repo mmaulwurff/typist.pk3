@@ -46,9 +46,15 @@ class tt_Projector : tt_TargetWidgetSource
     {
       let target    = targets.at(i);
       let targetPos = target.getTarget().getPosition();
-      let position  = makeDrawPos(info, event, targetPos);
-      let widget    = new("tt_TargetWidget").init(target, position);
-      result.add(widget);
+      Vector2 position;
+      bool    isPositionSuccessful;
+      [position, isPositionSuccessful] = makeDrawPos(info, event, targetPos);
+
+      if (isPositionSuccessful)
+      {
+        let widget = new("tt_TargetWidget").init(target, position);
+        result.add(widget);
+      }
     }
 
     return result;
@@ -63,8 +69,12 @@ class tt_Projector : tt_TargetWidgetSource
 
 // private: ////////////////////////////////////////////////////////////////////
 
+  /**
+   * Calculates the screen position (draw position).
+   * @returns screen position and success flag.
+   */
   private ui
-  Vector2 makeDrawPos(PlayerInfo player, RenderEvent event, Vector3 targetPos)
+  Vector2, bool makeDrawPos(PlayerInfo player, RenderEvent event, Vector3 targetPos)
   {
     _projection.CacheResolution();
     _projection.CacheFov(player.fov);
@@ -73,12 +83,17 @@ class tt_Projector : tt_TargetWidgetSource
 
     _projection.ProjectWorldPos(targetPos);
 
+    if(!_projection.IsInFront())
+    {
+      return (0, 0), false;
+    }
+
     tt_Le_Viewport viewport;
     viewport.FromHud();
 
     Vector2 drawPos = viewport.SceneToWindow(_projection.ProjectToNormal());
 
-    return drawPos;
+    return drawPos, true;
   }
 
   private
