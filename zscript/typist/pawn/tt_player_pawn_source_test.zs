@@ -36,13 +36,13 @@ class tt_PlayerPawnSourceTest : tt_Clematis
 
     let mockInfoSource = new("tt_PlayerInfoSourceMock").init();
 
-    mockInfoSource.expect_getInfo(players[consolePlayer]);
+    mockInfoSource.expect_getPlayerInfo(players[consolePlayer]);
 
     let source = new("tt_PlayerPawnSource").init(mockInfoSource);
     let pawn   = source.getPawn();
 
     It(String.Format("Must get main player (%d) actor", consolePlayer), AssertNotNull(pawn));
-    It("Player Info Source is satisfied", Assert(mockInfoSource.isSatisfied_getInfo()));
+    It("Player Info Source is satisfied", Assert(mockInfoSource.isSatisfied_getPlayerInfo()));
 
     EndDescribe();
   }
@@ -58,13 +58,13 @@ class tt_PlayerPawnSourceTest : tt_Clematis
     {
       int playerNumber   = (consolePlayer + i) % MAXPLAYERS;
       let mockInfoSource = new("tt_PlayerInfoSourceMock").init();
-      mockInfoSource.expect_getInfo(players[playerNumber]);
+      mockInfoSource.expect_getPlayerInfo(players[playerNumber]);
 
       let source = new("tt_PlayerPawnSource").init(mockInfoSource);
       let pawn   = source.getPawn();
 
       It(String.Format("Other player (%d) must be null", playerNumber), AssertNull(pawn));
-      It("Player Info Source is satisfied", Assert(mockInfoSource.isSatisfied_getInfo()));
+      It("Player Info Source is satisfied", Assert(mockInfoSource.isSatisfied_getPlayerInfo()));
     }
 
     EndDescribe();

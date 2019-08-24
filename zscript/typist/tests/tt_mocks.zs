@@ -101,27 +101,27 @@ class tt_PlayerInfoSourceMock : tt_PlayerInfoSource
   tt_PlayerInfoSourceMock init() { return self; }
 
   override
-  PlayerInfo getInfo()
+  PlayerInfo getPlayerInfo()
   {
-    ++_mock_getInfo_called;
-    return _mock_getInfo;
+    ++_mock_getPlayerInfo_called;
+    return _mock_getPlayerInfo;
   }
 
-  void expect_getInfo(PlayerInfo value, int expected = 1)
+  void expect_getPlayerInfo(PlayerInfo value, int expected = 1)
   {
-    _mock_getInfo = value;
-    _mock_getInfo_expected = expected;
-    _mock_getInfo_called = 0;
+    _mock_getPlayerInfo = value;
+    _mock_getPlayerInfo_expected = expected;
+    _mock_getPlayerInfo_called = 0;
   }
 
-  bool isSatisfied_getInfo() const
+  bool isSatisfied_getPlayerInfo() const
   {
-    return _mock_getInfo_expected == _mock_getInfo_called;
+    return _mock_getPlayerInfo_expected == _mock_getPlayerInfo_called;
   }
 
-  private PlayerInfo _mock_getInfo;
-  private int _mock_getInfo_expected;
-  private int _mock_getInfo_called;
+  private PlayerInfo _mock_getPlayerInfo;
+  private int _mock_getPlayerInfo_expected;
+  private int _mock_getPlayerInfo_called;
 
 } // class tt_PlayerInfoSourceMock
 

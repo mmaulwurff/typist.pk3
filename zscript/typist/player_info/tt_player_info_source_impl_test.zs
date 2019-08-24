@@ -28,7 +28,7 @@ class tt_PlayerInfoSourceImplTest : tt_Clematis
     for (int playerNumber = 0; playerNumber < MAXPLAYERS; ++playerNumber)
     {
       let source       = new("tt_PlayerInfoSourceImpl").init(playerNumber);
-      let info         = source.getInfo();
+      let info         = source.getPlayerInfo();
 
       It(String.Format("Player info (%d) must be not NULL", playerNumber), Assert(info != NULL));
     }

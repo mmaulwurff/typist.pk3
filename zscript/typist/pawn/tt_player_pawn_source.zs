@@ -35,7 +35,7 @@ class tt_PlayerPawnSource : tt_PawnSource
   override
   PlayerPawn getPawn()
   {
-    PlayerInfo p = _playerInfoSource.getInfo();
+    PlayerInfo p = _playerInfoSource.getPlayerInfo();
     if (p == NULL) { return NULL; }
 
     let pawn = p.mo;

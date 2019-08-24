@@ -32,7 +32,7 @@ class tt_PlayerInfoSourceImpl : tt_PlayerInfoSource
 // public: // tt_PlayerInfoSource //////////////////////////////////////////////
 
   override
-  PlayerInfo getInfo()
+  PlayerInfo getPlayerInfo()
   {
     return players[_playerNumber];
   }

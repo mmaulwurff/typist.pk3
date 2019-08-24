@@ -25,18 +25,19 @@ class tt_FirerImplTest : tt_Clematis
   {
     Describe("Checking FirerImpl");
 
-    let pawnSource = new("tt_PawnSourceMock").init();
-    let firerImpl  = new("tt_FirerImpl").init(pawnSource);
-    let pawn       = players[consolePlayer].mo;
+    let        playerInfoSource = new("tt_PlayerInfoSourceMock").init();
+    let        firerImpl        = new("tt_FirerImpl").init(playerInfoSource);
+    PlayerInfo info             = players[consolePlayer];
 
-    pawnSource.expect_getPawn(pawn);
+    playerInfoSource.expect_getPlayerInfo(info);
 
+    let pawn     = info.mo;
     int nBullets = pawn.CountInv("Clip");
     It("Must be 50 bullets before firing", AssertEval(nBullets, "==", 50));
 
     fire(firerImpl);
 
-    It("Pawn Source must be satisfied", Assert(pawnSource.isSatisfied_getPawn()));
+    It("PlayerInfo Source must be satisfied", Assert(playerInfoSource.isSatisfied_getPlayerInfo()));
 
     EndDescribe();
   }

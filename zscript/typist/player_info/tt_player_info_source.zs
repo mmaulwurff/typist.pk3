@@ -23,7 +23,7 @@ class tt_PlayerInfoSource abstract
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  PlayerInfo getInfo()
+  PlayerInfo getPlayerInfo()
   {
     Console.Printf("zscript/typist/player_info/tt_player_info_source.zs:28: T: override this!");
     return NULL;

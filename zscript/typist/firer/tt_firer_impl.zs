@@ -22,9 +22,9 @@ class tt_FirerImpl : tt_Firer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_FirerImpl init(tt_PawnSource pawnSource)
+  tt_FirerImpl init(tt_PlayerInfoSource playerInfoSource)
   {
-    _pawnSource = pawnSource;
+    _playerInfoSource = playerInfoSource;
 
     return self;
   }
@@ -34,13 +34,30 @@ class tt_FirerImpl : tt_Firer
   override
   void fire()
   {
-    let   pawn = _pawnSource.getPawn();
+    let   playerInfo = _playerInfoSource.getPlayerInfo();
     State stat = NULL;
-    pawn.FireWeapon(stat);
+
+    if (isWeaponReady(playerInfo))
+    {
+      let pawn = playerInfo.mo;
+      pawn.FireWeapon(stat);
+    }
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_PawnSource _pawnSource;
+  private static
+  bool isWeaponReady(PlayerInfo player)
+  {
+    bool isReady = (player.WeaponState & WF_WEAPONREADY)
+      || (player.WeaponState & WF_WEAPONREADYALT)
+      || player.attackDown;
+
+    return isReady;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_PlayerInfoSource _playerInfoSource;
 
 } // class tt_FirerImpl
