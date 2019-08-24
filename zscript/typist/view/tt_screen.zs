@@ -38,20 +38,40 @@ class tt_Screen : tt_View
   {
     let    answer  = _answerSource.getAnswer().getString();
     let    widgets = _targetWidgetSource.getWidgets(event);
-    double height  = BigFont.GetHeight();
 
     uint nWidgets = widgets.size();
     for (uint i = 0; i < nWidgets; ++i)
     {
-      let    widget   = widgets.at(i);
-      let    question = widget.target().getQuestion().getDescription();
-      let    position = widget.position();
-      double x        = position.x;
-      double y        = position.y;
-
-      Screen.DrawText(NewSmallFont, Font.CR_WHITE, x, y, question);
-      Screen.DrawText(NewSmallFont, Font.CR_BLUE,  x, y + height, answer);
+      let widget = widgets.at(i);
+      drawWidget(widget, answer);
     }
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private
+  void drawWidget(tt_TargetWidget widget, String answer)
+  {
+    Font   fnt      = NewSmallFont;
+    let    question = widget.target().getQuestion().getDescription();
+    let    position = widget.position();
+    double x        = position.x;
+    double y        = position.y;
+    int    height   = fnt.GetHeight();
+    int    width    = max(fnt.StringWidth(question), fnt.StringWidth(answer)) + 4;
+    let    black    = TexMan.CheckForTexture("tt_black", TexMan.Type_Any);
+    int    frameX   = int(round(x)) - 2;
+    int    frameY   = int(round(y));
+
+    Screen.DrawTexture( black, false, x - 2, y
+                      , DTA_DestWidth,  width
+                      , DTA_DestHeight, height * 2
+                      , DTA_FillColor,  0
+                      );
+    Screen.DrawFrame(frameX, frameY, width, height);
+    Screen.DrawFrame(frameX, frameY, width, height * 2);
+    Screen.DrawText(fnt, Font.CR_WHITE, x, y, question);
+    Screen.DrawText(fnt, Font.CR_WHITE, x, y + height, answer);
   }
 
 // private: ////////////////////////////////////////////////////////////////////

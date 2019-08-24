@@ -1,6 +1,4 @@
 personal_ws-1.1 en 60 
-weaponready
-weaponreadyalt
 aamer
 activatable
 affero
@@ -30,6 +28,7 @@ damager
 deproject
 deprojection
 deprojections
+dest
 dfiles
 distutils
 doesn
@@ -108,6 +107,7 @@ pylint
 radeon
 rdparty
 readme
+rect
 relicensing
 renderer
 rendermode
@@ -161,6 +161,8 @@ viewport
 viewpos
 viewroll
 viewtopic
+weaponready
+weaponreadyalt
 wget
 whitespace
 wipo
