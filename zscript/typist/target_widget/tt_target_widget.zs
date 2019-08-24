@@ -24,62 +24,34 @@ class tt_TargetWidget
 
   tt_TargetWidget init(tt_KnownTarget target, Vector2 position)
   {
-    _target          = target;
-    _alpha           = 1.0;
-    _startPosition   = position;
-    _desiredPosition = _startPosition;
-    _stepsDone       = 0;
+    _target   = target;
+    _position = position;
 
     return self;
   }
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_KnownTarget target() const { return _target; }
-
-  double alpha() const { return _alpha; }
-
-  Vector2 position() const
+  tt_KnownTarget getTarget() const
   {
-    Vector2 step     = (_desiredPosition - _startPosition) / N_STEPS;
-    Vector2 progress = step * _stepsDone;
-    return _startPosition + progress;
+    return _target;
+  }
+
+  Vector2 getPosition() const
+  {
+    return _position;
   }
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  void setAlpha(double alpha) { _alpha = alpha; }
-
-  /** sets the position of the widget.
-   * @attention the position returned by position() may be not the same as
-   * the position after this function call.
-   *
-   * position() will come closer to this position with every stepPosition()
-   * call.
-   */
   void setPosition(Vector2 position)
   {
-    _desiredPosition = position;
-    _stepsDone = 0;
+    _position = position;
   }
-
-// public: /////////////////////////////////////////////////////////////////////
-
-  void stepPosition()
-  {
-    ++_stepsDone;
-  }
-
-// public: /////////////////////////////////////////////////////////////////////
-
-  const N_STEPS = 10;
 
 // private:
 
   private tt_KnownTarget _target;
-  private double         _alpha;
-  private Vector2        _startPosition;
-  private Vector2        _desiredPosition;
-  private int            _stepsDone;
+  private Vector2        _position;
 
 } // class tt_TargetWidget

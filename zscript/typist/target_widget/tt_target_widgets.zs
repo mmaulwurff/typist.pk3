@@ -32,6 +32,17 @@ class tt_TargetWidgets
   // Returns a number of targets in this list.
   uint size() const { return _widgets.size(); }
 
+  tt_TargetWidget find(tt_TargetID id) const
+  {
+    uint nWidgets = size();
+    for (uint i = 0; i < nWidgets; ++i)
+    {
+      let widget = _widgets[i];
+      if (widget.getTarget().getTarget().getId().isEqual(id)) { return widget; }
+    }
+    return NULL;
+  }
+
 // public: /////////////////////////////////////////////////////////////////////
 
   // Adds a target to this list.

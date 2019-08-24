@@ -53,8 +53,8 @@ class tt_Screen : tt_View
   void drawWidget(tt_TargetWidget widget, String answer)
   {
     Font   fnt      = NewSmallFont;
-    let    question = widget.target().getQuestion().getDescription();
-    let    position = widget.position();
+    let    question = widget.getTarget().getQuestion().getDescription();
+    let    position = widget.getPosition();
     double x        = position.x;
     double y        = position.y;
     int    height   = fnt.GetHeight();
