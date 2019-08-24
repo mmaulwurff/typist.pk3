@@ -27,6 +27,7 @@ class tt_PlayerInputTest : tt_Clematis
 
     testPlayerInputCheckInput();
     testPlayerInputCheckReset();
+    testBackspace();
 
     EndDescribe();
   }
@@ -64,6 +65,27 @@ class tt_PlayerInputTest : tt_Clematis
 
     It("Second input must be an answer", Assert(input2 == answerString));
   }
+
+  private
+  void testBackspace()
+  {
+    let playerInput = new("tt_PlayerInput").init();
+    let backspace   = new("tt_Character").init(8, false);
+    let letterA     = new("tt_Character").init(97, false);
+
+    //playerInput.reset();
+    playerInput.processKey(backspace);
+    playerInput.processKey(letterA);
+    playerInput.processKey(backspace);
+    playerInput.processKey(letterA);
+
+    let answer       = playerInput.getAnswer();
+    let answerString = answer.getString();
+
+    It("Input after backspace must be valid", Assert(answerString == "a"));
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
 
   private
   void throwStringIntoInput(tt_PlayerInput input, String str)
