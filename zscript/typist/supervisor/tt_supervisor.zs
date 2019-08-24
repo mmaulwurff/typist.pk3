@@ -42,8 +42,8 @@ class tt_Supervisor
     let firer              = new("tt_FirerImpl"            ).init(playerInfoSource);
     let damager            = new("tt_Gunner"               ).init(targetOriginSource, aimer, firer);
 
-    let targetWidgetSource = new("tt_TargetWidgetRegistry").init(targetRegistry, playerInfoSource);
-    let view               = new("tt_Screen"              ).init(targetWidgetSource, playerInput);
+    let targetWidgetSource = new("tt_Projector").init(targetRegistry, playerInfoSource);
+    let view               = new("tt_Screen"   ).init(targetWidgetSource, playerInput);
 
     _playerInput        = playerInput;
     _deathReporter      = deathReporter;

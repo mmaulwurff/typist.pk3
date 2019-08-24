@@ -19,14 +19,12 @@
  *
  * @attention This class has no tests. Modifications must be checked manually.
  */
-class tt_TargetWidgetRegistry : tt_TargetWidgetSource
+class tt_Projector : tt_TargetWidgetSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_TargetWidgetRegistry init( tt_KnownTargetSource knownTargetSource
-                              , tt_PlayerInfoSource  playerInfoSource
-                              )
+  tt_Projector init(tt_KnownTargetSource knownTargetSource, tt_PlayerInfoSource playerInfoSource)
   {
     _knownTargetSource = knownTargetSource;
     _playerInfoSource  = playerInfoSource;
@@ -128,4 +126,4 @@ class tt_TargetWidgetRegistry : tt_TargetWidgetSource
   private transient bool   _isPrepared;
   private transient CVar   _cvarRenderer;
 
-} // class tt_TargetWidgetRegistry
+} // class tt_Projector
