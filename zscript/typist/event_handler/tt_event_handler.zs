@@ -52,9 +52,11 @@ class tt_EventHandler : EventHandler
   override
   void PlayerEntered(PlayerEvent event)
   {
-    if (event.PlayerNumber != consolePlayer) { return; }
+    int playerNumber = event.PlayerNumber;
+    if (playerNumber != consolePlayer) { return; }
 
-    _supervisor = new("tt_Supervisor").init(event.PlayerNumber);
+    _supervisor = new("tt_Supervisor").init(playerNumber);
+    players[playerNumber].mo.GiveInventory("tt_Buddha", 1);
   }
 
   override

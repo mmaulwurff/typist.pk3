@@ -21,6 +21,7 @@ version 4.1.3
 #include "zscript/typist/answer/tt_answer.zs"
 #include "zscript/typist/answer/tt_player_input_test.zs"
 #include "zscript/typist/answer/tt_player_input.zs"
+#include "zscript/typist/buddha/tt_buddha.zs"
 #include "zscript/typist/character/tt_character_test.zs"
 #include "zscript/typist/character/tt_character.zs"
 #include "zscript/typist/damager/tt_damager.zs"

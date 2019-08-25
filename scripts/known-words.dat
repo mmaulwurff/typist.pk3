@@ -37,6 +37,7 @@ drdteam
 elif
 enum
 eval
+ffffffd
 filename
 fluidsynth
 forw
@@ -79,7 +80,6 @@ maxplayers
 medikit
 merchantability
 mkdir
-mkfifo
 mmaulwurff
 msys
 multi
@@ -97,6 +97,7 @@ pathlib
 pixelstretch
 pkill
 playloop
+powerup
 preload
 preprocess
 preprocessing
@@ -150,6 +151,7 @@ todo
 tokenize
 uint
 undef
+undroppable
 unfilter
 unmodded
 util
