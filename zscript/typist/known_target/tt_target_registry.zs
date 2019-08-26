@@ -22,9 +22,9 @@ class tt_TargetRegistry : tt_KnownTargetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_TargetRegistry init( tt_TargetSource         targetSource
-                        , tt_QuestionSource       questionSource
-                        , tt_DisabledTargetSource disabledTargetSource
+  tt_TargetRegistry init( tt_TargetSource   targetSource
+                        , tt_QuestionSource questionSource
+                        , tt_TargetSource   disabledTargetSource
                         )
   {
     _targetSource         = targetSource;
@@ -75,16 +75,11 @@ class tt_TargetRegistry : tt_KnownTargetSource
     for (uint i = 0; i < nTargets; ++i)
     {
       let target   = targets.at(i);
-      let existing = _registry.findTarget(target.getId());
+      let existing = _registry.findTarget(target);
 
       if (existing == NULL)
       {
         newKnownTargets.add(makeKnownTarget(target));
-      }
-      else
-      {
-        let t = existing.getTarget();
-        t.setPosition(target.getPosition());
       }
     }
 
@@ -92,7 +87,7 @@ class tt_TargetRegistry : tt_KnownTargetSource
   }
 
   private
-  void subtract(tt_DisabledTargets targets)
+  void subtract(tt_Targets targets)
   {
     // Given that tt_KnownTargets.remove() is at least O(n), this function is
     // at least O(n^2).
@@ -101,7 +96,7 @@ class tt_TargetRegistry : tt_KnownTargetSource
     uint nTargets = targets.size();
     for (uint i = 0; i < nTargets; ++i)
     {
-      _registry.remove(targets.at(i).id());
+      _registry.remove(targets.at(i));
     }
   }
 
@@ -116,9 +111,9 @@ class tt_TargetRegistry : tt_KnownTargetSource
 
 // private: // dependencies ////////////////////////////////////////////////////
 
-  private tt_TargetSource         _targetSource;
-  private tt_QuestionSource       _questionSource;
-  private tt_DisabledTargetSource _disabledTargetSource;
+  private tt_TargetSource   _targetSource;
+  private tt_QuestionSource _questionSource;
+  private tt_TargetSource   _disabledTargetSource;
 
 // private: ////////////////////////////////////////////////////////////////////
 

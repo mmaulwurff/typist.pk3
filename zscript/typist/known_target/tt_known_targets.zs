@@ -27,15 +27,24 @@ class tt_KnownTargets
 // public: /////////////////////////////////////////////////////////////////////
 
   // Returns a target in this list.
-  tt_KnownTarget at(uint index) const { return _targets[index]; }
+  tt_KnownTarget at(uint index) const
+  {
+    return _targets[index];
+  }
 
   // Returns a number of targets in this list.
-  uint size() const { return _targets.size(); }
+  uint size() const
+  {
+    return _targets.size();
+  }
 
   // Returns true if this target list contains a target with the specified id.
-  bool contains(tt_TargetID target) const { return find(target) != size(); }
+  bool contains(tt_Target target) const
+  {
+    return (find(target) != size());
+  }
 
-  tt_KnownTarget findTarget(tt_TargetID target) const
+  tt_KnownTarget findTarget(tt_Target target) const
   {
     uint index = find(target);
     return (index == size()) ? NULL : at(index);
@@ -44,7 +53,10 @@ class tt_KnownTargets
 // public: /////////////////////////////////////////////////////////////////////
 
   // Adds a target to this list.
-  void add(tt_KnownTarget target) { _targets.push(target); }
+  void add(tt_KnownTarget target)
+  {
+    _targets.push(target);
+  }
 
   void addMany(tt_KnownTargets targets)
   {
@@ -57,7 +69,7 @@ class tt_KnownTargets
 
   // Removes a target from the list.
   // If the target is not in the list, does nothing.
-  void remove(tt_TargetID target)
+  void remove(tt_Target target)
   {
     uint index = find(target);
     if (index != size()) { _targets.Delete(index); }
@@ -69,12 +81,12 @@ class tt_KnownTargets
    * @returns index on success, the total number of targets on failure.
    */
   private
-  uint find(tt_TargetID target) const
+  uint find(tt_Target target) const
   {
     uint nTargets = size();
     for (uint i = 0; i < nTargets; ++i)
     {
-      if (_targets[i].getTarget().getId().isEqual(target)) { return i; }
+      if (_targets[i].getTarget().isEqual(target)) { return i; }
     }
     return nTargets;
   }

@@ -47,25 +47,20 @@ class tt_TargetRegistryTest : tt_Clematis
   {
     targetRegistrySetUp("Checking adding to Target Registry");
 
-    let target1 = new("tt_TargetMock").init();
-    let target2 = new("tt_TargetMock").init();
-    target1.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
-    target2.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
-
+    let target1 = new("tt_Target").init(Spawn("Demon", (0, 0, 0)));
+    let target2 = new("tt_Target").init(Spawn("Demon", (0, 0, 0)));
     let targets = new("tt_Targets").init();
     targets.add(target1);
     targets.add(target2);
 
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets").init());
+    _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
     _questionSource.expect_getQuestion(new("tt_QuestionMock").init(), 2);
 
     _targetRegistry.update();
     let knownTargets = _targetRegistry.getTargets();
 
     It("Is two targets", AssertEval(knownTargets.size(), "==", 2));
-    It("Target1 ID", Assert(target1.isSatisfied_getId()));
-    It("Target2 ID", Assert(target2.isSatisfied_getId()));
 
     targetRegistryTearDown();
   }
@@ -76,40 +71,32 @@ class tt_TargetRegistryTest : tt_Clematis
     targetRegistrySetUp("Checking adding an existing target to Target Registry");
 
     // First, add a single target.
-    let target = new("tt_TargetMock").init();
-    target.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
-
+    let demon1  = Spawn("Demon", (0, 0, 0));
+    let target  = new("tt_Target").init(demon1);
     let targets = new("tt_Targets").init();
     targets.add(target);
 
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets").init());
-    _questionSource.expect_getQuestion(new("tt_QuestionMock").init(), 1);
+    _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
+    _questionSource.expect_getQuestion(new("tt_QuestionMock").init());
 
     _targetRegistry.update();
     let knownTargets = _targetRegistry.getTargets();
 
-    It("Is one targets", AssertEval(knownTargets.size(), "==", 1));
-    It("Target ID", Assert(target.isSatisfied_getId()));
+    It("Is one target", AssertEval(knownTargets.size(), "==", 1));
 
     assertSourcesSatisfied();
 
     // Second, add the same target again. Only a single target must remain
     // registered.
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets").init());
+    _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
     _questionSource.expect_getQuestion(NULL, 0);
-    target.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER), 2);
 
     _targetRegistry.update();
     knownTargets = _targetRegistry.getTargets();
-    let target1 = new("tt_TargetMock").init();
-    let target2 = new("tt_TargetMock").init();
-    target1.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
-    target2.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
 
-    It("Is one targets", AssertEval(knownTargets.size(), "==", 1));
-    It("Target ID", Assert(target.isSatisfied_getId()));
+    It("Is one target", AssertEval(knownTargets.size(), "==", 1));
 
     targetRegistryTearDown();
   }
@@ -120,32 +107,28 @@ class tt_TargetRegistryTest : tt_Clematis
     targetRegistrySetUp("Checking removing a target from Target Registry");
 
     // First, add two targets.
-    let target1 = new("tt_TargetMock").init();
-    let target2 = new("tt_TargetMock").init();
-    target1.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
-    target2.expect_getId(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER + 1));
-
+    let demon1  = Spawn("Demon", (0, 0, 0));
+    let demon2  = Spawn("Demon", (0, 0, 0));
+    let target1 = new("tt_Target").init(demon1);
+    let target2 = new("tt_Target").init(demon2);
     let targets = new("tt_Targets").init();
     targets.add(target1);
     targets.add(target2);
 
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_DisabledTargets").init());
+    _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
     _questionSource.expect_getQuestion(new("tt_QuestionMock").init(), 2);
 
     _targetRegistry.update();
     let knownTargets = _targetRegistry.getTargets();
 
     It("Is two targets", AssertEval(knownTargets.size(), "==", 2));
-    It("Target1 ID", Assert(target1.isSatisfied_getId()));
-    It("Target2 ID", Assert(target2.isSatisfied_getId()));
 
     assertSourcesSatisfied();
 
     // Second, remove one target.
-    let disabledTarget =
-      new("tt_DisabledTarget").init(tt_TargetID.fromNumber(tt_TargetID.TARGET_USER));
-    let disabledTargets = new("tt_DisabledTargets").init();
+    let disabledTarget  = new("tt_Target").init(demon1);
+    let disabledTargets = new("tt_Targets").init();
     disabledTargets.add(disabledTarget);
 
     _targetSource.expect_getTargets(new("tt_Targets").init());
@@ -169,7 +152,7 @@ class tt_TargetRegistryTest : tt_Clematis
 
     _targetSource         = new("tt_TargetSourceMock").init();
     _questionSource       = new("tt_QuestionSourceMock").init();
-    _disabledTargetSource = new("tt_DisabledTargetSourceMock").init();
+    _disabledTargetSource = new("tt_TargetSourceMock").init();
 
     _targetRegistry = new("tt_TargetRegistry").init( _targetSource
                                                    , _questionSource
@@ -203,9 +186,9 @@ class tt_TargetRegistryTest : tt_Clematis
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_TargetSourceMock         _targetSource;
-  private tt_QuestionSourceMock       _questionSource;
-  private tt_DisabledTargetSourceMock _disabledTargetSource;
-  private tt_KnownTargetSource        _targetRegistry;
+  private tt_TargetSourceMock   _targetSource;
+  private tt_QuestionSourceMock _questionSource;
+  private tt_TargetSourceMock   _disabledTargetSource;
+  private tt_KnownTargetSource  _targetRegistry;
 
 } // class tt_TargetRegistryTest

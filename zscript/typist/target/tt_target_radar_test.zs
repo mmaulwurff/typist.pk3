@@ -50,8 +50,8 @@ class tt_TargetRadarTest : tt_Clematis
     uint nActors = actors.size();
     for (uint i = 0; i < nActors; ++i)
     {
-      let id = tt_TargetID.fromActor(actors[i]);
-      It(String.Format("Actor %d is present in list", i), Assert(targets.contains(id)));
+      let a = new("tt_Target").init(actors[i]);
+      It(String.Format("Actor %d is present in list", i), Assert(targets.contains(a)));
     }
 
     targetRadarTestTearDown();
@@ -64,11 +64,11 @@ class tt_TargetRadarTest : tt_Clematis
 
     _targetRadarTestOriginSource.expect_getOrigin(new("tt_Origin").init((0, 0, 0)));
 
-    let distantActor = Spawn("DoomImp", (1000, 0, 0));
-    let targets      = _targetRadarTestTargetRadar.getTargets();
-    let distantID    = tt_TargetID.fromActor(distantActor);
+    let distantActor  = Spawn("DoomImp", (1000, 0, 0));
+    let distantTarget = new("tt_Target").init(distantActor);
+    let targets       = _targetRadarTestTargetRadar.getTargets();
 
-    It("Distant actor is not in list", AssertFalse(targets.contains(distantID)));
+    It("Distant actor is not in list", AssertFalse(targets.contains(distantTarget)));
 
     targetRadarTestTearDown();
   }
@@ -80,11 +80,11 @@ class tt_TargetRadarTest : tt_Clematis
 
     _targetRadarTestOriginSource.expect_getOrigin(new("tt_Origin").init((0, 0, 0)));
 
-    let nonLiving   = Spawn("Medikit", (1, 0, 0));
-    let targets     = _targetRadarTestTargetRadar.getTargets();
-    let nonLivingID = tt_TargetID.fromActor(nonLiving);
+    let nonLiving       = Spawn("Medikit", (1, 0, 0));
+    let targets         = _targetRadarTestTargetRadar.getTargets();
+    let nonLivingTarget = new("tt_Target").init(nonLiving);
 
-    It("Non-living actor is not in list", AssertFalse(targets.contains(nonLivingID)));
+    It("Non-living actor is not in list", AssertFalse(targets.contains(nonLivingTarget)));
 
     targetRadarTestTearDown();
   }
@@ -96,12 +96,12 @@ class tt_TargetRadarTest : tt_Clematis
 
     _targetRadarTestOriginSource.expect_getOrigin(new("tt_Origin").init((0, 0, 0)));
 
-    let deadActor   = Spawn("DoomImp", (1, 0, 0));
+    let deadActor  = Spawn("DoomImp", (1, 0, 0));
     Kill(deadActor);
-    let targets     = _targetRadarTestTargetRadar.getTargets();
-    let deadActorID = tt_TargetID.fromActor(deadActor);
+    let targets    = _targetRadarTestTargetRadar.getTargets();
+    let deadTarget = new("tt_Target").init(deadActor);
 
-    It("Dead actor is not in list", AssertFalse(targets.contains(deadActorID)));
+    It("Dead actor is not in list", AssertFalse(targets.contains(deadTarget)));
 
     targetRadarTestTearDown();
   }

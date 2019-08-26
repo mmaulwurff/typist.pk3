@@ -92,7 +92,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     setUp("Checking Question-Answer Matcher: null answer");
 
     let knownTargets = new("tt_KnownTargets").init();
-    let target       = new("tt_TargetMock"  ).init();
+    let target       = new("tt_Target"      ).init(NULL);
     let question     = new("tt_QuestionMock").init();
     let knownTarget  = new("tt_KnownTarget" ).init(target, question);
     knownTargets.add(knownTarget);
@@ -113,13 +113,12 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     setUp("Checking Question-Answer Matcher: target and answer match");
 
     let knownTargets = new("tt_KnownTargets").init();
-    let target       = new("tt_TargetMock"  ).init();
+    let target       = new("tt_Target"      ).init(Spawn("Demon", (0, 0, 0)));
     let question     = new("tt_QuestionMock").init();
     let knownTarget  = new("tt_KnownTarget" ).init(target, question);
     knownTargets.add(knownTarget);
     _knownTargetSource.expect_getTargets(knownTargets);
     question.expect_isRight(true);
-    target.expect_getPosition((0, 0, 0));
 
     let answer = new("tt_Answer").init("abc");
     _answerSource.expect_getAnswer(answer);
@@ -128,7 +127,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     _matcher.update();
     let origin = _matcher.getOrigin();
 
-    It("Target is satisfied"   , Assert(target.isSatisfied_getPosition()));
     It("Question is satisfied" , Assert(question.isSatisfied_isRight()));
     It("Match: valid origin"   , AssertNotNull(origin));
 
@@ -141,7 +139,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     setUp("Checking Question-Answer Matcher: no target and answer match");
 
     let knownTargets = new("tt_KnownTargets").init();
-    let target       = new("tt_TargetMock"  ).init();
+    let target       = new("tt_Target"      ).init(NULL);
     let question     = new("tt_QuestionMock").init();
     let knownTarget  = new("tt_KnownTarget" ).init(target, question);
     knownTargets.add(knownTarget);
@@ -154,7 +152,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     _matcher.update();
     let origin = _matcher.getOrigin();
 
-    It("Target is satisfied"   , Assert(target.isSatisfied_getPosition()));
     It("Question is satisfied" , Assert(question.isSatisfied_isRight()));
     It("No match: NULL origin" , AssertNull(origin));
 

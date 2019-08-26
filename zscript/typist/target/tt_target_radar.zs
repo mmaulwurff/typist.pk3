@@ -45,7 +45,7 @@ class tt_TargetRadar : tt_TargetSource
     {
       if (!isInRange(a.pos, origin) || !isSuitableForTargeting(a)) { continue; }
 
-      result.add(new("tt_ActorTarget").init(a));
+      result.add(new("tt_Target").init(a));
     }
 
     return result;

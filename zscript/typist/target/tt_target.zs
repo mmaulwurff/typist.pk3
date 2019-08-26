@@ -17,33 +17,36 @@
 
 /** This class represents an attack target.
  */
-class tt_Target abstract
+class tt_Target
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  // Get position in game space of this target.
-  virtual
-  Vector3 getPosition() const
+  tt_Target init(Actor a)
   {
-    Console.Printf("zscript/typist/target/tt_target.zs:29: T: override this!");
-    return (0, 0, 0);
-  }
+    _actor = a;
 
-  // Get an identifier of this target.
-  virtual
-  tt_TargetID getId() const
-  {
-    Console.Printf("zscript/typist/target/tt_target.zs:37: T: override this!");
-    return NULL;
+    return self;
   }
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  void setPosition(Vector3 position)
+  // Get position in game space of this target.
+  Vector3 getPosition() const
   {
-    Console.Printf("zscript/typist/target/tt_target.zs:46: T: override this!");
+    Vector3 position = _actor.pos;
+    position.z += _actor.height / 2;
+
+    return position;
   }
+
+  bool isEqual(tt_Target other) const
+  {
+    return other._actor == _actor;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private Actor _actor;
 
 } // class tt_Target

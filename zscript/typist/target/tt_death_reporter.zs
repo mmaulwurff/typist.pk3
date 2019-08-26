@@ -15,41 +15,39 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
+/** This class implements tt_TargetSource by collecting reports of
+ * dead things as a list of DisabledTargets.
  */
-class tt_ActorTarget : tt_Target
+class tt_DeathReporter : tt_TargetSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Target init(Actor a)
+  tt_DeathReporter init()
   {
-    _pos    = a.pos;
-    _pos.z += a.height / 2;
-    _id     = tt_TargetID.fromActor(a);
+    _targets = new("tt_Targets").init();
 
     return self;
   }
 
-// public: // tt_Target ////////////////////////////////////////////////////////
-
-  override
-  Vector3 getPosition() const { return _pos; }
-
-  override
-  tt_TargetID getId() const { return _id; }
-
-// public: // tt_Target ////////////////////////////////////////////////////////
-
-  override
-  void setPosition(Vector3 position)
+  void reportDead(Actor thing)
   {
-    _pos = position;
+    let newDisabled = new("tt_Target").init(thing);
+    _targets.add(newDisabled);
+  }
+
+// public: // tt_DisabledTargetSource //////////////////////////////////////////
+
+  override
+  tt_Targets getTargets()
+  {
+    let result = _targets;
+    _targets = new("tt_Targets").init();
+    return result;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private Vector3     _pos;
-  private tt_TargetID _id;
+  private tt_Targets _targets;
 
-} // class tt_ActorTarget
+} // class tt_DeathReporter

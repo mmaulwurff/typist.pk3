@@ -43,8 +43,8 @@ class tt_TargetWidgetRegistry : tt_TargetWidgetSource
     for (uint i = 0; i < nWidgets; ++i)
     {
       let widget   = widgets.at(i);
-      let id       = widget.getTarget().getTarget().getId();
-      let existing = _registry.find(id);
+      let target   = widget.getTarget().getTarget();
+      let existing = _registry.find(target);
 
       if (existing == NULL)
       {
