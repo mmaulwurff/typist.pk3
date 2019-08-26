@@ -58,6 +58,8 @@ class tt_TargetRegistry : tt_KnownTargetSource
 
     let disabledTargets = _disabledTargetSource.getTargets();
     subtract(disabledTargets);
+
+    pruneNulls();
   }
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -107,6 +109,26 @@ class tt_TargetRegistry : tt_KnownTargetSource
     let newKnownTarget = new("tt_KnownTarget").init(target, question);
 
     return newKnownTarget;
+  }
+
+  private
+  void pruneNulls()
+  {
+    let pruned = new("tt_KnownTargets").init();
+
+    uint nTargets = _registry.size();
+    for (uint i = 0; i < nTargets; ++i)
+    {
+      let target      = _registry.at(i).getTarget();
+      let targetActor = target.getActor();
+
+      if (targetActor != NULL)
+      {
+        pruned.add(_registry.at(i));
+      }
+    }
+
+    _registry = pruned;
   }
 
 // private: // dependencies ////////////////////////////////////////////////////

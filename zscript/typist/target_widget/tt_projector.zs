@@ -44,8 +44,15 @@ class tt_Projector : tt_TargetWidgetSource
     uint nTargets = targets.size();
     for (uint i = 0; i < nTargets; ++i)
     {
-      let target    = targets.at(i);
-      let targetPos = target.getTarget().getPosition();
+      let target = targets.at(i);
+
+      let targetActor = target.getTarget().getActor();
+      if (targetActor == NULL)
+      {
+        continue;
+      }
+
+      let     targetPos = target.getTarget().getPosition();
       Vector2 position;
       bool    isPositionSuccessful;
       [position, isPositionSuccessful] = makeDrawPos(info, event, targetPos);

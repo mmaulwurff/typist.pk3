@@ -34,7 +34,7 @@ class tt_TargetRadarTest : tt_Clematis
   private
   void checkActorsAround()
   {
-    targetRadarTestSetUp("Checking Target Radar: actors around");
+    setUp("Checking Target Radar: actors around");
 
     Array<Actor> actors;
     actors.push(Spawn("DoomImp", ( 5,  0,  0)));
@@ -54,13 +54,13 @@ class tt_TargetRadarTest : tt_Clematis
       It(String.Format("Actor %d is present in list", i), Assert(targets.contains(a)));
     }
 
-    targetRadarTestTearDown();
+    tearDown();
   }
 
   private
   void checkDistantActor()
   {
-    targetRadarTestSetUp("Checking Target Radar: distant actor");
+    setUp("Checking Target Radar: distant actor");
 
     _targetRadarTestOriginSource.expect_getOrigin(new("tt_Origin").init((0, 0, 0)));
 
@@ -70,13 +70,13 @@ class tt_TargetRadarTest : tt_Clematis
 
     It("Distant actor is not in list", AssertFalse(targets.contains(distantTarget)));
 
-    targetRadarTestTearDown();
+    tearDown();
   }
 
   private
   void checkNonLivingActor()
   {
-    targetRadarTestSetUp("Checking Target Radar: non-living actor");
+    setUp("Checking Target Radar: non-living actor");
 
     _targetRadarTestOriginSource.expect_getOrigin(new("tt_Origin").init((0, 0, 0)));
 
@@ -86,13 +86,13 @@ class tt_TargetRadarTest : tt_Clematis
 
     It("Non-living actor is not in list", AssertFalse(targets.contains(nonLivingTarget)));
 
-    targetRadarTestTearDown();
+    tearDown();
   }
 
   private
   void checkDeadActor()
   {
-    targetRadarTestSetUp("Checking Target Radar: dead actor");
+    setUp("Checking Target Radar: dead actor");
 
     _targetRadarTestOriginSource.expect_getOrigin(new("tt_Origin").init((0, 0, 0)));
 
@@ -103,13 +103,13 @@ class tt_TargetRadarTest : tt_Clematis
 
     It("Dead actor is not in list", AssertFalse(targets.contains(deadTarget)));
 
-    targetRadarTestTearDown();
+    tearDown();
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private
-  void targetRadarTestSetUp(String description)
+  void setUp(String description)
   {
     Describe(description);
 
@@ -118,7 +118,7 @@ class tt_TargetRadarTest : tt_Clematis
   }
 
   private
-  void targetRadarTestTearDown()
+  void tearDown()
   {
     It("Origin Source is satisfied", Assert(_targetRadarTestOriginSource.isSatisfied_getOrigin()));
 
