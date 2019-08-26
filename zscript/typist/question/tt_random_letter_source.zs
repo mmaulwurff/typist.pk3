@@ -41,7 +41,7 @@ class tt_RandomLetterSource : tt_QuestionSource
 
     for (int i = 0; i < stringLength; ++i)
     {
-      bool isCapital = Random(0, 1);
+      bool isCapital = false; // Random(0, 1);
 
       //  65 - 'A'
       //  90 - 'Z'
