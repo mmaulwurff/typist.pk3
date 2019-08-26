@@ -35,7 +35,7 @@ class tt_Supervisor
     let questionSource   = new("tt_RandomLetterSource"  ).init(difficultySource);
 
     let targetRegistry = new("tt_TargetRegistry").init(targetSource, questionSource, deathReporter);
-    let modeSource     = new("tt_AutoModeSource").init(targetRegistry);
+    let modeSource     = new("tt_AutoModeSource").init(targetRegistry, pawnSource);
 
     let targetOriginSource = new("tt_QuestionAnswerMatcher").init(targetRegistry, playerInput);
     let aimer              = new("tt_AimerImpl"            ).init(targetOriginSource, pawnSource);

@@ -25,8 +25,9 @@ class tt_AutoModeSourceTest : tt_Clematis
   {
     Describe("Checking Auto Mode Source");
 
-    testAutoModeSourceNoTargets();
-    testAutoModeSourceTargetsArePresent();
+    checkNoTargets();
+    checkTargetsAreVisible();
+    checkTargetsAreInvisible();
 
     EndDescribe();
   }
@@ -34,29 +35,85 @@ class tt_AutoModeSourceTest : tt_Clematis
 // private: ////////////////////////////////////////////////////////////////////
 
   private
-  void testAutoModeSourceNoTargets()
+  void checkNoTargets()
   {
-    let knownTargetSource = new("tt_KnownTargetSourceMock").init();
-    let autoModeSource    = new("tt_AutoModeSource").init(knownTargetSource);
+    setUp();
 
-    knownTargetSource.expect_isEmpty(true);
+    _knownTargetSource.expect_isEmpty(true);
 
-    int mode = autoModeSource.getMode();
+    int mode = _autoModeSource.getMode();
 
     It("No targets -> Explore", AssertEval(mode, "==", tt_Mode.MODE_EXPLORE));
+
+    tearDown();
   }
 
   private
-  void testAutoModeSourceTargetsArePresent()
+  void checkTargetsAreVisible()
   {
-    let knownTargetSource = new("tt_KnownTargetSourceMock").init();
-    let autoModeSource    = new("tt_AutoModeSource").init(knownTargetSource);
+    setUp();
 
-    knownTargetSource.expect_isEmpty(false);
+    let knownTargets = new("tt_KnownTargets").init();
+    let target       = new("tt_Target"      ).init(Spawn("Demon", (0, 0, 0)));
+    let question     = new("tt_QuestionMock").init();
+    let knownTarget  = new("tt_KnownTarget" ).init(target, question);
+    knownTargets.add(knownTarget);
 
-    int mode = autoModeSource.getMode();
+    _knownTargetSource.expect_isEmpty(false);
+    _knownTargetSource.expect_getTargets(knownTargets);
+    _pawnSource.expect_getPawn(players[consolePlayer].mo);
 
-    It("There are targets -> Combat", AssertEval(mode, "==", tt_Mode.MODE_COMBAT));
+    int mode = _autoModeSource.getMode();
+
+    It("There are visible targets -> Combat", AssertEval(mode, "==", tt_Mode.MODE_COMBAT));
+
+    tearDown();
   }
+
+  private
+  void checkTargetsAreInvisible()
+  {
+    setUp();
+
+    let knownTargets = new("tt_KnownTargets").init();
+    let target       = new("tt_Target"      ).init(Spawn("Demon", (9999999, 0, 0)));
+    let question     = new("tt_QuestionMock").init();
+    let knownTarget  = new("tt_KnownTarget" ).init(target, question);
+    knownTargets.add(knownTarget);
+
+    _knownTargetSource.expect_isEmpty(false);
+    _knownTargetSource.expect_getTargets(knownTargets);
+    _pawnSource.expect_getPawn(players[consolePlayer].mo);
+
+    int mode = _autoModeSource.getMode();
+
+    It("There are no visible targets -> Explore", AssertEval(mode, "==", tt_Mode.MODE_EXPLORE));
+
+    tearDown();
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private
+  void setUp()
+  {
+    _knownTargetSource = new("tt_KnownTargetSourceMock").init();
+    _pawnSource        = new("tt_PawnSourceMock").init();
+    _autoModeSource    = new("tt_AutoModeSource").init(_knownTargetSource, _pawnSource);
+  }
+
+  private
+  void tearDown()
+  {
+    It("Known Target Source is satisfied", Assert(_knownTargetSource.isSatisfied_isEmpty()));
+    It("Known Target Source is satisfied", Assert(_knownTargetSource.isSatisfied_getTargets()));
+    It("Pawn Source is satisfied"        , Assert(_pawnSource.isSatisfied_getPawn()));
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_KnownTargetSourceMock _knownTargetSource;
+  private tt_PawnSourceMock        _pawnSource;
+  private tt_AutoModeSource        _autoModeSource;
 
 } // class tt_AutoModeSourceTest

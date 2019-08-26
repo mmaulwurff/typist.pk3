@@ -45,6 +45,11 @@ class tt_Target
     return other._actor == _actor;
   }
 
+  Actor getActor() const
+  {
+    return _actor;
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private Actor _actor;

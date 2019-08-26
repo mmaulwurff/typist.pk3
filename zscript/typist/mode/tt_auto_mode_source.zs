@@ -23,9 +23,10 @@ class tt_AutoModeSource : tt_ModeSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_AutoModeSource init(tt_KnownTargetSource knownTargetSource)
+  tt_AutoModeSource init(tt_KnownTargetSource knownTargetSource, tt_PawnSource pawnSource)
   {
     _knownTargetSource = knownTargetSource;
+    _pawnSource        = pawnSource;
 
     return self;
   }
@@ -36,13 +37,45 @@ class tt_AutoModeSource : tt_ModeSource
   int getMode()
   {
     bool isNoTargets = _knownTargetSource.isEmpty();
-    int  mode        = (isNoTargets ? tt_Mode.MODE_EXPLORE : tt_Mode.MODE_COMBAT);
+
+    if (isNoTargets)
+    {
+      return tt_Mode.MODE_EXPLORE;
+    }
+
+    bool isAtLeastOneVisible = false;
+    let  pawn = _pawnSource.getPawn();
+
+    let  targets  = _knownTargetSource.getTargets();
+    uint nTargets = targets.size();
+    for (uint i = 0; i < nTargets; ++i)
+    {
+      let target = targets.at(i).getTarget();
+      if (isVisible(target, pawn))
+      {
+        isAtLeastOneVisible = true;
+      }
+    }
+
+    int mode = (isAtLeastOneVisible ? tt_Mode.MODE_COMBAT : tt_Mode.MODE_EXPLORE);
 
     return mode;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
+  private play
+  bool isVisible(tt_Target target, PlayerPawn pawn) const
+  {
+    let  targetActor = target.getActor();
+    bool visible     = pawn.IsVisible(targetActor, false);
+
+    return visible;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
   private tt_KnownTargetSource _knownTargetSource;
+  private tt_PawnSource        _pawnSource;
 
 } // class tt_AutoModeSource
