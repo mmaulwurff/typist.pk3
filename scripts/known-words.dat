@@ -122,6 +122,7 @@ screenblocks
 servernum
 shader
 shellcheck
+shootable
 shutil
 sinang
 sinrang
@@ -145,6 +146,7 @@ submodules
 subprocess
 sudo
 suff
+targetable
 texman
 timedemo
 todo

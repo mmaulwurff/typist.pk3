@@ -36,8 +36,8 @@ class tt_Screen : tt_View
   override
   void draw(RenderEvent event)
   {
-    let    answer  = _answerSource.getAnswer().getString();
-    let    widgets = _targetWidgetSource.getWidgets(event);
+    let answer  = _answerSource.getAnswer().getString();
+    let widgets = _targetWidgetSource.getWidgets(event);
 
     uint nWidgets = widgets.size();
     for (uint i = 0; i < nWidgets; ++i)

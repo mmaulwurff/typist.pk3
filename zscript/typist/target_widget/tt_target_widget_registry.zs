@@ -26,7 +26,8 @@ class tt_TargetWidgetRegistry : tt_TargetWidgetSource
 
   tt_TargetWidgetRegistry init(tt_TargetWidgetSource source)
   {
-    _source = source;
+    _source   = source;
+    _registry = new("tt_TargetWidgets").init();
 
     return self;
   }
