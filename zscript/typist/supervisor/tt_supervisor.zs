@@ -47,6 +47,9 @@ class tt_Supervisor
     let widgetRegistry   = new("tt_TargetWidgetRegistry").init(visibilityFilter);
     let view             = new("tt_Screen"              ).init(widgetRegistry, playerInput);
 
+    let activatables      = new("tt_Activatables").init();
+    let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, activatables);
+
     _playerInput        = playerInput;
     _deathReporter      = deathReporter;
     _targetRegistry     = targetRegistry;
@@ -55,6 +58,7 @@ class tt_Supervisor
     _damager            = damager;
     _targetWidgetSource = projector;
     _targetOriginSource = targetOriginSource;
+    _commandDispatcher  = commandDispatcher;
 
     return self;
   }
@@ -67,12 +71,13 @@ class tt_Supervisor
   }
 
   play
-  void updateTargets()
+  void tick()
   {
     _targetRegistry.update();
     _targetOriginSource.update();
     _damager.damage();
     _targetWidgetSource.prepare();
+    _commandDispatcher.activate();
   }
 
   void reportDead(Actor dead)
@@ -103,5 +108,6 @@ class tt_Supervisor
   private tt_Damager            _damager;
   private tt_TargetWidgetSource _targetWidgetSource;
   private tt_OriginSource       _targetOriginSource;
+  private tt_CommandDispatcher  _commandDispatcher;
 
 } // class tt_Supervisor

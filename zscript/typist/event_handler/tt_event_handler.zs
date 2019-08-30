@@ -27,7 +27,7 @@ class tt_EventHandler : EventHandler
   {
     if (_supervisor == NULL) { return; }
 
-    _supervisor.updateTargets();
+    _supervisor.tick();
 
     int  mode            = _supervisor.getMode();
     bool isCapturingKeys = (mode == tt_Mode.MODE_COMBAT);

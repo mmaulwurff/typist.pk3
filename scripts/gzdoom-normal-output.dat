@@ -67,6 +67,9 @@ Truncation of floating point value
 Uniform block alignment: 16
 Using video driver x11
 V_Init: allocate screen.
+Vulkan device type: discrete gpu
+Vulkan device: .*
+Vulkan version: .* (api) .* (driver)
 W_Init: Init WADfiles.
 fluidsynth: warning: Failed to pin the sample data to RAM; swapping is possible.
 jack server is not running or cannot be started

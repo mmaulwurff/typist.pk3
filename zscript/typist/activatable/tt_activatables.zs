@@ -15,25 +15,39 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a game element that can be activated by the same
- * way the target is damaged. Such elements can be considered pseudo-targets.
+/** This class represents an array of Activatable entities.
  */
-class tt_Activatable abstract
+class tt_Activatables
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  void activate()
+  tt_Activatables init()
   {
-    Console.Printf("zscript/typist/activatable/tt_activatable.zs:29: T: override this!");
+    return self;
   }
 
-  virtual
-  tt_Strings getCommands()
+// public: /////////////////////////////////////////////////////////////////////
+
+  uint size() const
   {
-    Console.Printf("zscript/typist/activatable/tt_activatable.zs:35: T: override this!");
-    return NULL;
+    return _activatables.size();
   }
 
-} // class tt_Activatable
+  tt_Activatable at(uint i) const
+  {
+    return _activatables[i];
+  }
+
+// public: /////////////////////////////////////////////////////////////////////
+
+  void add(tt_Activatable activatable)
+  {
+    _activatables.push(activatable);
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private Array<tt_Activatable> _activatables;
+
+} // class tt_Activatables

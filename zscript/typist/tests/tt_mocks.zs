@@ -223,6 +223,29 @@ class tt_ActivatableMock : tt_Activatable
   private int _mock_activate_expected;
   private int _mock_activate_called;
 
+  override
+  tt_Strings getCommands()
+  {
+    ++_mock_getCommands_called;
+    return _mock_getCommands;
+  }
+
+  void expect_getCommands(tt_Strings value, int expected = 1)
+  {
+    _mock_getCommands = value;
+    _mock_getCommands_expected = expected;
+    _mock_getCommands_called = 0;
+  }
+
+  bool isSatisfied_getCommands() const
+  {
+    return _mock_getCommands_expected == _mock_getCommands_called;
+  }
+
+  private tt_Strings _mock_getCommands;
+  private int _mock_getCommands_expected;
+  private int _mock_getCommands_called;
+
 } // class tt_ActivatableMock
 
 class tt_DifficultySourceMock : tt_DifficultySource
