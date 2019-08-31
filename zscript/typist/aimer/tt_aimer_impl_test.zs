@@ -36,6 +36,8 @@ class tt_AimerImplTest : tt_Clematis
     targetPositions.push(new("tt_Origin").init((-100, -100, 0))); angles.push(-135);
     targetPositions.push(new("tt_Origin").init((   0,    0, 0))); angles.push(   0);
 
+    movePlayerToZero();
+
     uint nTargetPositions = targetPositions.size();
     for (uint i = 0; i < nTargetPositions; ++i)
     {
@@ -69,6 +71,12 @@ class tt_AimerImplTest : tt_Clematis
   void aim(tt_Aimer aimer) const
   {
     aimer.aim();
+  }
+
+  private play
+  void movePlayerToZero() const
+  {
+    players[consolePlayer].mo.SetOrigin((0, 0, 0), false);
   }
 
 } // class tt_AimerImplTest

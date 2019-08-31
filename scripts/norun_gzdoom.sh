@@ -6,10 +6,10 @@
 # Usage:
 # ./scripts/norun_gzdoom.sh
 
-apt-cache policy gzdoom freedoom
+apt-cache policy gzdoom
 
 time gzdoom \
-     -iwad /usr/share/games/doom/freedoom2.wad \
+     -iwad maps/miniwad.wad \
      -norun    \
      -nosound  \
      2>&1     |\

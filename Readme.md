@@ -50,3 +50,4 @@ It may be possible to compile this on Windows. Install Msys or something. You're
 - ZippeyKeys12 (Zain Aamer) for [Clematis](https://github.com/ZippeyKeys12/clematis) (Basic ZScript unit test framework for GZDoom). Clematis is under the [BSD 3-Clause License](https://github.com/ZippeyKeys12/clematis/blob/master/LICENSE).
 
 - Marrub for [ZScript documentation](https://github.com/marrub--/zscript-doc)
+- fraggle for [miniwad.wad](https://github.com/fragglet/miniwad) (BSD license)

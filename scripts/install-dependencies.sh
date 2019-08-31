@@ -9,7 +9,7 @@
 add-apt-repository 'deb http://debian.drdteam.org/ stable multiverse'
 wget -O- http://debian.drdteam.org/drdteam.gpg | apt-key add -
 apt-get update
-apt-get install gzdoom aspell aspell-en zip freedoom xvfb pylint3 shellcheck
+apt-get install gzdoom aspell aspell-en zip xvfb pylint3 shellcheck
 
 # Disable GZDoom hardware survey:
 mkdir --parents ~/.config/gzdoom

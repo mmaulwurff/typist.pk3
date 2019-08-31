@@ -71,7 +71,7 @@ function tests {
 function uncontrolled_run {
     echo -e "\\nUncontrolled GZDoom run ########################################"
 
-    gzdoom -iwad /usr/share/games/doom/freedoom2.wad -file "$file_name" +map tt_test
+    gzdoom -iwad maps/miniwad.wad -file "$file_name" +map map01
 }
 
 # Code checks ##################################################################

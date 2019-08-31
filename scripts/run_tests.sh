@@ -30,7 +30,7 @@ fi
 for test_class in $test_classes
 do
     tests_ccmd="wait 1;            \
-        map tt_test;                \
+        map map01;                  \
         wait 2;                      \
         echo Starting $test_class...; \
         netevent test:$test_class;     \
@@ -46,11 +46,11 @@ do
     tests_ccmd="$tests_ccmd""quit"
 
     out=$(gzdoom \
-        -iwad /usr/share/games/doom/freedoom2.wad \
-        -file "$file_name"                        \
-        -nosound                                  \
-        +"$tests_ccmd"                            \
-            | grep -vf "$filter_file"             \
+        -iwad maps/miniwad.wad        \
+        -file "$file_name"            \
+        -nosound                      \
+        +"$tests_ccmd"                \
+            | grep -vf "$filter_file" \
             | grep -v "^$")
 
     full_out="$full_out""$out"
