@@ -504,7 +504,7 @@ class tt_ModeStorageMock : tt_ModeStorage
   tt_ModeStorageMock init() { return self; }
 
   override
-  void setMode()
+  void setMode(int mode)
   {
     ++_mock_setMode_called;
   }

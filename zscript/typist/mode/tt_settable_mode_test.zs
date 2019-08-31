@@ -16,17 +16,27 @@
  */
 
 /**
- * This is an interface for storing and retrieving mode.
+ * This is a test for SettableMode class.
  */
-class tt_ModeStorage : tt_ModeSource abstract
+class tt_SettableModeTest : tt_Clematis
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  void setMode(int mode)
+  override
+  void TestSuites()
   {
-    Console.Printf("zscript/typist/mode/tt_mode_storage.zs:29: T: override this!");
+    Describe("Checking Settable Mode");
+
+    let settableMode = new("tt_SettableMode").init();
+    int before       = tt_Mode.MODE_COMBAT;
+
+    settableMode.setMode(before);
+    int after = settableMode.getMode();
+
+    It("Mode must be the same", AssertEval(before, "==", after));
+
+    EndDescribe();
   }
 
-} // class tt_ModeStorage
+} // class tt_SettableModeTest

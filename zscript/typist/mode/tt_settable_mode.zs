@@ -16,17 +16,38 @@
  */
 
 /**
- * This is an interface for storing and retrieving mode.
+ * This class implements ModeStorage by simply storing the mode that was set.
  */
-class tt_ModeStorage : tt_ModeSource abstract
+class tt_SettableMode : tt_ModeStorage
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  void setMode(int mode)
+  tt_SettableMode init()
   {
-    Console.Printf("zscript/typist/mode/tt_mode_storage.zs:29: T: override this!");
+    _mode = tt_Mode.MODE_NONE;
+
+    return self;
   }
 
-} // class tt_ModeStorage
+// public: // tt_ModeSource ////////////////////////////////////////////////////
+
+  override
+  int getMode()
+  {
+    return _mode;
+  }
+
+// public: // tt_ModeStorage ///////////////////////////////////////////////////
+
+  override
+  void setMode(int mode)
+  {
+    _mode = mode;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private int _mode;
+
+} // class tt_SettableMode
