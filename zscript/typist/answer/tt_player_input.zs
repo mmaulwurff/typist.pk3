@@ -34,7 +34,7 @@ class tt_PlayerInput : tt_AnswerSource
     {
     case tt_Character.NONE: break;
     case tt_Character.PRINTABLE: _answer = _answer .. character.getCharacter(); break;
-    case tt_Character.BACKSPACE: _answer = _answer.Left(_answer.Length() - 1); break;
+    case tt_Character.BACKSPACE: _answer.DeleteLastCharacter(); break;
     }
   }
 
