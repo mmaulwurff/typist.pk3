@@ -17,6 +17,8 @@ version 4.1.3
 #include "zscript/typist/activatable/tt_activatable.zs"
 #include "zscript/typist/activatable/tt_command_dispatcher_test.zs"
 #include "zscript/typist/activatable/tt_command_dispatcher.zs"
+#include "zscript/typist/activatable/tt_mode_switcher_test.zs"
+#include "zscript/typist/activatable/tt_mode_switcher.zs"
 #include "zscript/typist/activatable/tt_shield.zs"
 #include "zscript/typist/aimer/tt_aimer_impl_test.zs"
 #include "zscript/typist/aimer/tt_aimer_impl.zs"
