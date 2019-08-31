@@ -1,0 +1,14 @@
+// Menus ///////////////////////////////////////////////////////////////////////
+
+AddOptionMenu OptionsMenu
+{
+  StaticText ""
+  Submenu "$TT_TITLE", tt_Options
+}
+
+OptionMenu tt_Options
+{
+  Title "$TT_TITLE"
+
+  StaticText ""
+}

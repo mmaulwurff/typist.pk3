@@ -26,6 +26,7 @@ scripts/make_mocks.py
 scripts/make_zscript_head.sh
 scripts/make_mapinfo.sh
 scripts/preprocessor.sh
+scripts/make_title.sh
 
 rm -f ./*.pk3
 echo "$files" | zip --quiet --compression-method store "$file_name" -@
