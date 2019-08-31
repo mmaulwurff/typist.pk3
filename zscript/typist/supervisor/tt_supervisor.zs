@@ -35,7 +35,7 @@ class tt_Supervisor
     let questionSource   = new("tt_RandomLetterSource"  ).init(difficultySource);
 
     let targetRegistry = new("tt_TargetRegistry").init(targetSource, questionSource, deathReporter);
-    let modeSource     = new("tt_AutoModeSource").init(targetRegistry, pawnSource);
+    let autoModeSource = new("tt_AutoModeSource").init(targetRegistry, pawnSource);
 
     let targetOriginSource = new("tt_QuestionAnswerMatcher").init(targetRegistry, playerInput);
     let aimer              = new("tt_AimerImpl"            ).init(targetOriginSource, pawnSource);
@@ -47,18 +47,29 @@ class tt_Supervisor
     let widgetRegistry   = new("tt_TargetWidgetRegistry").init(visibilityFilter);
     let view             = new("tt_Screen"              ).init(widgetRegistry, playerInput);
 
-    let activatables      = new("tt_Activatables").init();
+    let manualModeSource  = new("tt_SettableMode").init();
+    let modeSwitcher      = new("tt_ModeSwitcher").init(manualModeSource);
+
+    let activatables = new("tt_Activatables").init();
+    activatables.add(modeSwitcher);
+
     let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, activatables);
+
+    let modeSources = new("tt_ModeSources").init();
+    modeSources.add(manualModeSource);
+    modeSources.add(autoModeSource);
+    let modeCascade = new("tt_ModeCascade").init(modeSources);
 
     _playerInput        = playerInput;
     _deathReporter      = deathReporter;
     _targetRegistry     = targetRegistry;
     _view               = view;
-    _modeSource         = modeSource;
+    _modeSource         = modeCascade;
     _damager            = damager;
     _targetWidgetSource = projector;
     _targetOriginSource = targetOriginSource;
     _commandDispatcher  = commandDispatcher;
+    _manualModeSource   = manualModeSource;
 
     return self;
   }
@@ -90,6 +101,11 @@ class tt_Supervisor
     return _modeSource.getMode();
   }
 
+  void unlockMode()
+  {
+    _manualModeSource.setMode(tt_Mode.MODE_NONE);
+  }
+
 // public: // ui ///////////////////////////////////////////////////////////////
 
   ui
@@ -109,5 +125,6 @@ class tt_Supervisor
   private tt_TargetWidgetSource _targetWidgetSource;
   private tt_OriginSource       _targetOriginSource;
   private tt_CommandDispatcher  _commandDispatcher;
+  private tt_ModeStorage        _manualModeSource;
 
 } // class tt_Supervisor

@@ -75,6 +75,17 @@ class tt_EventHandler : EventHandler
     _supervisor.draw(event);
   }
 
+  override
+  void NetworkProcess(ConsoleEvent event)
+  {
+    String command = event.Name;
+
+    if (command == "tt_unlock_mode")
+    {
+      _supervisor.unlockMode();
+    }
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_Supervisor _supervisor;

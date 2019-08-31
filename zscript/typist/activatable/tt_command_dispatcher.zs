@@ -86,6 +86,7 @@ class tt_CommandDispatcher : tt_Activatable
       if (isMatching)
       {
         activatable.activate();
+        _answerSource.reset();
         return;
       }
     }

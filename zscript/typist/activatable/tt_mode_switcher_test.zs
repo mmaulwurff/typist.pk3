@@ -57,7 +57,7 @@ class tt_ModeSwitcherTest : tt_Clematis
     let commands     = modeSwitcher.getCommands();
 
     It("Must be at least one command", AssertEval(commands.size(), ">", 0));
-    It("Must contain explore command", Assert(commands.contains(":explore")));
+    It("Must contain explore command", Assert(commands.contains("/explore")));
   }
 
 } // class tt_ModeSwitcherTest
