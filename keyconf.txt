@@ -4,6 +4,6 @@ Alias tt_unlock_mode "netevent tt_unlock_mode"
 
 // Keys ////////////////////////////////////////////////////////////////////////
 
-AddKeySection "Typist.pk3" tt_keys
+AddKeySection "$TT_TITLE" tt_keys
 
-AddMenuKey "Unlock Game Mode" tt_unlock_mode
+AddMenuKey "$TT_UNLOCK" tt_unlock_mode
