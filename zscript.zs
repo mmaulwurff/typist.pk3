@@ -47,6 +47,8 @@ version 4.1.3
 #include "zscript/typist/known_target/tt_target_registry.zs"
 #include "zscript/typist/mode/tt_auto_mode_source_test.zs"
 #include "zscript/typist/mode/tt_auto_mode_source.zs"
+#include "zscript/typist/mode/tt_mode_cascade_test.zs"
+#include "zscript/typist/mode/tt_mode_cascade.zs"
 #include "zscript/typist/mode/tt_mode_sources_test.zs"
 #include "zscript/typist/mode/tt_mode_sources.zs"
 #include "zscript/typist/mode/tt_mode_source.zs"

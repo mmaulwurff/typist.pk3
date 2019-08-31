@@ -16,19 +16,43 @@
  */
 
 /**
- * This class represents the mode in which Typist operates.
+ * This class implements ModeSource by taking the first mode from ModeSources
+ * list that is not MODE_NONE.
  */
-class tt_Mode
+class tt_ModeCascade : tt_ModeSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  enum Modes
+  tt_ModeCascade init(tt_ModeSources modeSources)
   {
-    MODE_UNKNOWN, ///< Should never be used. Only for detecting uninitialized variables.
-    MODE_COMBAT,  ///< Typist is focused on destroying the targets.
-    MODE_EXPLORE, ///< Typist is focused on movement and exploration.
-    MODE_NONE,    ///< None of the above.
+    _modeSources = modeSources;
+
+    return self;
   }
 
-} // class tt_Mode
+// public: // tt_ModeSource ////////////////////////////////////////////////////
+
+  override
+  int getMode()
+  {
+    uint nSources = _modeSources.size();
+    for (uint i = 0; i < nSources; ++i)
+    {
+      let source = _modeSources.at(i);
+      int mode   = source.getMode();
+
+      if (mode != tt_Mode.MODE_NONE)
+      {
+        return mode;
+      }
+    }
+
+    return tt_Mode.MODE_NONE;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_ModeSources _modeSources;
+
+} // class tt_ModeCascade
