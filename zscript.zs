@@ -52,6 +52,7 @@ version 4.1.3
 #include "zscript/typist/mode/tt_mode_sources_test.zs"
 #include "zscript/typist/mode/tt_mode_sources.zs"
 #include "zscript/typist/mode/tt_mode_source.zs"
+#include "zscript/typist/mode/tt_mode_storage.zs"
 #include "zscript/typist/mode/tt_mode.zs"
 #include "zscript/typist/origin/tt_origin_source.zs"
 #include "zscript/typist/origin/tt_origin.zs"

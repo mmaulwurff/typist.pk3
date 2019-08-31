@@ -498,6 +498,33 @@ class tt_ModeSourceMock : tt_ModeSource
 
 } // class tt_ModeSourceMock
 
+class tt_ModeStorageMock : tt_ModeStorage
+{
+
+  tt_ModeStorageMock init() { return self; }
+
+  override
+  void setMode()
+  {
+    ++_mock_setMode_called;
+  }
+
+  void expect_setMode(int expected = 1)
+  {
+    _mock_setMode_expected = expected;
+    _mock_setMode_called = 0;
+  }
+
+  bool isSatisfied_setMode() const
+  {
+    return _mock_setMode_expected == _mock_setMode_called;
+  }
+
+  private int _mock_setMode_expected;
+  private int _mock_setMode_called;
+
+} // class tt_ModeStorageMock
+
 class tt_FirerMock : tt_Firer
 {
 
