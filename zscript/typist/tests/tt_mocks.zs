@@ -198,6 +198,36 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
 
 } // class tt_KnownTargetSourceMock
 
+class tt_TurnerMock : tt_Turner
+{
+
+  tt_TurnerMock init() { return self; }
+
+  override
+  double getTurnAngle()
+  {
+    ++_mock_getTurnAngle_called;
+    return _mock_getTurnAngle;
+  }
+
+  void expect_getTurnAngle(double value, int expected = 1)
+  {
+    _mock_getTurnAngle = value;
+    _mock_getTurnAngle_expected = expected;
+    _mock_getTurnAngle_called = 0;
+  }
+
+  bool isSatisfied_getTurnAngle() const
+  {
+    return _mock_getTurnAngle_expected == _mock_getTurnAngle_called;
+  }
+
+  private double _mock_getTurnAngle;
+  private int _mock_getTurnAngle_expected;
+  private int _mock_getTurnAngle_called;
+
+} // class tt_TurnerMock
+
 class tt_ActivatableMock : tt_Activatable
 {
 

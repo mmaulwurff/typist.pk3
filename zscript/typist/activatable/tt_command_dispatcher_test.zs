@@ -35,8 +35,8 @@ class tt_CommandDispatcherTest : tt_Clematis
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private
-  void checkActivate()
+  private play
+  void checkActivate() const
   {
     let activatable1      = new("tt_ActivatableMock"  ).init();
     let activatable2      = new("tt_ActivatableMock"  ).init();
@@ -68,8 +68,8 @@ class tt_CommandDispatcherTest : tt_Clematis
     It("The second activatable is satisfied", Assert(activatable2.isSatisfied_getCommands()));
   }
 
-  private
-  void checkGetCommands()
+  private play
+  void checkGetCommands() const
   {
     let activatable1      = new("tt_ActivatableMock"  ).init();
     let activatable2      = new("tt_ActivatableMock"  ).init();

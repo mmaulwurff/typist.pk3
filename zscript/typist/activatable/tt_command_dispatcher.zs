@@ -73,6 +73,7 @@ class tt_CommandDispatcher : tt_Activatable
 
 // private: ////////////////////////////////////////////////////////////////////
 
+  play
   void tryActivate(tt_Activatable activatable, String answer)
   {
     let commands = activatable.getCommands();

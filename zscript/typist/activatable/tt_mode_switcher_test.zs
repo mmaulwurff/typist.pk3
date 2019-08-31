@@ -36,8 +36,8 @@ class tt_ModeSwitcherTest : tt_Clematis
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private
-  void checkActivate()
+  private play
+  void checkActivate() const
   {
     let modeStorage  = new("tt_ModeStorageMock").init();
     let modeSwitcher = new("tt_ModeSwitcher"   ).init(modeStorage);

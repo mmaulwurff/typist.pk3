@@ -50,8 +50,12 @@ class tt_Supervisor
     let manualModeSource  = new("tt_SettableMode").init();
     let modeSwitcher      = new("tt_ModeSwitcher").init(manualModeSource);
 
+    let rightTurner  = new("tt_RightTurner" ).init(pawnSource);
+    let leftTurner   = new("tt_LeftTurner"  ).init(pawnSource);
     let activatables = new("tt_Activatables").init();
     activatables.add(modeSwitcher);
+    activatables.add(rightTurner);
+    activatables.add(leftTurner);
 
     let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, activatables);
 

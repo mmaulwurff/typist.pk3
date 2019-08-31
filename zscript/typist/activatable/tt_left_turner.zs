@@ -15,25 +15,29 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a game element that can be activated by the same
- * way the target is damaged. Such elements can be considered pseudo-targets.
+/**
+ * This class implements Turner by specifying the angle to turn left.
  */
-class tt_Activatable abstract
+class tt_LeftTurner : tt_Turner
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+// public: // tt_Turner ////////////////////////////////////////////////////////
 
-  play virtual
-  void activate()
+  override
+  double getTurnAngle()
   {
-    Console.Printf("zscript/typist/activatable/tt_activatable.zs:29: T: override this!");
+    return 45.0;
   }
 
-  virtual
+// public: // tt_Activatable ///////////////////////////////////////////////////
+
+  override
   tt_Strings getCommands()
   {
-    Console.Printf("zscript/typist/activatable/tt_activatable.zs:35: T: override this!");
-    return NULL;
+    let result = new("tt_Strings").init();
+    result.add("/left");
+
+    return result;
   }
 
-} // class tt_Activatable
+} // class tt_LeftTurner
