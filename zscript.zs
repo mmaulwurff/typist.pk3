@@ -100,7 +100,8 @@ version 4.1.3
 #include "zscript/typist/target_widget/tt_target_widget.zs"
 #include "zscript/typist/target_widget/tt_visibility_filter.zs"
 #include "zscript/typist/tests/tt_mocks.zs"
-#include "zscript/typist/view/tt_screen.zs"
+#include "zscript/typist/view/tt_target_overlay.zs"
+#include "zscript/typist/view/tt_views.zs"
 #include "zscript/typist/view/tt_view.zs"
 // class extensions:
 #include "zscript/clematis/ASSERTIONS/BOOLEAN/FALSE_tt.zs"

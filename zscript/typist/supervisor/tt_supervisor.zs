@@ -45,7 +45,6 @@ class tt_Supervisor
     let projector        = new("tt_Projector"           ).init(targetRegistry, playerInfoSource);
     let visibilityFilter = new("tt_VisibilityFilter"    ).init(projector, pawnSource);
     let widgetRegistry   = new("tt_TargetWidgetRegistry").init(visibilityFilter);
-    let view             = new("tt_Screen"              ).init(widgetRegistry, playerInput);
 
     let manualModeSource  = new("tt_SettableMode").init();
     let modeSwitcher      = new("tt_ModeSwitcher").init(manualModeSource);
@@ -64,10 +63,14 @@ class tt_Supervisor
     modeSources.add(autoModeSource);
     let modeCascade = new("tt_ModeCascade").init(modeSources);
 
+    let views         = new("tt_Views"        ).init();
+    let targetOverlay = new("tt_TargetOverlay").init(widgetRegistry, playerInput);
+    views.add(targetOverlay);
+
     _playerInput        = playerInput;
     _deathReporter      = deathReporter;
     _targetRegistry     = targetRegistry;
-    _view               = view;
+    _view               = views;
     _modeSource         = modeCascade;
     _damager            = damager;
     _targetWidgetSource = projector;

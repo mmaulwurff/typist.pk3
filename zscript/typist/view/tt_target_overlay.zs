@@ -18,12 +18,12 @@
 /** This class implement tt_View by getting a list of Target Widgets and drawing
  * them.
  */
-class tt_Screen : tt_View
+class tt_TargetOverlay : tt_View
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Screen init(tt_TargetWidgetSource targetWidgetSource, tt_AnswerSource answerSource)
+  tt_TargetOverlay init(tt_TargetWidgetSource targetWidgetSource, tt_AnswerSource answerSource)
   {
     _targetWidgetSource = targetWidgetSource;
     _answerSource       = answerSource;
@@ -107,4 +107,4 @@ class tt_Screen : tt_View
   private tt_TargetWidgetSource _targetWidgetSource;
   private tt_AnswerSource       _answerSource;
 
-} // class tt_Screen
+} // class tt_TargetOverlay
