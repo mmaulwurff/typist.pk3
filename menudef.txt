@@ -2,7 +2,6 @@
 
 AddOptionMenu OptionsMenu
 {
-  StaticText ""
   Submenu "$TT_TITLE", tt_Options
 }
 
