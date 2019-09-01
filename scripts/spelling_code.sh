@@ -9,11 +9,12 @@
 
 known_words=scripts/known-words.dat
 
-files_to_check=$(find . -name '*.zs' \
+files_to_check=$(find . -name '*.zs'  \
                      -o -name '*.md'  \
-                     -o -name '*.txt'  \
-                     -o -name '*.sh'    \
-                     -o -name '*.yml'    \
+                     -o -name '*.txt' \
+                     -o -name '*.sh'  \
+                     -o -name '*.yml' \
+                     -o -name '*.enu' \
                      -o -name '*.py')
 
 lowercase_words=$(echo "$files_to_check" | while read -r file; do
