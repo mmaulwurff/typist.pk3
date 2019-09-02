@@ -71,7 +71,8 @@ class tt_TargetRadar : tt_TargetSource
     bool isMonster  = a.bIsMonster;
     bool isAlive    = (a.Health > 0);
     bool isFriendly = a.bFriendly;
-    bool isSuitable = (isMonster && isAlive && !isFriendly);
+    bool isMissile  = a.bMissile;
+    bool isSuitable = ((isMonster || isMissile) && isAlive && !isFriendly);
 
     return isSuitable;
   }

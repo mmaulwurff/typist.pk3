@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** Entry point for Typist.pk3.
+/**
+ * Entry point for Typist.pk3.
  */
 class tt_EventHandler : EventHandler
 {
@@ -38,10 +39,10 @@ class tt_EventHandler : EventHandler
   override
   bool UiProcess(UiEvent event)
   {
+    if (_supervisor == NULL) { return false; }
+
     if (event.type == UiEvent.Type_KeyDown)
     {
-      if (_supervisor == NULL) { return false; }
-
       let character = new("tt_Character").init(event.keyChar, event.isShift);
       _supervisor.processKey(character);
     }
@@ -78,6 +79,8 @@ class tt_EventHandler : EventHandler
   override
   void NetworkProcess(ConsoleEvent event)
   {
+    if (_supervisor == NULL) { return; }
+
     String command = event.Name;
 
     if (command == "tt_unlock_mode")
@@ -86,8 +89,24 @@ class tt_EventHandler : EventHandler
     }
   }
 
+  override
+  void WorldThingSpawned(WorldEvent event)
+  {
+    let thing = event.thing;
+    if (thing == NULL) { return; }
+
+    _gameTweaks.processSpawnedThing(thing);
+  }
+
+  override
+  void OnRegister()
+  {
+    _gameTweaks = new("tt_GameTweaks").init();
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_Supervisor _supervisor;
+  private tt_GameTweaks _gameTweaks;
 
 } // class tt_EventHandler

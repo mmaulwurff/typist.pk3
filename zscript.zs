@@ -47,6 +47,7 @@ version 4.1.3
 #include "zscript/typist/firer/tt_firer_impl_test.zs"
 #include "zscript/typist/firer/tt_firer_impl.zs"
 #include "zscript/typist/firer/tt_firer.zs"
+#include "zscript/typist/game_tweaks/tt_game_tweaks.zs"
 #include "zscript/typist/known_target/tt_known_target_source.zs"
 #include "zscript/typist/known_target/tt_known_targets.zs"
 #include "zscript/typist/known_target/tt_known_target.zs"
