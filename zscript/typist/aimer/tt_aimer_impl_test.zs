@@ -52,7 +52,7 @@ class tt_AimerImplTest : tt_Clematis
       pawnSource  .expect_getPawn(pawn);
 
       // Just for a visual check.
-      Spawn("DoomImp", targetOrigin.position());
+      Spawn("DoomImp", targetOrigin.getPosition());
 
       aim(aimer);
 

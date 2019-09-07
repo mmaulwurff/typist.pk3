@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class represents a list of target widgets.
+/**
+ * This class represents a list of target widgets.
  */
 class tt_TargetWidgets
 {
@@ -52,10 +53,41 @@ class tt_TargetWidgets
     return NULL;
   }
 
+  bool containsWidget(tt_TargetWidget widget) const
+  {
+    uint nWidgets = size();
+    for (uint i = 0; i < nWidgets; ++i)
+    {
+      if (widget == at(i))
+      {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  tt_TargetWidgets copy() const
+  {
+    let result = new("tt_TargetWidgets").init();
+    result._widgets.Reserve(size());
+    result._widgets.Copy(_widgets);
+
+    return result;
+  }
+
 // public: /////////////////////////////////////////////////////////////////////
 
   // Adds a target to this list.
-  void add(tt_TargetWidget target) { _widgets.push(target); }
+  void add(tt_TargetWidget widget)
+  {
+    _widgets.push(widget);
+  }
+
+  void set(uint i, tt_TargetWidget widget)
+  {
+    _widgets[i] = widget;
+  }
 
 // private: ////////////////////////////////////////////////////////////////////
 

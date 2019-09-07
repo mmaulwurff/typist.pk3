@@ -44,7 +44,7 @@ class tt_AimerImpl : tt_Aimer
     if (pawn == NULL) { return; }
 
     Vector3 myPosition    = pawn.pos;
-    Vector3 otherPosition = targetOrigin.position();
+    Vector3 otherPosition = targetOrigin.getPosition();
     double  angle         = AngleTo(myPosition.XY, otherPosition.XY);
 
     pawn.A_SetAngle(angle, SPF_INTERPOLATE);

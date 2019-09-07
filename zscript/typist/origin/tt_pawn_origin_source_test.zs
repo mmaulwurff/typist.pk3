@@ -35,7 +35,7 @@ class tt_PawnOriginSourceTest : tt_Clematis
 
     pawnSource.expect_getPawn(imp);
 
-    let origin = originSource.getOrigin().position();
+    let origin = originSource.getOrigin().getPosition();
     let impZ   = imp.height / 2 + z;
 
     It("X matches", AssertEval(x,    "==", origin.x));
