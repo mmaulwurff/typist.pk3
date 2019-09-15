@@ -10,4 +10,13 @@ OptionMenu tt_Options
   Title "$TT_TITLE"
 
   StaticText ""
+  Submenu    "$TT_DISPLAY_OPTIONS_TITLE_OUT", tt_DisplayOptions
+}
+
+OptionMenu tt_DisplayOptions
+{
+  Title "$TT_DISPLAY_OPTIONS_TITLE_IN"
+
+  StaticText ""
+  Slider     "$TT_TARGET_SCALE", tt_view_scale, 1, 4, 1
 }

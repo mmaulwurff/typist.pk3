@@ -64,8 +64,10 @@ class tt_Supervisor
     modeSources.add(autoModeSource);
     let modeCascade = new("tt_ModeCascade").init(modeSources);
 
+    let settings = new("tt_SettingsImpl").init(playerInfoSource);
+
     let views         = new("tt_Views"        ).init();
-    let targetOverlay = new("tt_TargetOverlay").init(widgetSorter, playerInput);
+    let targetOverlay = new("tt_TargetOverlay").init(widgetSorter, playerInput, settings);
     let infoPanel     = new("tt_InfoPanel"    ).init(modeCascade, playerInput, commandDispatcher);
     views.add(targetOverlay);
     views.add(infoPanel);

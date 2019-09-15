@@ -198,6 +198,36 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
 
 } // class tt_KnownTargetSourceMock
 
+class tt_SettingsMock : tt_Settings
+{
+
+  tt_SettingsMock init() { return self; }
+
+  override
+  int getScale()
+  {
+    ++_mock_getScale_called;
+    return _mock_getScale;
+  }
+
+  void expect_getScale(int value, int expected = 1)
+  {
+    _mock_getScale = value;
+    _mock_getScale_expected = expected;
+    _mock_getScale_called = 0;
+  }
+
+  bool isSatisfied_getScale() const
+  {
+    return _mock_getScale_expected == _mock_getScale_called;
+  }
+
+  private int _mock_getScale;
+  private int _mock_getScale_expected;
+  private int _mock_getScale_called;
+
+} // class tt_SettingsMock
+
 class tt_TurnerMock : tt_Turner
 {
 

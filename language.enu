@@ -6,6 +6,10 @@ TT_TITLE = "Typist.pk3 v0.2";
 
 TT_UNLOCK = "Unlock Game Mode";
 
+TT_DISPLAY_OPTIONS_TITLE_OUT = "Display Options";
+TT_DISPLAY_OPTIONS_TITLE_IN  = "Typist.pk3 Display Options";
+TT_TARGET_SCALE              = "Target text scale";
+
 // Info Panel //////////////////////////////////////////////////////////////////
 
 TT_MODE_UNKNOWN = "Unknown!";

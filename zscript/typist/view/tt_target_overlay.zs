@@ -24,10 +24,14 @@ class tt_TargetOverlay : tt_View
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_TargetOverlay init(tt_TargetWidgetSource targetWidgetSource, tt_AnswerSource answerSource)
+  tt_TargetOverlay init( tt_TargetWidgetSource targetWidgetSource
+                       , tt_AnswerSource       answerSource
+                       , tt_Settings           settings
+                       )
   {
     _targetWidgetSource = targetWidgetSource;
     _answerSource       = answerSource;
+    _settings           = settings;
 
     return self;
   }
@@ -53,7 +57,7 @@ class tt_TargetOverlay : tt_View
   private
   void drawWidget(tt_TargetWidget widget, String answer)
   {
-    int  scale        = 1;
+    int  scale        = _settings.getScale();
     Font fnt          = NewSmallFont;
     int  screenWidth  = Screen.GetWidth()  / scale;
     int  screenHeight = Screen.GetHeight() / scale;
@@ -187,5 +191,6 @@ class tt_TargetOverlay : tt_View
 
   private tt_TargetWidgetSource _targetWidgetSource;
   private tt_AnswerSource       _answerSource;
+  private tt_Settings           _settings;
 
 } // class tt_TargetOverlay
