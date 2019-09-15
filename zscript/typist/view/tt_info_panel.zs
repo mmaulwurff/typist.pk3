@@ -75,7 +75,7 @@ class tt_InfoPanel : tt_View
   {
     Font   fnt    = NewSmallFont;
     let    color  = Font.CR_WHITE;
-    String answer = answerSource.getAnswer().getString();
+    String answer = "$" .. answerSource.getAnswer().getString();
 
     Screen.DrawText(fnt, color, xy.x, xy.y, answer);
 
@@ -93,7 +93,7 @@ class tt_InfoPanel : tt_View
 
     for (uint i = 0; i < nCommands; ++i)
     {
-      let command = commands.at(i);
+      let command = "$" .. commands.at(i);
       Screen.DrawText(fnt, color, xy.x, xy.y, command);
       xy.y += lineHeight;
     }

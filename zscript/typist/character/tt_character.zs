@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class represents a character.
+/**
+ * This class represents a character.
  */
 class tt_Character
 {
@@ -38,10 +39,7 @@ class tt_Character
 
       if (isShift) { if (isSmallLetter(code)) { code -= 32; } }
       else         { if (isBigLetter  (code)) { code += 32; } }
-    }
 
-    if (getType() == PRINTABLE)
-    {
       _character = String.Format("%c", code);
     }
 

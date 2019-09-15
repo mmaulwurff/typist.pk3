@@ -160,7 +160,7 @@ class tt_TargetOverlay : tt_View
                    , Font.CR_Yellow
                    , x
                    , y
-                   , question
+                   , "$" .. question
                    , DTA_KeepRatio     , true
                    , DTA_VirtualWidth  , screenWidth
                    , DTA_VirtualHeight , screenHeight
@@ -169,7 +169,7 @@ class tt_TargetOverlay : tt_View
                    , Font.CR_DarkGreen
                    , x
                    , y + height + (BORDER + PADDING) * 2
-                   , answer
+                   , "$" .. answer
                    , DTA_KeepRatio     , true
                    , DTA_VirtualWidth  , screenWidth
                    , DTA_VirtualHeight , screenHeight
