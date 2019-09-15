@@ -56,7 +56,7 @@ class tt_TargetWidgetRegistry : tt_TargetWidgetSource
         newRegistry.add(existing);
         let newPosition      = widget.getPosition();
         let existingPosition = existing.getPosition();
-        let middle           = (newPosition + existingPosition) / 2;
+        let middle           = (newPosition * 0.3 + existingPosition * 0.7);
         existing.setPosition(middle);
       }
     }
