@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements tt_Question.
+/**
+ * This class implements tt_Question.
  * The answer is right for this kind of question if it matches the string
  * contained in this question.
  */
@@ -45,6 +46,36 @@ class tt_Match : tt_Question
   String getDescription()
   {
     return _question;
+  }
+
+  override
+  String getHintFor(tt_Answer answer)
+  {
+    // This method is limited to ASCII questions and answers.
+
+    String answerString   = answer.getString();
+    uint   answerLength   = answerString.length();
+    uint   questionLength = _question.length();
+    uint   nChars         = min(answerLength, questionLength);
+    String result;
+
+    for (uint i = 0; i < nChars; ++i)
+    {
+      int    questionChar = _question.ByteAt(i);
+      int    answerChar   = answerString.ByteAt(i);
+      bool   isCharSame   = (questionChar == answerChar);
+      String colorCode    = (isCharSame ? "q" : "g"); // dark green, red
+
+      result.appendFormat("\c%s%c", colorCode, answerChar);
+    }
+
+    if (answerLength > questionLength)
+    {
+      // everything that is beyond question is wrong.
+      result.appendFormat("\cg%s", answerString.Mid(questionLength));
+    }
+
+    return result;
   }
 
 // private: ////////////////////////////////////////////////////////////////////

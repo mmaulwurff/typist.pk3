@@ -41,28 +41,31 @@ class tt_TargetOverlay : tt_View
   override
   void draw(RenderEvent event)
   {
-    let answer  = _answerSource.getAnswer().getString();
     let widgets = _targetWidgetSource.getWidgets(event);
 
     uint nWidgets = widgets.size();
     for (uint i = 0; i < nWidgets; ++i)
     {
-      let widget = widgets.at(i);
-      drawWidget(widget, answer);
+      let    widget         = widgets.at(i);
+      let    question       = widget.getTarget().getQuestion();
+      String questionString = question.getDescription();
+      let    answer         = _answerSource.getAnswer();
+      String hintedAnswer   = question.getHintFor(answer);
+
+      drawWidget(widget, questionString, hintedAnswer);
     }
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private
-  void drawWidget(tt_TargetWidget widget, String answer)
+  void drawWidget(tt_TargetWidget widget, String question, String answer)
   {
     int  scale        = _settings.getScale();
     Font fnt          = NewSmallFont;
     int  screenWidth  = Screen.GetWidth()  / scale;
     int  screenHeight = Screen.GetHeight() / scale;
 
-    let  question = widget.getTarget().getQuestion().getDescription();
     let  position = widget.getPosition() / scale;
     int  height   = fnt.GetHeight();
     int  width    = max(fnt.StringWidth(question), fnt.StringWidth(answer));

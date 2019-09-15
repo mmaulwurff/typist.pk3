@@ -446,6 +446,29 @@ class tt_QuestionMock : tt_Question
   private int _mock_getDescription_expected;
   private int _mock_getDescription_called;
 
+  override
+  String getHintFor(tt_Answer answer)
+  {
+    ++_mock_getHintFor_called;
+    return _mock_getHintFor;
+  }
+
+  void expect_getHintFor(String value, int expected = 1)
+  {
+    _mock_getHintFor = value;
+    _mock_getHintFor_expected = expected;
+    _mock_getHintFor_called = 0;
+  }
+
+  bool isSatisfied_getHintFor() const
+  {
+    return _mock_getHintFor_expected == _mock_getHintFor_called;
+  }
+
+  private String _mock_getHintFor;
+  private int _mock_getHintFor_expected;
+  private int _mock_getHintFor_called;
+
 } // class tt_QuestionMock
 
 class tt_QuestionSourceMock : tt_QuestionSource
