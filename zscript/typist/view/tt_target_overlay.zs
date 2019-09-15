@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implement tt_View by getting a list of Target Widgets and drawing
+/**
+ * This class implement tt_View by getting a list of Target Widgets and drawing
  * them.
  */
 class tt_TargetOverlay : tt_View
@@ -52,55 +53,135 @@ class tt_TargetOverlay : tt_View
   private
   void drawWidget(tt_TargetWidget widget, String answer)
   {
-    Font fnt      = NewSmallFont;
+    int  scale        = 1;
+    Font fnt          = NewSmallFont;
+    int  screenWidth  = Screen.GetWidth()  / scale;
+    int  screenHeight = Screen.GetHeight() / scale;
+
     let  question = widget.getTarget().getQuestion().getDescription();
-    let  position = widget.getPosition();
+    let  position = widget.getPosition() / scale;
     int  height   = fnt.GetHeight();
-    int  width    = max(fnt.StringWidth(question), fnt.StringWidth(answer)) + MARGIN * 2;
+    int  width    = max(fnt.StringWidth(question), fnt.StringWidth(answer));
 
-    int screenWidth  = Screen.GetWidth();
-    int screenHeight = Screen.GetHeight();
+    double center = position.x - width / 2;
+    int x = int(Clamp(center,     BORDER + PADDING, screenWidth  - BORDER - PADDING - width     ));
+    int y = int(Clamp(position.y, BORDER + PADDING, screenHeight - BORDER - PADDING - height * 2));
 
-    double x = Clamp(position.x - width / 2, MARGIN, screenWidth - MARGIN - width);
-    double y = Clamp(position.y, MARGIN, screenHeight - MARGIN - height * 2);
-
-    drawBackground(x, y, width, height);
-    drawFrame(x, y, width, height);
-    drawText(x, y, height, fnt, question, answer);
+    drawBoxes(x, y, width, height, screenWidth, screenHeight);
+    drawText(x, y, height, fnt, question, answer, screenWidth, screenHeight);
   }
 
   private
-  void drawBackground(double x, double y, int width, int height)
+  void drawBoxes( int x
+                , int y
+                , int width
+                , int lineHeight
+                , int screenWidth
+                , int screenHeight
+                )
   {
-    let black = TexMan.CheckForTexture("tt_black", TexMan.Type_Any);
+    // Texture is necessary for drawing, but in fact it isn't used.
+    // The color is specified with DTA_FillColor.
+    let dummyTexture = TexMan.CheckForTexture("tt-white", TexMan.Type_Any);
 
-    Screen.DrawTexture( black, false, x - MARGIN, y
-                      , DTA_DestWidth,  width
-                      , DTA_DestHeight, height * 2
-                      , DTA_FillColor,  0
-                      );
+    drawBox(dummyTexture, x, y, width, lineHeight, screenWidth, screenHeight, RGB_GOLD);
+
+    int lowerY = y + lineHeight + (BORDER + PADDING) * 2;
+    drawBox(dummyTexture, x, lowerY, width, lineHeight, screenWidth, screenHeight, RGB_GREEN);
   }
 
   private
-  void drawFrame(double x, double y, int width, int height)
+  void drawBox( TextureID tex
+              , int x
+              , int y
+              , int width
+              , int lineHeight
+              , int screenWidth
+              , int screenHeight
+              , int color
+              )
   {
-    int frameX = int(round(x)) - MARGIN;
-    int frameY = int(round(y));
+    {
+      int borderX      = x - BORDER - PADDING;
+      int borderY      = y - BORDER - PADDING;
+      int borderWidth  = (BORDER + PADDING) * 2 + width;
+      int borderHeight = (BORDER + PADDING) * 2 + lineHeight;
 
-    Screen.DrawFrame(frameX, frameY, width, height);
-    Screen.DrawFrame(frameX, frameY, width, height * 2);
+      Screen.DrawTexture( tex
+                        , NOT_ANIMATED
+                        , borderX
+                        , borderY
+                        , DTA_DestWidth     , borderWidth
+                        , DTA_DestHeight    , borderHeight
+                        , DTA_FillColor     , color
+                        , DTA_KeepRatio     , true
+                        , DTA_VirtualWidth  , screenWidth
+                        , DTA_VirtualHeight , screenHeight
+                        );
+    }
+
+    { // background
+      int backgroundX      = x - PADDING;
+      int backgroundY      = y - PADDING;
+      int backgroundWidth  = PADDING * 2 + width;
+      int backgroundHeight = PADDING * 2 + lineHeight;
+
+      // background
+      Screen.DrawTexture( tex
+                        , NOT_ANIMATED
+                        , backgroundX
+                        , backgroundY
+                        , DTA_DestWidth     , backgroundWidth
+                        , DTA_DestHeight    , backgroundHeight
+                        , DTA_FillColor     , RGB_BLACK
+                        , DTA_KeepRatio     , true
+                        , DTA_VirtualWidth  , screenWidth
+                        , DTA_VirtualHeight , screenHeight
+                        );
+    }
   }
 
   private
-  void drawText(double x, double y, int height, Font fnt, String question, String answer)
+  void drawText( int    x
+               , int    y
+               , int    height
+               , Font   fnt
+               , String question
+               , String answer
+               , int    screenWidth
+               , int    screenHeight
+               )
   {
-    Screen.DrawText(fnt, Font.CR_WHITE, x, y, question);
-    Screen.DrawText(fnt, Font.CR_WHITE, x, y + height, answer);
+    Screen.DrawText( fnt
+                   , Font.CR_Yellow
+                   , x
+                   , y
+                   , question
+                   , DTA_KeepRatio     , true
+                   , DTA_VirtualWidth  , screenWidth
+                   , DTA_VirtualHeight , screenHeight
+                   );
+    Screen.DrawText( fnt
+                   , Font.CR_DarkGreen
+                   , x
+                   , y + height + (BORDER + PADDING) * 2
+                   , answer
+                   , DTA_KeepRatio     , true
+                   , DTA_VirtualWidth  , screenWidth
+                   , DTA_VirtualHeight , screenHeight
+                   );
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  const MARGIN = 2;
+  const BORDER       = 1;
+  const PADDING      = 2;
+
+  const NOT_ANIMATED = 0; // false
+
+  const RGB_BLACK    = 0x000000;
+  const RGB_GOLD     = 0xF4AF31;
+  const RGB_GREEN    = 0x408436;
 
 // private: ////////////////////////////////////////////////////////////////////
 
