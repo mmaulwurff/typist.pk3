@@ -124,6 +124,7 @@ class tt_TargetOverlay : tt_View
                         , DTA_KeepRatio     , true
                         , DTA_VirtualWidth  , screenWidth
                         , DTA_VirtualHeight , screenHeight
+                        , DTA_Alpha         , 0.5
                         );
     }
 
@@ -144,6 +145,7 @@ class tt_TargetOverlay : tt_View
                         , DTA_KeepRatio     , true
                         , DTA_VirtualWidth  , screenWidth
                         , DTA_VirtualHeight , screenHeight
+                        , DTA_Alpha         , 0.5
                         );
     }
   }
