@@ -114,6 +114,7 @@ pylint
 radeon
 rdparty
 readme
+readonly
 rect
 relicensing
 renderer

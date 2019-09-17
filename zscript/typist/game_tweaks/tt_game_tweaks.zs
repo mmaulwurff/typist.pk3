@@ -48,6 +48,33 @@ class tt_GameTweaks
     thing.A_ChangeLinkFlags(0);
   }
 
+  play
+  void tweakPlayer(PlayerInfo player)
+  {
+    let pawn = player.mo;
+    if (pawn == NULL) { return; }
+
+    makeInvulnerable(pawn);
+    increaseDamage(pawn);
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
+
+  private play
+  void makeInvulnerable(PlayerPawn pawn)
+  {
+    // Still lose health down to 1 point.
+    pawn.GiveInventory("tt_Buddha", 1);
+  }
+
+  private play
+  void increaseDamage(PlayerPawn pawn)
+  {
+    class<PlayerPawn>    type           = pawn.GetClassName();
+    readonly<PlayerPawn> default        = getDefaultByType(type);
+    double               originalDamage = default.DamageMultiply;
+
+    pawn.DamageMultiply = originalDamage * 10;
+  }
 
 } // class tt_GameTweaks

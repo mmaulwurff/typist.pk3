@@ -4,6 +4,7 @@
   Features: SSE2 SSE3 SSSE3 SSE4.1 SSE4.2 HyperThreading
   Name: .*
   Opened device HD-Audio Generic Analog Stereo
+ adding ./maps/miniwad.wad, .* lumps
  adding /home/.*/Programs/Games/wads/doom/DOOM2.WAD, 2919 lumps
  adding /opt/gzdoom/game_support.pk3, .* lumps
  adding /opt/gzdoom/gzdoom.pk3, .* lumps

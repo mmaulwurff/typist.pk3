@@ -57,7 +57,9 @@ class tt_EventHandler : EventHandler
     if (playerNumber != consolePlayer) { return; }
 
     _supervisor = new("tt_Supervisor").init(playerNumber);
-    players[playerNumber].mo.GiveInventory("tt_Buddha", 1);
+
+    PlayerInfo player = players[playerNumber];
+    _gameTweaks.tweakPlayer(player);
   }
 
   override
