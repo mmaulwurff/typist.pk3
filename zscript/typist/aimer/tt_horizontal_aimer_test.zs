@@ -15,11 +15,12 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This is a test for tt_AimerImpl class.
+/**
+ * This is a test for tt_HorizontalAimer class.
  *
  * This test assumes that the player is located at (0, 0, 0);
  */
-class tt_AimerImplTest : tt_Clematis
+class tt_HorizontalAimerTest : tt_Clematis
 {
 
 // public: // tt_Clematis //////////////////////////////////////////////////////
@@ -43,7 +44,7 @@ class tt_AimerImplTest : tt_Clematis
     {
       let    originSource  = new("tt_OriginSourceMock").init();
       let    pawnSource    = new("tt_PawnSourceMock").init();
-      let    aimer         = new("tt_AimerImpl").init(originSource, pawnSource);
+      let    aimer         = new("tt_HorizontalAimer").init(originSource, pawnSource);
       let    targetOrigin  = targetPositions[i];
       let    pawn          = players[consolePlayer].mo;
       double angle         = angles[i];
@@ -79,4 +80,4 @@ class tt_AimerImplTest : tt_Clematis
     players[consolePlayer].mo.SetOrigin((0, 0, 0), false);
   }
 
-} // class tt_AimerImplTest
+} // class tt_HorizontalAimerTest

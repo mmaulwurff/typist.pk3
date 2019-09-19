@@ -15,16 +15,17 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements Aimer interface by rotating the player.
+/**
+ * This class implements Aimer interface by rotating the player.
  *
  * This implementation only aims horizontally. Hope for the vertical autoaim!
  */
-class tt_AimerImpl : tt_Aimer
+class tt_HorizontalAimer : tt_Aimer
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_AimerImpl init(tt_OriginSource targetOriginSource, tt_PawnSource pawnSource)
+  tt_HorizontalAimer init(tt_OriginSource targetOriginSource, tt_PawnSource pawnSource)
   {
     _targetOriginSource = targetOriginSource;
     _pawnSource         = pawnSource;
@@ -64,4 +65,4 @@ class tt_AimerImpl : tt_Aimer
   private tt_OriginSource _targetOriginSource;
   private tt_PawnSource   _pawnSource;
 
-} // class tt_AimerImpl
+} // class tt_HorizontalAimer

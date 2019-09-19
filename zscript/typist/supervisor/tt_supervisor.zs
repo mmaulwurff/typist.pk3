@@ -38,7 +38,7 @@ class tt_Supervisor
     let autoModeSource = new("tt_AutoModeSource").init(targetRegistry, pawnSource);
 
     let targetOriginSource = new("tt_QuestionAnswerMatcher").init(targetRegistry, playerInput);
-    let aimer              = new("tt_AimerImpl"            ).init(targetOriginSource, pawnSource);
+    let aimer              = new("tt_HorizontalAimer"      ).init(targetOriginSource, pawnSource);
     let firer              = new("tt_FirerImpl"            ).init(playerInfoSource);
     let damager            = new("tt_Gunner"               ).init(targetOriginSource, aimer, firer);
 
