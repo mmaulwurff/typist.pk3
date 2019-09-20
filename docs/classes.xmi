@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI xmi.version="1.2" timestamp="2019-09-19T22:20:56" verified="false" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+<XMI xmi.version="1.2" timestamp="2019-09-20T09:37:05" verified="false" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -925,7 +925,7 @@
         <UML:AssociationEnd type="uAe9UNeJkzhM6" isNavigable="true" aggregation="none" visibility="public" xmi.id="u5se5rQFBbyUr" isSpecification="false" name="" changeability="changeable"/>
        </UML:Association.connection>
       </UML:Association>
-      <UML:Class isRoot="false" visibility="public" xmi.id="udM6wgsLqy93F" namespace="Logical_View" isSpecification="false" name="AimerHub" isLeaf="false" isAbstract="false">
+      <UML:Class isRoot="false" visibility="public" xmi.id="udM6wgsLqy93F" namespace="Logical_View" isSpecification="false" name="Aimers" isLeaf="false" isAbstract="false">
        <UML:Classifier.feature>
         <UML:Operation isRoot="false" visibility="public" xmi.id="umBXEYMTScmc9" isSpecification="false" name="aim" isLeaf="false" isAbstract="false" isQuery="false"/>
         <UML:Operation isRoot="false" visibility="public" xmi.id="usHu2sAkCaEfn" isSpecification="false" name="add" isLeaf="false" isAbstract="false" isQuery="false"/>
@@ -1186,7 +1186,7 @@
          <classwidget height="52" xmi.id="uKMD09s3J0Qur" usesdiagramusefillcolor="0" autoresize="1" localid="uSQypR6aKcpzo" isinstance="0" showstereotype="1" showscope="1" showoperations="1" x="-125" showattsigs="601" showattributes="1" showpubliconly="0" linecolor="#ff0000" font="Cantarell,10,-1,5,50,0,0,0,0,0" width="68" showpackage="1" linewidth="0" showopsigs="601" fillcolor="#8ae234" usesdiagramfillcolor="0" usefillcolor="1" textcolor="#000000" y="100"/>
          <interfacewidget height="45" xmi.id="uJeDSBGppXfgY" usesdiagramusefillcolor="0" autoresize="1" localid="ucXDIf4EgJ6Ot" isinstance="0" showstereotype="1" showscope="1" showoperations="1" x="700" showattsigs="601" showattributes="0" showpubliconly="0" linecolor="#ff0000" font="Cantarell,10,-1,5,50,0,0,0,0,0" width="123" showpackage="0" linewidth="0" showopsigs="601" drawascircle="0" fillcolor="#ffff00" usesdiagramfillcolor="0" usefillcolor="0" textcolor="#000000" y="-1050"/>
          <classwidget height="37" xmi.id="ujTY4OUXlna8b" usesdiagramusefillcolor="0" autoresize="1" localid="uaIjCDEyQ2598" isinstance="0" showstereotype="1" showscope="1" showoperations="1" x="700" showattsigs="601" showattributes="1" showpubliconly="0" linecolor="#ff0000" font="Cantarell,10,-1,5,50,0,0,0,0,0" width="155" showpackage="1" linewidth="0" showopsigs="601" fillcolor="#ffff00" usesdiagramfillcolor="0" usefillcolor="0" textcolor="#000000" y="-1125"/>
-         <classwidget height="52" xmi.id="udM6wgsLqy93F" usesdiagramusefillcolor="0" autoresize="1" localid="uEQOi2YtcVKVe" isinstance="0" showstereotype="1" showscope="1" showoperations="1" x="225" showattsigs="601" showattributes="1" showpubliconly="0" linecolor="#ff0000" font="Cantarell,10,-1,5,50,0,0,0,0,0" width="83" showpackage="1" linewidth="0" showopsigs="601" fillcolor="#ffff00" usesdiagramfillcolor="0" usefillcolor="1" textcolor="#000000" y="-875"/>
+         <classwidget height="52" xmi.id="udM6wgsLqy93F" usesdiagramusefillcolor="0" autoresize="1" localid="uEQOi2YtcVKVe" isinstance="0" showstereotype="1" showscope="1" showoperations="1" x="225" showattsigs="601" showattributes="1" showpubliconly="0" linecolor="#ff0000" font="Cantarell,10,-1,5,50,0,0,0,0,0" width="61" showpackage="1" linewidth="0" showopsigs="601" fillcolor="#8ae234" usesdiagramfillcolor="0" usefillcolor="1" textcolor="#000000" y="-875"/>
          <classwidget height="67" xmi.id="uKC86g9zSCkDT" usesdiagramusefillcolor="0" autoresize="1" localid="uSqdNYISqusvA" isinstance="0" showstereotype="1" showscope="1" showoperations="1" x="700" showattsigs="601" showattributes="1" showpubliconly="0" linecolor="#ff0000" font="Cantarell,10,-1,5,50,0,0,0,0,0" width="130" showpackage="1" linewidth="0" showopsigs="601" fillcolor="#8ae234" usesdiagramfillcolor="0" usefillcolor="1" textcolor="#000000" y="75"/>
          <interfacewidget height="45" xmi.id="u8a07sYrgCtQ4" usesdiagramusefillcolor="0" autoresize="1" localid="ujhyc5FPPJb5b" isinstance="0" showstereotype="1" showscope="1" showoperations="1" x="-650" showattsigs="601" showattributes="0" showpubliconly="0" linecolor="#ff0000" font="Cantarell,10,-1,5,50,0,0,0,0,0" width="123" showpackage="0" linewidth="0" showopsigs="601" drawascircle="0" fillcolor="#8ae234" usesdiagramfillcolor="0" usefillcolor="1" textcolor="#000000" y="75"/>
         </widgets>
