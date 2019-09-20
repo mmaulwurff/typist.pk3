@@ -226,6 +226,29 @@ class tt_SettingsMock : tt_Settings
   private int _mock_getScale_expected;
   private int _mock_getScale_called;
 
+  override
+  bool isAutoAimEnabled()
+  {
+    ++_mock_isAutoAimEnabled_called;
+    return _mock_isAutoAimEnabled;
+  }
+
+  void expect_isAutoAimEnabled(bool value, int expected = 1)
+  {
+    _mock_isAutoAimEnabled = value;
+    _mock_isAutoAimEnabled_expected = expected;
+    _mock_isAutoAimEnabled_called = 0;
+  }
+
+  bool isSatisfied_isAutoAimEnabled() const
+  {
+    return _mock_isAutoAimEnabled_expected == _mock_isAutoAimEnabled_called;
+  }
+
+  private bool _mock_isAutoAimEnabled;
+  private int _mock_isAutoAimEnabled_expected;
+  private int _mock_isAutoAimEnabled_called;
+
 } // class tt_SettingsMock
 
 class tt_TurnerMock : tt_Turner

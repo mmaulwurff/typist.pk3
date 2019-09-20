@@ -31,4 +31,12 @@ class tt_Settings abstract
     return 1;
   }
 
+  virtual
+  bool isAutoAimEnabled()
+  {
+    Console.Printf("zscript/typist/settings/tt_settings.zs:37: T: override this!");
+
+    return false;
+  }
+
 } // class tt_Settings

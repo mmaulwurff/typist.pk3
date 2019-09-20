@@ -30,6 +30,8 @@ version 4.1.3
 #include "zscript/typist/aimer/tt_aimer.zs"
 #include "zscript/typist/aimer/tt_horizontal_aimer_test.zs"
 #include "zscript/typist/aimer/tt_horizontal_aimer.zs"
+#include "zscript/typist/aimer/tt_vertical_aimer_test.zs"
+#include "zscript/typist/aimer/tt_vertical_aimer.zs"
 #include "zscript/typist/answer/tt_answer_source.zs"
 #include "zscript/typist/answer/tt_answer.zs"
 #include "zscript/typist/answer/tt_player_input_test.zs"

@@ -24,8 +24,8 @@ class tt_Supervisor
 
   tt_Supervisor init(int playerNumber)
   {
-    let playerInput    = new("tt_PlayerInput"  ).init();
-    let deathReporter  = new("tt_DeathReporter").init();
+    let playerInput   = new("tt_PlayerInput"  ).init();
+    let deathReporter = new("tt_DeathReporter").init();
 
     let difficultySource = new("tt_SelectedDifficulty"  ).init();
     let playerInfoSource = new("tt_PlayerInfoSourceImpl").init(playerNumber);
@@ -33,12 +33,13 @@ class tt_Supervisor
     let originSource     = new("tt_PawnOriginSource"    ).init(pawnSource);
     let targetSource     = new("tt_TargetRadar"         ).init(originSource);
     let questionSource   = new("tt_RandomLetterSource"  ).init(difficultySource);
+    let settings         = new("tt_SettingsImpl"        ).init(playerInfoSource);
 
     let targetRegistry = new("tt_TargetRegistry").init(targetSource, questionSource, deathReporter);
     let autoModeSource = new("tt_AutoModeSource").init(targetRegistry, pawnSource);
 
     let targetOriginSource = new("tt_QuestionAnswerMatcher").init(targetRegistry, playerInput);
-    let aimer              = new("tt_HorizontalAimer"      ).init(targetOriginSource, pawnSource);
+    let aimer              = makeAimer(targetOriginSource, pawnSource, settings);
     let firer              = new("tt_FirerImpl"            ).init(playerInfoSource);
     let damager            = new("tt_Gunner"               ).init(targetOriginSource, aimer, firer);
 
@@ -63,8 +64,6 @@ class tt_Supervisor
     modeSources.add(manualModeSource);
     modeSources.add(autoModeSource);
     let modeCascade = new("tt_ModeCascade").init(modeSources);
-
-    let settings = new("tt_SettingsImpl").init(playerInfoSource);
 
     let views         = new("tt_Views"        ).init();
     let targetOverlay = new("tt_TargetOverlay").init(widgetSorter, playerInput, settings);
@@ -124,6 +123,22 @@ class tt_Supervisor
   void draw(RenderEvent event)
   {
     _view.draw(event);
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  tt_Aimer makeAimer( tt_OriginSource targetOriginSource
+                    , tt_PawnSource   pawnSource
+                    , tt_Settings     settings
+                    )
+  {
+    let horizontalAimer = new("tt_HorizontalAimer").init(targetOriginSource, pawnSource);
+    let verticalAimer   = new("tt_VerticalAimer"  ).init(targetOriginSource, pawnSource, settings);
+    let aimer           = new("tt_Aimers"         ).init();
+    aimer.add(horizontalAimer);
+    aimer.add(verticalAimer);
+
+    return aimer;
   }
 
 // private: ////////////////////////////////////////////////////////////////////

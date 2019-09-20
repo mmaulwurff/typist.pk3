@@ -8,6 +8,7 @@ aimers
 applaunch
 args
 argv
+atan
 autoaim
 bool
 carmack
@@ -139,6 +140,7 @@ sirjuddington
 slade
 spellcheck
 sqlite
+sqrt
 startswith
 startup
 statsenabled

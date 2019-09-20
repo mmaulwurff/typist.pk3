@@ -38,10 +38,22 @@ class tt_SettingsImpl : tt_Settings
     if (scaleCvar == NULL)
     {
       let playerInfo = _playerInfoSource.getPlayerInfo();
-      scaleCvar = Cvar.getCvar("tt_view_scale", playerInfo);
+      scaleCvar = Cvar.GetCvar("tt_view_scale", playerInfo);
     }
 
     return scaleCvar.GetInt();
+  }
+
+  override
+  bool isAutoAimEnabled()
+  {
+    if (autoaimCvar == NULL)
+    {
+      let playerInfo = _playerInfoSource.getPlayerInfo();
+      autoaimCvar = Cvar.GetCvar("autoaim", playerInfo);
+    }
+
+    return (autoaimCvar.GetFloat() > 34.5);
   }
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -49,5 +61,6 @@ class tt_SettingsImpl : tt_Settings
   private tt_PlayerInfoSource _playerInfoSource;
 
   transient CVar scaleCvar;
+  transient CVar autoaimCvar;
 
 } // class tt_SettingsImpl

@@ -29,6 +29,7 @@ class tt_SettingsImplTest : tt_Clematis
     Describe("Checking SettingsImpl");
 
     testGetScale();
+    testIsAutoaimEnabled();
 
     EndDescribe();
   }
@@ -48,6 +49,20 @@ class tt_SettingsImplTest : tt_Clematis
 
     It("Player Info Source is satisfied", Assert(playerInfoSource.isSatisfied_getPlayerInfo()));
     It("Scale is more than zero", AssertEval(scale, ">", 0));
+  }
+
+  private
+  void testIsAutoaimEnabled()
+  {
+    let playerInfoSource = new("tt_PlayerInfoSourceMock");
+    let settings         = new("tt_SettingsImpl").init(playerInfoSource);
+
+    playerInfoSource.expect_getPlayerInfo(players[consolePlayer]);
+
+    bool isAutoaimEnabled = settings.isAutoaimEnabled();
+    isAutoaimEnabled = settings.isAutoaimEnabled(); // second call must not get player info again.
+
+    It("Player Info Source is satisfied", Assert(playerInfoSource.isSatisfied_getPlayerInfo()));
   }
 
 } // class tt_SettingsImplTest
