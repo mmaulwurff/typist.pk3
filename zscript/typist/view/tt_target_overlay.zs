@@ -71,8 +71,8 @@ class tt_TargetOverlay : tt_View
     int  width    = max(fnt.StringWidth(question), fnt.StringWidth(answer));
 
     double center = position.x - width / 2;
-    int x = int(Clamp(center,     BORDER + PADDING, screenWidth  - BORDER - PADDING - width     ));
-    int y = int(Clamp(position.y, BORDER + PADDING, screenHeight - BORDER - PADDING - height * 2));
+    int x = int(Clamp(center,     FRAME, screenWidth  - FRAME - width         ));
+    int y = int(Clamp(position.y, FRAME, screenHeight - FRAME * 3 - height * 2));
 
     drawBoxes(x, y, width, height, screenWidth, screenHeight);
     drawText(x, y, height, fnt, question, answer, screenWidth, screenHeight);
@@ -93,7 +93,7 @@ class tt_TargetOverlay : tt_View
 
     drawBox(dummyTexture, x, y, width, lineHeight, screenWidth, screenHeight, RGB_GOLD);
 
-    int lowerY = y + lineHeight + (BORDER + PADDING) * 2;
+    int lowerY = y + lineHeight + FRAME * 2;
     drawBox(dummyTexture, x, lowerY, width, lineHeight, screenWidth, screenHeight, RGB_GREEN);
   }
 
@@ -109,10 +109,10 @@ class tt_TargetOverlay : tt_View
               )
   {
     {
-      int borderX      = x - BORDER - PADDING;
-      int borderY      = y - BORDER - PADDING;
-      int borderWidth  = (BORDER + PADDING) * 2 + width;
-      int borderHeight = (BORDER + PADDING) * 2 + lineHeight;
+      int borderX      = x - FRAME;
+      int borderY      = y - FRAME;
+      int borderWidth  = FRAME * 2 + width;
+      int borderHeight = FRAME * 2 + lineHeight;
 
       Screen.DrawTexture( tex
                         , NOT_ANIMATED
@@ -173,7 +173,7 @@ class tt_TargetOverlay : tt_View
     Screen.DrawText( fnt
                    , Font.CR_DarkGreen
                    , x
-                   , y + height + (BORDER + PADDING) * 2
+                   , y + height + FRAME * 2
                    , "$" .. answer
                    , DTA_KeepRatio     , true
                    , DTA_VirtualWidth  , screenWidth
@@ -185,6 +185,7 @@ class tt_TargetOverlay : tt_View
 
   const BORDER       = 1;
   const PADDING      = 2;
+  const FRAME        = BORDER + PADDING;
 
   const NOT_ANIMATED = 0; // false
 
