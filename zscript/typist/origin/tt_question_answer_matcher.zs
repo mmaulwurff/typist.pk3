@@ -25,10 +25,12 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
 
   tt_QuestionAnswerMatcher init( tt_KnownTargetSource knownTargetSource
                                , tt_AnswerSource      answerSource
+                               , tt_PawnSource        pawnSource
                                )
   {
     _knownTargetSource = knownTargetSource;
     _answerSource      = answerSource;
+    _pawnSource        = pawnSource;
     _origin            = NULL;
 
     return self;
@@ -59,14 +61,17 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     let answer = _answerSource.getAnswer();
     if (answer == NULL) { return NULL; }
 
+    let pawn = _pawnSource.getPawn();
+
     uint nTargets = targets.size();
     for (uint i = 0; i < nTargets; ++i)
     {
       let  target   = targets.at(i);
       let  question = target.getQuestion();
       bool isRight  = question.isRight(answer);
+      bool isVisible = isVisible(target, pawn);
 
-      if (isRight)
+      if (isRight && isVisible)
       {
         let result = new("tt_Origin").init(target.getTarget().getPosition());
         _answerSource.reset();
@@ -77,10 +82,20 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     return NULL;
   }
 
+  private play
+  bool isVisible(tt_KnownTarget target, PlayerPawn pawn) const
+  {
+    let  targetActor = target.getTarget().getActor();
+    bool visible     = pawn.IsVisible(targetActor, false);
+
+    return visible;
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_KnownTargetSource _knownTargetSource;
   private tt_AnswerSource      _answerSource;
+  private tt_PawnSource        _pawnSource;
   private tt_Origin            _origin;
 
 } // class tt_QuestionAnswerMatcher
