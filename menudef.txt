@@ -16,6 +16,8 @@ OptionMenu tt_Options
   StaticText ""
   StaticText "$TT_GAMEPLAY_OPTIONS_TITLE_OUT", 1
   Option     "$TT_QUESTION_SOURCE", tt_question_source, tt_QuestionSourceValues
+  Command    "$TT_APPLY", tt_reset_targets
+  StaticText "$TT_QUESTION_SOURCE_NOTE"
 }
 
 // Option Values ///////////////////////////////////////////////////////////////

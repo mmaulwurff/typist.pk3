@@ -9,8 +9,11 @@ TT_UNLOCK = "Unlock Game Mode";
 TT_DISPLAY_OPTIONS_TITLE_OUT  = "Display Options";
 TT_DISPLAY_OPTIONS_TITLE_IN   = "Typist.pk3 Display Options";
 TT_TARGET_SCALE               = "Target text scale";
+
 TT_GAMEPLAY_OPTIONS_TITLE_OUT = "Gameplay Options";
 TT_QUESTION_SOURCE            = "Challenge Type";
+TT_APPLY                      = "Apply";
+TT_QUESTION_SOURCE_NOTE       = "Or existing targets will retain their Challenge type.";
 
 // Info Panel //////////////////////////////////////////////////////////////////
 

@@ -85,10 +85,8 @@ class tt_EventHandler : EventHandler
 
     String command = event.Name;
 
-    if (command == "tt_unlock_mode")
-    {
-      _supervisor.unlockMode();
-    }
+    if      (command == "tt_unlock_mode"  ) _supervisor.unlockMode();
+    else if (command == "tt_reset_targets") _supervisor = new("tt_Supervisor").init(consolePlayer);
   }
 
   override
