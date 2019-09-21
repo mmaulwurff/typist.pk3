@@ -44,7 +44,7 @@ class tt_GameTweaks
     thing.bNoBlood     = true;
     thing.bThruSpecies = true;
     thing.Health       = 1;
-    thing.A_ScaleVelocity(0.01);
+    thing.A_ScaleVelocity(0.1);
     thing.A_ChangeLinkFlags(0);
   }
 

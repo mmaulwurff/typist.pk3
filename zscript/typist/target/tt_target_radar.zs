@@ -68,11 +68,19 @@ class tt_TargetRadar : tt_TargetSource
   private static
   bool isSuitableForTargeting(Actor a)
   {
-    bool isMonster  = a.bIsMonster;
-    bool isAlive    = (a.Health > 0);
-    bool isFriendly = a.bFriendly;
-    bool isMissile  = a.bMissile;
-    bool isSuitable = ((isMonster || isMissile) && isAlive && !isFriendly);
+    bool isMonster    = a.bIsMonster;
+    bool isAlive      = (a.Health > 0);
+    bool isFriendly   = a.bFriendly;
+    bool isMissile    = a.bMissile;
+    bool isDamageable = !a.bNoDamage;
+    bool isNoDamage   = (a.Damage == 0);
+    bool isMissileSuitable = false;
+    bool isSuitable   = (  (  (isMonster && isDamageable)
+                           || (isMissile && !isNoDamage && isMissileSuitable)
+                           )
+                        && isAlive
+                        && !isFriendly
+                        );
 
     return isSuitable;
   }
