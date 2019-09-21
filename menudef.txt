@@ -10,13 +10,19 @@ OptionMenu tt_Options
   Title "$TT_TITLE"
 
   StaticText ""
-  Submenu    "$TT_DISPLAY_OPTIONS_TITLE_OUT", tt_DisplayOptions
-}
-
-OptionMenu tt_DisplayOptions
-{
-  Title "$TT_DISPLAY_OPTIONS_TITLE_IN"
+  StaticText "$TT_DISPLAY_OPTIONS_TITLE_OUT", 1
+  Slider     "$TT_TARGET_SCALE", tt_view_scale, 1, 4, 1
 
   StaticText ""
-  Slider     "$TT_TARGET_SCALE", tt_view_scale, 1, 4, 1
+  StaticText "$TT_GAMEPLAY_OPTIONS_TITLE_OUT", 1
+  Option     "$TT_QUESTION_SOURCE", tt_question_source, tt_QuestionSourceValues
+}
+
+// Option Values ///////////////////////////////////////////////////////////////
+
+// Attention! Keep this list consistent with the list in tt_Supervisor.makeQuestionSource().
+OptionValue tt_QuestionSourceValues
+{
+  0 , "Random Letters"
+  1 , "Random Numbers"
 }

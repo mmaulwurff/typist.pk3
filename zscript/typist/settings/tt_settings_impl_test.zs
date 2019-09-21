@@ -30,6 +30,7 @@ class tt_SettingsImplTest : tt_Clematis
 
     testGetScale();
     testIsAutoaimEnabled();
+    testGetQuestionSource();
 
     EndDescribe();
   }
@@ -39,8 +40,8 @@ class tt_SettingsImplTest : tt_Clematis
   private
   void testGetScale()
   {
-    let playerInfoSource = new("tt_PlayerInfoSourceMock");
-    let settings         = new("tt_SettingsImpl").init(playerInfoSource);
+    let playerInfoSource = new("tt_PlayerInfoSourceMock").init();
+    let settings         = new("tt_SettingsImpl"        ).init(playerInfoSource);
 
     playerInfoSource.expect_getPlayerInfo(players[consolePlayer]);
 
@@ -54,14 +55,28 @@ class tt_SettingsImplTest : tt_Clematis
   private
   void testIsAutoaimEnabled()
   {
-    let playerInfoSource = new("tt_PlayerInfoSourceMock");
-    let settings         = new("tt_SettingsImpl").init(playerInfoSource);
+    let playerInfoSource = new("tt_PlayerInfoSourceMock").init();
+    let settings         = new("tt_SettingsImpl"        ).init(playerInfoSource);
 
     playerInfoSource.expect_getPlayerInfo(players[consolePlayer]);
 
     bool isAutoaimEnabled = settings.isAutoaimEnabled();
     isAutoaimEnabled = settings.isAutoaimEnabled(); // second call must not get player info again.
 
+    It("Player Info Source is satisfied", Assert(playerInfoSource.isSatisfied_getPlayerInfo()));
+  }
+
+  private
+  void testGetQuestionSource()
+  {
+    let playerInfoSource = new("tt_PlayerInfoSourceMock").init();
+    let settings         = new("tt_SettingsImpl"        ).init(playerInfoSource);
+
+    playerInfoSource.expect_getPlayerInfo(players[consolePlayer]);
+
+    int questionSourceIndex = settings.getQuestionSourceIndex();
+
+    It("Question source index is reasonable", AssertEval(questionSourceIndex, ">=", 0));
     It("Player Info Source is satisfied", Assert(playerInfoSource.isSatisfied_getPlayerInfo()));
   }
 

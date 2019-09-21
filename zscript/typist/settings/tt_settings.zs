@@ -27,16 +27,21 @@ class tt_Settings abstract
   int getScale()
   {
     Console.Printf("zscript/typist/settings/tt_settings.zs:29: T: override this!");
-
     return 1;
   }
 
   virtual
   bool isAutoAimEnabled()
   {
-    Console.Printf("zscript/typist/settings/tt_settings.zs:37: T: override this!");
-
+    Console.Printf("zscript/typist/settings/tt_settings.zs:36: T: override this!");
     return false;
+  }
+
+  virtual
+  int getQuestionSourceIndex()
+  {
+    Console.Printf("zscript/typist/settings/tt_settings.zs:43: T: override this!");
+    return 0;
   }
 
 } // class tt_Settings

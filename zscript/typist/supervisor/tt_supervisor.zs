@@ -30,10 +30,11 @@ class tt_Supervisor
     let difficultySource = new("tt_SelectedDifficulty"  ).init();
     let playerInfoSource = new("tt_PlayerInfoSourceImpl").init(playerNumber);
     let pawnSource       = new("tt_PlayerPawnSource"    ).init(playerInfoSource);
+    let settings         = new("tt_SettingsImpl"        ).init(playerInfoSource);
+
     let originSource     = new("tt_PawnOriginSource"    ).init(pawnSource);
     let targetSource     = new("tt_TargetRadar"         ).init(originSource);
-    let questionSource   = new("tt_RandomLetterSource"  ).init(difficultySource);
-    let settings         = new("tt_SettingsImpl"        ).init(playerInfoSource);
+    let questionSource   = makeQuestionSource(difficultySource, settings);
 
     let targetRegistry = new("tt_TargetRegistry").init(targetSource, questionSource, deathReporter);
     let autoModeSource = new("tt_AutoModeSource").init(targetRegistry, pawnSource);
@@ -127,6 +128,7 @@ class tt_Supervisor
 
 // private: ////////////////////////////////////////////////////////////////////
 
+  private
   tt_Aimer makeAimer( tt_OriginSource targetOriginSource
                     , tt_PawnSource   pawnSource
                     , tt_Settings     settings
@@ -139,6 +141,20 @@ class tt_Supervisor
     aimer.add(verticalAimer);
 
     return aimer;
+  }
+
+  private
+  tt_QuestionSource makeQuestionSource(tt_DifficultySource difficultySource, tt_Settings settings)
+  {
+    let letterSource   = new("tt_RandomLetterSource"    ).init(difficultySource);
+    let numberSource   = new("tt_RandomNumberSource"    ).init(difficultySource);
+    let selectedSource = new("tt_SelectedQuestionSource").init(settings);
+
+    // Attention! Keep this list consistent with menudef entries.
+    selectedSource.add(letterSource);
+    selectedSource.add(numberSource);
+
+    return selectedSource;
   }
 
 // private: ////////////////////////////////////////////////////////////////////

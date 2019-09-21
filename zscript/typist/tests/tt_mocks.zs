@@ -249,6 +249,29 @@ class tt_SettingsMock : tt_Settings
   private int _mock_isAutoAimEnabled_expected;
   private int _mock_isAutoAimEnabled_called;
 
+  override
+  int getQuestionSourceIndex()
+  {
+    ++_mock_getQuestionSourceIndex_called;
+    return _mock_getQuestionSourceIndex;
+  }
+
+  void expect_getQuestionSourceIndex(int value, int expected = 1)
+  {
+    _mock_getQuestionSourceIndex = value;
+    _mock_getQuestionSourceIndex_expected = expected;
+    _mock_getQuestionSourceIndex_called = 0;
+  }
+
+  bool isSatisfied_getQuestionSourceIndex() const
+  {
+    return _mock_getQuestionSourceIndex_expected == _mock_getQuestionSourceIndex_called;
+  }
+
+  private int _mock_getQuestionSourceIndex;
+  private int _mock_getQuestionSourceIndex_expected;
+  private int _mock_getQuestionSourceIndex_called;
+
 } // class tt_SettingsMock
 
 class tt_TurnerMock : tt_Turner

@@ -53,6 +53,7 @@ fullscreen
 func
 gamedata
 gameinfo
+gameplay
 getsomethingfromstatusbar
 getters
 gitattributes
@@ -85,6 +86,7 @@ marrub
 matcher
 maxplayers
 medikit
+menudef
 merchantability
 miniwad
 mkdir

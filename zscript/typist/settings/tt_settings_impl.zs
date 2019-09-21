@@ -35,32 +35,53 @@ class tt_SettingsImpl : tt_Settings
   override
   int getScale()
   {
-    if (scaleCvar == NULL)
+    if (_scaleCvar == NULL)
     {
-      let playerInfo = _playerInfoSource.getPlayerInfo();
-      scaleCvar = Cvar.GetCvar("tt_view_scale", playerInfo);
+      _scaleCvar = getCvar("tt_view_scale");
     }
 
-    return scaleCvar.GetInt();
+    return _scaleCvar.GetInt();
   }
 
   override
   bool isAutoAimEnabled()
   {
-    if (autoaimCvar == NULL)
+    if (_autoaimCvar == NULL)
     {
-      let playerInfo = _playerInfoSource.getPlayerInfo();
-      autoaimCvar = Cvar.GetCvar("autoaim", playerInfo);
+      _autoaimCvar = getCvar("autoaim");
     }
 
-    return (autoaimCvar.GetFloat() > 34.5);
+    return (_autoaimCvar.GetFloat() > 34.5);
+  }
+
+  override
+  int getQuestionSourceIndex()
+  {
+    if (_questionSourceIndexCvar == NULL)
+    {
+      _questionSourceIndexCvar = getCvar("tt_question_source");
+    }
+
+    return _questionSourceIndexCvar.GetInt();
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private
+  Cvar getCvar(String cvarName)
+  {
+    let playerInfo = _playerInfoSource.getPlayerInfo();
+    let consoleVar = Cvar.GetCvar(cvarName, playerInfo);
+
+    return consoleVar;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_PlayerInfoSource _playerInfoSource;
 
-  transient CVar scaleCvar;
-  transient CVar autoaimCvar;
+  transient Cvar _scaleCvar;
+  transient Cvar _autoaimCvar;
+  transient Cvar _questionSourceIndexCvar;
 
 } // class tt_SettingsImpl

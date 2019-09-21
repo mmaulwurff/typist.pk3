@@ -87,6 +87,8 @@ version 4.1.3
 #include "zscript/typist/question/tt_random_letter_source.zs"
 #include "zscript/typist/question/tt_random_number_source_test.zs"
 #include "zscript/typist/question/tt_random_number_source.zs"
+#include "zscript/typist/question/tt_selected_question_source_test.zs"
+#include "zscript/typist/question/tt_selected_question_source.zs"
 #include "zscript/typist/settings/tt_settings_impl_test.zs"
 #include "zscript/typist/settings/tt_settings_impl.zs"
 #include "zscript/typist/settings/tt_settings.zs"
