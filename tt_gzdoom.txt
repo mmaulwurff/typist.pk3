@@ -104,7 +104,6 @@ slider
 slot
 slow
 sound
-spriteid
 state
 states
 static

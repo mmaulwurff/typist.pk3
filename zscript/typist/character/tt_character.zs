@@ -23,11 +23,11 @@ class tt_Character
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Character init(int code, bool isShift)
+  tt_Character init(int code, bool isShift, bool isCtrl)
   {
     if (code == 8)
     {
-      _type = BACKSPACE;
+      _type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE);
     }
     else if (code <= 31)
     {
@@ -53,6 +53,7 @@ class tt_Character
     NONE,
     PRINTABLE,
     BACKSPACE,
+    CTRL_BACKSPACE,
   }
 
   int getType() const { return _type; }

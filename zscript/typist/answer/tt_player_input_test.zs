@@ -28,6 +28,7 @@ class tt_PlayerInputTest : tt_Clematis
     testPlayerInputCheckInput();
     testPlayerInputCheckReset();
     testBackspace();
+    testCtrlBackspace();
 
     EndDescribe();
   }
@@ -70,8 +71,8 @@ class tt_PlayerInputTest : tt_Clematis
   void testBackspace()
   {
     let playerInput = new("tt_PlayerInput").init();
-    let backspace   = new("tt_Character").init(8, false);
-    let letterA     = new("tt_Character").init(97, false);
+    let backspace   = new("tt_Character").init(8, false, false);
+    let letterA     = new("tt_Character").init(97, false, false);
 
     //playerInput.reset();
     playerInput.processKey(backspace);
@@ -85,6 +86,23 @@ class tt_PlayerInputTest : tt_Clematis
     It("Input after backspace must be valid", Assert(answerString == "a"));
   }
 
+  private
+  void testCtrlBackspace()
+  {
+    let playerInput   = new("tt_PlayerInput").init();
+    let ctrlBackspace = new("tt_Character").init(8, false, true);
+    let letterA       = new("tt_Character").init(97, false, false);
+
+    playerInput.processKey(letterA);
+    playerInput.processKey(letterA);
+    playerInput.processKey(ctrlBackspace);
+
+    let answer       = playerInput.getAnswer();
+    let answerString = answer.getString();
+
+    It("Input after ctrl-backspace must be empty", Assert(answerString == ""));
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private
@@ -93,7 +111,7 @@ class tt_PlayerInputTest : tt_Clematis
     uint inputSize = str.length();
     for (uint i = 0; i < inputSize; ++i)
     {
-      let character = new("tt_Character").init(str.ByteAt(i), false);
+      let character = new("tt_Character").init(str.ByteAt(i), false, false);
       input.processKey(character);
     }
   }

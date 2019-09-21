@@ -33,8 +33,9 @@ class tt_PlayerInput : tt_AnswerSource
     switch (type)
     {
     case tt_Character.NONE: break;
-    case tt_Character.PRINTABLE: _answer = _answer .. character.getCharacter(); break;
-    case tt_Character.BACKSPACE: _answer.DeleteLastCharacter(); break;
+    case tt_Character.PRINTABLE:      _answer = _answer .. character.getCharacter(); break;
+    case tt_Character.BACKSPACE:      _answer.DeleteLastCharacter(); break;
+    case tt_Character.CTRL_BACKSPACE: _answer = ""; break;
     }
   }
 
