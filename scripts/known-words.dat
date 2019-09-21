@@ -11,6 +11,7 @@ argv
 atan
 autoaim
 bool
+canraise
 carmack
 ccmd
 changelog
@@ -18,6 +19,7 @@ changelogs
 chdir
 chesko
 chown
+clearflags
 clearscope
 config
 configparser
@@ -27,6 +29,7 @@ cosang
 cosrang
 cosvang
 cvar
+cvarinfo
 damager
 deproject
 deprojection
@@ -43,6 +46,7 @@ eval
 ffffff
 ffffffd
 filename
+flagdef
 fluidsynth
 forceclamp
 forw
@@ -75,6 +79,7 @@ isfile
 iwad
 json
 keks
+keyconf
 kromm
 levellocals
 lgpl
@@ -94,9 +99,12 @@ mmaulwurff
 msys
 multi
 multiverse
+namespace
 nclass
 netevent
 netevents
+noarchive
+nodelay
 nodraw
 noncommercially
 norun
@@ -129,6 +137,7 @@ resizing
 rglob
 rmtree
 ryzen
+sbyte
 screenblocks
 servernum
 shader
@@ -141,10 +150,12 @@ sinvang
 sirjuddington
 slade
 spellcheck
+spriteid
 sqlite
 sqrt
 startswith
 startup
+statelabel
 statsenabled
 statusbar
 stript
@@ -169,8 +180,10 @@ undef
 undroppable
 unfilter
 unmodded
+ushort
 util
 utils
+vararg
 viewangle
 viewheight
 viewpitch
@@ -178,6 +191,7 @@ viewport
 viewpos
 viewroll
 viewtopic
+virtualscope
 weaponready
 weaponreadyalt
 wget

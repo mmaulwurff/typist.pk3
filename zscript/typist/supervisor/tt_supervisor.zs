@@ -149,10 +149,12 @@ class tt_Supervisor
     let letterSource   = new("tt_RandomLetterSource"    ).init(difficultySource);
     let numberSource   = new("tt_RandomNumberSource"    ).init(difficultySource);
     let selectedSource = new("tt_SelectedQuestionSource").init(settings);
+    let gzdoomSource   = new("tt_StringSet"             ).init("tt_gzdoom");
 
     // Attention! Keep this list consistent with menudef entries.
     selectedSource.add(letterSource);
     selectedSource.add(numberSource);
+    selectedSource.add(gzdoomSource);
 
     return selectedSource;
   }

@@ -27,4 +27,5 @@ OptionValue tt_QuestionSourceValues
 {
   0 , "Random Letters"
   1 , "Random Numbers"
+  2 , "GZDoom Dev"
 }
