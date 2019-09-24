@@ -30,10 +30,10 @@ class tt_PawnOriginSourceTest : tt_Clematis
     double z   = 3;
     let    imp = PlayerPawn(Spawn("DoomPlayer", (x, y, z)));
 
-    let pawnSource   = new("tt_PawnSourceMock").init();
-    let originSource = new("tt_PawnOriginSource").init(pawnSource);
+    let playerSource = new("tt_PlayerSourceMock").init();
+    let originSource = new("tt_PawnOriginSource").init(playerSource);
 
-    pawnSource.expect_getPawn(imp);
+    playerSource.expect_getPawn(imp);
 
     let origin = originSource.getOrigin().getPosition();
     let impZ   = imp.height / 2 + z;
@@ -41,7 +41,7 @@ class tt_PawnOriginSourceTest : tt_Clematis
     It("X matches", AssertEval(x,    "==", origin.x));
     It("Y matches", AssertEval(y,    "==", origin.y));
     It("Z matches", AssertEval(impZ, "==", origin.z));
-    It("Pawn source is satisfied", Assert(pawnSource.isSatisfied_getPawn()));
+    It("Pawn source is satisfied", Assert(playerSource.isSatisfied_getPawn()));
 
     EndDescribe();
   }

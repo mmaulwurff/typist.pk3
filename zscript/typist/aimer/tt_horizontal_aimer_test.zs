@@ -43,14 +43,14 @@ class tt_HorizontalAimerTest : tt_Clematis
     for (uint i = 0; i < nTargetPositions; ++i)
     {
       let    originSource  = new("tt_OriginSourceMock").init();
-      let    pawnSource    = new("tt_PawnSourceMock").init();
-      let    aimer         = new("tt_HorizontalAimer").init(originSource, pawnSource);
+      let    playerSource  = new("tt_PlayerSourceMock").init();
+      let    aimer         = new("tt_HorizontalAimer").init(originSource, playerSource);
       let    targetOrigin  = targetPositions[i];
       let    pawn          = players[consolePlayer].mo;
       double angle         = angles[i];
 
       originSource.expect_getOrigin(targetOrigin);
-      pawnSource  .expect_getPawn(pawn);
+      playerSource.expect_getPawn(pawn);
 
       // Just for a visual check.
       Spawn("DoomImp", targetOrigin.getPosition());
@@ -60,7 +60,7 @@ class tt_HorizontalAimerTest : tt_Clematis
       String message = String.Format("Pawn is oriented at the target, angle: %f", angle);
       It(message                      , AssertEval(pawn.angle, "~==", angles[i]));
       It("Origin source is satisfied" , Assert(originSource.isSatisfied_getOrigin()));
-      It("Pawn source is satisfied"   , Assert(pawnSource.isSatisfied_getPawn()));
+      It("Player source is satisfied" , Assert(playerSource.isSatisfied_getPawn()));
     }
 
     EndDescribe();

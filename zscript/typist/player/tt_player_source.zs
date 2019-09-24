@@ -16,29 +16,25 @@
  */
 
 /**
+ * This class is an interface for getting player info and player pawn.
  */
-class tt_PlayerInfoSourceImpl : tt_PlayerInfoSource
+class tt_PlayerSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_PlayerInfoSourceImpl init(int playerNumber)
+  virtual
+  PlayerInfo getInfo()
   {
-    _playerNumber = playerNumber;
-
-    return self;
+    Console.Printf("zscript/typist/player/tt_player_source.zs:29: T: override this!");
+    return NULL;
   }
 
-// public: // tt_PlayerInfoSource //////////////////////////////////////////////
-
-  override
-  PlayerInfo getPlayerInfo()
+  virtual
+  PlayerPawn getPawn()
   {
-    return players[_playerNumber];
+    Console.Printf("zscript/typist/player/tt_player_source.zs:36: T: override this!");
+    return NULL;
   }
 
-// private:
-
-  private int _playerNumber;
-
-} // class tt_PlayerInfoSourceImpl
+} // class tt_PlayerSource

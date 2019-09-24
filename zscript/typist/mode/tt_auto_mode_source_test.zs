@@ -61,7 +61,7 @@ class tt_AutoModeSourceTest : tt_Clematis
 
     _knownTargetSource.expect_isEmpty(false);
     _knownTargetSource.expect_getTargets(knownTargets);
-    _pawnSource.expect_getPawn(players[consolePlayer].mo);
+    _playerSource     .expect_getPawn(players[consolePlayer].mo);
 
     int mode = _autoModeSource.getMode();
 
@@ -83,7 +83,7 @@ class tt_AutoModeSourceTest : tt_Clematis
 
     _knownTargetSource.expect_isEmpty(false);
     _knownTargetSource.expect_getTargets(knownTargets);
-    _pawnSource.expect_getPawn(players[consolePlayer].mo);
+    _playerSource     .expect_getPawn(players[consolePlayer].mo);
 
     int mode = _autoModeSource.getMode();
 
@@ -98,8 +98,8 @@ class tt_AutoModeSourceTest : tt_Clematis
   void setUp()
   {
     _knownTargetSource = new("tt_KnownTargetSourceMock").init();
-    _pawnSource        = new("tt_PawnSourceMock").init();
-    _autoModeSource    = new("tt_AutoModeSource").init(_knownTargetSource, _pawnSource);
+    _playerSource      = new("tt_PlayerSourceMock").init();
+    _autoModeSource    = new("tt_AutoModeSource").init(_knownTargetSource, _playerSource);
   }
 
   private
@@ -107,13 +107,13 @@ class tt_AutoModeSourceTest : tt_Clematis
   {
     It("Known Target Source is satisfied", Assert(_knownTargetSource.isSatisfied_isEmpty()));
     It("Known Target Source is satisfied", Assert(_knownTargetSource.isSatisfied_getTargets()));
-    It("Pawn Source is satisfied"        , Assert(_pawnSource.isSatisfied_getPawn()));
+    It("Pawn Source is satisfied"        , Assert(_playerSource.isSatisfied_getPawn()));
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_KnownTargetSourceMock _knownTargetSource;
-  private tt_PawnSourceMock        _pawnSource;
+  private tt_PlayerSourceMock      _playerSource;
   private tt_AutoModeSource        _autoModeSource;
 
 } // class tt_AutoModeSourceTest

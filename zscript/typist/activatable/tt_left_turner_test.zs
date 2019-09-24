@@ -39,13 +39,13 @@ class tt_LeftTurnerTest : tt_Clematis
   private play
   void checkTurn() const
   {
-    let pawn       = players[consolePlayer].mo;
-    let pawnSource = new("tt_PawnSourceMock").init();
-    let leftTurner = new("tt_LeftTurner"   ).init(pawnSource);
+    let pawn         = players[consolePlayer].mo;
+    let playerSource = new("tt_PlayerSourceMock").init();
+    let leftTurner   = new("tt_LeftTurner"      ).init(playerSource);
 
     double before = pawn.Angle;
 
-    pawnSource.expect_getPawn(pawn);
+    playerSource.expect_getPawn(pawn);
 
     leftTurner.activate();
 
@@ -54,19 +54,19 @@ class tt_LeftTurnerTest : tt_Clematis
 
     It("Must turn right", AssertEval(delta, ">",   0));
     It("Must turn right", AssertEval(delta, "<", 180));
-    It("Pawn Source is satisfied", Assert(pawnSource.isSatisfied_getPawn()));
+    It("Pawn Source is satisfied", Assert(playerSource.isSatisfied_getPawn()));
   }
 
   private
   void checkCommand()
   {
-    let pawnSource = new("tt_PawnSourceMock").init();
-    let leftTurner = new("tt_LeftTurner"    ).init(pawnSource);
+    let playerSource = new("tt_PlayerSourceMock").init();
+    let leftTurner   = new("tt_LeftTurner"      ).init(playerSource);
 
     let commands = leftTurner.getCommands();
 
-    It("Must contain turn command", Assert(commands.contains("/left")));
-    It("Pawn Source is satisfied",  Assert(pawnSource.isSatisfied_getPawn()));
+    It("Must contain turn command" , Assert(commands.contains("/left")));
+    It("Pawn Source is satisfied"  , Assert(playerSource.isSatisfied_getPawn()));
   }
 
 } // class tt_LeftTurnerTest

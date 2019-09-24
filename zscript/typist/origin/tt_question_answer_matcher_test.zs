@@ -167,9 +167,12 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     _knownTargetSource = new("tt_KnownTargetSourceMock").init();
     _answerSource      = new("tt_AnswerSourceMock"     ).init();
-    _pawnSource        = new("tt_PawnSourceMock"       ).init();
+    _playerSource      = new("tt_PlayerSourceMock"     ).init();
 
-    _matcher = new("tt_QuestionAnswerMatcher").init(_knownTargetSource, _answerSource, _pawnSource);
+    _matcher = new("tt_QuestionAnswerMatcher").init( _knownTargetSource
+                                                   , _answerSource
+                                                   , _playerSource
+                                                   );
   }
 
   private
@@ -186,7 +189,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
   private tt_KnownTargetSourceMock _knownTargetSource;
   private tt_AnswerSourceMock      _answerSource;
-  private tt_PawnSourceMock        _pawnSource;
+  private tt_PlayerSourceMock      _playerSource;
   private tt_QuestionAnswerMatcher _matcher;
 
 } // class tt_QuestionAnswerMatcherTest

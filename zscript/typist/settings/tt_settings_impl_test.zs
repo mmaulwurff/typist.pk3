@@ -40,44 +40,44 @@ class tt_SettingsImplTest : tt_Clematis
   private
   void testGetScale()
   {
-    let playerInfoSource = new("tt_PlayerInfoSourceMock").init();
-    let settings         = new("tt_SettingsImpl"        ).init(playerInfoSource);
+    let playerSource = new("tt_PlayerSourceMock").init();
+    let settings     = new("tt_SettingsImpl"    ).init(playerSource);
 
-    playerInfoSource.expect_getPlayerInfo(players[consolePlayer]);
+    playerSource.expect_getInfo(players[consolePlayer]);
 
     int scale = settings.getScale();
     scale = settings.getScale(); // second call to getScale must not get player info again.
 
-    It("Player Info Source is satisfied", Assert(playerInfoSource.isSatisfied_getPlayerInfo()));
-    It("Scale is more than zero", AssertEval(scale, ">", 0));
+    It("Player Info Source is satisfied" , Assert(playerSource.isSatisfied_getInfo()));
+    It("Scale is more than zero"         , AssertEval(scale, ">", 0));
   }
 
   private
   void testIsAutoaimEnabled()
   {
-    let playerInfoSource = new("tt_PlayerInfoSourceMock").init();
-    let settings         = new("tt_SettingsImpl"        ).init(playerInfoSource);
+    let playerSource = new("tt_PlayerSourceMock").init();
+    let settings     = new("tt_SettingsImpl"    ).init(playerSource);
 
-    playerInfoSource.expect_getPlayerInfo(players[consolePlayer]);
+    playerSource.expect_getInfo(players[consolePlayer]);
 
     bool isAutoaimEnabled = settings.isAutoaimEnabled();
     isAutoaimEnabled = settings.isAutoaimEnabled(); // second call must not get player info again.
 
-    It("Player Info Source is satisfied", Assert(playerInfoSource.isSatisfied_getPlayerInfo()));
+    It("Player Info Source is satisfied", Assert(playerSource.isSatisfied_getInfo()));
   }
 
   private
   void testGetQuestionSource()
   {
-    let playerInfoSource = new("tt_PlayerInfoSourceMock").init();
-    let settings         = new("tt_SettingsImpl"        ).init(playerInfoSource);
+    let playerSource = new("tt_PlayerSourceMock").init();
+    let settings     = new("tt_SettingsImpl"    ).init(playerSource);
 
-    playerInfoSource.expect_getPlayerInfo(players[consolePlayer]);
+    playerSource.expect_getInfo(players[consolePlayer]);
 
     int questionSourceIndex = settings.getQuestionSourceIndex();
 
-    It("Question source index is reasonable", AssertEval(questionSourceIndex, ">=", 0));
-    It("Player Info Source is satisfied", Assert(playerInfoSource.isSatisfied_getPlayerInfo()));
+    It("Question source index is reasonable" , AssertEval(questionSourceIndex, ">=", 0));
+    It("Player Info Source is satisfied"     , Assert(playerSource.isSatisfied_getInfo()));
   }
 
 } // class tt_SettingsImplTest

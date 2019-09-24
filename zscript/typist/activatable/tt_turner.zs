@@ -23,9 +23,9 @@
 class tt_Turner : tt_Activatable abstract
 {
 
-  tt_Turner init(tt_PawnSource pawnSource)
+  tt_Turner init(tt_PlayerSource playerSource)
   {
-    _pawnSource = pawnSource;
+    _playerSource = playerSource;
 
     return self;
   }
@@ -44,7 +44,7 @@ class tt_Turner : tt_Activatable abstract
   override
   void activate()
   {
-    let    pawn     = _pawnSource.getPawn();
+    let    pawn     = _playerSource.getPawn();
     double oldAngle = pawn.Angle;
     double newAngle = oldAngle + getTurnAngle();
 
@@ -57,6 +57,6 @@ class tt_Turner : tt_Activatable abstract
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_PawnSource _pawnSource;
+  private tt_PlayerSource _playerSource;
 
 } // class tt_Turner

@@ -27,37 +27,36 @@ class tt_Supervisor
     let playerInput   = new("tt_PlayerInput"  ).init();
     let deathReporter = new("tt_DeathReporter").init();
 
-    let difficultySource = new("tt_SelectedDifficulty"  ).init();
-    let playerInfoSource = new("tt_PlayerInfoSourceImpl").init(playerNumber);
-    let pawnSource       = new("tt_PlayerPawnSource"    ).init(playerInfoSource);
-    let settings         = new("tt_SettingsImpl"        ).init(playerInfoSource);
+    let difficultySource = new("tt_SelectedDifficulty").init();
+    let playerSource     = new("tt_PlayerSourceImpl"  ).init(playerNumber);
+    let settings         = new("tt_SettingsImpl"      ).init(playerSource);
 
-    let originSource     = new("tt_PawnOriginSource"    ).init(pawnSource);
+    let originSource     = new("tt_PawnOriginSource"    ).init(playerSource);
     let targetSource     = new("tt_TargetRadar"         ).init(originSource);
     let questionSource   = makeQuestionSource(difficultySource, settings);
 
     let targetRegistry = new("tt_TargetRegistry").init(targetSource, questionSource, deathReporter);
-    let autoModeSource = new("tt_AutoModeSource").init(targetRegistry, pawnSource);
+    let autoModeSource = new("tt_AutoModeSource").init(targetRegistry, playerSource);
 
     let targetOriginSource = new("tt_QuestionAnswerMatcher").init( targetRegistry
                                                                  , playerInput
-                                                                 , pawnSource
+                                                                 , playerSource
                                                                  );
 
-    let aimer              = makeAimer(targetOriginSource, pawnSource, settings);
-    let firer              = new("tt_FirerImpl"            ).init(playerInfoSource);
+    let aimer              = makeAimer(targetOriginSource, playerSource, settings);
+    let firer              = new("tt_FirerImpl"            ).init(playerSource);
     let damager            = new("tt_Gunner"               ).init(targetOriginSource, aimer, firer);
 
-    let projector        = new("tt_Projector"           ).init(targetRegistry, playerInfoSource);
-    let visibilityFilter = new("tt_VisibilityFilter"    ).init(projector, pawnSource);
+    let projector        = new("tt_Projector"           ).init(targetRegistry, playerSource);
+    let visibilityFilter = new("tt_VisibilityFilter"    ).init(projector, playerSource);
     let widgetRegistry   = new("tt_TargetWidgetRegistry").init(visibilityFilter);
     let widgetSorter     = new("tt_SorterByDistance"    ).init(widgetRegistry, originSource);
 
     let manualModeSource  = new("tt_SettableMode").init();
     let modeSwitcher      = new("tt_ModeSwitcher").init(manualModeSource);
 
-    let rightTurner  = new("tt_RightTurner" ).init(pawnSource);
-    let leftTurner   = new("tt_LeftTurner"  ).init(pawnSource);
+    let rightTurner  = new("tt_RightTurner" ).init(playerSource);
+    let leftTurner   = new("tt_LeftTurner"  ).init(playerSource);
     let activatables = new("tt_Activatables").init();
     activatables.add(modeSwitcher);
     activatables.add(rightTurner);
@@ -134,13 +133,13 @@ class tt_Supervisor
 
   private
   tt_Aimer makeAimer( tt_OriginSource targetOriginSource
-                    , tt_PawnSource   pawnSource
+                    , tt_PlayerSource playerSource
                     , tt_Settings     settings
                     )
   {
-    let horizontalAimer = new("tt_HorizontalAimer").init(targetOriginSource, pawnSource);
-    let verticalAimer   = new("tt_VerticalAimer"  ).init(targetOriginSource, pawnSource, settings);
-    let aimer           = new("tt_Aimers"         ).init();
+    let horizontalAimer = new("tt_HorizontalAimer").init(targetOriginSource, playerSource);
+    let verticalAimer = new("tt_VerticalAimer").init(targetOriginSource, playerSource, settings);
+    let aimer         = new("tt_Aimers"       ).init();
     aimer.add(horizontalAimer);
     aimer.add(verticalAimer);
 

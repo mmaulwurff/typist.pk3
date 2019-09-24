@@ -23,10 +23,10 @@ class tt_AutoModeSource : tt_ModeSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_AutoModeSource init(tt_KnownTargetSource knownTargetSource, tt_PawnSource pawnSource)
+  tt_AutoModeSource init(tt_KnownTargetSource knownTargetSource, tt_PlayerSource playerSource)
   {
     _knownTargetSource = knownTargetSource;
-    _pawnSource        = pawnSource;
+    _playerSource      = playerSource;
 
     return self;
   }
@@ -44,7 +44,7 @@ class tt_AutoModeSource : tt_ModeSource
     }
 
     bool isAtLeastOneVisible = false;
-    let  pawn = _pawnSource.getPawn();
+    let  pawn = _playerSource.getPawn();
 
     let  targets  = _knownTargetSource.getTargets();
     uint nTargets = targets.size();
@@ -76,6 +76,6 @@ class tt_AutoModeSource : tt_ModeSource
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_KnownTargetSource _knownTargetSource;
-  private tt_PawnSource        _pawnSource;
+  private tt_PlayerSource      _playerSource;
 
 } // class tt_AutoModeSource

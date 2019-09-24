@@ -95,36 +95,6 @@ class tt_AnswerSourceMock : tt_AnswerSource
 
 } // class tt_AnswerSourceMock
 
-class tt_PlayerInfoSourceMock : tt_PlayerInfoSource
-{
-
-  tt_PlayerInfoSourceMock init() { return self; }
-
-  override
-  PlayerInfo getPlayerInfo()
-  {
-    ++_mock_getPlayerInfo_called;
-    return _mock_getPlayerInfo;
-  }
-
-  void expect_getPlayerInfo(PlayerInfo value, int expected = 1)
-  {
-    _mock_getPlayerInfo = value;
-    _mock_getPlayerInfo_expected = expected;
-    _mock_getPlayerInfo_called = 0;
-  }
-
-  bool isSatisfied_getPlayerInfo() const
-  {
-    return _mock_getPlayerInfo_expected == _mock_getPlayerInfo_called;
-  }
-
-  private PlayerInfo _mock_getPlayerInfo;
-  private int _mock_getPlayerInfo_expected;
-  private int _mock_getPlayerInfo_called;
-
-} // class tt_PlayerInfoSourceMock
-
 class tt_KnownTargetSourceMock : tt_KnownTargetSource
 {
 
@@ -681,10 +651,33 @@ class tt_FirerMock : tt_Firer
 
 } // class tt_FirerMock
 
-class tt_PawnSourceMock : tt_PawnSource
+class tt_PlayerSourceMock : tt_PlayerSource
 {
 
-  tt_PawnSourceMock init() { return self; }
+  tt_PlayerSourceMock init() { return self; }
+
+  override
+  PlayerInfo getInfo()
+  {
+    ++_mock_getInfo_called;
+    return _mock_getInfo;
+  }
+
+  void expect_getInfo(PlayerInfo value, int expected = 1)
+  {
+    _mock_getInfo = value;
+    _mock_getInfo_expected = expected;
+    _mock_getInfo_called = 0;
+  }
+
+  bool isSatisfied_getInfo() const
+  {
+    return _mock_getInfo_expected == _mock_getInfo_called;
+  }
+
+  private PlayerInfo _mock_getInfo;
+  private int _mock_getInfo_expected;
+  private int _mock_getInfo_called;
 
   override
   PlayerPawn getPawn()
@@ -709,7 +702,7 @@ class tt_PawnSourceMock : tt_PawnSource
   private int _mock_getPawn_expected;
   private int _mock_getPawn_called;
 
-} // class tt_PawnSourceMock
+} // class tt_PlayerSourceMock
 
 class tt_ViewMock : tt_View
 {

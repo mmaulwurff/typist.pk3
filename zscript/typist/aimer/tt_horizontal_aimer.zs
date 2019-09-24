@@ -25,10 +25,10 @@ class tt_HorizontalAimer : tt_Aimer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_HorizontalAimer init(tt_OriginSource targetOriginSource, tt_PawnSource pawnSource)
+  tt_HorizontalAimer init(tt_OriginSource targetOriginSource, tt_PlayerSource playerSource)
   {
     _targetOriginSource = targetOriginSource;
-    _pawnSource         = pawnSource;
+    _playerSource       = playerSource;
 
     return self;
   }
@@ -41,7 +41,7 @@ class tt_HorizontalAimer : tt_Aimer
     let targetOrigin = _targetOriginSource.getOrigin();
     if (targetOrigin == NULL) { return; }
 
-    let pawn = _pawnSource.getPawn();
+    let pawn = _playerSource.getPawn();
     if (pawn == NULL) { return; }
 
     Vector3 myPosition    = pawn.pos;
@@ -63,6 +63,6 @@ class tt_HorizontalAimer : tt_Aimer
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_OriginSource _targetOriginSource;
-  private tt_PawnSource   _pawnSource;
+  private tt_PlayerSource _playerSource;
 
 } // class tt_HorizontalAimer

@@ -15,7 +15,10 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class tt_PlayerPawnSourceTest : tt_Clematis
+/**
+ * This is a test for tt_PlayerSourceImpl class.
+ */
+class tt_PlayerSourceImplTest : tt_Clematis
 {
 
 // public: /////////////////////////////////////////////////////////////////////
@@ -23,51 +26,55 @@ class tt_PlayerPawnSourceTest : tt_Clematis
   override
   void TestSuites()
   {
+    Describe("Checking Player Source");
+
+    testInfo();
     testConsolePlayer();
-    testNextPlayer();
+    testOtherPlayers();
+
+    EndDescribe();
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
+  /**
+   * Info, unlike pawns, exist even for non-existent players.
+   */
+  private
+  void testInfo()
+  {
+    for (int playerNumber = 0; playerNumber < MAXPLAYERS; ++playerNumber)
+    {
+      let source = new("tt_PlayerSourceImpl").init(playerNumber);
+      let info   = source.getInfo();
+
+      It(String.Format("Player info (%d) must be not NULL", playerNumber), Assert(info != NULL));
+    }
+  }
+
   private
   void testConsolePlayer()
   {
-    Describe("Checking Player Pawn Source with ConsolePlayer");
-
-    let mockInfoSource = new("tt_PlayerInfoSourceMock").init();
-
-    mockInfoSource.expect_getPlayerInfo(players[consolePlayer]);
-
-    let source = new("tt_PlayerPawnSource").init(mockInfoSource);
+    let source = new("tt_PlayerSourceImpl").init(consolePlayer);
     let pawn   = source.getPawn();
 
     It(String.Format("Must get main player (%d) actor", consolePlayer), AssertNotNull(pawn));
-    It("Player Info Source is satisfied", Assert(mockInfoSource.isSatisfied_getPlayerInfo()));
-
-    EndDescribe();
   }
 
-  /** Since tests are run on single-player game, no other players must exist.
+  /**
+   * Since tests are run on single-player game, no other players must exist.
    */
   private
-  void testNextPlayer()
+  void testOtherPlayers()
   {
-    Describe("Checking Player Pawn Source with other numbers");
-
     for (int i = 1; i < MAXPLAYERS; ++i)
     {
-      int playerNumber   = (consolePlayer + i) % MAXPLAYERS;
-      let mockInfoSource = new("tt_PlayerInfoSourceMock").init();
-      mockInfoSource.expect_getPlayerInfo(players[playerNumber]);
-
-      let source = new("tt_PlayerPawnSource").init(mockInfoSource);
-      let pawn   = source.getPawn();
+      int playerNumber = (consolePlayer + i) % MAXPLAYERS;
+      let source       = new("tt_PlayerSourceImpl").init(playerNumber);
+      let pawn         = source.getPawn();
 
       It(String.Format("Other player (%d) must be null", playerNumber), AssertNull(pawn));
-      It("Player Info Source is satisfied", Assert(mockInfoSource.isSatisfied_getPlayerInfo()));
     }
-
-    EndDescribe();
   }
 
-} // class tt_PlayerPawnSourceTest
+} // class tt_PlayerSourceImplTest

@@ -25,11 +25,11 @@ class tt_FirerImplTest : tt_Clematis
   {
     Describe("Checking FirerImpl");
 
-    let        playerInfoSource = new("tt_PlayerInfoSourceMock").init();
-    let        firerImpl        = new("tt_FirerImpl").init(playerInfoSource);
-    PlayerInfo info             = players[consolePlayer];
+    let        playerSource = new("tt_PlayerSourceMock").init();
+    let        firerImpl    = new("tt_FirerImpl").init(playerSource);
+    PlayerInfo info         = players[consolePlayer];
 
-    playerInfoSource.expect_getPlayerInfo(info);
+    playerSource.expect_getInfo(info);
 
     let pawn     = info.mo;
     int nBullets = pawn.CountInv("Clip");
@@ -37,7 +37,7 @@ class tt_FirerImplTest : tt_Clematis
 
     fire(firerImpl);
 
-    It("PlayerInfo Source must be satisfied", Assert(playerInfoSource.isSatisfied_getPlayerInfo()));
+    It("PlayerInfo Source must be satisfied", Assert(playerSource.isSatisfied_getInfo()));
 
     EndDescribe();
   }

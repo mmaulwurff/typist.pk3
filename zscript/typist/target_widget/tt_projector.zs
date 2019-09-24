@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements TargetWidgetSource by accumulating Target Widgets.
+/**
+ * This class implements TargetWidgetSource by accumulating Target Widgets.
  *
  * @attention This class has no tests. Modifications must be checked manually.
  */
@@ -24,10 +25,10 @@ class tt_Projector : tt_TargetWidgetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Projector init(tt_KnownTargetSource knownTargetSource, tt_PlayerInfoSource playerInfoSource)
+  tt_Projector init(tt_KnownTargetSource knownTargetSource, tt_PlayerSource playerSource)
   {
     _knownTargetSource = knownTargetSource;
-    _playerInfoSource  = playerInfoSource;
+    _playerSource      = playerSource;
 
     return self;
   }
@@ -38,7 +39,7 @@ class tt_Projector : tt_TargetWidgetSource
   tt_TargetWidgets getWidgets(RenderEvent event)
   {
     let targets = _knownTargetSource.getTargets();
-    let info    = _playerInfoSource.getPlayerInfo();
+    let info    = _playerSource.getInfo();
     let result  = new("tt_TargetWidgets").init();
 
     uint nTargets = targets.size();
@@ -109,7 +110,7 @@ class tt_Projector : tt_TargetWidgetSource
     _glProjection = new("tt_Le_GlScreen"); // init() (silencing code check for a third-party class).
     _swProjection = new("tt_Le_SwScreen"); // init() (silencing code check for a third-party class).
 
-    let info = _playerInfoSource.getPlayerInfo();
+    let info = _playerSource.getInfo();
     _cvarRenderer  = Cvar.GetCvar("vid_rendermode", info);
 
     _isInitialized = true;
@@ -138,7 +139,7 @@ class tt_Projector : tt_TargetWidgetSource
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_KnownTargetSource _knownTargetSource;
-  private tt_PlayerInfoSource  _playerInfoSource;
+  private tt_PlayerSource      _playerSource;
 
   private tt_Le_ProjScreen _projection;
   private tt_Le_GlScreen   _glProjection;

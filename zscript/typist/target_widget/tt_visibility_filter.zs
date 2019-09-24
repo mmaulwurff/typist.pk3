@@ -23,10 +23,10 @@ class tt_VisibilityFilter : tt_TargetWidgetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_VisibilityFilter init(tt_TargetWidgetSource widgetSource, tt_PawnSource pawnSource)
+  tt_VisibilityFilter init(tt_TargetWidgetSource widgetSource, tt_PlayerSource playerSource)
   {
     _widgetSource = widgetSource;
-    _pawnSource   = pawnSource;
+    _playerSource = playerSource;
 
     return self;
   }
@@ -36,7 +36,7 @@ class tt_VisibilityFilter : tt_TargetWidgetSource
   override
   tt_TargetWidgets getWidgets(RenderEvent event)
   {
-    let pawn = _pawnSource.getPawn();
+    let pawn = _playerSource.getPawn();
     if (pawn == NULL) { return NULL; }
 
     let widgets = _widgetSource.getWidgets(event);
@@ -76,6 +76,6 @@ class tt_VisibilityFilter : tt_TargetWidgetSource
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_TargetWidgetSource _widgetSource;
-  private tt_PawnSource         _pawnSource;
+  private tt_PlayerSource       _playerSource;
 
 } // class tt_VisibilityFilter

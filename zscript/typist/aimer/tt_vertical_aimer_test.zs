@@ -39,24 +39,24 @@ class tt_VerticalAimerTest : tt_Clematis
   void testAim() const
   {
     let targetOriginSource = new("tt_OriginSourceMock").init();
-    let pawnSource         = new("tt_PawnSourceMock"  ).init();
+    let playerSource       = new("tt_PlayerSourceMock").init();
     let settings           = new("tt_SettingsMock"    ).init();
 
-    let aimer = new("tt_VerticalAimer").init(targetOriginSource, pawnSource, settings);
+    let aimer = new("tt_VerticalAimer").init(targetOriginSource, playerSource, settings);
 
     let targetOrigin = new("tt_Origin").init((550, 500, 500));
     let pawn         = players[consolePlayer].mo;
     pawn.SetOrigin((0, 0, 0), false);
 
     targetOriginSource.expect_getOrigin(targetOrigin);
-    pawnSource        .expect_getPawn(pawn);
+    playerSource      .expect_getPawn(pawn);
     settings          .expect_isAutoaimEnabled(false);
 
     aimer.aim();
 
-    It("Target Origin Source is satisfied", Assert(targetOriginSource.isSatisfied_getOrigin()));
-    It("Pawn Source is satisfied", Assert(pawnSource.isSatisfied_getPawn()));
-    It("Settings is satisfied", Assert(settings.isSatisfied_isAutoaimEnabled()));
+    It("Target Origin Source is satisfied" , Assert(targetOriginSource.isSatisfied_getOrigin()));
+    It("Pawn Source is satisfied"          , Assert(playerSource.isSatisfied_getPawn()));
+    It("Settings is satisfied"             , Assert(settings.isSatisfied_isAutoaimEnabled()));
   }
 
 } // class tt_VerticalAimerTest

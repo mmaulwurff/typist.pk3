@@ -15,18 +15,37 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a source of actors.
+/**
+ * This class implements tt_PlayerSource by returning player by player number.
  */
-class tt_PawnSource abstract
+class tt_PlayerSourceImpl : tt_PlayerSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  PlayerPawn getPawn()
+  tt_PlayerSourceImpl init(int playerNumber)
   {
-    Console.Printf("zscript/typist/pawn/tt_pawn_source.zs:28: T: override this!");
-    return NULL;
+    _playerNumber = playerNumber;
+
+    return self;
   }
 
-} // class tt_PawnSource
+// public: // tt_PlayerSource //////////////////////////////////////////////////
+
+  override
+  PlayerInfo getInfo()
+  {
+    return players[_playerNumber];
+  }
+
+  override
+  PlayerPawn getPawn()
+  {
+    return getInfo().mo;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private int _playerNumber;
+
+} // class tt_PlayerSourceImpl
