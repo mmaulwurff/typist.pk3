@@ -19,7 +19,7 @@
  * This class implements tt_OriginSource.
  * It takes the center of the player pawn.
  */
-class tt_PawnOriginSource : tt_OriginSource
+class tt_PlayerOriginSource : tt_OriginSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////

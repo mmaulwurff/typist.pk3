@@ -31,8 +31,8 @@ class tt_Supervisor
     let playerSource     = new("tt_PlayerSourceImpl"  ).init(playerNumber);
     let settings         = new("tt_SettingsImpl"      ).init(playerSource);
 
-    let originSource     = new("tt_PawnOriginSource"    ).init(playerSource);
-    let targetSource     = new("tt_TargetRadar"         ).init(originSource);
+    let originSource     = new("tt_PlayerOriginSource").init(playerSource);
+    let targetSource     = new("tt_TargetRadar"       ).init(originSource);
     let questionSource   = makeQuestionSource(difficultySource, settings);
 
     let targetRegistry = new("tt_TargetRegistry").init(targetSource, questionSource, deathReporter);

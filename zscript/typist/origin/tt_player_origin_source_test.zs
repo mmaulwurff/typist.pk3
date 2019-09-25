@@ -15,7 +15,10 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class tt_PawnOriginSourceTest : tt_Clematis
+/**
+ * This is a test for tt_PlayerOriginSource class.
+ */
+class tt_PlayerOriginSourceTest : tt_Clematis
 {
 
 // public: /////////////////////////////////////////////////////////////////////
@@ -25,23 +28,23 @@ class tt_PawnOriginSourceTest : tt_Clematis
   {
     Describe("Checking Pawn Origin Source");
 
-    double x   = 1;
-    double y   = 2;
-    double z   = 3;
-    let    imp = PlayerPawn(Spawn("DoomPlayer", (x, y, z)));
+    double x = 1;
+    double y = 2;
+    double z = 3;
+    let player = PlayerPawn(Spawn("DoomPlayer", (x, y, z)));
 
-    let playerSource = new("tt_PlayerSourceMock").init();
-    let originSource = new("tt_PawnOriginSource").init(playerSource);
+    let playerSource = new("tt_PlayerSourceMock"  ).init();
+    let originSource = new("tt_PlayerOriginSource").init(playerSource);
 
-    playerSource.expect_getPawn(imp);
+    playerSource.expect_getPawn(player);
 
-    let origin = originSource.getOrigin().getPosition();
-    let impZ   = imp.height / 2 + z;
+    let origin  = originSource.getOrigin().getPosition();
 
-    It("X matches", AssertEval(x,    "==", origin.x));
-    It("Y matches", AssertEval(y,    "==", origin.y));
-    It("Z matches", AssertEval(impZ, "==", origin.z));
-    It("Pawn source is satisfied", Assert(playerSource.isSatisfied_getPawn()));
+    It("X matches",  AssertEval(x, "==", origin.x));
+    It("Y matches",  AssertEval(y, "==", origin.y));
+    It("Z in range", AssertEval(z, "<=", origin.z));
+    It("Z in range", AssertEval(z + player.Height, ">=", origin.z));
+    It("Player source is satisfied", Assert(playerSource.isSatisfied_getPawn()));
 
     EndDescribe();
   }
