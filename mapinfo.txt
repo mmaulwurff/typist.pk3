@@ -4,7 +4,8 @@
 gameinfo
 {
 
-  AddEventHandlers = "tt_EventHandler",
+  AddEventHandlers = "tt_ScreenSaver",
+    "tt_EventHandler",
     "tt_ClematisTestHandler"
 
 } // gameinfo

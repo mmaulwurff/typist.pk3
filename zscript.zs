@@ -47,6 +47,7 @@ version 4.1.3
 #include "zscript/typist/difficulty/tt_selected_difficulty_test.zs"
 #include "zscript/typist/difficulty/tt_selected_difficulty.zs"
 #include "zscript/typist/event_handler/tt_event_handler.zs"
+#include "zscript/typist/event_handler/tt_screen_saver.zs"
 #include "zscript/typist/firer/tt_firer_impl_test_post_check.zs"
 #include "zscript/typist/firer/tt_firer_impl_test.zs"
 #include "zscript/typist/firer/tt_firer_impl.zs"
