@@ -51,3 +51,4 @@ It may be possible to compile this on Windows. Install Msys or something. You're
 
 - Marrub for [ZScript documentation](https://github.com/marrub--/zscript-doc)
 - fraggle for [miniwad.wad](https://github.com/fragglet/miniwad) (BSD license)
+- kadu522 for support

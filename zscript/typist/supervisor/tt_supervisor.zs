@@ -153,11 +153,13 @@ class tt_Supervisor
     let numberSource   = new("tt_RandomNumberSource"    ).init(difficultySource);
     let selectedSource = new("tt_SelectedQuestionSource").init(settings);
     let gzdoomSource   = new("tt_StringSet"             ).init("tt_gzdoom");
+    let cppSource      = new("tt_StringSet"             ).init("tt_cpp");
 
     // Attention! Keep this list consistent with menudef entries.
     selectedSource.add(letterSource);
     selectedSource.add(numberSource);
     selectedSource.add(gzdoomSource);
+    selectedSource.add(cppSource   );
 
     return selectedSource;
   }
