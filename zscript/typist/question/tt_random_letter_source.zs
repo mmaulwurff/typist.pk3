@@ -51,7 +51,7 @@ class tt_RandomLetterSource : tt_QuestionSource
       str.AppendFormat("%c", letter);
     }
 
-    let question = new("tt_Match").init(str);
+    let question = new("tt_Match").init(str, str);
 
     return question;
   }

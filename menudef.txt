@@ -29,4 +29,5 @@ OptionValue tt_QuestionSourceValues
   1 , "Random Numbers"
   2 , "GZDoom Dev"
   3 , "C++"
+  4 , "Arithmetic"
 }

@@ -25,9 +25,10 @@ class tt_Match : tt_Question
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Question init(String question)
+  tt_Question init(String question, String description)
   {
-    _question = question;
+    _question    = question;
+    _description = description;
 
     return self;
   }
@@ -45,7 +46,7 @@ class tt_Match : tt_Question
   override
   String getDescription()
   {
-    return _question;
+    return _description;
   }
 
   override
@@ -81,5 +82,6 @@ class tt_Match : tt_Question
 // private: ////////////////////////////////////////////////////////////////////
 
   private String _question;
+  private String _description;
 
 } // class tt_Match

@@ -79,6 +79,8 @@ version 4.1.3
 #include "zscript/typist/player/tt_player_source_impl.zs"
 #include "zscript/typist/player/tt_player_source.zs"
 #include "zscript/typist/question/tt_match.zs"
+#include "zscript/typist/question/tt_maths_challenge_test.zs"
+#include "zscript/typist/question/tt_maths_challenge.zs"
 #include "zscript/typist/question/tt_question_source.zs"
 #include "zscript/typist/question/tt_question.zs"
 #include "zscript/typist/question/tt_random_letter_source_test.zs"

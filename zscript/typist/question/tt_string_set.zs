@@ -51,7 +51,7 @@ class tt_StringSet : tt_QuestionSource
 
     int    wordIndex = Random(0, nWords - 1);
     String word      = _words[wordIndex];
-    let    question  = new("tt_Match").init(word);
+    let    question  = new("tt_Match").init(word, word);
 
     return question;
   }

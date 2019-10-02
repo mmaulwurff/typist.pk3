@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class integrates the every Typist.pk3 module.
+/**
+ * This class integrates the every Typist.pk3 module.
  */
 class tt_Supervisor
 {
@@ -154,12 +155,14 @@ class tt_Supervisor
     let selectedSource = new("tt_SelectedQuestionSource").init(settings);
     let gzdoomSource   = new("tt_StringSet"             ).init("tt_gzdoom");
     let cppSource      = new("tt_StringSet"             ).init("tt_cpp");
+    let mathsSource    = new("tt_MathsChallenge"        ).init();
 
     // Attention! Keep this list consistent with menudef entries.
     selectedSource.add(letterSource);
     selectedSource.add(numberSource);
     selectedSource.add(gzdoomSource);
     selectedSource.add(cppSource   );
+    selectedSource.add(mathsSource );
 
     return selectedSource;
   }

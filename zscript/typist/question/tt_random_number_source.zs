@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implement tt_QuestionSource by producing questions that contain
+/**
+ * This class implements tt_QuestionSource by producing questions that contain
  * string composed from random numbers and should match exactly to the answers.
  */
 class tt_RandomNumberSource : tt_QuestionSource
@@ -47,7 +48,7 @@ class tt_RandomNumberSource : tt_QuestionSource
       str.AppendFormat("%c", number);
     }
 
-    let question = new("tt_Match").init(str);
+    let question = new("tt_Match").init(str, str);
 
     return question;
   }
