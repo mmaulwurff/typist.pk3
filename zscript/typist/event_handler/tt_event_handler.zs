@@ -41,7 +41,10 @@ class tt_EventHandler : EventHandler
   {
     if (_supervisor == NULL) { return false; }
 
-    if (event.type == UiEvent.Type_KeyDown)
+    bool isChar      = (event.type == UiEvent.Type_Char);
+    bool isDown      = (event.type == UiEvent.Type_KeyDown);
+    bool isBackspace = (event.keyChar == 8);
+    if (isChar || (isDown && isBackspace))
     {
       let character = new("tt_Character").init(event.keyChar, event.isShift, event.isCtrl);
       _supervisor.processKey(character);
