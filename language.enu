@@ -15,6 +15,13 @@ TT_QUESTION_SOURCE            = "Challenge Type";
 TT_APPLY                      = "Apply";
 TT_QUESTION_SOURCE_NOTE       = "Or existing targets will retain their Challenge type.";
 
+TT_CHALLENGE_LETTERS = "Random Letters";
+TT_CHALLENGE_NUMBERS = "Random Numbers";
+TT_CHALLENGE_GZDOOM  = "GZDoom Dev";
+TT_CHALLENGE_CPP     = "C++";
+TT_CHALLENGE_MATH    = "Arithmetic";
+TT_CHALLENGE_1000    = "1000 basic English words";
+
 // Info Panel //////////////////////////////////////////////////////////////////
 
 TT_MODE_UNKNOWN = "Unknown!";

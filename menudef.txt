@@ -25,9 +25,10 @@ OptionMenu tt_Options
 // Attention! Keep this list consistent with the list in tt_Supervisor.makeQuestionSource().
 OptionValue tt_QuestionSourceValues
 {
-  0 , "Random Letters"
-  1 , "Random Numbers"
-  2 , "GZDoom Dev"
-  3 , "C++"
-  4 , "Arithmetic"
+  0 , "$TT_CHALLENGE_LETTERS"
+  1 , "$TT_CHALLENGE_NUMBERS"
+  2 , "$TT_CHALLENGE_GZDOOM"
+  3 , "$TT_CHALLENGE_CPP"
+  4 , "$TT_CHALLENGE_MATH"
+  5 , "$TT_CHALLENGE_1000"
 }

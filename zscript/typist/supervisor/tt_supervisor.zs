@@ -156,6 +156,7 @@ class tt_Supervisor
     let gzdoomSource   = new("tt_StringSet"             ).init("tt_gzdoom");
     let cppSource      = new("tt_StringSet"             ).init("tt_cpp");
     let mathsSource    = new("tt_MathsChallenge"        ).init();
+    let english1000    = new("tt_StringSet"             ).init("tt_1000");
 
     // Attention! Keep this list consistent with menudef entries.
     selectedSource.add(letterSource);
@@ -163,6 +164,7 @@ class tt_Supervisor
     selectedSource.add(gzdoomSource);
     selectedSource.add(cppSource   );
     selectedSource.add(mathsSource );
+    selectedSource.add(english1000 );
 
     return selectedSource;
   }
