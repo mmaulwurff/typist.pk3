@@ -14,6 +14,7 @@ TT_GAMEPLAY_OPTIONS_TITLE_OUT = "Gameplay Options";
 TT_QUESTION_SOURCE            = "Challenge Type";
 TT_APPLY                      = "Apply";
 TT_QUESTION_SOURCE_NOTE       = "Or existing targets will retain their Challenge type.";
+TT_CONTROLS_TITLE             = "Controls";
 
 TT_CHALLENGE_LETTERS = "Random Letters";
 TT_CHALLENGE_NUMBERS = "Random Numbers";

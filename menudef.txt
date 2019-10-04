@@ -18,6 +18,10 @@ OptionMenu tt_Options
   Option     "$TT_QUESTION_SOURCE", tt_question_source, tt_QuestionSourceValues
   Command    "$TT_APPLY", tt_reset_targets
   StaticText "$TT_QUESTION_SOURCE_NOTE"
+
+  StaticText ""
+  StaticText "$TT_CONTROLS_TITLE", 1
+  Control    "$TT_UNLOCK", tt_unlock_mode
 }
 
 // Option Values ///////////////////////////////////////////////////////////////
