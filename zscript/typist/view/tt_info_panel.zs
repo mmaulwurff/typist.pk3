@@ -32,6 +32,7 @@ class tt_InfoPanel : tt_View
                    , tt_Activatable       activatable
                    , tt_KnownTargetSource knownTargetSource
                    , tt_Settings          settings
+                   , tt_PlayerSource      playerSource
                    )
   {
     _modeSource   = modeSource;
@@ -39,6 +40,7 @@ class tt_InfoPanel : tt_View
     _activatable  = activatable;
     _targetSource = knownTargetSource;
     _settings     = settings;
+    _playerSource = playerSource;
 
     return self;
   }
@@ -102,10 +104,14 @@ class tt_InfoPanel : tt_View
     let targets     = _targetSource.getTargets();
     let answer      = _answerSource.getAnswer();
     let nTargets    = targets.size();
+    let player      = _playerSource.getPawn();
 
     for (uint i = 0; i < nTargets; ++i)
     {
-      let    target         = targets.at(i);
+      let target = targets.at(i);
+
+      if (!isVisible(player, target.getTarget().getActor())) { continue; }
+
       let    question       = target.getQuestion();
       String questionString = question.getDescription();
       String hintedAnswer   = question.getHintFor(answer);
@@ -147,12 +153,22 @@ class tt_InfoPanel : tt_View
 
 // private: ////////////////////////////////////////////////////////////////////
 
+  private play
+  bool isVisible(Actor player, Actor other) const
+  {
+    return player.IsVisible(other, ALL_AROUND);
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
   const Y_START = 10;
 
   const HORIZONTAL_MARGIN = 10;
   const VERTICAL_MARGIN   = 20;
 
   const NOT_CENTERED = 0; // false
+
+  const ALL_AROUND = 1; // true
 
 // private: ////////////////////////////////////////////////////////////////////
 
@@ -161,5 +177,6 @@ class tt_InfoPanel : tt_View
   private tt_Activatable       _activatable;
   private tt_KnownTargetSource _targetSource;
   private tt_Settings          _settings;
+  private tt_PlayerSource      _playerSource;
 
 } // class tt_InfoPanel

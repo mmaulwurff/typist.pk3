@@ -77,6 +77,7 @@ class tt_Supervisor
                                                     , commandDispatcher
                                                     , targetRegistry
                                                     , settings
+                                                    , playerSource
                                                     );
     views.add(targetOverlay);
     views.add(infoPanel);
