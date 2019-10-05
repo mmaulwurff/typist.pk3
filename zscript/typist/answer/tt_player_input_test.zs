@@ -15,10 +15,13 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/**
+ * This is a test for tt_PlayerInput class.
+ */
 class tt_PlayerInputTest : tt_Clematis
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+// public: // tt_Clematis //////////////////////////////////////////////////////
 
   override
   void TestSuites()
@@ -114,6 +117,11 @@ class tt_PlayerInputTest : tt_Clematis
       let character = new("tt_Character").init(str.ByteAt(i), false, false);
       input.processKey(character);
     }
+
+    let enter = new("tt_Character").init(tt_Ascii.Enter,     false, false);
+    let eot   = new("tt_Character").init(tt_Ascii.EndOfText, false, false);
+    input.processKey(enter);
+    input.processKey(eot);
   }
 
 } // class tt_PlayerInputTest
