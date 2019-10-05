@@ -26,29 +26,25 @@ class tt_Answer
 
   tt_Answer init(String answer = "")
   {
-    _answer         = answer;
-    _isFinished     = false;
-    _isReadyToReset = false;
+    _answer     = answer;
+    _isFinished = false;
 
     return self;
   }
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  String getString()      const { return _answer;         }
-  bool   isFinished()     const { return _isFinished;     }
-  bool   isReadyToReset() const { return _isReadyToReset; }
+  String getString()  const { return _answer;         }
+  bool   isFinished() const { return _isFinished;     }
 
   void append(String character) { _answer = _answer .. character; }
   void deleteLastCharacter()    { _answer.DeleteLastCharacter();  }
 
-  void finish()          { _isFinished     = true; }
-  void setReadyToReset() { _isReadyToReset = true; }
+  void finish() { _isFinished = true; }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private String _answer;
   private bool   _isFinished;
-  private bool   _isReadyToReset;
 
 } // class tt_Answer

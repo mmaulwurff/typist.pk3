@@ -61,7 +61,8 @@ class tt_PlayerInputTest : tt_Clematis
     String input2      = "def";
 
     throwStringIntoInput(playerInput, input1);
-    playerInput.reset();
+    let reset = new("tt_Character").init(tt_Ascii.Backspace, false, true);
+    playerInput.processKey(reset);
     throwStringIntoInput(playerInput, input2);
 
     let answer       = playerInput.getAnswer();

@@ -36,7 +36,9 @@ class tt_CommandDispatcher : tt_Activatable
   override
   void activate()
   {
-    let answer       = _answerSource.getAnswer();
+    let answer = _answerSource.getAnswer();
+    if (!answer.isFinished()) { return; }
+
     let answerString = answer.getString();
 
     uint nActivatables = _activatables.size();
@@ -87,7 +89,6 @@ class tt_CommandDispatcher : tt_Activatable
       if (isMatching)
       {
         activatable.activate();
-        _answerSource.reset();
         return;
       }
     }

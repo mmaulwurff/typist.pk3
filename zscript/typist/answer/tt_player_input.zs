@@ -44,9 +44,9 @@ class tt_PlayerInput : tt_AnswerSource
     case tt_Character.BACKSPACE: _answer.deleteLastCharacter(); break;
 
     case tt_Character.ENTER:     _answer.finish(); break;
-    case tt_Character.ENTER_UP:  _answer.setReadyToReset(); break;
+    case tt_Character.ENTER_UP:  reset(); break;
 
-    case tt_Character.CTRL_BACKSPACE: _answer = new("tt_Answer").init(); break;
+    case tt_Character.CTRL_BACKSPACE: reset(); break;
     }
   }
 
@@ -58,13 +58,12 @@ class tt_PlayerInput : tt_AnswerSource
     return _answer;
   }
 
-  override
+// private: ////////////////////////////////////////////////////////////////////
+
+  private
   void reset()
   {
-    if (_answer.isReadyToReset())
-    {
-      _answer = new("tt_Answer").init();
-    }
+    _answer = new("tt_Answer").init();
   }
 
 // private: ////////////////////////////////////////////////////////////////////

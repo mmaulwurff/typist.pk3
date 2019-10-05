@@ -56,12 +56,10 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatable1.expect_getCommands(commands1);
     activatable2.expect_getCommands(commands2);
     activatable2.expect_activate();
-    answerSource.expect_reset();
 
     commandDispatcher.activate();
 
     It("Answer Source is satisfied",          Assert(answerSource.isSatisfied_getAnswer()));
-    It("Answer Source is satisfied",          Assert(answerSource.isSatisfied_reset()));
     It("The first activatable is satisfied",  Assert(activatable1.isSatisfied_activate()));
     It("The first activatable is satisfied",  Assert(activatable1.isSatisfied_getCommands()));
     It("The second activatable is satisfied", Assert(activatable2.isSatisfied_activate()));

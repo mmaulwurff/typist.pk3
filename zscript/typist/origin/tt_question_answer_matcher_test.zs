@@ -122,7 +122,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     let answer = new("tt_Answer").init("abc");
     _answerSource.expect_getAnswer(answer);
-    _answerSource.expect_reset();
+    _playerSource.expect_getPawn(players[consolePlayer].mo);
 
     _matcher.update();
     let origin = _matcher.getOrigin();
@@ -148,6 +148,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     let answer = new("tt_Answer").init("abc");
     _answerSource.expect_getAnswer(answer);
+    _playerSource.expect_getPawn(players[consolePlayer].mo);
 
     _matcher.update();
     let origin = _matcher.getOrigin();
@@ -180,7 +181,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
   {
     It("Known Target Source is satisfied" , Assert(_knownTargetSource.isSatisfied_getTargets()));
     It("Answer Source is satisfied"       , Assert(_answerSource.isSatisfied_getAnswer()));
-    It("Answer Source is satisfied"       , Assert(_answerSource.isSatisfied_reset()));
+    It("Player Source is satisfied"       , Assert(_playerSource.isSatisfied_getPawn()));
 
     EndDescribe();
   }
