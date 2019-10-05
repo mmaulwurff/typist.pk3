@@ -68,10 +68,14 @@ class tt_AutoModeSource : tt_ModeSource
   bool isVisible(tt_Target target, PlayerPawn pawn) const
   {
     let  targetActor = target.getActor();
-    bool visible     = pawn.IsVisible(targetActor, false);
+    bool visible     = pawn.IsVisible(targetActor, ALL_AROUND);
 
     return visible;
   }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  const ALL_AROUND = 1; // true
 
 // private: ////////////////////////////////////////////////////////////////////
 
