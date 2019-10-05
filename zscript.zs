@@ -115,6 +115,7 @@ version 4.1.3
 #include "zscript/typist/target_widget/tt_target_widget.zs"
 #include "zscript/typist/target_widget/tt_visibility_filter.zs"
 #include "zscript/typist/tests/tt_mocks.zs"
+#include "zscript/typist/view/tt_drawing.zs"
 #include "zscript/typist/view/tt_info_panel.zs"
 #include "zscript/typist/view/tt_target_overlay.zs"
 #include "zscript/typist/view/tt_views.zs"

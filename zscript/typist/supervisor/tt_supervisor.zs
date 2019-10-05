@@ -72,7 +72,12 @@ class tt_Supervisor
 
     let views         = new("tt_Views"        ).init();
     let targetOverlay = new("tt_TargetOverlay").init(widgetSorter, playerInput, settings);
-    let infoPanel     = new("tt_InfoPanel"    ).init(modeCascade, playerInput, commandDispatcher);
+    let infoPanel     = new("tt_InfoPanel"    ).init( modeCascade
+                                                    , playerInput
+                                                    , commandDispatcher
+                                                    , targetRegistry
+                                                    , settings
+                                                    );
     views.add(targetOverlay);
     views.add(infoPanel);
 

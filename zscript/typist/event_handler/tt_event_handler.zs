@@ -57,7 +57,6 @@ class tt_EventHandler : EventHandler
     {
       type = UiEvent.Type_KeyDown;
       code = tt_Ascii.EndOfText;
-      console.printf("222");
     }
 
     bool isChar    = (type == UiEvent.Type_Char);

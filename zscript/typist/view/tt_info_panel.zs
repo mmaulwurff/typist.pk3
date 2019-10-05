@@ -20,20 +20,25 @@
  * - game mode
  * - list of commands
  * - current input string
+ * - several targets
  */
 class tt_InfoPanel : tt_View
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_InfoPanel init( tt_ModeSource   modeSource
-                   , tt_AnswerSource answerSource
-                   , tt_Activatable  activatable
+  tt_InfoPanel init( tt_ModeSource        modeSource
+                   , tt_AnswerSource      answerSource
+                   , tt_Activatable       activatable
+                   , tt_KnownTargetSource knownTargetSource
+                   , tt_Settings          settings
                    )
   {
     _modeSource   = modeSource;
     _answerSource = answerSource;
     _activatable  = activatable;
+    _targetSource = knownTargetSource;
+    _settings     = settings;
 
     return self;
   }
@@ -43,73 +48,118 @@ class tt_InfoPanel : tt_View
   override
   void draw(RenderEvent event)
   {
-    Vector2 position = (X_START, Y_START);
+    int     screenWidth = Screen.GetWidth();
+    int     xStart      = screenWidth / 2;
+    Vector2 position    = (xStart, Y_START);
+    Font    fnt         = NewSmallFont;
 
-    position = drawMode    (position, _modeSource);
-    position = drawAnswer  (position, _answerSource);
-    position = drawCommands(position, _activatable);
+    drawMode(position);
+    position.y += fnt.GetHeight();
+
+    drawTargets (position);
+    drawCommands(position);
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private static ui
-  Vector2 drawMode(Vector2 xy, tt_ModeSource modeSource)
+  private ui
+  void drawMode(Vector2 xy)
   {
-    Font   fnt         = NewSmallFont;
-    let    color       = Font.CR_WHITE;
-    int    mode        = modeSource.getMode();
-    String modeNames[] = { "$TT_MODE_UNKNOWN"
-                         , "$TT_MODE_COMBAT"
-                         , "$TT_MODE_EXPLORE"
-                         , "$TT_MODE_NONE"
-                         };
-    String modeName    = StringTable.Localize(modeNames[mode]);
+    int scale = _settings.getScale();
+    xy /= scale;
 
-    Screen.DrawText(fnt, color, xy.x, xy.y, modeName);
+    Font   fnt          = NewSmallFont;
+    int    mode         = _modeSource.getMode();
+    let    color        = (mode == tt_Mode.MODE_COMBAT ? Font.CR_RED : Font.CR_BLUE);
+    String modeNames[]  = { "$TT_MODE_UNKNOWN"
+                          , "$TT_MODE_COMBAT"
+                          , "$TT_MODE_EXPLORE"
+                          , "$TT_MODE_NONE"
+                          };
+    String modeName     = StringTable.Localize(modeNames[mode]);
+    int    xStart       = xy.x - fnt.StringWidth(modeName) / 2;
+    int    screenWidth  = Screen.GetWidth() / scale;
+    int    screenHeight = Screen.GetHeight() / scale;
 
-    return (xy.x, xy.y + fnt.GetHeight());
+    Screen.DrawText( fnt
+                   , color
+                   , xStart
+                   , xy.y
+                   , modeName
+                   , DTA_KeepRatio     , true
+                   , DTA_VirtualWidth  , screenWidth
+                   , DTA_VirtualHeight , screenHeight
+                   );
   }
 
-  private static ui
-  Vector2 drawAnswer(Vector2 xy, tt_AnswerSource answerSource)
+  private ui
+  void drawTargets(Vector2 xy)
   {
-    Font   fnt    = NewSmallFont;
-    let    color  = Font.CR_WHITE;
-    String answer = "$" .. answerSource.getAnswer().getString();
+    int scale       = _settings.getScale();
+    int screenWidth = Screen.GetWidth();
+    int x           = xy.x + HORIZONTAL_MARGIN;
+    int y           = xy.y + (VERTICAL_MARGIN * scale);
+    let targets     = _targetSource.getTargets();
+    let answer      = _answerSource.getAnswer();
+    let nTargets    = targets.size();
 
-    Screen.DrawText(fnt, color, xy.x, xy.y, answer);
+    for (uint i = 0; i < nTargets; ++i)
+    {
+      let    target         = targets.at(i);
+      let    question       = target.getQuestion();
+      String questionString = question.getDescription();
+      String hintedAnswer   = question.getHintFor(answer);
+      int    targetWidth    = tt_Drawing.getWidthForTarget(questionString, hintedAnswer, _settings);
 
-    return (xy.x, xy.y + fnt.GetHeight());
+      if (x + targetWidth > screenWidth) { return; }
+
+      Vector2 position = (x, y);
+      tt_Drawing.drawTarget(position, questionString, hintedAnswer, _settings, NOT_CENTERED);
+
+      x += targetWidth + 2;
+    }
   }
 
-  private static ui
-  Vector2 drawCommands(Vector2 xy, tt_Activatable activatable)
+  private ui
+  void drawCommands(Vector2 xy)
   {
-    Font fnt        = NewSmallFont;
-    let  color      = Font.CR_WHITE;
-    int  lineHeight = fnt.GetHeight();
-    let  commands   = activatable.getCommands();
-    uint nCommands  = commands.size();
+    int scale        = _settings.getScale();
+    let  commands    = _activatable.getCommands();
+    int  screenWidth = Screen.GetWidth();
+    uint nCommands   = commands.size();
+    int  x           = xy.x - HORIZONTAL_MARGIN;
+    int  y           = xy.y + (VERTICAL_MARGIN * scale);
+    let answer       = _answerSource.getAnswer().getString();
 
     for (uint i = 0; i < nCommands; ++i)
     {
-      let command = "$" .. commands.at(i);
-      Screen.DrawText(fnt, color, xy.x, xy.y, command);
-      xy.y += lineHeight;
-    }
+      let command     = commands.at(i);
+      int targetWidth = tt_Drawing.getWidthForTarget(command, answer, _settings);
 
-    return xy;
+      if (x - targetWidth < 0) { return; }
+
+      Vector2 position = (x - targetWidth, y);
+      tt_Drawing.drawTarget(position, command, answer, _settings, NOT_CENTERED);
+
+      x -= targetWidth + 2;
+    }
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  const X_START = 10;
   const Y_START = 10;
+
+  const HORIZONTAL_MARGIN = 10;
+  const VERTICAL_MARGIN   = 20;
+
+  const NOT_CENTERED = 0; // false
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_ModeSource   _modeSource;
-  private tt_AnswerSource _answerSource;
-  private tt_Activatable  _activatable;
+  private tt_ModeSource        _modeSource;
+  private tt_AnswerSource      _answerSource;
+  private tt_Activatable       _activatable;
+  private tt_KnownTargetSource _targetSource;
+  private tt_Settings          _settings;
 
 } // class tt_InfoPanel

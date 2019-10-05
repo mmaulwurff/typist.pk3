@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a view - something that displays targets.
+/**
+ * This interface represents a view - something that displays something.
  */
 class tt_View abstract
 {
@@ -25,7 +26,7 @@ class tt_View abstract
   ui virtual
   void draw(RenderEvent event)
   {
-    Console.Printf("zscript/typist/view/tt_view.zs:28: T: override this!");
+    Console.Printf("zscript/typist/view/tt_view.zs:29: T: override this!");
   }
 
 } // class tt_View
