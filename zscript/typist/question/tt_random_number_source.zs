@@ -42,9 +42,7 @@ class tt_RandomNumberSource : tt_QuestionSource
 
     for (int i = 0; i < stringLength; ++i)
     {
-      // 48 == 0
-      // 57 == 9
-      int number = Random(48, 57);
+      int number = Random(tt_Ascii.Number0, tt_Ascii.Number9);
       str.AppendFormat("%c", number);
     }
 

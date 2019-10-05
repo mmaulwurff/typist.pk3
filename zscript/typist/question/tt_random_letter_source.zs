@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implement tt_QuestionSource by producing questions that contain
+/**
+ * This class implement tt_QuestionSource by producing questions that contain
  * string composed from random numbers and should match exactly to the answers.
  */
 class tt_RandomLetterSource : tt_QuestionSource
@@ -43,11 +44,9 @@ class tt_RandomLetterSource : tt_QuestionSource
     {
       bool isCapital = false; // Random(0, 1);
 
-      //  65 - 'A'
-      //  90 - 'Z'
-      //  97 - 'a'
-      // 122 - 'z'
-      int letter = isCapital ? Random(65, 90) : Random(97, 122);
+      int letter = isCapital
+                 ? Random(tt_Ascii.UppercaseA, tt_Ascii.UppercaseZ)
+                 : Random(tt_Ascii.LowercaseA, tt_Ascii.LowercaseZ);
       str.AppendFormat("%c", letter);
     }
 

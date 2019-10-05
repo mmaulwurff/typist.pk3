@@ -25,16 +25,16 @@ class tt_Character
 
   tt_Character init(int code, bool isShift, bool isCtrl)
   {
-    if      (code ==  8) { _type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE); }
-    else if (code == 13) { _type = ENTER;    }
-    else if (code ==  3) { _type = ENTER_UP; }
-    else if (code <= 31) { _type = NONE;     }
+    if      (code == tt_Ascii.Backspace)       { _type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE); }
+    else if (code == tt_Ascii.Enter    )       { _type = ENTER;    }
+    else if (code == tt_Ascii.EndOfText)       { _type = ENTER_UP; }
+    else if (code <  tt_Ascii.FIRST_PRINTABLE) { _type = NONE;     }
     else
     {
       _type = PRINTABLE;
 
-      if (isShift) { if (isSmallLetter(code)) { code -= 32; } }
-      else         { if (isBigLetter  (code)) { code += 32; } }
+      if (isShift) { if (isLowercaseLetter(code)) { code -= tt_Ascii.CASE_DIFFERENCE; } }
+      else         { if (isUppercaseLetter(code)) { code += tt_Ascii.CASE_DIFFERENCE; } }
 
       _character = String.Format("%c", code);
     }
@@ -61,20 +61,16 @@ class tt_Character
 // private: ////////////////////////////////////////////////////////////////////
 
   static
-  bool isBigLetter(int code)
+  bool isUppercaseLetter(int code)
   {
-    // 65 - 'A'
-    // 90 - 'Z'
-    bool isBig = (65 <= code && code <= 90);
+    bool isBig = (tt_Ascii.UppercaseA <= code && code <= tt_Ascii.UppercaseZ);
     return isBig;
   }
 
   static
-  bool isSmallLetter(int code)
+  bool isLowercaseLetter(int code)
   {
-    //  97 - 'a'
-    // 122 - 'z'
-    bool isSmall = (97 <= code && code <= 122);
+    bool isSmall = (tt_Ascii.LowercaseA <= code && code <= tt_Ascii.LowercaseZ);
     return isSmall;
   }
 

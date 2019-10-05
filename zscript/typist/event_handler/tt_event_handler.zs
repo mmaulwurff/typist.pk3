@@ -36,7 +36,7 @@ class tt_EventHandler : EventHandler
     // detect the end of combat
     if (self.IsUiProcessor && isCapturingKeys == false)
     {
-      let reset = new("tt_Character").init(CODE_BACKSPACE, false, true);
+      let reset = new("tt_Character").init(tt_Ascii.Backspace, false, true);
       _supervisor.processKey(reset);
     }
 
@@ -53,18 +53,19 @@ class tt_EventHandler : EventHandler
 
     //Console.Printf("type: %d, code: %d, string: %s", type, code, event.keyString);
 
-    if (type == UiEvent.Type_KeyUp && code == CODE_ENTER)
+    if (type == UiEvent.Type_KeyUp && code == tt_Ascii.Enter)
     {
       type = UiEvent.Type_KeyDown;
-      code = CODE_END_OF_TEXT;
+      code = tt_Ascii.EndOfText;
       console.printf("222");
     }
 
     bool isChar    = (type == UiEvent.Type_Char);
     bool isDown    = (type == UiEvent.Type_KeyDown);
-    bool isControl = (code == CODE_BACKSPACE
-                   || code == CODE_ENTER
-                   || code == CODE_END_OF_TEXT);
+    bool isControl = (code == tt_Ascii.Backspace
+                   || code == tt_Ascii.Enter
+                   || code == tt_Ascii.EndOfText);
+
     if (isChar || (isDown && isControl))
     {
       let character = new("tt_Character").init(code, event.isShift, event.isCtrl);
@@ -127,12 +128,6 @@ class tt_EventHandler : EventHandler
   {
     _gameTweaks = new("tt_GameTweaks").init();
   }
-
-// private: ////////////////////////////////////////////////////////////////////
-
-  const CODE_BACKSPACE           =  8;
-  const CODE_ENTER               = 13;
-  const CODE_END_OF_TEXT         =  3;
 
 // private: ////////////////////////////////////////////////////////////////////
 
