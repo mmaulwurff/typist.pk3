@@ -18,9 +18,7 @@ alone
 along
 already
 always
-am
 amount
-an
 and
 angry
 another
@@ -38,14 +36,10 @@ army
 around
 arrive
 art
-as
 ask
-at
 attack
-aunt
 autumn
 away
-baby
 base
 back
 bad
@@ -54,7 +48,6 @@ ball
 bank
 basket
 bath
-be
 bean
 bear
 beautiful
@@ -107,7 +100,6 @@ breathe
 bridge
 bright
 bring
-brother
 brown
 brush
 build
@@ -117,7 +109,6 @@ bus
 busy
 but
 buy
-by
 cake
 call
 can
@@ -142,8 +133,6 @@ chase
 cheap
 cheese
 chicken
-child
-children
 chocolate
 choice
 choose
@@ -168,7 +157,6 @@ collect
 colour
 comb
 come
-comfortable
 common
 compare
 complete
@@ -198,7 +186,6 @@ dance
 danger
 dangerous
 dark
-daughter
 day
 dead
 decide
@@ -217,7 +204,6 @@ direction
 dirty
 discover
 dish
-do
 dog
 door
 double
@@ -265,7 +251,6 @@ every
 everyone
 exact
 everybody
-examination
 example
 except
 excited
@@ -280,18 +265,15 @@ fact
 fail
 fall
 false
-family
 famous
 far
 farm
-father
 fast
 fat
 fault
 fear
 feed
 feel
-female
 fever
 few
 fight
@@ -332,8 +314,6 @@ free
 freedom
 freeze
 fresh
-friend
-friendly
 from
 front
 fruit
@@ -353,14 +333,11 @@ gift
 give
 glad
 glass
-go
 goat
 god
 gold
 good
 goodbye
-grandfather
-grandmother
 grass
 grave
 great
@@ -381,7 +358,6 @@ hard
 hat
 hate
 have
-he
 head
 healthy
 hear
@@ -417,13 +393,10 @@ hundred
 hungry
 hour
 hurry
-husband
 hurt
 ice
 idea
-if
 important
-in
 increase
 inside
 into
@@ -431,9 +404,7 @@ introduce
 invent
 iron
 invite
-is
 island
-it
 its
 jelly
 job
@@ -443,7 +414,6 @@ jump
 just
 keep
 key
-kid
 kill
 kind
 king
@@ -453,7 +423,6 @@ knife
 knock
 know
 ladder
-lady
 lamp
 land
 large
@@ -498,8 +467,6 @@ luck
 machine
 main
 make
-male
-man
 many
 map
 mark
@@ -507,7 +474,6 @@ market
 marry
 matter
 may
-me
 meal
 mean
 measure
@@ -537,7 +503,6 @@ moon
 more
 morning
 most
-mother
 mountain
 mouse
 mouth
@@ -545,7 +510,6 @@ move
 much
 music
 must
-my
 name
 narrow
 nation
@@ -555,7 +519,6 @@ nearly
 neck
 need
 needle
-neighbour
 neither
 net
 never
@@ -566,7 +529,6 @@ next
 nice
 night
 nine
-no
 noble
 noise
 none
@@ -581,19 +543,16 @@ number
 obey
 object
 ocean
-of
 off
 offer
 office
 often
 oil
 old
-on
 one
 only
 open
 opposite
-or
 orange
 order
 other
@@ -608,7 +567,6 @@ paint
 pair
 pan
 paper
-parent
 park
 part
 partner
@@ -627,7 +585,6 @@ perfect
 period
 person
 petrol
-photograph
 piano
 pick
 picture
@@ -706,7 +663,6 @@ repeat
 reply
 report
 rest
-restaurant
 result
 return
 rice
@@ -748,7 +704,6 @@ sentence
 serve
 seven
 several
-sex
 shade
 shadow
 shake
@@ -782,7 +737,6 @@ single
 since
 sing
 sink
-sister
 sit
 six
 size
@@ -798,7 +752,6 @@ smell
 smile
 smoke
 snow
-so
 soap
 sock
 soft
@@ -806,7 +759,6 @@ some
 someone
 something
 sometimes
-son
 soon
 sorry
 sound
@@ -848,7 +800,6 @@ study
 stupid
 subject
 substance
-successful
 such
 sudden
 sugar
@@ -873,7 +824,6 @@ teach
 team
 tear
 telephone
-television
 tell
 ten
 tennis
@@ -901,7 +851,6 @@ three
 tidy
 tie
 title
-to
 today
 toe
 together
@@ -925,12 +874,9 @@ twice
 try
 turn
 type
-uncle
 under
-understand
 unit
 until
-up
 use
 useful
 usual
@@ -950,7 +896,6 @@ waste
 watch
 water
 way
-we
 weak
 wear
 weather
@@ -971,7 +916,6 @@ white
 who
 why
 wide
-wife
 wild
 will
 win
@@ -984,7 +928,6 @@ wise
 wish
 with
 without
-woman
 wonder
 word
 work
