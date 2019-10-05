@@ -56,6 +56,7 @@ class tt_GameTweaks
 
     makeInvulnerable(pawn);
     increaseDamage(pawn);
+    protectFromSelfDamage(pawn);
   }
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -75,6 +76,12 @@ class tt_GameTweaks
     double               originalDamage = default.DamageMultiply;
 
     pawn.DamageMultiply = originalDamage * 10;
+  }
+
+  private play
+  void protectFromSelfDamage(PlayerPawn pawn)
+  {
+    pawn.SelfDamageFactor = 0;
   }
 
 } // class tt_GameTweaks
