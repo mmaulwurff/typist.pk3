@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements tt_AnswerSource by receiving player key inputs and
+/**
+ * This class implements tt_AnswerSource by receiving player key inputs and
  * composing an answer from them.
  */
 class tt_PlayerInput : tt_AnswerSource
@@ -23,7 +24,12 @@ class tt_PlayerInput : tt_AnswerSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_PlayerInput init() { return self; }
+  tt_PlayerInput init()
+  {
+    _answer = new("tt_Answer").init();
+
+    return self;
+  }
 
 // public: /////////////////////////////////////////////////////////////////////
 
@@ -33,9 +39,14 @@ class tt_PlayerInput : tt_AnswerSource
     switch (type)
     {
     case tt_Character.NONE: break;
-    case tt_Character.PRINTABLE:      _answer = _answer .. character.getCharacter(); break;
-    case tt_Character.BACKSPACE:      _answer.DeleteLastCharacter(); break;
-    case tt_Character.CTRL_BACKSPACE: _answer = ""; break;
+
+    case tt_Character.PRINTABLE: _answer.append(character.getCharacter()); break;
+    case tt_Character.BACKSPACE: _answer.deleteLastCharacter(); break;
+
+    case tt_Character.ENTER:     _answer.finish(); break;
+    case tt_Character.ENTER_UP:  _answer.setReadyToReset(); break;
+
+    case tt_Character.CTRL_BACKSPACE: _answer = new("tt_Answer").init(); break;
     }
   }
 
@@ -44,18 +55,20 @@ class tt_PlayerInput : tt_AnswerSource
   override
   tt_Answer getAnswer()
   {
-    let result = new("tt_Answer").init(_answer);
-    return result;
+    return _answer;
   }
 
   override
   void reset()
   {
-    _answer = "";
+    if (_answer.isReadyToReset())
+    {
+      _answer = new("tt_Answer").init();
+    }
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private String _answer;
+  private tt_Answer _answer;
 
 } // class tt_PlayerInput

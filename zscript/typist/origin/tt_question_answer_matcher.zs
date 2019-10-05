@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements OriginSource by finding an origin for a known target
+/**
+ * This class implements OriginSource by finding an origin for a known target
  * that fits to for the answer.
  */
 class tt_QuestionAnswerMatcher : tt_OriginSource

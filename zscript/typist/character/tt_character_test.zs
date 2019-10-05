@@ -78,6 +78,11 @@ class tt_CharacterTest : tt_Clematis
       It("Ctrl-Backspace", Assert(ctrlBackspace.getType() == tt_Character.CTRL_BACKSPACE));
     }
 
+    {
+      let enter = new("tt_Character").init(13, false, true);
+      It("Enter", Assert(enter.getType() == tt_Character.ENTER));
+    }
+
     EndDescribe();
   }
 

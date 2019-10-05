@@ -25,14 +25,10 @@ class tt_Character
 
   tt_Character init(int code, bool isShift, bool isCtrl)
   {
-    if (code == 8)
-    {
-      _type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE);
-    }
-    else if (code <= 31)
-    {
-      _type = NONE;
-    }
+    if      (code ==  8) { _type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE); }
+    else if (code == 13) { _type = ENTER;    }
+    else if (code ==  3) { _type = ENTER_UP; }
+    else if (code <= 31) { _type = NONE;     }
     else
     {
       _type = PRINTABLE;
@@ -54,6 +50,8 @@ class tt_Character
     PRINTABLE,
     BACKSPACE,
     CTRL_BACKSPACE,
+    ENTER,
+    ENTER_UP,
   }
 
   int getType() const { return _type; }

@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class represents an answer to a tt_Question.
+/**
+ * This class represents an answer to a tt_Question.
  * @see tt_Question
  */
 class tt_Answer
@@ -23,19 +24,31 @@ class tt_Answer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Answer init(String answer)
+  tt_Answer init(String answer = "")
   {
-    _answer = answer;
+    _answer         = answer;
+    _isFinished     = false;
+    _isReadyToReset = false;
 
     return self;
   }
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  String getString() const { return _answer; }
+  String getString()      const { return _answer;         }
+  bool   isFinished()     const { return _isFinished;     }
+  bool   isReadyToReset() const { return _isReadyToReset; }
+
+  void append(String character) { _answer = _answer .. character; }
+  void deleteLastCharacter()    { _answer.DeleteLastCharacter();  }
+
+  void finish()          { _isFinished     = true; }
+  void setReadyToReset() { _isReadyToReset = true; }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private String _answer;
+  private bool   _isFinished;
+  private bool   _isReadyToReset;
 
 } // class tt_Answer

@@ -26,7 +26,8 @@ OptionMenu tt_Options
 
 // Option Values ///////////////////////////////////////////////////////////////
 
-// Attention! Keep this list consistent with the list in tt_Supervisor.makeQuestionSource().
+// Attention! Keep this list consistent with the list in
+// tt_Supervisor.makeQuestionSource().
 OptionValue tt_QuestionSourceValues
 {
   0 , "$TT_CHALLENGE_LETTERS"
