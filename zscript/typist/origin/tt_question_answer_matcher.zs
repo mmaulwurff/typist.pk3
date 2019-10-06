@@ -86,10 +86,14 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
   bool isVisible(tt_KnownTarget target, PlayerPawn pawn) const
   {
     let  targetActor = target.getTarget().getActor();
-    bool visible     = pawn.IsVisible(targetActor, false);
+    bool visible     = pawn.IsVisible(targetActor, ALL_AROUND);
 
     return visible;
   }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  const ALL_AROUND = 1; // true
 
 // private: ////////////////////////////////////////////////////////////////////
 
