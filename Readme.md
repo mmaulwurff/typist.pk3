@@ -2,11 +2,44 @@
 
 [![Build Status](https://travis-ci.com/mmaulwurff/typist.pk3.svg?branch=master)](https://travis-ci.com/mmaulwurff/typist.pk3)
 
-Features nothing at the moment!
+[Download](http://www.mediafire.com/folder/axlfmgquqize8/Typist.pk3)
 
-# Installation
+[Discord](https://discord.gg/VJ3Jx9g)
 
-Run this mod with GZDoom.
+[Youtube](https://www.youtube.com/playlist?list=PL13LmqbAWk2cE8d3vkG0zDuCiwSVlKtUZ)
+
+[GitHub](https://github.com/mmaulwurff/typist.pk3)
+
+Typist.pk3 is a gameplay mod that turns your game into a typing exercise.
+
+The following exercises (or challenges are available):
+- 1000 basic English words;
+- Arithmetic;
+- C++ Development;
+- GZDoom Development;
+- Random letters;
+- Random numbers.
+
+# How to play
+
+1. Load it with GZDoom.
+
+2. There are two game modes: Combat and Exploration. They are switched
+   automatically.
+
+2.1. Exploration mode is your familiar mode. You can walk,
+     interact with doors, explore the map.
+
+2.2. Combat mode is for fighting enemies. Here, instead of aiming and shooting,
+     you type answers for your targets. When the answer is ready, press Enter,
+     and it is applied to the matching targets. Hold Enter for continuous fire.
+
+3. If you find yourself in a situation when you'd rather walk away from a fight,
+   use /explore command - type it instead of an answer. This will lock you in
+   Exploration mode until Unlock Game Mode with a bound key.
+
+3.1. There are other commands, too: /left and /right. Use them to turn left and
+     right in Combat mode.
 
 # Incompatible mods
 
@@ -59,3 +92,4 @@ It may be possible to compile this on Windows. Install Msys or something. You're
 - fraggle for [miniwad.wad](https://github.com/fragglet/miniwad) (BSD license)
 - kadu522 for support
 - [1000 basic English words](https://en.wiktionary.org/wiki/Appendix:1000_basic_English_words) (tt_1000.txt) (actually, 1008) CC BY-SA 3.0
+- Accensus for inviting me into Discord server
