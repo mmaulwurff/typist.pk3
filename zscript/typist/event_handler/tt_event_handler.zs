@@ -79,6 +79,7 @@ class tt_EventHandler : EventHandler
   {
     int playerNumber = event.PlayerNumber;
     if (playerNumber != consolePlayer) { return; }
+    if (gameState != GS_Level) { return; }
 
     _supervisor = new("tt_Supervisor").init(playerNumber);
 
