@@ -8,6 +8,12 @@ Features nothing at the moment!
 
 Run this mod with GZDoom.
 
+# Incompatible mods
+
+- Guncaster. Reason: Guncaster reads player input directly from player, so
+  weapon firing cannot be emulated like for other mods. Guncaster support cannot
+  be added without modifications in Guncaster or GZDoom.
+
 # Compilation
 
 Actually, you don't need to compile this. The repository contains everything

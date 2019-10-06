@@ -71,7 +71,11 @@ function tests {
 function uncontrolled_run {
     echo -e "\\nUncontrolled GZDoom run ########################################"
 
-    gzdoom -iwad maps/miniwad.wad -file "$file_name" +map map01
+    #mods=~/Programs/Games/wads/modules/weapons/Guncaster.pk3
+
+    gzdoom -iwad maps/miniwad.wad -file "$file_name" \
+           -file "$mods" \
+           +map map01
 }
 
 # Code checks ##################################################################
