@@ -49,6 +49,7 @@ class tt_CommandDispatcherTest : tt_Clematis
     let str    = "Hello";
     let answer = new("tt_Answer").init(str);
     answerSource.expect_getAnswer(answer);
+    answer.finish();
 
     let commands1 = new("tt_Strings").init();
     let commands2 = new("tt_Strings").init();
