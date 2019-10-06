@@ -80,14 +80,14 @@ It may be possible to compile this on Windows. Install Msys or something. You're
 
 # Software Used
 
+- [Emacs](https://www.gnu.org/software/emacs/)
 - [Slade](https://github.com/sirjuddington/SLADE)
 
 # Acknowledgments
 
+- LGR for [Sega's Typing of the Dead: A Zombie-Slaying Education](https://youtu.be/iamxvTe9Z5g) video
 - KeksDose for [libeye](https://forum.zdoom.org/viewtopic.php?f=105&t=64566#p1102157) (Level and screen projections)
-
 - ZippeyKeys12 (Zain Aamer) for [Clematis](https://github.com/ZippeyKeys12/clematis) (Basic ZScript unit test framework for GZDoom). Clematis is under the [BSD 3-Clause License](https://github.com/ZippeyKeys12/clematis/blob/master/LICENSE).
-
 - Marrub for [ZScript documentation](https://github.com/marrub--/zscript-doc)
 - fraggle for [miniwad.wad](https://github.com/fragglet/miniwad) (BSD license)
 - kadu522 for support
