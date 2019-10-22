@@ -4,7 +4,7 @@
 
 [Download](http://www.mediafire.com/folder/axlfmgquqize8/Typist.pk3)
 
-[Discord](https://discord.gg/VJ3Jx9g)
+[Discord](https://discord.gg/cFpdvWZ)
 
 [Youtube](https://www.youtube.com/playlist?list=PL13LmqbAWk2cE8d3vkG0zDuCiwSVlKtUZ)
 
