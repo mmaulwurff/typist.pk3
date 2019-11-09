@@ -79,13 +79,14 @@ class tt_Supervisor
                                                     , settings
                                                     , playerSource
                                                     );
+    let conditionalView = new("tt_ConditionalView").init(views);
     views.add(targetOverlay);
     views.add(infoPanel);
 
     _playerInput        = playerInput;
     _deathReporter      = deathReporter;
     _targetRegistry     = targetRegistry;
-    _view               = views;
+    _view               = conditionalView;
     _modeSource         = modeCascade;
     _damager            = damager;
     _targetWidgetSource = projector;
