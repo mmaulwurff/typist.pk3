@@ -41,6 +41,7 @@ class tt_FirerImpl : tt_Firer
     {
       let   pawn = _playerSource.getPawn();
       State stat = NULL;
+      playerInfo.cmd.buttons |= BT_ATTACK;
       pawn.FireWeapon(stat);
     }
   }
