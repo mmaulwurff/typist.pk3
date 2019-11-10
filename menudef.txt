@@ -36,4 +36,5 @@ OptionValue tt_QuestionSourceValues
   3 , "$TT_CHALLENGE_CPP"
   4 , "$TT_CHALLENGE_MATH"
   5 , "$TT_CHALLENGE_1000"
+  6 , "$TT_CHALLENGE_1000_RU"
 }

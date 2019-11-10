@@ -164,6 +164,7 @@ class tt_Supervisor
     let cppSource      = new("tt_StringSet"             ).init("tt_cpp");
     let mathsSource    = new("tt_MathsChallenge"        ).init();
     let english1000    = new("tt_StringSet"             ).init("tt_1000");
+    let russian1000    = new("tt_StringSet"             ).init("tt_1000_ru");
 
     // Attention! Keep this list consistent with menudef entries.
     selectedSource.add(letterSource);
@@ -172,6 +173,7 @@ class tt_Supervisor
     selectedSource.add(cppSource   );
     selectedSource.add(mathsSource );
     selectedSource.add(english1000 );
+    selectedSource.add(russian1000 );
 
     return selectedSource;
   }

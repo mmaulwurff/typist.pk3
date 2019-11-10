@@ -22,6 +22,7 @@ TT_CHALLENGE_GZDOOM  = "GZDoom Dev";
 TT_CHALLENGE_CPP     = "C++";
 TT_CHALLENGE_MATH    = "Arithmetic";
 TT_CHALLENGE_1000    = "1000 basic English words";
+TT_CHALLENGE_1000_RU = "1000 basic Russian words";
 
 // Info Panel //////////////////////////////////////////////////////////////////
 
