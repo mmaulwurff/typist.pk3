@@ -26,6 +26,7 @@ class tt_Character
   tt_Character init(int code, bool isShift, bool isCtrl)
   {
     if      (code == tt_Ascii.Backspace)       { _type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE); }
+    else if (code == tt_Ascii.Delete   )       { _type = CTRL_BACKSPACE; }
     else if (code == tt_Ascii.Enter    )       { _type = ENTER;    }
     else if (code == tt_Ascii.EndOfText)       { _type = ENTER_UP; }
     else if (code <  tt_Ascii.FIRST_PRINTABLE) { _type = NONE;     }

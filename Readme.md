@@ -34,6 +34,8 @@ The following exercises (or challenges are available):
      you type answers for your targets. When the answer is ready, press Enter,
      and it is applied to the matching targets. Hold Enter for continuous fire.
 
+2.2.1. Press Ctrl+Backspace to erase the whole answer.
+
 3. If you find yourself in a situation when you'd rather walk away from a fight,
    use /explore command - type it instead of an answer. This will lock you in
    Exploration mode until Unlock Game Mode with a bound key.
@@ -46,6 +48,7 @@ The following exercises (or challenges are available):
 - Guncaster. Reason: Guncaster reads player input directly from player, so
   weapon firing cannot be emulated like for other mods. Guncaster support cannot
   be added without modifications in Guncaster or GZDoom.
+- Guncaster Vindicated. Reason: the same as Guncaster.
 
 # Compilation
 

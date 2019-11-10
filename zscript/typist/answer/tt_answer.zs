@@ -34,8 +34,8 @@ class tt_Answer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  String getString()  const { return _answer;         }
-  bool   isFinished() const { return _isFinished;     }
+  String getString()  const { return _answer;     }
+  bool   isFinished() const { return _isFinished; }
 
   void append(String character) { _answer = _answer .. character; }
   void deleteLastCharacter()    { _answer.DeleteLastCharacter();  }
