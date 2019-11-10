@@ -54,28 +54,45 @@ class tt_Match : tt_Question
   override
   String getHintFor(tt_Answer answer)
   {
-    // This method is limited to ASCII questions and answers.
+    return getColoredMatch(_question, answer.getString());
+  }
 
-    String answerString   = answer.getString();
-    uint   answerLength   = answerString.length();
-    uint   questionLength = _question.length();
-    uint   nChars         = min(answerLength, questionLength);
+// private: ////////////////////////////////////////////////////////////////////
+
+  private
+  String getColoredMatch(String origin, String matched)
+  {
     String result;
 
-    for (uint i = 0; i < nChars; ++i)
-    {
-      int    questionChar = _question.ByteAt(i);
-      int    answerChar   = answerString.ByteAt(i);
-      bool   isCharSame   = (questionChar == answerChar);
-      String colorCode    = (isCharSame ? "q" : "g"); // dark green, red
+    int originLength   = origin .CodePointCount();
+    int matchedLength  = matched.CodePointCount();
+    int nChars         = min(originLength, matchedLength);
+    int originCharPos  = 0;
+    int matchedCharPos = 0;
 
-      result.appendFormat("\c%s%c", colorCode, answerChar);
+    for (int i = 0; i < nChars; ++i)
+    {
+      int nextOriginCharPos;
+      int nextMatchedCharPos;
+      int originCode;
+      int matchedCode;
+      [originCode,  nextOriginCharPos ] = origin .GetNextCodePoint(originCharPos );
+      [matchedCode, nextMatchedCharPos] = matched.GetNextCodePoint(matchedCharPos);
+
+      bool   isCharSame = (originCode == matchedCode);
+      String colorCode  = (isCharSame ? "q" : "g"); // dark green, red
+
+      String matchedChar = matched.Mid(matchedCharPos, nextMatchedCharPos - matchedCharPos);
+      result.appendFormat("\c%s%s", colorCode, matchedChar);
+
+      originCharPos  = nextOriginCharPos;
+      matchedCharPos = nextMatchedCharPos;
     }
 
-    if (answerLength > questionLength)
+    if (matchedLength > originLength)
     {
-      // everything that is beyond question is wrong.
-      result.appendFormat("\cg%s", answerString.Mid(questionLength));
+      // everything that is beyond origin is wrong.
+      result.appendFormat("\cg%s", matched.Mid(originCharPos));
     }
 
     return result;
