@@ -92,7 +92,7 @@ class tt_Match : tt_Question
     if (matchedLength > originLength)
     {
       // everything that is beyond origin is wrong.
-      result.appendFormat("\cg%s", matched.Mid(originCharPos));
+      result.appendFormat("\cg%s", matched.Mid(matchedCharPos));
     }
 
     return result;
