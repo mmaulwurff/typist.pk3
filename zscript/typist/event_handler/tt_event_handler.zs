@@ -127,6 +127,8 @@ class tt_EventHandler : EventHandler
   void OnRegister()
   {
     _gameTweaks = new("tt_GameTweaks").init();
+
+    self.RequireMouse = true;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
