@@ -79,7 +79,7 @@ class tt_InfoPanel : tt_View
                           , "$TT_MODE_NONE"
                           };
     String modeName     = StringTable.Localize(modeNames[mode]);
-    int    xStart       = xy.x - fnt.StringWidth(modeName) / 2;
+    int    xStart       = int(xy.x - fnt.StringWidth(modeName) / 2);
     int    screenWidth  = Screen.GetWidth() / scale;
     int    screenHeight = Screen.GetHeight() / scale;
 
@@ -99,8 +99,8 @@ class tt_InfoPanel : tt_View
   {
     int scale       = _settings.getScale();
     int screenWidth = Screen.GetWidth();
-    int x           = xy.x + HORIZONTAL_MARGIN;
-    int y           = xy.y + (VERTICAL_MARGIN * scale);
+    int x           = int(xy.x + HORIZONTAL_MARGIN);
+    int y           = int(xy.y + (VERTICAL_MARGIN * scale));
     let targets     = _targetSource.getTargets();
     let answer      = _answerSource.getAnswer();
     let nTargets    = targets.size();
@@ -133,8 +133,8 @@ class tt_InfoPanel : tt_View
     let  commands    = _activatable.getCommands();
     int  screenWidth = Screen.GetWidth();
     uint nCommands   = commands.size();
-    int  x           = xy.x - HORIZONTAL_MARGIN;
-    int  y           = xy.y + (VERTICAL_MARGIN * scale);
+    int  x           = int(xy.x - HORIZONTAL_MARGIN);
+    int  y           = int(xy.y + (VERTICAL_MARGIN * scale));
     let answer       = _answerSource.getAnswer().getString();
 
     for (uint i = 0; i < nCommands; ++i)
