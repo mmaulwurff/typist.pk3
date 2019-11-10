@@ -15,6 +15,10 @@ OptionMenu tt_Options
 
   StaticText ""
   StaticText "$TT_GAMEPLAY_OPTIONS_TITLE_OUT", 1
+  Option     "$TT_BUDDHA_ENABLED", tt_buddha_enabled, OnOff
+  StaticText "$TT_BUDDHA_NOTE"
+
+  StaticText ""
   Option     "$TT_QUESTION_SOURCE", tt_question_source, tt_QuestionSourceValues
   Command    "$TT_APPLY", tt_reset_targets
   StaticText "$TT_QUESTION_SOURCE_NOTE"

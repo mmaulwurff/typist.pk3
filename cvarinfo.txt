@@ -4,3 +4,7 @@
 user int tt_view_scale = 1;
 
 user int tt_question_source = 0;
+
+// Game variables //////////////////////////////////////////////////////////////
+
+server bool tt_buddha_enabled = true;

@@ -64,8 +64,11 @@ class tt_GameTweaks
   private play
   void makeInvulnerable(PlayerPawn pawn)
   {
-    // Still lose health down to 1 point.
-    pawn.GiveInventory("tt_Buddha", 1);
+    if (tt_buddha_enabled)
+    {
+      // Still lose health down to 1 point.
+      pawn.GiveInventory("tt_Buddha", 1);
+    }
   }
 
   private play

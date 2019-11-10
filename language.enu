@@ -16,6 +16,9 @@ TT_APPLY                      = "Apply";
 TT_QUESTION_SOURCE_NOTE       = "Or existing targets will retain their Challenge type.";
 TT_CONTROLS_TITLE             = "Controls";
 
+TT_BUDDHA_ENABLED = "Player cannot die";
+TT_BUDDHA_NOTE    = "Applies on new level start.";
+
 TT_CHALLENGE_LETTERS = "Random Letters";
 TT_CHALLENGE_NUMBERS = "Random Numbers";
 TT_CHALLENGE_GZDOOM  = "GZDoom Dev";
