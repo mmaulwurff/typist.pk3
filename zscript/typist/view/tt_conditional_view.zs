@@ -21,6 +21,9 @@
  *
  * The list of conditions:
  * - not in a menu
+ * - there are monsters on the level
+ *
+ * @attention this class reads data from global scope.
  */
 class tt_ConditionalView : tt_View
 {
@@ -39,8 +42,9 @@ class tt_ConditionalView : tt_View
   override
   void draw(RenderEvent event)
   {
-    bool areConditionsMet = !isInMenu();
-
+    bool areConditionsMet = !isInMenu()
+                         && !isLevelClear()
+                          ;
     if (areConditionsMet)
     {
       _view.draw(event);
@@ -53,6 +57,14 @@ class tt_ConditionalView : tt_View
   bool isInMenu()
   {
     return menuActive;
+  }
+
+  private ui
+  bool isLevelClear()
+  {
+    int  nMonsters = level.total_monsters - level.killed_monsters;
+    bool isClear   = (nMonsters == 0);
+    return isClear;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
