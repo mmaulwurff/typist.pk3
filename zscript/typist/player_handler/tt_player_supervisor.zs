@@ -190,7 +190,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_PlayerInput        _playerInput;
+  private tt_AnswerSource       _playerInput;
   private tt_KnownTargetSource  _targetRegistry;
   private tt_DeathReporter      _deathReporter;
   private tt_View               _view;

@@ -33,6 +33,7 @@ class tt_PlayerInput : tt_AnswerSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
+  override
   void processKey(tt_Character character)
   {
     int type = character.getType();

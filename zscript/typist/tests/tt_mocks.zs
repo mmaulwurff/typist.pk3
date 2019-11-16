@@ -123,6 +123,26 @@ class tt_AnswerSourceMock : tt_AnswerSource
   private int _mock_getAnswer_expected;
   private int _mock_getAnswer_called;
 
+  override
+  void processKey(tt_Character character)
+  {
+    ++_mock_processKey_called;
+  }
+
+  void expect_processKey(int expected = 1)
+  {
+    _mock_processKey_expected = expected;
+    _mock_processKey_called = 0;
+  }
+
+  bool isSatisfied_processKey() const
+  {
+    return _mock_processKey_expected == _mock_processKey_called;
+  }
+
+  private int _mock_processKey_expected;
+  private int _mock_processKey_called;
+
 } // class tt_AnswerSourceMock
 
 class tt_KnownTargetSourceMock : tt_KnownTargetSource
