@@ -26,18 +26,17 @@ class tt_EventHandler : EventHandler
   override
   void WorldTick()
   {
-    if (_supervisor == NULL) { return; }
+    if (_playerHandler == NULL) { return; }
 
-    _supervisor.tick();
+    _playerHandler.tick();
 
-    int  mode            = _supervisor.getMode();
+    int  mode            = _playerHandler.getMode();
     bool isCapturingKeys = (mode == tt_Mode.MODE_COMBAT);
 
-    // detect the end of combat
     if (self.IsUiProcessor && isCapturingKeys == false)
     {
       let reset = new("tt_Character").init(tt_Ascii.Backspace, false, true);
-      _supervisor.processKey(reset);
+      _playerHandler.processKey(reset);
     }
 
     self.IsUiProcessor = isCapturingKeys;
@@ -46,7 +45,7 @@ class tt_EventHandler : EventHandler
   override
   bool UiProcess(UiEvent event)
   {
-    if (_supervisor == NULL) { return false; }
+    if (_playerHandler == NULL) { return false; }
 
     int code = event.keyChar;
     int type = event.type;
@@ -68,7 +67,7 @@ class tt_EventHandler : EventHandler
     if (isChar || (isDown && isControl))
     {
       let character = new("tt_Character").init(code, event.isShift, event.isCtrl);
-      _supervisor.processKey(character);
+      _playerHandler.processKey(character);
     }
 
     return false;
@@ -81,7 +80,7 @@ class tt_EventHandler : EventHandler
     if (playerNumber != consolePlayer) { return; }
     if (gameState != GS_Level && gameState != GS_StartUp) { return; }
 
-    _supervisor = new("tt_Supervisor").init(playerNumber);
+    initPlayer(playerNumber);
 
     PlayerInfo player = players[playerNumber];
     _gameTweaks.tweakPlayer(player);
@@ -90,28 +89,28 @@ class tt_EventHandler : EventHandler
   override
   void WorldThingDied(WorldEvent event)
   {
-    if (_supervisor == NULL) { return; }
+    if (_playerHandler == NULL) { return; }
 
-    _supervisor.reportDead(event.Thing);
+    _playerHandler.reportDead(event.Thing);
   }
 
   override
   void RenderOverlay(RenderEvent event)
   {
-    if (_supervisor == NULL) { return; }
+    if (_playerHandler == NULL) { return; }
 
-    _supervisor.draw(event);
+    _playerHandler.draw(event);
   }
 
   override
   void NetworkProcess(ConsoleEvent event)
   {
-    if (_supervisor == NULL) { return; }
+    if (_playerHandler == NULL) { return; }
 
     String command = event.Name;
 
-    if      (command == "tt_unlock_mode"  ) _supervisor.unlockMode();
-    else if (command == "tt_reset_targets") _supervisor = new("tt_Supervisor").init(consolePlayer);
+    if      (command == "tt_unlock_mode"  ) _playerHandler.unlockMode();
+    else if (command == "tt_reset_targets") initPlayer(consolePlayer);
   }
 
   override
@@ -133,7 +132,14 @@ class tt_EventHandler : EventHandler
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_Supervisor _supervisor;
-  private tt_GameTweaks _gameTweaks;
+  void initPlayer(int playerNumber)
+  {
+    _playerHandler = new("tt_PlayerSupervisor").init(playerNumber);
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_PlayerHandler _playerHandler;
+  private tt_GameTweaks    _gameTweaks;
 
 } // class tt_EventHandler

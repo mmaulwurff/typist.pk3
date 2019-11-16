@@ -16,14 +16,14 @@
  */
 
 /**
- * This class integrates the every Typist.pk3 module.
+ * This class handles Typist.pk3 features for one player.
  */
-class tt_Supervisor
+class tt_PlayerSupervisor : tt_PlayerHandler
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Supervisor init(int playerNumber)
+  tt_PlayerSupervisor init(int playerNumber)
   {
     let playerInput   = new("tt_PlayerInput"  ).init();
     let deathReporter = new("tt_DeathReporter").init();
@@ -99,12 +99,13 @@ class tt_Supervisor
 
 // public: /////////////////////////////////////////////////////////////////////
 
+  override
   void processKey(tt_Character character)
   {
     _playerInput.processKey(character);
   }
 
-  play
+  override
   void tick()
   {
     _targetRegistry.update();
@@ -114,16 +115,19 @@ class tt_Supervisor
     _commandDispatcher.activate();
   }
 
+  override
   void reportDead(Actor dead)
   {
     _deathReporter.reportDead(dead);
   }
 
+  override
   int getMode()
   {
     return _modeSource.getMode();
   }
 
+  override
   void unlockMode()
   {
     _manualModeSource.setMode(tt_Mode.MODE_NONE);
@@ -131,7 +135,7 @@ class tt_Supervisor
 
 // public: // ui ///////////////////////////////////////////////////////////////
 
-  ui
+  override
   void draw(RenderEvent event)
   {
     _view.draw(event);
@@ -191,4 +195,4 @@ class tt_Supervisor
   private tt_CommandDispatcher  _commandDispatcher;
   private tt_ModeStorage        _manualModeSource;
 
-} // class tt_Supervisor
+} // class tt_PlayerSupervisor

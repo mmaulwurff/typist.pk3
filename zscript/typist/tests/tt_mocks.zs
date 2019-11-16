@@ -364,6 +364,136 @@ class tt_TargetSourceMock : tt_TargetSource
 
 } // class tt_TargetSourceMock
 
+class tt_PlayerHandlerMock : tt_PlayerHandler
+{
+
+  tt_PlayerHandlerMock init() { return self; }
+
+  override
+  void processKey(tt_Character character)
+  {
+    ++_mock_processKey_called;
+  }
+
+  void expect_processKey(int expected = 1)
+  {
+    _mock_processKey_expected = expected;
+    _mock_processKey_called = 0;
+  }
+
+  bool isSatisfied_processKey() const
+  {
+    return _mock_processKey_expected == _mock_processKey_called;
+  }
+
+  private int _mock_processKey_expected;
+  private int _mock_processKey_called;
+
+  override
+  void tick()
+  {
+    ++_mock_tick_called;
+  }
+
+  void expect_tick(int expected = 1)
+  {
+    _mock_tick_expected = expected;
+    _mock_tick_called = 0;
+  }
+
+  bool isSatisfied_tick() const
+  {
+    return _mock_tick_expected == _mock_tick_called;
+  }
+
+  private int _mock_tick_expected;
+  private int _mock_tick_called;
+
+  override
+  void reportDead(Actor dead)
+  {
+    ++_mock_reportDead_called;
+  }
+
+  void expect_reportDead(int expected = 1)
+  {
+    _mock_reportDead_expected = expected;
+    _mock_reportDead_called = 0;
+  }
+
+  bool isSatisfied_reportDead() const
+  {
+    return _mock_reportDead_expected == _mock_reportDead_called;
+  }
+
+  private int _mock_reportDead_expected;
+  private int _mock_reportDead_called;
+
+  override
+  int getMode()
+  {
+    ++_mock_getMode_called;
+    return _mock_getMode;
+  }
+
+  void expect_getMode(int value, int expected = 1)
+  {
+    _mock_getMode = value;
+    _mock_getMode_expected = expected;
+    _mock_getMode_called = 0;
+  }
+
+  bool isSatisfied_getMode() const
+  {
+    return _mock_getMode_expected == _mock_getMode_called;
+  }
+
+  private int _mock_getMode;
+  private int _mock_getMode_expected;
+  private int _mock_getMode_called;
+
+  override
+  void unlockMode()
+  {
+    ++_mock_unlockMode_called;
+  }
+
+  void expect_unlockMode(int expected = 1)
+  {
+    _mock_unlockMode_expected = expected;
+    _mock_unlockMode_called = 0;
+  }
+
+  bool isSatisfied_unlockMode() const
+  {
+    return _mock_unlockMode_expected == _mock_unlockMode_called;
+  }
+
+  private int _mock_unlockMode_expected;
+  private int _mock_unlockMode_called;
+
+  override
+  void draw(RenderEvent event)
+  {
+    ++_mock_draw_called;
+  }
+
+  void expect_draw(int expected = 1)
+  {
+    _mock_draw_expected = expected;
+    _mock_draw_called = 0;
+  }
+
+  bool isSatisfied_draw() const
+  {
+    return _mock_draw_expected == _mock_draw_called;
+  }
+
+  private int _mock_draw_expected;
+  private int _mock_draw_called;
+
+} // class tt_PlayerHandlerMock
+
 class tt_AimerMock : tt_Aimer
 {
 
