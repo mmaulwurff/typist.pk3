@@ -36,11 +36,12 @@ class tt_Character
 
     bool isChar    = (type == UiEvent.Type_Char);
     bool isDown    = (type == UiEvent.Type_KeyDown);
+    bool isRepeat  = (type == UiEvent.Type_KeyRepeat);
     bool isControl = (code == tt_Ascii.Backspace
                    || code == tt_Ascii.Enter
                    || code == tt_Ascii.EndOfText);
 
-    if (!isChar && !(isDown && isControl))
+    if (!isChar && !((isDown || isRepeat) && isControl))
     {
       _type = NONE;
       return self;
