@@ -16,48 +16,24 @@
  */
 
 /**
- * This class handles the game for one player.
+ * This class helps managing user input.
  */
-class tt_PlayerHandler abstract
+class tt_InputManager abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  void processKey(tt_Character character)
+  void manageInput()
   {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:29: T: override this!");
-  }
-
-  play virtual
-  void tick()
-  {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:35: T: override this!");
-  }
-
-  virtual
-  void reportDead(Actor dead)
-  {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:41: T: override this!");
+    Console.Printf("zscript/typist/input_manager/tt_input_manager.zs:29: T: override this!");
   }
 
   virtual
   bool isCapturingKeys()
   {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:47: T: override this!");
+    Console.Printf("zscript/typist/input_manager/tt_input_manager.zs:35: T: override this!");
     return false;
   }
 
-  virtual
-  void unlockMode()
-  {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:54: T: override this!");
-  }
-
-  ui virtual
-  void draw(RenderEvent event)
-  {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:60: T: override this!");
-  }
-
-} // class tt_PlayerHandler
+} // class tt_InputManager

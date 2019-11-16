@@ -30,16 +30,7 @@ class tt_EventHandler : EventHandler
 
     _playerHandler.tick();
 
-    int  mode            = _playerHandler.getMode();
-    bool isCapturingKeys = (mode == tt_Mode.MODE_COMBAT);
-
-    if (self.IsUiProcessor && isCapturingKeys == false)
-    {
-      let reset = new("tt_Character").init(tt_Ascii.Backspace, false, true);
-      _playerHandler.processKey(reset);
-    }
-
-    self.IsUiProcessor = isCapturingKeys;
+    self.IsUiProcessor = _playerHandler.isCapturingKeys();
   }
 
   override

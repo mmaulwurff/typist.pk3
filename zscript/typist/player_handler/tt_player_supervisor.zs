@@ -83,6 +83,10 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     views.add(targetOverlay);
     views.add(infoPanel);
 
+    let inputManager = new("tt_InputByModeManager").init(modeCascade, playerInput);
+
+    // Initialize attributes ///////////////////////////////////////////////////
+
     _playerInput        = playerInput;
     _deathReporter      = deathReporter;
     _targetRegistry     = targetRegistry;
@@ -93,6 +97,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _targetOriginSource = targetOriginSource;
     _commandDispatcher  = commandDispatcher;
     _manualModeSource   = manualModeSource;
+    _inputManager       = inputManager;
 
     return self;
   }
@@ -113,6 +118,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _damager.damage();
     _targetWidgetSource.prepare();
     _commandDispatcher.activate();
+    _inputManager.manageInput();
   }
 
   override
@@ -122,9 +128,9 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   }
 
   override
-  int getMode()
+  bool isCapturingKeys()
   {
-    return _modeSource.getMode();
+    return _inputManager.isCapturingKeys();
   }
 
   override
@@ -194,5 +200,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_OriginSource       _targetOriginSource;
   private tt_CommandDispatcher  _commandDispatcher;
   private tt_ModeStorage        _manualModeSource;
+  private tt_InputManager       _inputManager;
 
 } // class tt_PlayerSupervisor
