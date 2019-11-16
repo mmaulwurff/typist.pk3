@@ -25,6 +25,7 @@ class tt_Character
 
   tt_Character init(int type, int code, bool isShift, bool isCtrl)
   {
+    _eventType = type;
     //Console.Printf("type: %d, code: %d, string: %s", type, code, event.keyString);
 
     if (type == UiEvent.Type_KeyUp && code == tt_Ascii.Enter)
@@ -79,6 +80,8 @@ class tt_Character
 
   String getCharacter() const { return _character; }
 
+  int getEventType() const { return _eventType; }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   static
@@ -99,5 +102,6 @@ class tt_Character
 
   private int    _type;
   private String _character;
+  private int    _eventType;
 
 } // class tt_Key

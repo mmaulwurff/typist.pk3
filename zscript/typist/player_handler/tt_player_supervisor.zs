@@ -70,6 +70,12 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     modeSources.add(autoModeSource);
     let modeCascade = new("tt_ModeCascade").init(modeSources);
 
+    let oldModeSource = new("tt_SettableMode").init();
+    let inputBlockAfterCombat = new("tt_InputBlockAfterCombat").init( playerInput
+                                                                    , modeCascade
+                                                                    , oldModeSource
+                                                                    );
+
     let views         = new("tt_Views"        ).init();
     let targetOverlay = new("tt_TargetOverlay").init(widgetSorter, playerInput, settings);
     let infoPanel     = new("tt_InfoPanel"    ).init( modeCascade
@@ -87,7 +93,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     // Initialize attributes ///////////////////////////////////////////////////
 
-    _playerInput        = playerInput;
+    _playerInput        = inputBlockAfterCombat;
     _deathReporter      = deathReporter;
     _targetRegistry     = targetRegistry;
     _view               = conditionalView;
@@ -98,6 +104,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _commandDispatcher  = commandDispatcher;
     _manualModeSource   = manualModeSource;
     _inputManager       = inputManager;
+    _oldModeSource      = oldModeSource;
+    _inputBlockAfterCombat = inputBlockAfterCombat;
 
     return self;
   }
@@ -119,6 +127,9 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _targetWidgetSource.prepare();
     _commandDispatcher.activate();
     _inputManager.manageInput();
+
+    _inputBlockAfterCombat.update();
+    _oldModeSource.setMode(_modeSource.getMode());
   }
 
   override
@@ -201,5 +212,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_CommandDispatcher  _commandDispatcher;
   private tt_ModeStorage        _manualModeSource;
   private tt_InputManager       _inputManager;
+  private tt_SettableMode       _oldModeSource;
+  private tt_InputBlockAfterCombat _inputBlockAfterCombat;
 
 } // class tt_PlayerSupervisor
