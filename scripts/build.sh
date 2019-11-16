@@ -16,7 +16,6 @@ files=$(find . -name "*.zs"  \
             -o -name "*.txt" \
             -o -name "*.wad" \
             -o -name "*.png" \
-            -o -name "*.enu" \
             | grep -v "3rdparty")
 
 scripts/make_changelog.sh
