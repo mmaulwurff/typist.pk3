@@ -24,6 +24,7 @@ version 4.1.3
 #include "zscript/typist/activatable/tt_right_turner_test.zs"
 #include "zscript/typist/activatable/tt_right_turner.zs"
 #include "zscript/typist/activatable/tt_shield.zs"
+#include "zscript/typist/activatable/tt_sphinx.zs"
 #include "zscript/typist/activatable/tt_turner.zs"
 #include "zscript/typist/aimer/tt_aimers_test.zs"
 #include "zscript/typist/aimer/tt_aimers.zs"

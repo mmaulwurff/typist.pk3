@@ -372,6 +372,29 @@ class tt_ActivatableMock : tt_Activatable
   private int _mock_getCommands_expected;
   private int _mock_getCommands_called;
 
+  override
+  bool isVisible()
+  {
+    ++_mock_isVisible_called;
+    return _mock_isVisible;
+  }
+
+  void expect_isVisible(bool value, int expected = 1)
+  {
+    _mock_isVisible = value;
+    _mock_isVisible_expected = expected;
+    _mock_isVisible_called = 0;
+  }
+
+  bool isSatisfied_isVisible() const
+  {
+    return _mock_isVisible_expected == _mock_isVisible_called;
+  }
+
+  private bool _mock_isVisible;
+  private int _mock_isVisible_expected;
+  private int _mock_isVisible_called;
+
 } // class tt_ActivatableMock
 
 class tt_DifficultySourceMock : tt_DifficultySource

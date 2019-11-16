@@ -59,7 +59,10 @@ class tt_CommandDispatcher : tt_Activatable
     for (uint i = 0; i < nActivatables; ++i)
     {
       let activatable = _activatables.at(i);
-      let commands    = activatable.getCommands();
+
+      if (!activatable.isVisible()) { continue; }
+
+      let commands = activatable.getCommands();
 
       uint nCommands = commands.size();
       for (uint c = 0; c < nCommands; ++c)

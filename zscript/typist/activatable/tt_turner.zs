@@ -51,6 +51,12 @@ class tt_Turner : tt_Activatable abstract
     pawn.A_SetAngle(newAngle, FLAGS);
   }
 
+  override
+  bool isVisible()
+  {
+    return true;
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   const FLAGS = SPF_FORCECLAMP | SPF_INTERPOLATE;

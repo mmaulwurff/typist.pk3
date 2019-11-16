@@ -16,32 +16,43 @@
  */
 
 /**
- * This interface represents a game element that can be activated by the same
- * way the target is damaged. Such elements can be considered pseudo-targets.
+ * Kills all monsters on the level.
  */
-class tt_Activatable abstract
+class tt_Sphinx : tt_Activatable
 {
+
+  tt_Sphinx init()
+  {
+    return self;
+  }
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  play virtual
+  override
   void activate()
   {
-    Console.Printf("zscript/typist/activatable/tt_activatable.zs:30: T: override this!");
+    ThinkerIterator i = ThinkerIterator.Create("Actor");
+    Actor a;
+    while (a = Actor(i.Next()))
+    {
+      if (a.bIsMonster) { a.A_Die(); }
+    }
   }
 
-  virtual
+  override
   tt_Strings getCommands()
   {
-    Console.Printf("zscript/typist/activatable/tt_activatable.zs:36: T: override this!");
-    return NULL;
+    let strings = new("tt_Strings").init();
+    strings.add("Sphinx of black quartz, judge my vow.");
+    return strings;
   }
 
-  virtual
+  override
   bool isVisible()
   {
-    Console.Printf("zscript/typist/activatable/tt_activatable.zs:43: T: override this!");
     return false;
   }
 
-} // class tt_Activatable
+// private: ////////////////////////////////////////////////////////////////////
+
+} // class tt_Sphinx

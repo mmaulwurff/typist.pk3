@@ -58,10 +58,12 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     let rightTurner  = new("tt_RightTurner" ).init(playerSource);
     let leftTurner   = new("tt_LeftTurner"  ).init(playerSource);
+    let sphinx       = new("tt_Sphinx"      ).init();
     let activatables = new("tt_Activatables").init();
     activatables.add(modeSwitcher);
     activatables.add(rightTurner);
     activatables.add(leftTurner);
+    activatables.add(sphinx);
 
     let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, activatables);
 

@@ -47,6 +47,12 @@ class tt_ModeSwitcher : tt_Activatable
     return result;
   }
 
+  override
+  bool isVisible()
+  {
+    return true;
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_ModeStorage _modeStorage;
