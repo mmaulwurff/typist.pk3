@@ -43,7 +43,7 @@ class tt_AutoModeSourceTest : tt_Clematis
 
     int mode = _autoModeSource.getMode();
 
-    It("No targets -> Explore", AssertEval(mode, "==", tt_Mode.MODE_EXPLORE));
+    It("No targets -> Explore", AssertEval(mode, "==", tt_Mode.Explore));
 
     tearDown();
   }
@@ -65,7 +65,7 @@ class tt_AutoModeSourceTest : tt_Clematis
 
     int mode = _autoModeSource.getMode();
 
-    It("There are visible targets -> Combat", AssertEval(mode, "==", tt_Mode.MODE_COMBAT));
+    It("There are visible targets -> Combat", AssertEval(mode, "==", tt_Mode.Combat));
 
     tearDown();
   }
@@ -87,7 +87,7 @@ class tt_AutoModeSourceTest : tt_Clematis
 
     int mode = _autoModeSource.getMode();
 
-    It("There are no visible targets -> Explore", AssertEval(mode, "==", tt_Mode.MODE_EXPLORE));
+    It("There are no visible targets -> Explore", AssertEval(mode, "==", tt_Mode.Explore));
 
     tearDown();
   }

@@ -42,13 +42,13 @@ class tt_ModeCascade : tt_ModeSource
       let source = _modeSources.at(i);
       int mode   = source.getMode();
 
-      if (mode != tt_Mode.MODE_NONE)
+      if (mode != tt_Mode.None)
       {
         return mode;
       }
     }
 
-    return tt_Mode.MODE_NONE;
+    return tt_Mode.None;
   }
 
 // private: ////////////////////////////////////////////////////////////////////

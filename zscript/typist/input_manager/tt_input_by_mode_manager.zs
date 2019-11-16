@@ -19,7 +19,7 @@
  * This class implements tt_InputManager by examining the current and old
  * Typist mode.
  *
- * Input is reset when the
+ * Input is reset when the game mode is changed.
  */
 class tt_InputByModeManager : tt_InputManager
 {
@@ -31,6 +31,8 @@ class tt_InputByModeManager : tt_InputManager
     _modeSource  = modeSource;
     _playerInput = playerInput;
 
+    _oldMode = tt_Mode.Unknown;
+
     return self;
   }
 
@@ -40,11 +42,12 @@ class tt_InputByModeManager : tt_InputManager
   void manageInput()
   {
     int  mode             = _modeSource.getMode();
-    bool isCapturingKeys  = (mode == tt_Mode.MODE_COMBAT);
-    bool wasCapturingKeys = (_oldMode != tt_Mode.MODE_COMBAT);
+    bool isCapturingKeys  = (mode == tt_Mode.Combat);
+    bool wasCapturingKeys = (_oldMode != tt_Mode.Combat);
 
     if (wasCapturingKeys && isCapturingKeys == false)
     {
+      // Ctrl-Backspace
       let reset = new("tt_Character").init(UiEvent.Type_Char, tt_Ascii.Backspace, false, true);
       _playerInput.processKey(reset);
     }
@@ -56,7 +59,7 @@ class tt_InputByModeManager : tt_InputManager
   bool isCapturingKeys()
   {
     int mode = _modeSource.getMode();
-    return (mode == tt_Mode.MODE_COMBAT);
+    return (mode == tt_Mode.Combat);
   }
 
 // private: ////////////////////////////////////////////////////////////////////

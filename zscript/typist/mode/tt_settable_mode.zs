@@ -25,7 +25,7 @@ class tt_SettableMode : tt_ModeStorage
 
   tt_SettableMode init()
   {
-    _mode = tt_Mode.MODE_NONE;
+    _mode = tt_Mode.None;
 
     return self;
   }

@@ -25,10 +25,10 @@ class tt_Mode
 
   enum Modes
   {
-    MODE_UNKNOWN, ///< Should never be used. Only for detecting uninitialized variables.
-    MODE_COMBAT,  ///< Typist is focused on destroying the targets.
-    MODE_EXPLORE, ///< Typist is focused on movement and exploration.
-    MODE_NONE,    ///< None of the above.
+    Unknown, ///< Should never be used. Only for detecting uninitialized variables.
+    Combat,  ///< Typist is focused on destroying the targets.
+    Explore, ///< Typist is focused on movement and exploration.
+    None,    ///< None of the above.
   }
 
 } // class tt_Mode

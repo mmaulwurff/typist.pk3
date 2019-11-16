@@ -29,7 +29,7 @@ class tt_SettableModeTest : tt_Clematis
     Describe("Checking Settable Mode");
 
     let settableMode = new("tt_SettableMode").init();
-    int before       = tt_Mode.MODE_COMBAT;
+    int before       = tt_Mode.Combat;
 
     settableMode.setMode(before);
     int after = settableMode.getMode();

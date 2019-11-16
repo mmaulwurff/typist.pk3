@@ -136,7 +136,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   override
   void unlockMode()
   {
-    _manualModeSource.setMode(tt_Mode.MODE_NONE);
+    _manualModeSource.setMode(tt_Mode.None);
   }
 
 // public: // ui ///////////////////////////////////////////////////////////////

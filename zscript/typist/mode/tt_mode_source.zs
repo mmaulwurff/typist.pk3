@@ -28,7 +28,7 @@ class tt_ModeSource abstract
   int getMode()
   {
     Console.Printf("zscript/typist/mode/tt_mode_source.zs:30: T: override this!");
-    return tt_Mode.MODE_UNKNOWN;
+    return tt_Mode.Unknown;
   }
 
 } // class tt_ModeSource

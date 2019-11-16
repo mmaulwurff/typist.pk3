@@ -45,7 +45,7 @@ class tt_ModeCascadeTest : tt_Clematis
 
     int mode = cascade.getMode();
 
-    It("No source -> no mode", AssertEval(mode, "==", tt_Mode.MODE_NONE));
+    It("No source -> no mode", AssertEval(mode, "==", tt_Mode.None));
   }
 
   private
@@ -59,12 +59,12 @@ class tt_ModeCascadeTest : tt_Clematis
 
     let cascade = new("tt_ModeCascade").init(sources);
 
-    source1.expect_getMode(tt_Mode.MODE_EXPLORE);
-    source2.expect_getMode(tt_Mode.MODE_COMBAT);
+    source1.expect_getMode(tt_Mode.Explore);
+    source2.expect_getMode(tt_Mode.Combat);
 
     int mode = cascade.getMode();
 
-    It("Must be the first mode", AssertEval(mode, "==", tt_Mode.MODE_EXPLORE));
+    It("Must be the first mode", AssertEval(mode, "==", tt_Mode.Explore));
   }
 
   private
@@ -78,12 +78,12 @@ class tt_ModeCascadeTest : tt_Clematis
 
     let cascade = new("tt_ModeCascade").init(sources);
 
-    source1.expect_getMode(tt_Mode.MODE_NONE);
-    source2.expect_getMode(tt_Mode.MODE_COMBAT);
+    source1.expect_getMode(tt_Mode.None);
+    source2.expect_getMode(tt_Mode.Combat);
 
     int mode = cascade.getMode();
 
-    It("Must be the second mode", AssertEval(mode, "==", tt_Mode.MODE_COMBAT));
+    It("Must be the second mode", AssertEval(mode, "==", tt_Mode.Combat));
   }
 
 } // class tt_ModeCascadeTest

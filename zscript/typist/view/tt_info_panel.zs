@@ -72,7 +72,7 @@ class tt_InfoPanel : tt_View
 
     Font   fnt          = NewSmallFont;
     int    mode         = _modeSource.getMode();
-    let    color        = (mode == tt_Mode.MODE_COMBAT ? Font.CR_RED : Font.CR_BLUE);
+    let    color        = (mode == tt_Mode.Combat ? Font.CR_RED : Font.CR_BLUE);
     String modeNames[]  = { "$TT_MODE_UNKNOWN"
                           , "$TT_MODE_COMBAT"
                           , "$TT_MODE_EXPLORE"

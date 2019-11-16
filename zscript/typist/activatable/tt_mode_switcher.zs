@@ -35,7 +35,7 @@ class tt_ModeSwitcher : tt_Activatable
   override
   void activate()
   {
-    _modeStorage.setMode(tt_Mode.MODE_EXPLORE);
+    _modeStorage.setMode(tt_Mode.Explore);
   }
 
   override

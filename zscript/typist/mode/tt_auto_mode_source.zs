@@ -40,7 +40,7 @@ class tt_AutoModeSource : tt_ModeSource
 
     if (isNoTargets)
     {
-      return tt_Mode.MODE_EXPLORE;
+      return tt_Mode.Explore;
     }
 
     bool isAtLeastOneVisible = false;
@@ -57,7 +57,7 @@ class tt_AutoModeSource : tt_ModeSource
       }
     }
 
-    int mode = (isAtLeastOneVisible ? tt_Mode.MODE_COMBAT : tt_Mode.MODE_EXPLORE);
+    int mode = (isAtLeastOneVisible ? tt_Mode.Combat : tt_Mode.Explore);
 
     return mode;
   }
