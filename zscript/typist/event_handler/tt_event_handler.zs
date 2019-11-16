@@ -26,18 +26,13 @@ class tt_EventHandler : EventHandler
   override
   void WorldTick()
   {
-    if (_playerHandler == NULL) { return; }
-
     _playerHandler.tick();
-
     self.IsUiProcessor = _playerHandler.isCapturingKeys();
   }
 
   override
   bool UiProcess(UiEvent event)
   {
-    if (_playerHandler == NULL) { return false; }
-
     int code      = event.keyChar;
     int type      = event.type;
     let character = new("tt_Character").init(type, code, event.isShift, event.isCtrl);
@@ -61,24 +56,18 @@ class tt_EventHandler : EventHandler
   override
   void WorldThingDied(WorldEvent event)
   {
-    if (_playerHandler == NULL) { return; }
-
     _playerHandler.reportDead(event.Thing);
   }
 
   override
   void RenderOverlay(RenderEvent event)
   {
-    if (_playerHandler == NULL) { return; }
-
     _playerHandler.draw(event);
   }
 
   override
   void NetworkProcess(ConsoleEvent event)
   {
-    if (_playerHandler == NULL) { return; }
-
     String command = event.Name;
 
     if      (command == "tt_unlock_mode"  ) _playerHandler.unlockMode();
@@ -88,6 +77,8 @@ class tt_EventHandler : EventHandler
   override
   void OnRegister()
   {
+    _playerHandler = new("tt_PlayerSupervisorStub").init();
+
     self.RequireMouse = true;
   }
 
