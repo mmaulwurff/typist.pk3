@@ -38,28 +38,10 @@ class tt_EventHandler : EventHandler
   {
     if (_playerHandler == NULL) { return false; }
 
-    int code = event.keyChar;
-    int type = event.type;
-
-    //Console.Printf("type: %d, code: %d, string: %s", type, code, event.keyString);
-
-    if (type == UiEvent.Type_KeyUp && code == tt_Ascii.Enter)
-    {
-      type = UiEvent.Type_KeyDown;
-      code = tt_Ascii.EndOfText;
-    }
-
-    bool isChar    = (type == UiEvent.Type_Char);
-    bool isDown    = (type == UiEvent.Type_KeyDown);
-    bool isControl = (code == tt_Ascii.Backspace
-                   || code == tt_Ascii.Enter
-                   || code == tt_Ascii.EndOfText);
-
-    if (isChar || (isDown && isControl))
-    {
-      let character = new("tt_Character").init(code, event.isShift, event.isCtrl);
-      _playerHandler.processKey(character);
-    }
+    int code      = event.keyChar;
+    int type      = event.type;
+    let character = new("tt_Character").init(type, code, event.isShift, event.isCtrl);
+    _playerHandler.processKey(character);
 
     return false;
   }

@@ -45,7 +45,7 @@ class tt_InputByModeManager : tt_InputManager
 
     if (wasCapturingKeys && isCapturingKeys == false)
     {
-      let reset = new("tt_Character").init(tt_Ascii.Backspace, false, true);
+      let reset = new("tt_Character").init(UiEvent.Type_Char, tt_Ascii.Backspace, false, true);
       _playerInput.processKey(reset);
     }
 

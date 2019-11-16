@@ -23,8 +23,28 @@ class tt_Character
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Character init(int code, bool isShift, bool isCtrl)
+  tt_Character init(int type, int code, bool isShift, bool isCtrl)
   {
+    //Console.Printf("type: %d, code: %d, string: %s", type, code, event.keyString);
+
+    if (type == UiEvent.Type_KeyUp && code == tt_Ascii.Enter)
+    {
+      type = UiEvent.Type_KeyDown;
+      code = tt_Ascii.EndOfText;
+    }
+
+    bool isChar    = (type == UiEvent.Type_Char);
+    bool isDown    = (type == UiEvent.Type_KeyDown);
+    bool isControl = (code == tt_Ascii.Backspace
+                   || code == tt_Ascii.Enter
+                   || code == tt_Ascii.EndOfText);
+
+    if (!isChar && !(isDown && isControl))
+    {
+      _type = NONE;
+      return self;
+    }
+
     if      (code == tt_Ascii.Backspace)       { _type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE); }
     else if (code == tt_Ascii.Delete   )       { _type = CTRL_BACKSPACE; }
     else if (code == tt_Ascii.Enter    )       { _type = ENTER;    }
