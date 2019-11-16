@@ -73,8 +73,7 @@ class tt_EventHandler : EventHandler
 
     initPlayer(playerNumber);
 
-    PlayerInfo player = players[playerNumber];
-    _gameTweaks.tweakPlayer(player);
+    tt_GameTweaks.tweakPlayer(players[playerNumber]);
   }
 
   override
@@ -105,19 +104,8 @@ class tt_EventHandler : EventHandler
   }
 
   override
-  void WorldThingSpawned(WorldEvent event)
-  {
-    let thing = event.thing;
-    if (thing == NULL) { return; }
-
-    _gameTweaks.processSpawnedThing(thing);
-  }
-
-  override
   void OnRegister()
   {
-    _gameTweaks = new("tt_GameTweaks").init();
-
     self.RequireMouse = true;
   }
 
@@ -131,6 +119,5 @@ class tt_EventHandler : EventHandler
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_PlayerHandler _playerHandler;
-  private tt_GameTweaks    _gameTweaks;
 
 } // class tt_EventHandler

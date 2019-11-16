@@ -18,37 +18,12 @@
 /**
  * This class handles game tweaks.
  */
-class tt_GameTweaks
+class tt_GameTweaks play
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_GameTweaks init()
-  {
-    return self;
-  }
-
-// public: /////////////////////////////////////////////////////////////////////
-
-  play
-  void processSpawnedThing(Actor thing)
-  {
-    bool isMissile = thing.bMissile;
-    if (!isMissile) { return; }
-
-    bool isPlayers = (thing.Target != NULL && thing.Target is "PlayerPawn");
-    if (isPlayers) { return; }
-
-    thing.bShootable   = true;
-    thing.bSolid       = true;
-    thing.bNoBlood     = true;
-    thing.bThruSpecies = true;
-    thing.Health       = 1;
-    thing.A_ScaleVelocity(0.1);
-    thing.A_ChangeLinkFlags(0);
-  }
-
-  play
+  static
   void tweakPlayer(PlayerInfo player)
   {
     let pawn = player.mo;
@@ -61,7 +36,7 @@ class tt_GameTweaks
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private play
+  static private
   void makeInvulnerable(PlayerPawn pawn)
   {
     if (tt_buddha_enabled)
@@ -71,7 +46,7 @@ class tt_GameTweaks
     }
   }
 
-  private play
+  static private
   void increaseDamage(PlayerPawn pawn)
   {
     class<PlayerPawn>    type           = pawn.GetClassName();
@@ -81,7 +56,7 @@ class tt_GameTweaks
     pawn.DamageMultiply = originalDamage * 10;
   }
 
-  private play
+  static private
   void protectFromSelfDamage(PlayerPawn pawn)
   {
     pawn.SelfDamageFactor = 0;
