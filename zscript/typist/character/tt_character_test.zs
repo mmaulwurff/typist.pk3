@@ -28,58 +28,40 @@ class tt_CharacterTest : tt_Clematis
     Describe("Checking Character");
 
     {
-      let smallANoShift = new("tt_Character").init(TYPE_CHAR, tt_Ascii.LowercaseA, false, false);
-      It("Small character, no shift", Assert(smallANoShift.getType() == tt_Character.PRINTABLE));
-      It("Small character, no shift", Assert(smallANoShift.getCharacter() == "a"));
+      let smallA = new("tt_Character").init(TYPE_CHAR, tt_Ascii.LowercaseA, false);
+      It("Small character", Assert(smallA.getType() == tt_Character.PRINTABLE));
+      It("Small character", Assert(smallA.getCharacter() == "a"));
     }
 
     {
-      let smallAShift = new("tt_Character").init(TYPE_CHAR, tt_Ascii.LowercaseA, true, false);
-      It("Small character, shift", Assert(smallAShift.getType() == tt_Character.PRINTABLE));
-      It("Small character, shift", Assert(smallAShift.getCharacter() == "A"));
+      let bigA = new("tt_Character").init(TYPE_CHAR, tt_Ascii.UppercaseA, false);
+      It("Big character", Assert(bigA.getType() == tt_Character.PRINTABLE));
+      It("Big character", Assert(bigA.getCharacter() == "A"));
     }
 
     {
-      let bigANoShift = new("tt_Character").init(TYPE_CHAR, tt_Ascii.UppercaseA, false, false);
-      It("Big character, no shift", Assert(bigANoShift.getType() == tt_Character.PRINTABLE));
-      It("Big character, no shift", Assert(bigANoShift.getCharacter() == "a"));
+      let number = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Number4, false);
+      It("Number", Assert(number.getType() == tt_Character.PRINTABLE));
+      It("Number", Assert(number.getCharacter() == "4"));
     }
 
     {
-      let bigAShift = new("tt_Character").init(TYPE_CHAR, tt_Ascii.UppercaseA, true, false);
-      It("Big character, shift", Assert(bigAShift.getType() == tt_Character.PRINTABLE));
-      It("Big character, shift", Assert(bigAShift.getCharacter() == "A"));
-    }
-
-    {
-      let numberNoShift = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Number4, false, false);
-      It("Number, no shift", Assert(numberNoShift.getType() == tt_Character.PRINTABLE));
-      It("Number, no shift", Assert(numberNoShift.getCharacter() == "4"));
-    }
-
-    {
-      let numberShift = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Number4, true, false);
-      It("Number, shift", Assert(numberShift.getType() == tt_Character.PRINTABLE));
-      It("Number, shift", Assert(numberShift.getCharacter() == "4"));
-    }
-
-    {
-      let backspace = new("tt_Character").init(TYPE_CHAR, tt_Ascii.BACKSPACE, false, false);
+      let backspace = new("tt_Character").init(TYPE_CHAR, tt_Ascii.BACKSPACE, false);
       It("Backspace", Assert(backspace.getType() == tt_Character.BACKSPACE));
     }
 
     {
-      let nonPrintable = new("tt_Character").init(TYPE_CHAR, tt_Ascii.NUL, false, false);
+      let nonPrintable = new("tt_Character").init(TYPE_CHAR, tt_Ascii.NUL, false);
       It("Non-printable", Assert(nonPrintable.getType() == tt_Character.NONE));
     }
 
     {
-      let ctrlBackspace = new("tt_Character").init(TYPE_CHAR, tt_Ascii.BACKSPACE, false, true);
+      let ctrlBackspace = new("tt_Character").init(TYPE_CHAR, tt_Ascii.BACKSPACE, true);
       It("Ctrl-Backspace", Assert(ctrlBackspace.getType() == tt_Character.CTRL_BACKSPACE));
     }
 
     {
-      let enter = new("tt_Character").init(TYPE_CHAR, tt_Ascii.ENTER, false, true);
+      let enter = new("tt_Character").init(TYPE_CHAR, tt_Ascii.ENTER, true);
       It("Enter", Assert(enter.getType() == tt_Character.ENTER));
     }
 

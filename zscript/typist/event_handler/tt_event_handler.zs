@@ -35,7 +35,7 @@ class tt_EventHandler : EventHandler
   {
     int code      = event.keyChar;
     int type      = event.type;
-    let character = new("tt_Character").init(type, code, event.isShift, event.isCtrl);
+    let character = new("tt_Character").init(type, code, event.isCtrl);
     _playerHandler.processKey(character);
 
     return false;

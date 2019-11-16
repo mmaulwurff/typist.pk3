@@ -61,7 +61,7 @@ class tt_PlayerInputTest : tt_Clematis
     String input2      = "def";
 
     throwStringIntoInput(playerInput, input1);
-    let reset = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Backspace, false, true);
+    let reset = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Backspace, true);
     playerInput.processKey(reset);
     throwStringIntoInput(playerInput, input2);
 
@@ -75,8 +75,8 @@ class tt_PlayerInputTest : tt_Clematis
   void testBackspace()
   {
     let playerInput = new("tt_PlayerInput").init();
-    let backspace   = new("tt_Character").init(TYPE_CHAR, 8, false, false);
-    let letterA     = new("tt_Character").init(TYPE_CHAR, 97, false, false);
+    let backspace   = new("tt_Character").init(TYPE_CHAR, 8, false);
+    let letterA     = new("tt_Character").init(TYPE_CHAR, 97, false);
 
     //playerInput.reset();
     playerInput.processKey(backspace);
@@ -94,8 +94,8 @@ class tt_PlayerInputTest : tt_Clematis
   void testCtrlBackspace()
   {
     let playerInput   = new("tt_PlayerInput").init();
-    let ctrlBackspace = new("tt_Character").init(TYPE_CHAR, 8, false, true);
-    let letterA       = new("tt_Character").init(TYPE_CHAR, 97, false, false);
+    let ctrlBackspace = new("tt_Character").init(TYPE_CHAR, 8, true);
+    let letterA       = new("tt_Character").init(TYPE_CHAR, 97, false);
 
     playerInput.processKey(letterA);
     playerInput.processKey(letterA);
@@ -115,11 +115,11 @@ class tt_PlayerInputTest : tt_Clematis
     uint inputSize = str.length();
     for (uint i = 0; i < inputSize; ++i)
     {
-      let character = new("tt_Character").init(TYPE_CHAR, str.ByteAt(i), false, false);
+      let character = new("tt_Character").init(TYPE_CHAR, str.ByteAt(i), false);
       input.processKey(character);
     }
 
-    let enter = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Enter,     false, false);
+    let enter = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Enter, false);
     input.processKey(enter);
   }
 

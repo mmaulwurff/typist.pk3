@@ -23,7 +23,7 @@ class tt_Character
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Character init(int type, int code, bool isShift, bool isCtrl)
+  tt_Character init(int type, int code, bool isCtrl)
   {
     _eventType = type;
     //Console.Printf("type: %d, code: %d, string: %s", type, code, event.keyString);
@@ -54,11 +54,7 @@ class tt_Character
     else if (code <  tt_Ascii.FIRST_PRINTABLE) { _type = NONE;     }
     else
     {
-      _type = PRINTABLE;
-
-      if (isShift) { if (isLowercaseLetter(code)) { code -= tt_Ascii.CASE_DIFFERENCE; } }
-      else         { if (isUppercaseLetter(code)) { code += tt_Ascii.CASE_DIFFERENCE; } }
-
+      _type      = PRINTABLE;
       _character = String.Format("%c", code);
     }
 
