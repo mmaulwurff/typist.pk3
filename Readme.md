@@ -98,6 +98,6 @@ It may be possible to compile this on Windows. Install Msys or something. You're
 
 # Thanks
 
-- Accensus for inviting me into Discord server
+- Accensus for inviting me into Discord server and for bug reports
 - kadu522 for support
 - dard22 for bug reports
