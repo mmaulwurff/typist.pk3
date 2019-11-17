@@ -56,16 +56,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let manualModeSource  = new("tt_SettableMode").init();
     let modeSwitcher      = new("tt_ModeSwitcher").init(manualModeSource);
 
-    let rightTurner  = new("tt_RightTurner" ).init(playerSource);
-    let leftTurner   = new("tt_LeftTurner"  ).init(playerSource);
-    let sphinx       = new("tt_Sphinx"      ).init();
-    let activatables = new("tt_Activatables").init();
-    activatables.add(modeSwitcher);
-    activatables.add(rightTurner);
-    activatables.add(leftTurner);
-    activatables.add(sphinx);
-
-    let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, activatables);
+    let commands          = makeCommands(playerSource, modeSwitcher);
+    let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, commands);
 
     let modeSources = new("tt_ModeSources").init();
     modeSources.add(manualModeSource);
@@ -199,6 +191,21 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     selectedSource.add(russian1000 );
 
     return selectedSource;
+  }
+
+  private
+  tt_Activatables makeCommands(tt_PlayerSource playerSource, tt_Activatable modeSwitcher)
+  {
+    let activatables = new("tt_Activatables").init();
+
+    activatables.add(modeSwitcher);
+    activatables.add(new("tt_RightTurner" ).init(playerSource));
+    activatables.add(new("tt_LeftTurner"  ).init(playerSource));
+    activatables.add(new("tt_Sphinx"      ).init());
+    activatables.add(new("tt_RightDasher" ).init(playerSource));
+    activatables.add(new("tt_LeftDasher"  ).init(playerSource));
+
+    return activatables;
   }
 
 // private: ////////////////////////////////////////////////////////////////////

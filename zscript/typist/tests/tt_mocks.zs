@@ -324,6 +324,36 @@ class tt_TurnerMock : tt_Turner
 
 } // class tt_TurnerMock
 
+class tt_DasherMock : tt_Dasher
+{
+
+  tt_DasherMock init() { return self; }
+
+  override
+  double getDashAngle()
+  {
+    ++_mock_getDashAngle_called;
+    return _mock_getDashAngle;
+  }
+
+  void expect_getDashAngle(double value, int expected = 1)
+  {
+    _mock_getDashAngle = value;
+    _mock_getDashAngle_expected = expected;
+    _mock_getDashAngle_called = 0;
+  }
+
+  bool isSatisfied_getDashAngle() const
+  {
+    return _mock_getDashAngle_expected == _mock_getDashAngle_called;
+  }
+
+  private double _mock_getDashAngle;
+  private int _mock_getDashAngle_expected;
+  private int _mock_getDashAngle_called;
+
+} // class tt_DasherMock
+
 class tt_ActivatableMock : tt_Activatable
 {
 

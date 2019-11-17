@@ -16,16 +16,16 @@
  */
 
 /**
- * This class implements Activatable interface by turning the player.
+ * This class implements tt_Activatable by performing a dash.
  *
- * This class is an interface itself.
+ * Inherit this class and override getDashAngle().
  */
-class tt_Turner : tt_Activatable abstract
+class tt_Dasher : tt_Activatable abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Turner init(tt_PlayerSource playerSource)
+  tt_Dasher init(tt_PlayerSource playerSource)
   {
     _playerSource = playerSource;
 
@@ -35,9 +35,9 @@ class tt_Turner : tt_Activatable abstract
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  double getTurnAngle() const
+  double getDashAngle() const
   {
-    Console.Printf("zscript/typist/activatable/tt_turner.zs:40: T: override this!");
+    Console.Printf("zscript/typist/activatable/tt_dasher.zs:40: T: override this!");
     return 0;
   }
 
@@ -46,11 +46,8 @@ class tt_Turner : tt_Activatable abstract
   override
   void activate()
   {
-    let    pawn     = _playerSource.getPawn();
-    double oldAngle = pawn.Angle;
-    double newAngle = oldAngle + getTurnAngle();
-
-    pawn.A_SetAngle(newAngle, FLAGS);
+    let pawn = _playerSource.getPawn();
+    pawn.Thrust(SPEED, pawn.Angle + getDashAngle());
   }
 
   override
@@ -61,10 +58,10 @@ class tt_Turner : tt_Activatable abstract
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  const FLAGS = SPF_FORCECLAMP | SPF_INTERPOLATE;
+  const SPEED = 6;
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_PlayerSource _playerSource;
 
-} // class tt_Turner
+} // class tt_Dasher
