@@ -23,10 +23,10 @@ class tt_CommandDispatcher : tt_Activatable
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_CommandDispatcher init(tt_AnswerSource answerSource, tt_Activatables activatables)
+  tt_CommandDispatcher init(tt_AnswerSource answerSource, Array<tt_Activatable> activatables)
   {
     _answerSource = answerSource;
-    _activatables = activatables;
+    _activatables.copy(activatables);
 
     return self;
   }
@@ -44,7 +44,7 @@ class tt_CommandDispatcher : tt_Activatable
     uint nActivatables = _activatables.size();
     for (uint i = 0; i < nActivatables; ++i)
     {
-      let activatable = _activatables.at(i);
+      let activatable = _activatables[i];
 
       tryActivate(activatable, answerString);
     }
@@ -58,7 +58,7 @@ class tt_CommandDispatcher : tt_Activatable
     uint nActivatables = _activatables.size();
     for (uint i = 0; i < nActivatables; ++i)
     {
-      let activatable = _activatables.at(i);
+      let activatable = _activatables[i];
 
       if (!activatable.isVisible()) { continue; }
 
@@ -99,7 +99,7 @@ class tt_CommandDispatcher : tt_Activatable
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_AnswerSource _answerSource;
-  private tt_Activatables _activatables;
+  private tt_AnswerSource       _answerSource;
+  private Array<tt_Activatable> _activatables;
 
 } // class tt_CommandDispatcher

@@ -40,9 +40,9 @@ class tt_CommandDispatcherTest : tt_Clematis
   {
     let activatable1      = new("tt_ActivatableMock"  ).init();
     let activatable2      = new("tt_ActivatableMock"  ).init();
-    let activatables      = new("tt_Activatables"     ).init();
-    activatables.add(activatable1);
-    activatables.add(activatable2);
+    Array<tt_Activatable> activatables;
+    activatables.push(activatable1);
+    activatables.push(activatable2);
     let answerSource      = new("tt_AnswerSourceMock" ).init();
     let commandDispatcher = new("tt_CommandDispatcher").init(answerSource, activatables);
 
@@ -72,9 +72,9 @@ class tt_CommandDispatcherTest : tt_Clematis
   {
     let activatable1      = new("tt_ActivatableMock"  ).init();
     let activatable2      = new("tt_ActivatableMock"  ).init();
-    let activatables      = new("tt_Activatables"     ).init();
-    activatables.add(activatable1);
-    activatables.add(activatable2);
+    Array<tt_Activatable> activatables;
+    activatables.push(activatable1);
+    activatables.push(activatable2);
     let answerSource      = new("tt_AnswerSourceMock" ).init();
     let commandDispatcher = new("tt_CommandDispatcher").init(answerSource, activatables);
 
@@ -86,6 +86,8 @@ class tt_CommandDispatcherTest : tt_Clematis
     commands2.add("4");
     activatable1.expect_getCommands(commands1);
     activatable2.expect_getCommands(commands2);
+    activatable1.expect_isVisible(true);
+    activatable2.expect_isVisible(true);
 
     let allCommands = commandDispatcher.getCommands();
     let size        = allCommands.size();

@@ -12,8 +12,6 @@ version 4.1.3
 #include "zscript/libeye/tt_projector_planar.zs"
 #include "zscript/libeye/tt_projector.zs"
 #include "zscript/libeye/tt_viewport.zs"
-#include "zscript/typist/activatable/tt_activatables_test.zs"
-#include "zscript/typist/activatable/tt_activatables.zs"
 #include "zscript/typist/activatable/tt_activatable.zs"
 #include "zscript/typist/activatable/tt_command_dispatcher_test.zs"
 #include "zscript/typist/activatable/tt_command_dispatcher.zs"
