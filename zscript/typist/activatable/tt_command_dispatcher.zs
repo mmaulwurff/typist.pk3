@@ -42,11 +42,23 @@ class tt_CommandDispatcher : tt_Activatable
     let answerString = answer.getString();
 
     uint nActivatables = _activatables.size();
+    bool isActivated = false;
     for (uint i = 0; i < nActivatables; ++i)
     {
       let activatable = _activatables[i];
 
-      tryActivate(activatable, answerString);
+      isActivated = tryActivate(activatable, answerString);
+
+      if (isActivated)
+      {
+        break;
+      }
+    }
+
+    if (isActivated)
+    {
+      let reset = new("tt_Character").init(UiEvent.Type_CHAR, tt_Ascii.Backspace, true);
+      _answerSource.processKey(reset);
     }
   }
 
@@ -79,7 +91,7 @@ class tt_CommandDispatcher : tt_Activatable
 // private: ////////////////////////////////////////////////////////////////////
 
   play
-  void tryActivate(tt_Activatable activatable, String answer)
+  bool tryActivate(tt_Activatable activatable, String answer)
   {
     let commands = activatable.getCommands();
 
@@ -92,9 +104,11 @@ class tt_CommandDispatcher : tt_Activatable
       if (isMatching)
       {
         activatable.activate();
-        return;
+        return true;
       }
     }
+
+    return false;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
