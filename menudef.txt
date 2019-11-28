@@ -26,6 +26,16 @@ OptionMenu tt_Options
   StaticText ""
   StaticText "$TT_CONTROLS_TITLE", 1
   Control    "$TT_UNLOCK", tt_unlock_mode
+
+  StaticText ""
+  Submenu    "$TT_ACKNOWLEDGMENTS_TITLE", tt_Acknowledgments
+}
+
+OptionMenu tt_Acknowledgments
+{
+  Title "$TT_ACKNOWLEDGMENTS_TITLE_FULL"
+
+  StaticText "$TT_ACKNOWLEDGMENTS_TEXT"
 }
 
 // Option Values ///////////////////////////////////////////////////////////////

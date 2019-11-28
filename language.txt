@@ -33,3 +33,9 @@ TT_MODE_UNKNOWN = "Unknown!";
 TT_MODE_COMBAT  = "Combat";
 TT_MODE_EXPLORE = "Exploration";
 TT_MODE_NONE    = "None!";
+
+// Acknowledgments /////////////////////////////////////////////////////////////
+
+TT_ACKNOWLEDGMENTS_TITLE = "Acknowledgments";
+TT_ACKNOWLEDGMENTS_TITLE_FULL = "Typist.pk3 Acknowledgments";
+TT_ACKNOWLEDGMENTS_TEXT = "Credits\n\n- LGR for Sega's Typing of the Dead: A Zombie-Slaying Education video\n- KeksDose for libeye (Level and screen projections)\n- ZippeyKeys12 (Zain Aamer) for Clematis\n- Marrub for ZScript documentation\n- fraggle for miniwad.wad\n- 1000 basic English words from Wikipedia\n- Frequency dictionary of the modern Russian language from Wikipedia\n\nThanks\n\n- Accensus for inviting me into Discord server and for bug reports\n- kadu522 for support\n- dard22 for bug reports\n- Jarewill for bug reports\n\n(see details in the Readme.md file inside the pk3)\n";
