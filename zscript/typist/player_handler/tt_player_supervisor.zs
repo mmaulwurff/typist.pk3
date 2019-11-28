@@ -86,6 +86,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     let inputManager = new("tt_InputByModeManager").init(modeCascade, playerInput);
 
+    let worldChanger = new("tt_ProjectileSpeedController").init(originSource, playerSource);
+
     // Initialize attributes ///////////////////////////////////////////////////
 
     _playerInput        = inputBlockAfterCombat;
@@ -101,6 +103,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _inputManager       = inputManager;
     _oldModeSource      = oldModeSource;
     _inputBlockAfterCombat = inputBlockAfterCombat;
+    _worldChanger       = worldChanger;
 
     return self;
   }
@@ -125,6 +128,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     _inputBlockAfterCombat.update();
     _oldModeSource.setMode(_modeSource.getMode());
+
+    _worldChanger.changeWorld();
   }
 
   override
@@ -223,5 +228,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_InputManager       _inputManager;
   private tt_SettableMode       _oldModeSource;
   private tt_InputBlockAfterCombat _inputBlockAfterCombat;
+  private tt_WorldChanger       _worldChanger;
 
 } // class tt_PlayerSupervisor

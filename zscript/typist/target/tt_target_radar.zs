@@ -43,27 +43,16 @@ class tt_TargetRadar : tt_TargetSource
     Actor a;
     while (a = Actor(iterator.Next()))
     {
-      if (!isInRange(a.pos, origin) || !isSuitableForTargeting(a)) { continue; }
-
-      result.add(new("tt_Target").init(a));
+      if (tt_Math.isInEffectiveRange(a.pos, origin) && isSuitableForTargeting(a))
+      {
+        result.add(new("tt_Target").init(a));
+      }
     }
 
     return result;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
-
-  private static
-  bool isInRange(Vector3 p1, Vector3 p2)
-  {
-    double dx       = p1.x - p2.x;
-    double dy       = p1.y - p2.y;
-    double dz       = p1.z - p2.z;
-    double distance = dx * dx + dy * dy + dz * dz;
-    bool   inRange  = distance < MAX_DISTANCE;
-
-    return inRange;
-  }
 
   private static
   bool isSuitableForTargeting(Actor a)
@@ -88,7 +77,5 @@ class tt_TargetRadar : tt_TargetSource
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_OriginSource _originSource;
-
-  const MAX_DISTANCE = 500000;
 
 } // class tt_TargetRadar
