@@ -28,7 +28,7 @@ class tt_Character
     _eventType = type;
     //Console.Printf("type: %d, code: %d, string: %s", type, code, event.keyString);
 
-    if (type == UiEvent.Type_KeyUp && code == tt_Ascii.Enter)
+    if (type == UiEvent.Type_KeyUp && (code == tt_Ascii.Enter || code == tt_Ascii.Space))
     {
       type = UiEvent.Type_KeyDown;
       code = tt_Ascii.EndOfText;
@@ -39,6 +39,7 @@ class tt_Character
     bool isRepeat  = (type == UiEvent.Type_KeyRepeat);
     bool isControl = (code == tt_Ascii.Backspace
                    || code == tt_Ascii.Enter
+                   || code == tt_Ascii.Space
                    || code == tt_Ascii.EndOfText);
 
     if (!isChar && !((isDown || isRepeat) && isControl))
@@ -50,6 +51,7 @@ class tt_Character
     if      (code == tt_Ascii.Backspace)       { _type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE); }
     else if (code == tt_Ascii.Delete   )       { _type = CTRL_BACKSPACE; }
     else if (code == tt_Ascii.Enter    )       { _type = ENTER;    }
+    else if (code == tt_Ascii.Space    )       { _type = ENTER;    }
     else if (code == tt_Ascii.EndOfText)       { _type = ENTER_UP; }
     else if (code <  tt_Ascii.FIRST_PRINTABLE) { _type = NONE;     }
     else

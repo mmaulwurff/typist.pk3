@@ -43,7 +43,7 @@ class tt_Sphinx : tt_Activatable
   tt_Strings getCommands()
   {
     let strings = new("tt_Strings").init();
-    strings.add("Sphinx of black quartz, judge my vow.");
+    strings.add("Sphinx_of_black_quartz,_judge_my_vow.");
     return strings;
   }
 
