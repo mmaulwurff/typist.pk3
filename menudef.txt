@@ -11,7 +11,7 @@ OptionMenu tt_Options
 
   StaticText ""
   StaticText "$TT_DISPLAY_OPTIONS_TITLE_OUT", 1
-  Slider     "$TT_TARGET_SCALE", tt_view_scale, 1, 4, 1
+  Slider     "$TT_TARGET_SCALE", tt_view_scale, 1, 4, 1, 0
 
   StaticText ""
   StaticText "$TT_GAMEPLAY_OPTIONS_TITLE_OUT", 1
