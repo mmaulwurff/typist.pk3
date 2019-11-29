@@ -59,16 +59,14 @@ class tt_EnemySpeedController : tt_WorldChanger
   private play
   void slowDown(Actor a)
   {
-    let storage = tt_VelocityStorage(Actor.Spawn("tt_VelocityStorage"));
-    storage.velocity = a.vel;
-    a.AddInventory(storage);
-
-    a.A_ScaleVelocity(VELOCITY_SCALE_FACTOR);
+    // Storage acts just as a marker here.
+    a.AddInventory(tt_VelocityStorage(Actor.Spawn("tt_VelocityStorage")));
+    a.Speed *= VELOCITY_SCALE_FACTOR;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  const VELOCITY_SCALE_FACTOR = 0.1;
+  const VELOCITY_SCALE_FACTOR = 0.2;
 
 // private: ////////////////////////////////////////////////////////////////////
 
