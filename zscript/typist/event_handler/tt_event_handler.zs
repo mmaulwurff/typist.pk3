@@ -60,6 +60,12 @@ class tt_EventHandler : EventHandler
   }
 
   override
+  void WorldUnloaded(WorldEvent event)
+  {
+    self.IsUiProcessor = false;
+  }
+
+  override
   void RenderOverlay(RenderEvent event)
   {
     _playerHandler.draw(event);
