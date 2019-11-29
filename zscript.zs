@@ -129,6 +129,7 @@ version 4.1.3
 #include "zscript/typist/view/tt_target_overlay.zs"
 #include "zscript/typist/view/tt_view.zs"
 #include "zscript/typist/view/tt_views.zs"
+#include "zscript/typist/world_changer/tt_enemy_speed_controller.zs"
 #include "zscript/typist/world_changer/tt_projectile_speed_controller.zs"
 #include "zscript/typist/world_changer/tt_velocity_storage.zs"
 #include "zscript/typist/world_changer/tt_world_changer.zs"

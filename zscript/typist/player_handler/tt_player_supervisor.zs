@@ -33,10 +33,10 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let settings         = new("tt_SettingsImpl"      ).init(playerSource);
 
     let originSource     = new("tt_PlayerOriginSource").init(playerSource);
-    let targetSource     = new("tt_TargetRadar"       ).init(originSource);
+    let targetRadar      = new("tt_TargetRadar"       ).init(originSource);
     let questionSource   = makeQuestionSource(difficultySource, settings);
 
-    let targetRegistry = new("tt_TargetRegistry").init(targetSource, questionSource, deathReporter);
+    let targetRegistry = new("tt_TargetRegistry").init(targetRadar, questionSource, deathReporter);
     let autoModeSource = new("tt_AutoModeSource").init(targetRegistry, playerSource);
 
     let targetOriginSource = new("tt_QuestionAnswerMatcher").init( targetRegistry
@@ -86,7 +86,10 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     let inputManager = new("tt_InputByModeManager").init(modeCascade, playerInput);
 
-    let worldChanger = new("tt_ProjectileSpeedController").init(originSource, playerSource);
+    let projectileSpeedController =
+      new("tt_ProjectileSpeedController").init(originSource, playerSource);
+    let enemySpeedController =
+      new("tt_EnemySpeedController").init(targetRadar);
 
     // Initialize attributes ///////////////////////////////////////////////////
 
@@ -103,7 +106,9 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _inputManager       = inputManager;
     _oldModeSource      = oldModeSource;
     _inputBlockAfterCombat = inputBlockAfterCombat;
-    _worldChanger       = worldChanger;
+
+    _projectileSpeedController = projectileSpeedController;
+    _enemySpeedController      = enemySpeedController;
 
     return self;
   }
@@ -129,7 +134,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _inputBlockAfterCombat.update();
     _oldModeSource.setMode(_modeSource.getMode());
 
-    _worldChanger.changeWorld();
+    _projectileSpeedController.changeWorld();
+    _enemySpeedController.changeWorld();
   }
 
   override
@@ -228,6 +234,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_InputManager       _inputManager;
   private tt_SettableMode       _oldModeSource;
   private tt_InputBlockAfterCombat _inputBlockAfterCombat;
-  private tt_WorldChanger       _worldChanger;
+
+  private tt_ProjectileSpeedController _projectileSpeedController;
+  private tt_EnemySpeedController      _enemySpeedController;
 
 } // class tt_PlayerSupervisor

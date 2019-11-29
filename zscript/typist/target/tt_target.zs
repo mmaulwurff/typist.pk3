@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class represents an attack target.
+/**
+ * This class represents an attack target.
  */
 class tt_Target
 {
@@ -31,7 +32,9 @@ class tt_Target
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  // Get position in game space of this target.
+  /**
+   * Get position in game space of this target.
+   */
   Vector3 getPosition() const
   {
     Vector3 position = _actor.pos;

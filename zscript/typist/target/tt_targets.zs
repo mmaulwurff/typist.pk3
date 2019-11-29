@@ -15,34 +15,59 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** Represent a list of Targets.
+/**
+ * Represent a list of Targets.
  */
 class tt_Targets
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Targets init() { return self; }
+  tt_Targets init()
+  {
+    return self;
+  }
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  // Returns a target in this list.
-  tt_Target at(uint index) const { return _targets[index]; }
+  /**
+   * Returns a target in this list.
+   */
+  tt_Target at(uint index) const
+  {
+    return _targets[index];
+  }
 
-  // Returns a number of targets in this list.
-  uint size() const { return _targets.size(); }
+  /**
+   * Returns a number of targets in this list.
+   */
+  uint size() const
+  {
+    return _targets.size();
+  }
 
-  // Returns true if this target list contains a target with the specified id.
-  bool contains(tt_Target target) const { return find(target) != size(); }
+  /**
+   * Returns true if this target list contains a target with the specified id.
+   */
+  bool contains(tt_Target target) const
+  {
+    return find(target) != size();
+  }
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  // Adds a target to this list.
-  void add(tt_Target target) { _targets.push(target); }
+  /**
+   * Adds a target to this list.
+   */
+  void add(tt_Target target)
+  {
+    _targets.push(target);
+  }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  /** Searches for a target with a particular id.
+  /**
+   * Searches for a target with a particular id.
    * @returns index on success, the total number of targets on failure.
    */
   private
