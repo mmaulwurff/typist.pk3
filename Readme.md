@@ -91,16 +91,16 @@ It may be possible to compile this on Windows. Install Msys or something. You're
 
 ### Credits
 
-- LGR for [Sega's Typing of the Dead: A Zombie-Slaying Education](https://youtu.be/iamxvTe9Z5g) video
 - KeksDose for [libeye](https://forum.zdoom.org/viewtopic.php?f=105&t=64566#p1102157) (Level and screen projections)
 - ZippeyKeys12 (Zain Aamer) for [Clematis](https://github.com/ZippeyKeys12/clematis) (Basic ZScript unit test framework for GZDoom). Clematis is under the [BSD 3-Clause License](https://github.com/ZippeyKeys12/clematis/blob/master/LICENSE).
-- Marrub for [ZScript documentation](https://github.com/marrub--/zscript-doc)
 - fraggle for [miniwad.wad](https://github.com/fragglet/miniwad) (BSD license)
 - [1000 basic English words](https://en.wiktionary.org/wiki/Appendix:1000_basic_English_words) (tt_1000.txt) (actually, 1008) CC BY-SA 3.0
 - [Frequency dictionary of the modern Russian language](https://en.wiktionary.org/wiki/Appendix:Frequency_dictionary_of_the_modern_Russian_language_(the_Russian_National_Corpus)) (tt_1000_ru.txt) CC BY-SA 3.0
 
 ### Thanks
 
+- LGR for [Sega's Typing of the Dead: A Zombie-Slaying Education](https://youtu.be/iamxvTe9Z5g) video
+- Marrub for [ZScript documentation](https://github.com/marrub--/zscript-doc)
 - Accensus for inviting me into Discord server and for bug reports
 - kadu522 for support
 - dard22 for bug reports
