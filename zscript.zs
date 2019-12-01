@@ -65,6 +65,8 @@ version 4.1.3
 #include "zscript/typist/known_target/tt_target_registry.zs"
 #include "zscript/typist/known_target/tt_target_registry_test.zs"
 #include "zscript/typist/math/tt_math.zs"
+#include "zscript/typist/menu/tt_list_menu_note.zs"
+#include "zscript/typist/menu/tt_menu_injector.zs"
 #include "zscript/typist/mode/tt_auto_mode_source.zs"
 #include "zscript/typist/mode/tt_auto_mode_source_test.zs"
 #include "zscript/typist/mode/tt_mode.zs"
