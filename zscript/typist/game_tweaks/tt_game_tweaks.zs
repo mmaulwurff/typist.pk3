@@ -32,6 +32,7 @@ class tt_GameTweaks play
     makeInvulnerable(pawn);
     increaseDamage(pawn);
     protectFromSelfDamage(pawn);
+    disableSeekingMissiles(pawn);
   }
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -60,6 +61,12 @@ class tt_GameTweaks play
   void protectFromSelfDamage(PlayerPawn pawn)
   {
     pawn.SelfDamageFactor = 0;
+  }
+
+  static private
+  void disableSeekingMissiles(PlayerPawn pawn)
+  {
+    pawn.bCantSeek = true;
   }
 
 } // class tt_GameTweaks
