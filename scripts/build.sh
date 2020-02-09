@@ -21,6 +21,8 @@ files=$(find . -name "*.zs"  \
 scripts/make_changelog.sh
 
 scripts/import_clematis.sh
+scripts/import_lazy_points.sh
+
 scripts/make_mocks.py
 scripts/make_zscript_head.sh
 scripts/make_mapinfo.sh

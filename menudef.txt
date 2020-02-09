@@ -62,3 +62,11 @@ OptionValue tt_QuestionSourceValues
   5 , "$TT_CHALLENGE_1000"
   6 , "$TT_CHALLENGE_1000_RU"
 }
+
+// Score Menu //////////////////////////////////////////////////////////////////
+
+OptionMenu zc_TopMenu
+{
+  class zc_Top
+  Title "Top Points"
+}

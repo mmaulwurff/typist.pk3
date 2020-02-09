@@ -4,7 +4,9 @@
 gameinfo
 {
 
-  AddEventHandlers = "tt_ScreenSaver",
+  AddEventHandlers = "zc_Dispatcher",
+    "zc_StaticView",
+    "tt_ScreenSaver",
     "tt_EventHandler",
     "tt_ClematisTestHandler"
 

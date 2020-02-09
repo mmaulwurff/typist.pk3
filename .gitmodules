@@ -1,3 +1,6 @@
 [submodule "3rdparty/clematis"]
 	path = 3rdparty/clematis
 	url = git@github.com:mmaulwurff/clematis.git
+[submodule "3rdparty/lazy-points"]
+	path = 3rdparty/lazy-points
+	url = git@github.com:mmaulwurff/lazy-points.git

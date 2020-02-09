@@ -7,7 +7,7 @@
 search_pattern="*.zs"
 file_name=mapinfo.txt
 
-event_handlers=$(find . -name "$search_pattern" \
+event_handlers=$(find zscript -name "$search_pattern" \
     | while read -r f; do grep -iroP "(?<=class ).*(?=:.*EventHandler)" "$f"; done \
     | sed 's|\(\w\w*\)|\"\1\"|g' \
     | tr -d '\n' \

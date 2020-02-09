@@ -3,8 +3,11 @@
 Alias tt_unlock_mode   "netevent tt_unlock_mode"
 Alias tt_reset_targets "netevent tt_reset_targets"
 
+Alias zc_top "openMenu zc_TopMenu"
+
 // Keys ////////////////////////////////////////////////////////////////////////
 
 AddKeySection "$TT_TITLE" tt_keys
 
 AddMenuKey "$TT_UNLOCK" tt_unlock_mode
+AddMenuKey "$TT_SCORE"  zc_top

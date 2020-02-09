@@ -170,6 +170,7 @@ deproject
 deprojection
 deprojections
 deque
+desc
 dest
 destroy
 destructor
@@ -183,6 +184,7 @@ dleft
 do
 doesn
 domain
+doomwiki
 dotall
 double
 drdteam
@@ -197,6 +199,7 @@ emplace
 empty
 end
 endif
+endl
 engine
 enum
 enum
@@ -243,6 +246,7 @@ forw
 forward
 fpdv
 fpos
+frac
 fraggle
 fragglet
 free
@@ -296,6 +300,7 @@ imprecisions
 include
 includes
 inclusive
+inflictor
 info
 inis
 init
@@ -309,6 +314,7 @@ inserter
 instantiation
 int
 integer
+interpolator
 invalid
 iomanip
 ios
@@ -319,6 +325,7 @@ isfile
 iso
 ispow
 istream
+itemtt
 iterator
 iwad
 jarewill
@@ -330,6 +337,7 @@ keyconf
 known
 kromm
 last
+latests
 launch
 launder
 lcm
@@ -363,6 +371,7 @@ mapinfo
 marrub
 match
 matcher
+mathworld
 max
 maxplayers
 mediafire
@@ -376,7 +385,9 @@ min
 miniwad
 minmax
 mismatch
+mixin
 mkdir
+mkey
 mmaulwurff
 monetary
 money
@@ -401,6 +412,7 @@ nodraw
 noexcept
 noncommercially
 norun
+nosave
 nosound
 not
 notnull
@@ -414,6 +426,8 @@ numpad
 once
 operator
 optional
+optionmenuitems
+optionnmenuitems
 options
 or
 order
@@ -426,6 +440,7 @@ packaged
 pair
 par
 parallel
+param
 partial
 partition
 path
@@ -544,6 +559,7 @@ sort
 sorted
 space
 span
+spawner
 spellcheck
 spriteid
 sqlite
@@ -589,6 +605,7 @@ syntax
 system
 targetable
 task
+telefrag
 temp
 template
 terminate
@@ -627,6 +644,7 @@ union
 unique
 unmodded
 unordered
+unselected
 unseq
 unsigned
 until
@@ -656,6 +674,7 @@ virtual
 virtualscope
 void
 volatile
+wadsrc
 wcerr
 wchar
 wcin
@@ -674,6 +693,7 @@ writable
 write
 xargs
 xenial
+xfac
 xor
 xvfb
 yield

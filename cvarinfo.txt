@@ -13,3 +13,9 @@ server bool tt_buddha_enabled = true;
 // Menu variables //////////////////////////////////////////////////////////////
 
 server bool tt_show_notes = true;
+
+// Variables for score /////////////////////////////////////////////////////////
+
+nosave string lp_score = "";
+
+user bool lp_show = true;
