@@ -42,7 +42,7 @@ class tt_ModeSwitcher : tt_Activatable
   tt_Strings getCommands()
   {
     let result = new("tt_Strings").init();
-    result.add("/explore");
+    result.add("/exp");
 
     return result;
   }

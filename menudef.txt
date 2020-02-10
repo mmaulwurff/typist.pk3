@@ -30,6 +30,7 @@ OptionMenu tt_Options
 
   StaticText ""
   Submenu    "$TT_ACKNOWLEDGMENTS_TITLE", tt_Acknowledgments
+  Submenu    "$TT_HELP_TITLE", tt_Help
 }
 
 OptionMenu tt_Acknowledgments
@@ -37,6 +38,13 @@ OptionMenu tt_Acknowledgments
   Title "$TT_ACKNOWLEDGMENTS_TITLE_FULL"
 
   StaticText "$TT_ACKNOWLEDGMENTS_TEXT"
+}
+
+OptionMenu tt_Help
+{
+  Title "$TT_HELP_TITLE_FULL"
+
+  StaticText "$TT_HELP_TEXT"
 }
 
 // Helper Menu /////////////////////////////////////////////////////////////////
