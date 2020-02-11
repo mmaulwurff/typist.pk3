@@ -16,43 +16,39 @@
  */
 
 /**
- * This class implements ModeSource by taking the first mode from ModeSources
- * list that is not NONE.
+ * This class provides access to time.
  */
-class tt_ModeCascade : tt_ModeSource
+class tt_Clock abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_ModeCascade init(Array<tt_ModeSource> modeSources)
+  /**
+   * Provides access to getting points in time.
+   *
+   * @returns a moment in time.
+   */
+  virtual
+  int getNow()
   {
-    _modeSources.copy(modeSources);
+    Console.Printf("zscript/typist/clock/tt_clock.zs:34: T: override this!");
 
-    return self;
+    return 0;
   }
 
-// public: // tt_ModeSource ////////////////////////////////////////////////////
-
-  override
-  int getMode()
+  /**
+   * Provides a way to determine how many ticks passed since a moment in time.
+   *
+   * @param moment a moment in time, received from getNow().
+   *
+   * @returns a number of ticks since @a moment.
+   */
+  virtual
+  int since(int moment)
   {
-    uint nSources = _modeSources.size();
-    for (uint i = 0; i < nSources; ++i)
-    {
-      let source = _modeSources[i];
-      int mode   = source.getMode();
+    Console.Printf("zscript/typist/clock/tt_clock.zs:49: T: override this!");
 
-      if (mode != tt_Mode.None)
-      {
-        return mode;
-      }
-    }
-
-    return tt_Mode.None;
+    return 0;
   }
 
-// private: ////////////////////////////////////////////////////////////////////
-
-  private Array<tt_ModeSource> _modeSources;
-
-} // class tt_ModeCascade
+} // class tt_Clock

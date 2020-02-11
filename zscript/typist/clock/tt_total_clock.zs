@@ -16,43 +16,30 @@
  */
 
 /**
- * This class implements ModeSource by taking the first mode from ModeSources
- * list that is not NONE.
+ * This class implements tt_Clock by getting total time since game start.
  */
-class tt_ModeCascade : tt_ModeSource
+class tt_TotalClock : tt_Clock
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_ModeCascade init(Array<tt_ModeSource> modeSources)
+  tt_TotalClock init()
   {
-    _modeSources.copy(modeSources);
-
     return self;
   }
 
-// public: // tt_ModeSource ////////////////////////////////////////////////////
+// public: // tt_Clock /////////////////////////////////////////////////////////
 
   override
-  int getMode()
+  int getNow()
   {
-    uint nSources = _modeSources.size();
-    for (uint i = 0; i < nSources; ++i)
-    {
-      let source = _modeSources[i];
-      int mode   = source.getMode();
-
-      if (mode != tt_Mode.None)
-      {
-        return mode;
-      }
-    }
-
-    return tt_Mode.None;
+    return Level.totalTime;
   }
 
-// private: ////////////////////////////////////////////////////////////////////
+  override
+  int since(int moment)
+  {
+    return getNow() - moment;
+  }
 
-  private Array<tt_ModeSource> _modeSources;
-
-} // class tt_ModeCascade
+} // class tt_TotalClock

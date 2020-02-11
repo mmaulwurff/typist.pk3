@@ -11,6 +11,10 @@
 #   restart;
 # - tests that are listed in test-blacklist file will be ignored.
 #
+# Warnings:
+# - test detection is wonky: any mention of tt_*Test class will cause launching
+#   a test for this class.
+#
 # Usage:
 # ./scripts/run_tests.sh <mod.pk3> <filter-file>
 #

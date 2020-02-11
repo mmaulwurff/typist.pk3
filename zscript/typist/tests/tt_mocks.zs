@@ -174,6 +174,59 @@ class tt_TargetSourceMock : tt_TargetSource
 
 } // class tt_TargetSourceMock
 
+class tt_ClockMock : tt_Clock
+{
+
+  tt_ClockMock init() { return self; }
+
+  override
+  int getNow()
+  {
+    ++_mock_getNow_called;
+    return _mock_getNow;
+  }
+
+  void expect_getNow(int value, int expected = 1)
+  {
+    _mock_getNow = value;
+    _mock_getNow_expected = expected;
+    _mock_getNow_called = 0;
+  }
+
+  bool isSatisfied_getNow() const
+  {
+    return _mock_getNow_expected == _mock_getNow_called;
+  }
+
+  private int _mock_getNow;
+  private int _mock_getNow_expected;
+  private int _mock_getNow_called;
+
+  override
+  int since(int moment)
+  {
+    ++_mock_since_called;
+    return _mock_since;
+  }
+
+  void expect_since(int value, int expected = 1)
+  {
+    _mock_since = value;
+    _mock_since_expected = expected;
+    _mock_since_called = 0;
+  }
+
+  bool isSatisfied_since() const
+  {
+    return _mock_since_expected == _mock_since_called;
+  }
+
+  private int _mock_since;
+  private int _mock_since_expected;
+  private int _mock_since_called;
+
+} // class tt_ClockMock
+
 class tt_PlayerHandlerMock : tt_PlayerHandler
 {
 

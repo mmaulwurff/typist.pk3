@@ -15,44 +15,25 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
- * This class implements ModeSource by taking the first mode from ModeSources
- * list that is not NONE.
- */
-class tt_ModeCascade : tt_ModeSource
+class tt_TotalClockTestPostCheck : tt_Clematis
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_ModeCascade init(Array<tt_ModeSource> modeSources)
-  {
-    _modeSources.copy(modeSources);
-
-    return self;
-  }
-
-// public: // tt_ModeSource ////////////////////////////////////////////////////
-
   override
-  int getMode()
+  void TestSuites()
   {
-    uint nSources = _modeSources.size();
-    for (uint i = 0; i < nSources; ++i)
-    {
-      let source = _modeSources[i];
-      int mode   = source.getMode();
+    // See tt_TotalClock test class for the beginning of this test.
 
-      if (mode != tt_Mode.None)
-      {
-        return mode;
-      }
-    }
+    Describe("Checking TotalClock: Post-test");
 
-    return tt_Mode.None;
+    let clock = new("tt_TotalClock").init();
+    int oldNow = players[consolePlayer].mo.score;
+    int duration = clock.since(oldNow);
+
+    It("Some time passed", AssertEval(duration, ">", 0));
+
+    EndDescribe();
   }
 
-// private: ////////////////////////////////////////////////////////////////////
-
-  private Array<tt_ModeSource> _modeSources;
-
-} // class tt_ModeCascade
+} // class tt_TotalClockTestPostCheck
