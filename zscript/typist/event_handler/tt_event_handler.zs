@@ -83,8 +83,6 @@ class tt_EventHandler : EventHandler
   override
   void OnRegister()
   {
-    _playerHandler = new("tt_PlayerSupervisorStub").init();
-
     self.RequireMouse = true;
   }
 
