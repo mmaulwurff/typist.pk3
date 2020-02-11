@@ -71,8 +71,7 @@ function tests {
 function uncontrolled_run {
     echo -e "\\nUncontrolled GZDoom run ########################################"
 
-    gzdoom -iwad maps/miniwad.wad -file "$file_name" \
-           +map map01
+    gzdoom -file "$file_name" "$@"
 }
 
 # Code checks ##################################################################
@@ -96,4 +95,4 @@ tests
 # Not a test ###################################################################
 # Must be commented off for CI.
 
-#uncontrolled_run
+#uncontrolled_run "$@"
