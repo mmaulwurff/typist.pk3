@@ -24,9 +24,9 @@ class tt_ModeCascade : tt_ModeSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_ModeCascade init(tt_ModeSources modeSources)
+  tt_ModeCascade init(Array<tt_ModeSource> modeSources)
   {
-    _modeSources = modeSources;
+    _modeSources.copy(modeSources);
 
     return self;
   }
@@ -39,7 +39,7 @@ class tt_ModeCascade : tt_ModeSource
     uint nSources = _modeSources.size();
     for (uint i = 0; i < nSources; ++i)
     {
-      let source = _modeSources.at(i);
+      let source = _modeSources[i];
       int mode   = source.getMode();
 
       if (mode != tt_Mode.None)
@@ -53,6 +53,6 @@ class tt_ModeCascade : tt_ModeSource
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_ModeSources _modeSources;
+  private Array<tt_ModeSource> _modeSources;
 
 } // class tt_ModeCascade

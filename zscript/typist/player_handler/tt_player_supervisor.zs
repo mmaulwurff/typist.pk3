@@ -60,9 +60,9 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     makeCommands(playerSource, modeSwitcher, commands);
     let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, commands);
 
-    let modeSources = new("tt_ModeSources").init();
-    modeSources.add(manualModeSource);
-    modeSources.add(autoModeSource);
+    Array<tt_ModeSource> modeSources;
+    modeSources.Push(manualModeSource);
+    modeSources.Push(autoModeSource);
     let modeCascade = new("tt_ModeCascade").init(modeSources);
 
     let oldModeSource = new("tt_SettableMode").init();

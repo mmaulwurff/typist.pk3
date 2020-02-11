@@ -40,7 +40,7 @@ class tt_ModeCascadeTest : tt_Clematis
   private
   void checkZeroSources()
   {
-    let sources = new("tt_ModeSources").init();
+    Array<tt_ModeSource> sources;
     let cascade = new("tt_ModeCascade").init(sources);
 
     int mode = cascade.getMode();
@@ -53,9 +53,9 @@ class tt_ModeCascadeTest : tt_Clematis
   {
     let source1 = new("tt_ModeSourceMock").init();
     let source2 = new("tt_ModeSourceMock").init();
-    let sources = new("tt_ModeSources").init();
-    sources.add(source1);
-    sources.add(source2);
+    Array<tt_ModeSource> sources;
+    sources.Push(source1);
+    sources.Push(source2);
 
     let cascade = new("tt_ModeCascade").init(sources);
 
@@ -72,9 +72,9 @@ class tt_ModeCascadeTest : tt_Clematis
   {
     let source1 = new("tt_ModeSourceMock").init();
     let source2 = new("tt_ModeSourceMock").init();
-    let sources = new("tt_ModeSources").init();
-    sources.add(source1);
-    sources.add(source2);
+    Array<tt_ModeSource> sources;
+    sources.Push(source1);
+    sources.Push(source2);
 
     let cascade = new("tt_ModeCascade").init(sources);
 
