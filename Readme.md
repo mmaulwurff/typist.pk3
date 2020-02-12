@@ -38,7 +38,7 @@ applied to the matching targets. Hold Enter for continuous fire.
 Press Ctrl+Backspace to erase the whole answer.
 
 If you find yourself in a situation when you'd rather walk away from a fight,
-use `/explore` command - type it instead of an answer. This will lock you in
+use `/exp` command - type it instead of an answer. This will lock you in
 Exploration mode until Unlock Game Mode with a bound key.
 
 There are other commands, too: `tl` - turn to the left, `tr` - turn to the
