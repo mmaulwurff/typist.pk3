@@ -44,7 +44,8 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatables.push(activatable1);
     activatables.push(activatable2);
     let answerSource      = new("tt_AnswerSourceMock" ).init();
-    let commandDispatcher = new("tt_CommandDispatcher").init(answerSource, activatables);
+    let settings          = new("tt_SettingsMock"     ).init();
+    let commandDispatcher = new("tt_CommandDispatcher").init(answerSource, activatables, settings);
 
     let str    = "Hello";
     let answer = new("tt_Answer").init(str);
@@ -76,7 +77,8 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatables.push(activatable1);
     activatables.push(activatable2);
     let answerSource      = new("tt_AnswerSourceMock" ).init();
-    let commandDispatcher = new("tt_CommandDispatcher").init(answerSource, activatables);
+    let settings          = new("tt_SettingsMock"     ).init();
+    let commandDispatcher = new("tt_CommandDispatcher").init(answerSource, activatables, settings);
 
     let commands1 = new("tt_Strings").init();
     let commands2 = new("tt_Strings").init();

@@ -8,7 +8,8 @@ user int tt_question_source = 5;
 
 // Game variables //////////////////////////////////////////////////////////////
 
-server bool tt_buddha_enabled = true;
+server bool   tt_buddha_enabled = true;
+user   string tt_command_prefix = "/";
 
 // Menu variables //////////////////////////////////////////////////////////////
 

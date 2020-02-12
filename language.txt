@@ -29,6 +29,9 @@ TT_CHALLENGE_MATH    = "Arithmetic";
 TT_CHALLENGE_1000    = "1000 basic English words";
 TT_CHALLENGE_1000_RU = "1000 basic Russian words";
 
+TT_COMMAND_PREFIX      = "Command Prefix";
+TT_COMMAND_PREFIX_NOTE = "It's inadvisable to select a prefix that may occur in a lesson.";
+
 // Info Panel //////////////////////////////////////////////////////////////////
 
 TT_MODE_UNKNOWN = "Unknown!";

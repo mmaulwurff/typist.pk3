@@ -35,7 +35,7 @@ class tt_RightTurner : tt_Turner
   tt_Strings getCommands()
   {
     let result = new("tt_Strings").init();
-    result.add("/tr");
+    result.add("tr");
 
     return result;
   }

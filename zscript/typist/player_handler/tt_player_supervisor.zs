@@ -57,7 +57,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     Array<tt_Activatable> commands;
     makeCommands(playerSource, modeSwitcher, commands);
-    let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, commands);
+    let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, commands, settings);
 
     let modeSource = makeModeSource(targetRegistry, playerSource, manualModeSource);
 

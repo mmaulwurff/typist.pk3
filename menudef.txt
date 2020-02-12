@@ -25,6 +25,10 @@ OptionMenu tt_Options
   StaticText "$TT_QUESTION_SOURCE_NOTE"
 
   StaticText ""
+  Option     "$TT_COMMAND_PREFIX", tt_command_prefix, tt_CommandPrefixValues
+  StaticText "$TT_COMMAND_PREFIX_NOTE"
+
+  StaticText ""
   StaticText "$TT_CONTROLS_TITLE", 1
   Control    "$TT_UNLOCK", tt_unlock_mode
 
@@ -69,6 +73,16 @@ OptionValue tt_QuestionSourceValues
   4 , "$TT_CHALLENGE_MATH"
   5 , "$TT_CHALLENGE_1000"
   6 , "$TT_CHALLENGE_1000_RU"
+}
+
+OptionString tt_CommandPrefixValues
+{
+  "/" , "/"
+  ":" , ":"
+  "~" , "~"
+  "@" , "@"
+  "." , "."
+  "-" , "-"
 }
 
 // Score Menu //////////////////////////////////////////////////////////////////

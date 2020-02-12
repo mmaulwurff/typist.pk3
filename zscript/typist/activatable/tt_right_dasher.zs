@@ -35,7 +35,7 @@ class tt_RightDasher : tt_Dasher
   tt_Strings getCommands()
   {
     let result = new("tt_Strings").init();
-    result.add("/dr");
+    result.add("dr");
 
     return result;
   }

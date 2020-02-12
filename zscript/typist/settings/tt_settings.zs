@@ -44,4 +44,11 @@ class tt_Settings abstract
     return 0;
   }
 
+  virtual
+  String getCommandPrefix()
+  {
+    Console.Printf("zscript/typist/settings/tt_settings.zs:50: T: override this!");
+    return "";
+  }
+
 } // class tt_Settings

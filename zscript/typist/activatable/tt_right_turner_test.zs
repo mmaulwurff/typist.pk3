@@ -65,7 +65,7 @@ class tt_RightTurnerTest : tt_Clematis
 
     let commands = rightTurner.getCommands();
 
-    It("Must contain turn command" , Assert(commands.contains("/tr")));
+    It("Must contain turn command" , Assert(commands.contains("tr")));
     It("Pawn Source is satisfied"  , Assert(playerSource.isSatisfied_getPawn()));
   }
 

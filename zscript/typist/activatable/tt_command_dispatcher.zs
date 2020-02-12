@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class contains Activatables and activates() ones with commands matching
+/**
+ *  This class contains Activatables and activates() ones with commands matching
  *  answer.
  */
 class tt_CommandDispatcher : tt_Activatable
@@ -23,10 +24,14 @@ class tt_CommandDispatcher : tt_Activatable
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_CommandDispatcher init(tt_AnswerSource answerSource, Array<tt_Activatable> activatables)
+  tt_CommandDispatcher init( tt_AnswerSource       answerSource
+                           , Array<tt_Activatable> activatables
+                           , tt_Settings           settings
+                           )
   {
     _answerSource = answerSource;
     _activatables.copy(activatables);
+    _settings     = settings;
 
     return self;
   }
@@ -79,9 +84,10 @@ class tt_CommandDispatcher : tt_Activatable
       uint nCommands = commands.size();
       for (uint c = 0; c < nCommands; ++c)
       {
-        let command = commands.at(c);
+        String command         = commands.at(c);
+        String prefixedCommand = makePrefixedCommand(command);
 
-        result.add(command);
+        result.add(prefixedCommand);
       }
     }
 
@@ -90,7 +96,7 @@ class tt_CommandDispatcher : tt_Activatable
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  play
+  private play
   bool tryActivate(tt_Activatable activatable, String answer)
   {
     let commands = activatable.getCommands();
@@ -98,8 +104,9 @@ class tt_CommandDispatcher : tt_Activatable
     uint nCommands = commands.size();
     for (uint c = 0; c < nCommands; ++c)
     {
-      String command    = commands.at(c);
-      bool   isMatching = (command == answer);
+      String command         = commands.at(c);
+      String prefixedCommand = makePrefixedCommand(command);
+      bool   isMatching      = (prefixedCommand == answer);
 
       if (isMatching)
       {
@@ -111,9 +118,19 @@ class tt_CommandDispatcher : tt_Activatable
     return false;
   }
 
+  private
+  String makePrefixedCommand(String command)
+  {
+    String prefix          = _settings.getCommandPrefix();
+    String prefixedCommand = String.Format("%s%s", prefix, command);
+
+    return prefixedCommand;
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_AnswerSource       _answerSource;
   private Array<tt_Activatable> _activatables;
+  private tt_Settings           _settings;
 
 } // class tt_CommandDispatcher

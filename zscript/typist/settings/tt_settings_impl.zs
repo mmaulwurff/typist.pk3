@@ -65,6 +65,17 @@ class tt_SettingsImpl : tt_Settings
     return _questionSourceIndexCvar.GetInt();
   }
 
+  override
+  String getCommandPrefix()
+  {
+    if (_commandPrefixCvar == NULL)
+    {
+      _commandPrefixCvar = getCvar("tt_command_prefix");
+    }
+
+    return _commandPrefixCvar.GetString();
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private
@@ -83,5 +94,6 @@ class tt_SettingsImpl : tt_Settings
   transient Cvar _scaleCvar;
   transient Cvar _autoaimCvar;
   transient Cvar _questionSourceIndexCvar;
+  transient Cvar _commandPrefixCvar;
 
 } // class tt_SettingsImpl

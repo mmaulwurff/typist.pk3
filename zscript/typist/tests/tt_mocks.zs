@@ -142,6 +142,29 @@ class tt_SettingsMock : tt_Settings
   private int _mock_getQuestionSourceIndex_expected;
   private int _mock_getQuestionSourceIndex_called;
 
+  override
+  String getCommandPrefix()
+  {
+    ++_mock_getCommandPrefix_called;
+    return _mock_getCommandPrefix;
+  }
+
+  void expect_getCommandPrefix(String value, int expected = 1)
+  {
+    _mock_getCommandPrefix = value;
+    _mock_getCommandPrefix_expected = expected;
+    _mock_getCommandPrefix_called = 0;
+  }
+
+  bool isSatisfied_getCommandPrefix() const
+  {
+    return _mock_getCommandPrefix_expected == _mock_getCommandPrefix_called;
+  }
+
+  private String _mock_getCommandPrefix;
+  private int _mock_getCommandPrefix_expected;
+  private int _mock_getCommandPrefix_called;
+
 } // class tt_SettingsMock
 
 class tt_TargetSourceMock : tt_TargetSource
