@@ -37,7 +37,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let questionSource   = makeQuestionSource(difficultySource, settings);
 
     let targetRegistry = new("tt_TargetRegistry").init(targetRadar, questionSource, deathReporter);
-    let autoModeSource = new("tt_AutoModeSource").init(targetRegistry, playerSource);
 
     let targetOriginSource = new("tt_QuestionAnswerMatcher").init( targetRegistry
                                                                  , playerInput
@@ -60,20 +59,17 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     makeCommands(playerSource, modeSwitcher, commands);
     let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, commands);
 
-    Array<tt_ModeSource> modeSources;
-    modeSources.Push(manualModeSource);
-    modeSources.Push(autoModeSource);
-    let modeCascade = new("tt_ModeCascade").init(modeSources);
+    let modeSource = makeModeSource(targetRegistry, playerSource, manualModeSource);
 
     let oldModeSource = new("tt_SettableMode").init();
     let inputBlockAfterCombat = new("tt_InputBlockAfterCombat").init( playerInput
-                                                                    , modeCascade
+                                                                    , modeSource
                                                                     , oldModeSource
                                                                     );
 
     let views         = new("tt_Views"        ).init();
     let targetOverlay = new("tt_TargetOverlay").init(widgetSorter, playerInput, settings);
-    let infoPanel     = new("tt_InfoPanel"    ).init( modeCascade
+    let infoPanel     = new("tt_InfoPanel"    ).init( modeSource
                                                     , playerInput
                                                     , commandDispatcher
                                                     , targetRegistry
@@ -84,7 +80,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     views.add(targetOverlay);
     views.add(infoPanel);
 
-    let inputManager = new("tt_InputByModeManager").init(modeCascade, playerInput);
+    let inputManager = new("tt_InputByModeManager").init(modeSource, playerInput);
 
     let projectileSpeedController =
       new("tt_ProjectileSpeedController").init(originSource, playerSource);
@@ -97,7 +93,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _deathReporter      = deathReporter;
     _targetRegistry     = targetRegistry;
     _view               = conditionalView;
-    _modeSource         = modeCascade;
+    _modeSource         = modeSource;
     _damager            = damager;
     _targetWidgetSource = projector;
     _targetOriginSource = targetOriginSource;
@@ -166,7 +162,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private
+  private static
   tt_Aimer makeAimer( tt_OriginSource targetOriginSource
                     , tt_PlayerSource playerSource
                     , tt_Settings     settings
@@ -181,7 +177,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     return aimer;
   }
 
-  private
+  private static
   tt_QuestionSource makeQuestionSource(tt_DifficultySource difficultySource, tt_Settings settings)
   {
     let letterSource   = new("tt_RandomLetterSource"    ).init(difficultySource);
@@ -205,7 +201,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     return selectedSource;
   }
 
-  private
+  private static
   void makeCommands( tt_PlayerSource playerSource
                    , tt_Activatable  modeSwitcher
                    , out Array<tt_Activatable> activatables
@@ -217,6 +213,26 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     activatables.push(new("tt_Sphinx"      ).init());
     activatables.push(new("tt_RightDasher" ).init(playerSource));
     activatables.push(new("tt_LeftDasher"  ).init(playerSource));
+  }
+
+  private static
+  tt_ModeSource makeModeSource( tt_KnownTargetSource knownTargetSource
+                              , tt_PlayerSource      playerSource
+                              , tt_ModeSource        manualModeSource
+                              )
+  {
+    let clock = new("tt_TotalClock").init();
+
+    let autoModeSource          = new("tt_AutoModeSource").init(knownTargetSource, playerSource);
+    let delayedCombatModeSource = new("tt_DelayedCombatModeSource").init(clock, autoModeSource);
+
+    Array<tt_ModeSource> modeSources;
+    modeSources.Push(manualModeSource);
+    modeSources.Push(delayedCombatModeSource);
+    modeSources.Push(autoModeSource);
+    let result = new("tt_ModeCascade").init(modeSources);
+
+    return result;
   }
 
 // private: ////////////////////////////////////////////////////////////////////

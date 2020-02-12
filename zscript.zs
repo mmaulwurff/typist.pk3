@@ -93,6 +93,8 @@ version 4.3.3
 #include "zscript/typist/menu/tt_menu_injector.zs"
 #include "zscript/typist/mode/tt_auto_mode_source_test.zs"
 #include "zscript/typist/mode/tt_auto_mode_source.zs"
+#include "zscript/typist/mode/tt_delayed_combat_mode_source_test.zs"
+#include "zscript/typist/mode/tt_delayed_combat_mode_source.zs"
 #include "zscript/typist/mode/tt_mode_cascade_test.zs"
 #include "zscript/typist/mode/tt_mode_cascade.zs"
 #include "zscript/typist/mode/tt_mode_source.zs"
