@@ -18,7 +18,7 @@
 /**
  * This class is an interface for getting Questions.
  *
- * Different question sources are different challenge types.
+ * Different question sources are different Lessons.
  */
 class tt_QuestionSource abstract
 {

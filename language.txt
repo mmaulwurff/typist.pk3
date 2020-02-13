@@ -13,28 +13,28 @@ TT_TARGET_SCALE               = "Target text scale";
 TT_SHOW_NOTES                 = "Show notes in Main Menu";
 
 TT_GAMEPLAY_OPTIONS_TITLE_OUT = "Gameplay Options";
-TT_QUESTION_SOURCE            = "Challenge Type";
+TT_QUESTION_SOURCE            = "Lesson";
 TT_APPLY                      = "Apply";
-TT_QUESTION_SOURCE_NOTE       = "Or existing targets will retain their Challenge type.";
+TT_QUESTION_SOURCE_NOTE       = "Or existing targets will retain question from the previous Lesson.";
 TT_CONTROLS_TITLE             = "Controls";
 
 TT_BUDDHA_ENABLED = "Player cannot die";
 TT_BUDDHA_NOTE    = "Applies on new level start.";
 
-TT_CHALLENGE_LETTERS = "Random Letters";
-TT_CHALLENGE_NUMBERS = "Random Numbers";
-TT_CHALLENGE_GZDOOM  = "GZDoom Dev";
-TT_CHALLENGE_CPP     = "C++";
-TT_CHALLENGE_MATH    = "Arithmetic";
-TT_CHALLENGE_1000    = "1000 basic English words";
-TT_CHALLENGE_1000_RU = "1000 basic Russian words";
+TT_LESSON_LETTERS = "Random Letters";
+TT_LESSON_NUMBERS = "Random Numbers";
+TT_LESSON_GZDOOM  = "GZDoom Dev";
+TT_LESSON_CPP     = "C++";
+TT_LESSON_MATH    = "Arithmetic";
+TT_LESSON_1000    = "1000 Basic English Words";
+TT_LESSON_1000_RU = "1000 Basic Russian Words";
 
 TT_COMMAND_PREFIX      = "Command Prefix";
 TT_COMMAND_PREFIX_NOTE = "It's inadvisable to select a prefix that may occur in a lesson.";
 
-TT_MIXED_LESSON            = "Mixed Lesson";
+TT_MIXED_LESSON            = "Mixed";
 TT_MIXED_LESSON_TITLE      = "Mixed Lesson Configuration";
-TT_MIXED_LESSON_TITLE_FULL = "Typist.pk3 Missed Lesson Configuration";
+TT_MIXED_LESSON_TITLE_FULL = "Typist.pk3 Mixed Lesson Configuration";
 TT_MIXED_LESSON_NOTE       = "Please enable at least one lesson.";
 
 // Info Panel //////////////////////////////////////////////////////////////////

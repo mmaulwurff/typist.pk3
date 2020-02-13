@@ -18,12 +18,12 @@
 /**
  * This class implements tt_QuestionSource by composing arithmetic tasks.
  */
-class tt_MathsChallenge : tt_QuestionSource
+class tt_MathsLesson : tt_QuestionSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_MathsChallenge init()
+  tt_MathsLesson init()
   {
     return self;
   }
@@ -43,7 +43,7 @@ class tt_MathsChallenge : tt_QuestionSource
     case Division:       return makeDivisionQuestion();
     }
 
-    Console.Printf("zscript/typist/question/tt_maths_challenge.zs:46: T: unknown operation!");
+    Console.Printf("zscript/typist/question/tt_maths_lesson.zs:46: T: unknown operation!");
     return NULL;
   }
 
@@ -115,4 +115,4 @@ class tt_MathsChallenge : tt_QuestionSource
     Division,
   }
 
-} // class tt_MathsChallenge
+} // class tt_MathsLesson

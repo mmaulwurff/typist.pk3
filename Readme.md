@@ -12,7 +12,7 @@
 
 Typist.pk3 is a gameplay mod that turns your game into a typing exercise.
 
-The following exercises (or challenges are available):
+The following Lessons are available:
 - 1000 basic English words;
 - 1000 most used Russian words;
 - Arithmetic;
@@ -38,7 +38,7 @@ applied to the matching targets. Hold Enter for continuous fire.
 Press Ctrl+Backspace to erase the whole answer.
 
 If you find yourself in a situation when you'd rather walk away from a fight,
-use `/exp` command - type it instead of an answer. This will lock you in
+use `exp` command - type it instead of an answer. This will lock you in
 Exploration mode until Unlock Game Mode with a bound key.
 
 There are other commands, too: `tl` - turn to the left, `tr` - turn to the

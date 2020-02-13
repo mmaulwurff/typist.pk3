@@ -57,13 +57,13 @@ OptionMenu tt_MixedLesson
   Title "$TT_MIXED_LESSON_TITLE_FULL"
 
   // See docs/adding-new-lesson.md.
-  Option "$TT_CHALLENGE_LETTERS" , tt_is_lesson_enabled_0, OnOff
-  Option "$TT_CHALLENGE_NUMBERS" , tt_is_lesson_enabled_1, OnOff
-  Option "$TT_CHALLENGE_GZDOOM"  , tt_is_lesson_enabled_2, OnOff
-  Option "$TT_CHALLENGE_CPP"     , tt_is_lesson_enabled_3, OnOff
-  Option "$TT_CHALLENGE_MATH"    , tt_is_lesson_enabled_4, OnOff
-  Option "$TT_CHALLENGE_1000"    , tt_is_lesson_enabled_5, OnOff
-  Option "$TT_CHALLENGE_1000_RU" , tt_is_lesson_enabled_6, OnOff
+  Option "$TT_LESSON_LETTERS" , tt_is_lesson_enabled_0, OnOff
+  Option "$TT_LESSON_NUMBERS" , tt_is_lesson_enabled_1, OnOff
+  Option "$TT_LESSON_GZDOOM"  , tt_is_lesson_enabled_2, OnOff
+  Option "$TT_LESSON_CPP"     , tt_is_lesson_enabled_3, OnOff
+  Option "$TT_LESSON_MATH"    , tt_is_lesson_enabled_4, OnOff
+  Option "$TT_LESSON_1000"    , tt_is_lesson_enabled_5, OnOff
+  Option "$TT_LESSON_1000_RU" , tt_is_lesson_enabled_6, OnOff
 
   StaticText ""
   StaticText "$TT_MIXED_LESSON_NOTE"
@@ -87,13 +87,13 @@ OptionMenu tt_MenuInjector
 // See docs/adding-new-lesson.md.
 OptionValue tt_QuestionSourceValues
 {
-  0 , "$TT_CHALLENGE_LETTERS"
-  1 , "$TT_CHALLENGE_NUMBERS"
-  2 , "$TT_CHALLENGE_GZDOOM"
-  3 , "$TT_CHALLENGE_CPP"
-  4 , "$TT_CHALLENGE_MATH"
-  5 , "$TT_CHALLENGE_1000"
-  6 , "$TT_CHALLENGE_1000_RU"
+  0 , "$TT_LESSON_LETTERS"
+  1 , "$TT_LESSON_NUMBERS"
+  2 , "$TT_LESSON_GZDOOM"
+  3 , "$TT_LESSON_CPP"
+  4 , "$TT_LESSON_MATH"
+  5 , "$TT_LESSON_1000"
+  6 , "$TT_LESSON_1000_RU"
   7 , "$TT_MIXED_LESSON"
 }
 

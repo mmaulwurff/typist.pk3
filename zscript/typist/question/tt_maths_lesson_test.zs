@@ -16,9 +16,9 @@
  */
 
 /**
- * This is a test for tt_MathsChallenge question source.
+ * This is a test for tt_MathsLesson question source.
  */
-class tt_MathsChallengeTest : tt_Clematis
+class tt_MathsLessonTest : tt_Clematis
 {
 
 // public: /////////////////////////////////////////////////////////////////////
@@ -26,10 +26,10 @@ class tt_MathsChallengeTest : tt_Clematis
   override
   void TestSuites()
   {
-    Describe("Checking Maths Challenge");
+    Describe("Checking Maths Lesson");
 
-    let mathsChallenge = new("tt_MathsChallenge").init();
-    let question = mathsChallenge.getQuestion();
+    let mathsLesson = new("tt_MathsLesson").init();
+    let question = mathsLesson.getQuestion();
 
     String description = question.getDescription();
     let answer = new("tt_Answer").init(description);
@@ -39,4 +39,4 @@ class tt_MathsChallengeTest : tt_Clematis
     EndDescribe();
   }
 
-} // class tt_MathsChallengeTest
+} // class tt_MathsLessonTest

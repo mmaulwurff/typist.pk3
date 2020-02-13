@@ -188,7 +188,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let selectedSource = new("tt_SelectedQuestionSource").init(settings);
     let gzdoomSource   = new("tt_StringSet"             ).init("tt_gzdoom");
     let cppSource      = new("tt_StringSet"             ).init("tt_cpp");
-    let mathsSource    = new("tt_MathsChallenge"        ).init();
+    let mathsSource    = new("tt_MathsLesson"           ).init();
     let english1000    = new("tt_StringSet"             ).init("tt_1000");
     let russian1000    = new("tt_StringSet"             ).init("tt_1000_ru");
 
