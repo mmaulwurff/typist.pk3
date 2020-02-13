@@ -52,7 +52,9 @@ class tt_Ascii
     LowercaseA =  97,
     LowercaseZ = 122,
 
-    Delete     = 127
+    Delete     = 127,
+
+    End        = 128
   }
 
   const CASE_DIFFERENCE = LowercaseA - UppercaseA;

@@ -19,7 +19,8 @@ The following Lessons are available:
 - C++ Development;
 - GZDoom Development;
 - Random letters;
-- Random numbers.
+- Random numbers;
+- Custom text (see below for instructions).
 
 ## How to play
 
@@ -49,6 +50,13 @@ There are other commands, too:
 - `dr` - dash to the right,
 - `df` - dash forward,
 - `db` - dash backward.
+
+## How to set up Custom Text lesson
+
+1. Find any text or book in ASCII .txt file (UTF-8 may also work).
+2. Rename text file to `typist_custom_text.txt`.
+3. Load `typist_custom_text.txt` with GZDoom alongside Typist.pk3.
+4. Select Custom Text in Typist options menu.
 
 ## Incompatible mods
 

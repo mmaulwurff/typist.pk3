@@ -37,6 +37,8 @@ TT_MIXED_LESSON_TITLE      = "Mixed Lesson Configuration";
 TT_MIXED_LESSON_TITLE_FULL = "Typist.pk3 Mixed Lesson Configuration";
 TT_MIXED_LESSON_NOTE       = "Please enable at least one lesson.";
 
+TT_CUSTOM_TEXT = "Custom Text";
+
 // Info Panel //////////////////////////////////////////////////////////////////
 
 TT_MODE_UNKNOWN = "Unknown!";
@@ -61,4 +63,10 @@ TT_HELP_TEXT = "Commands:\
 /dr  - dash right\
 /dl  - dash left\
 /df  - dash forward\
-/db  - dash backward";
+/db  - dash backward\
+\
+How to set up Custom Text lesson:\
+1. Find any text or book in ASCII .txt file (UTF-8 may also work).\
+2. Rename text file to `typist_custom_text.txt`.\
+3. Load `typist_custom_text.txt` with GZDoom alongside Typist.pk3.\
+4. Select Custom Text in Typist options menu.";

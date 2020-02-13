@@ -64,6 +64,7 @@ OptionMenu tt_MixedLesson
   Option "$TT_LESSON_MATH"    , tt_is_lesson_enabled_4, OnOff
   Option "$TT_LESSON_1000"    , tt_is_lesson_enabled_5, OnOff
   Option "$TT_LESSON_1000_RU" , tt_is_lesson_enabled_6, OnOff
+  Option "$TT_CUSTOM_TEXT"    , tt_is_lesson_enabled_7, OnOff
 
   StaticText ""
   StaticText "$TT_MIXED_LESSON_NOTE"
@@ -95,6 +96,7 @@ OptionValue tt_QuestionSourceValues
   5 , "$TT_LESSON_1000"
   6 , "$TT_LESSON_1000_RU"
   7 , "$TT_MIXED_LESSON"
+  8 , "$TT_CUSTOM_TEXT"
 }
 
 OptionString tt_CommandPrefixValues

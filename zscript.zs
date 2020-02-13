@@ -115,6 +115,7 @@ version 4.3.3
 #include "zscript/typist/player/tt_player_source_impl_test.zs"
 #include "zscript/typist/player/tt_player_source_impl.zs"
 #include "zscript/typist/player/tt_player_source.zs"
+#include "zscript/typist/question/tt_custom_lesson.zs"
 #include "zscript/typist/question/tt_match.zs"
 #include "zscript/typist/question/tt_maths_lesson_test.zs"
 #include "zscript/typist/question/tt_maths_lesson.zs"
