@@ -41,8 +41,14 @@ If you find yourself in a situation when you'd rather walk away from a fight,
 use `exp` command - type it instead of an answer. This will lock you in
 Exploration mode until Unlock Game Mode with a bound key.
 
-There are other commands, too: `tl` - turn to the left, `tr` - turn to the
-right, `dl` - dash to the left, `dr` - dash to the right.
+There are other commands, too:
+
+- `tl` - turn to the left,
+- `tr` - turn to the right,
+- `dl` - dash to the left,
+- `dr` - dash to the right,
+- `df` - dash forward,
+- `db` - dash backward.
 
 ## Incompatible mods
 

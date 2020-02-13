@@ -59,4 +59,6 @@ TT_HELP_TEXT = "Commands:\
 /tr  - turn right\
 /tl  - turn left\
 /dr  - dash right\
-/dl  - dash left";
+/dl  - dash left\
+/df  - dash forward\
+/db  - dash backward";

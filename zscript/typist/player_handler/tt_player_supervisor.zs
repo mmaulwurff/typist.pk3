@@ -221,11 +221,13 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                    )
   {
     activatables.push(modeSwitcher);
-    activatables.push(new("tt_RightTurner" ).init(playerSource));
-    activatables.push(new("tt_LeftTurner"  ).init(playerSource));
-    activatables.push(new("tt_Sphinx"      ).init());
-    activatables.push(new("tt_RightDasher" ).init(playerSource));
-    activatables.push(new("tt_LeftDasher"  ).init(playerSource));
+    activatables.push(new("tt_RightTurner"  ).init(playerSource));
+    activatables.push(new("tt_LeftTurner"   ).init(playerSource));
+    activatables.push(new("tt_Sphinx"       ).init());
+    activatables.push(new("tt_RightDasher"  ).init(playerSource));
+    activatables.push(new("tt_LeftDasher"   ).init(playerSource));
+    activatables.push(new("tt_ForwardDasher").init(playerSource));
+    activatables.push(new("tt_BackDasher"   ).init(playerSource));
   }
 
   private static

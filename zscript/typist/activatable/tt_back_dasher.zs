@@ -18,7 +18,7 @@
 /**
  * This class implements tt_Dasher by specifying dash angle.
  */
-class tt_LeftDasher : tt_Dasher
+class tt_BackDasher : tt_Dasher
 {
 
 // public: // tt_Dasher ////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ class tt_LeftDasher : tt_Dasher
   override
   double getDashAngle()
   {
-    return 90;
+    return 180;
   }
 
 // public: // tt_Activatable ///////////////////////////////////////////////////
@@ -35,9 +35,9 @@ class tt_LeftDasher : tt_Dasher
   tt_Strings getCommands()
   {
     let result = new("tt_Strings").init();
-    result.add("dl");
+    result.add("db");
 
     return result;
   }
 
-} // class tt_LeftDasher
+} // class tt_BackDasher
