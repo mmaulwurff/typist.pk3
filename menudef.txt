@@ -21,6 +21,7 @@ OptionMenu tt_Options
 
   StaticText ""
   Option     "$TT_QUESTION_SOURCE", tt_question_source, tt_QuestionSourceValues
+  Submenu    "$TT_MIXED_LESSON_TITLE", tt_MixedLesson
   Command    "$TT_APPLY", tt_reset_targets
   StaticText "$TT_QUESTION_SOURCE_NOTE"
 
@@ -51,6 +52,27 @@ OptionMenu tt_Help
   StaticText "$TT_HELP_TEXT"
 }
 
+OptionMenu tt_MixedLesson
+{
+  Title "$TT_MIXED_LESSON_TITLE_FULL"
+
+  // See docs/adding-new-lesson.md.
+  Option "$TT_CHALLENGE_LETTERS" , tt_is_lesson_enabled_0, OnOff
+  Option "$TT_CHALLENGE_NUMBERS" , tt_is_lesson_enabled_1, OnOff
+  Option "$TT_CHALLENGE_GZDOOM"  , tt_is_lesson_enabled_2, OnOff
+  Option "$TT_CHALLENGE_CPP"     , tt_is_lesson_enabled_3, OnOff
+  Option "$TT_CHALLENGE_MATH"    , tt_is_lesson_enabled_4, OnOff
+  Option "$TT_CHALLENGE_1000"    , tt_is_lesson_enabled_5, OnOff
+  Option "$TT_CHALLENGE_1000_RU" , tt_is_lesson_enabled_6, OnOff
+
+  StaticText ""
+  StaticText "$TT_MIXED_LESSON_NOTE"
+
+  StaticText ""
+  Command    "$TT_APPLY", tt_reset_targets
+  StaticText "$TT_QUESTION_SOURCE_NOTE"
+}
+
 // Helper Menu /////////////////////////////////////////////////////////////////
 
 // This menu is a part of a workaround to run ZScript code before the level is
@@ -62,8 +84,7 @@ OptionMenu tt_MenuInjector
 
 // Option Values ///////////////////////////////////////////////////////////////
 
-// Attention! Keep this list consistent with the list in
-// tt_Supervisor.makeQuestionSource().
+// See docs/adding-new-lesson.md.
 OptionValue tt_QuestionSourceValues
 {
   0 , "$TT_CHALLENGE_LETTERS"
@@ -73,6 +94,7 @@ OptionValue tt_QuestionSourceValues
   4 , "$TT_CHALLENGE_MATH"
   5 , "$TT_CHALLENGE_1000"
   6 , "$TT_CHALLENGE_1000_RU"
+  7 , "$TT_MIXED_LESSON"
 }
 
 OptionString tt_CommandPrefixValues

@@ -165,6 +165,29 @@ class tt_SettingsMock : tt_Settings
   private int _mock_getCommandPrefix_expected;
   private int _mock_getCommandPrefix_called;
 
+  override
+  bool getLessonEnabled(uint i)
+  {
+    ++_mock_getLessonEnabled_called;
+    return _mock_getLessonEnabled;
+  }
+
+  void expect_getLessonEnabled(bool value, int expected = 1)
+  {
+    _mock_getLessonEnabled = value;
+    _mock_getLessonEnabled_expected = expected;
+    _mock_getLessonEnabled_called = 0;
+  }
+
+  bool isSatisfied_getLessonEnabled() const
+  {
+    return _mock_getLessonEnabled_expected == _mock_getLessonEnabled_called;
+  }
+
+  private bool _mock_getLessonEnabled;
+  private int _mock_getLessonEnabled_expected;
+  private int _mock_getLessonEnabled_called;
+
 } // class tt_SettingsMock
 
 class tt_TargetSourceMock : tt_TargetSource

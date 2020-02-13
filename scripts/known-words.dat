@@ -152,6 +152,7 @@ cuchar
 current
 cvar
 cvarinfo
+cvars
 cwchar
 cwctype
 damager

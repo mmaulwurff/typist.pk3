@@ -76,6 +76,21 @@ class tt_SettingsImpl : tt_Settings
     return _commandPrefixCvar.GetString();
   }
 
+  override
+  bool getLessonEnabled(uint index)
+  {
+    if (_isLessonEnabledCvars.size() == 0 || _isLessonEnabledCvars[0] == NULL)
+    {
+      for (uint i = 0; i < N_IS_LESSON_ENABLED_CVARS; ++i)
+      {
+        String cvarName = String.Format("tt_is_lesson_enabled_%d", i);
+        _isLessonEnabledCvars.Push(getCvar(cvarName));
+      }
+    }
+
+    return _isLessonEnabledCvars[index].GetBool();
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private
@@ -89,11 +104,17 @@ class tt_SettingsImpl : tt_Settings
 
 // private: ////////////////////////////////////////////////////////////////////
 
+  const N_IS_LESSON_ENABLED_CVARS = 10;
+
+// private: ////////////////////////////////////////////////////////////////////
+
   private tt_PlayerSource _playerSource;
 
-  transient Cvar _scaleCvar;
-  transient Cvar _autoaimCvar;
-  transient Cvar _questionSourceIndexCvar;
-  transient Cvar _commandPrefixCvar;
+  private transient Cvar _scaleCvar;
+  private transient Cvar _autoaimCvar;
+  private transient Cvar _questionSourceIndexCvar;
+  private transient Cvar _commandPrefixCvar;
+
+  private transient Array<Cvar> _isLessonEnabledCvars;
 
 } // class tt_SettingsImpl

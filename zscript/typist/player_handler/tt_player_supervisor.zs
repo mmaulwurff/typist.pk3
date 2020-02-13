@@ -177,6 +177,9 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     return aimer;
   }
 
+  /**
+   * @attention See docs/adding-new-lesson.md before editing this function.
+   */
   private static
   tt_QuestionSource makeQuestionSource(tt_DifficultySource difficultySource, tt_Settings settings)
   {
@@ -189,7 +192,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let english1000    = new("tt_StringSet"             ).init("tt_1000");
     let russian1000    = new("tt_StringSet"             ).init("tt_1000_ru");
 
-    // Attention! Keep this list consistent with menudef entries.
+    let mixedLesson    = new("tt_MixedLesson").init(settings);
+
     selectedSource.add(letterSource);
     selectedSource.add(numberSource);
     selectedSource.add(gzdoomSource);
@@ -197,6 +201,15 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     selectedSource.add(mathsSource );
     selectedSource.add(english1000 );
     selectedSource.add(russian1000 );
+    selectedSource.add(mixedLesson );
+
+    mixedLesson.add(letterSource);
+    mixedLesson.add(numberSource);
+    mixedLesson.add(gzdoomSource);
+    mixedLesson.add(cppSource   );
+    mixedLesson.add(mathsSource );
+    mixedLesson.add(english1000 );
+    mixedLesson.add(russian1000 );
 
     return selectedSource;
   }

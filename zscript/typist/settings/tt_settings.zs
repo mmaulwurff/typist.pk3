@@ -51,4 +51,11 @@ class tt_Settings abstract
     return "";
   }
 
+  virtual
+  bool getLessonEnabled(uint i)
+  {
+    Console.Printf("zscript/typist/settings/tt_settings.zs:57: T: override this!");
+    return false;
+  }
+
 } // class tt_Settings

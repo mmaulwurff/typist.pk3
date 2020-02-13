@@ -81,7 +81,12 @@ class tt_TargetRegistry : tt_KnownTargetSource
 
       if (existing == NULL)
       {
-        newKnownTargets.add(makeKnownTarget(target));
+        let knownTarget = makeKnownTarget(target);
+
+        if (knownTarget != NULL)
+        {
+          newKnownTargets.add(knownTarget);
+        }
       }
     }
 
@@ -105,7 +110,13 @@ class tt_TargetRegistry : tt_KnownTargetSource
   private
   tt_KnownTarget makeKnownTarget(tt_Target target) const
   {
-    let question       = _questionSource.getQuestion();
+    let question = _questionSource.getQuestion();
+
+    if (question == NULL)
+    {
+      return NULL;
+    }
+
     let newKnownTarget = new("tt_KnownTarget").init(target, question);
 
     return newKnownTarget;

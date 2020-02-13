@@ -11,6 +11,17 @@ user int tt_question_source = 5;
 server bool   tt_buddha_enabled = true;
 user   string tt_command_prefix = "/";
 
+server bool tt_is_lesson_enabled_0 = false;
+server bool tt_is_lesson_enabled_1 = false;
+server bool tt_is_lesson_enabled_2 = false;
+server bool tt_is_lesson_enabled_3 = false;
+server bool tt_is_lesson_enabled_4 = false;
+server bool tt_is_lesson_enabled_5 = false;
+server bool tt_is_lesson_enabled_6 = false;
+server bool tt_is_lesson_enabled_7 = false;
+server bool tt_is_lesson_enabled_8 = false;
+server bool tt_is_lesson_enabled_9 = false;
+
 // Menu variables //////////////////////////////////////////////////////////////
 
 server bool tt_show_notes = true;

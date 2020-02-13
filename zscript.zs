@@ -116,6 +116,7 @@ version 4.3.3
 #include "zscript/typist/question/tt_match.zs"
 #include "zscript/typist/question/tt_maths_challenge_test.zs"
 #include "zscript/typist/question/tt_maths_challenge.zs"
+#include "zscript/typist/question/tt_mixed_lesson.zs"
 #include "zscript/typist/question/tt_question_source.zs"
 #include "zscript/typist/question/tt_question.zs"
 #include "zscript/typist/question/tt_random_letter_source_test.zs"
