@@ -32,6 +32,7 @@ class tt_Ascii
     EndOfText  =   3,
     Backspace  =   8,
     Enter      =  13, // also known as carriage return
+    Escape     =  27,
 
     Space      =  32,
 

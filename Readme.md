@@ -22,27 +22,29 @@ The following Lessons are available:
 - Random numbers;
 - Custom text (see below for instructions).
 
-## How to play
+## How To Play
 
 Load it with GZDoom.
 
 There are two game modes: Combat and Exploration. They are switched
 automatically.
 
-Exploration mode is your familiar mode. You can walk, interact with doors,
-explore the map.
+### Exploration Mode
 
-Combat mode is for fighting enemies. Here, instead of aiming and shooting, you
-type answers for your targets. When the answer is ready, press Enter, and it is
-applied to the matching targets. Hold Enter for continuous fire.
+Your familiar mode. You can walk, open doors, turn switches, etc.
 
-Press Ctrl+Backspace to erase the whole answer.
+### Combat Mode
 
-If you find yourself in a situation when you'd rather walk away from a fight,
-use `exp` command - type it instead of an answer. This will lock you in
-Exploration mode until Unlock Game Mode with a bound key.
+This mode is for fighting enemies. Instead of aiming and shooting, you type
+answers for your targets. When the answer is ready, press Space or Enter, or
+hold for continuous fire.
 
-There are other commands, too:
+- press Ctrl+Backspace to erase the whole answer.
+- press Escape to force Exploration mode. After this, you can return to
+  automatic mode switching with Unlock Game Mode key assigned in Typist options.
+
+Because you cannot move normally in Combat mode, the following commands are
+available:
 
 - `tl` - turn to the left,
 - `tr` - turn to the right,
@@ -51,14 +53,14 @@ There are other commands, too:
 - `df` - dash forward,
 - `db` - dash backward.
 
-## How to set up Custom Text lesson
+## How To Set Up Custom Text Lesson
 
 1. Find any text or book in ASCII .txt file (UTF-8 may also work).
 2. Rename text file to `typist_custom_text.txt`.
 3. Load `typist_custom_text.txt` with GZDoom alongside Typist.pk3.
 4. Select Custom Text in Typist options menu.
 
-## Incompatible mods
+## Incompatible Mods
 
 - Guncaster. Reason: Guncaster reads player input directly from player, so
   weapon firing cannot be emulated like for other mods. Guncaster support cannot

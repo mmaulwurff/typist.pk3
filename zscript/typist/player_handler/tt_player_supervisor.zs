@@ -25,8 +25,9 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
   tt_PlayerSupervisor init(int playerNumber)
   {
-    let playerInput   = new("tt_PlayerInput"  ).init();
-    let deathReporter = new("tt_DeathReporter").init();
+    let manualModeSource = new("tt_SettableMode" ).init();
+    let playerInput      = new("tt_PlayerInput"  ).init(manualModeSource);
+    let deathReporter    = new("tt_DeathReporter").init();
 
     let difficultySource = new("tt_SelectedDifficulty").init();
     let playerSource     = new("tt_PlayerSourceImpl"  ).init(playerNumber);
@@ -52,11 +53,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let widgetRegistry   = new("tt_TargetWidgetRegistry").init(visibilityFilter);
     let widgetSorter     = new("tt_SorterByDistance"    ).init(widgetRegistry, originSource);
 
-    let manualModeSource  = new("tt_SettableMode").init();
-    let modeSwitcher      = new("tt_ModeSwitcher").init(manualModeSource);
-
     Array<tt_Activatable> commands;
-    makeCommands(playerSource, modeSwitcher, commands);
+    makeCommands(playerSource, commands);
     let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, commands, settings);
 
     let modeSource = makeModeSource(targetRegistry, playerSource, manualModeSource);
@@ -218,12 +216,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   }
 
   private static
-  void makeCommands( tt_PlayerSource playerSource
-                   , tt_Activatable  modeSwitcher
-                   , out Array<tt_Activatable> activatables
-                   )
+  void makeCommands(tt_PlayerSource playerSource, out Array<tt_Activatable> activatables)
   {
-    activatables.push(modeSwitcher);
     activatables.push(new("tt_RightTurner"  ).init(playerSource));
     activatables.push(new("tt_LeftTurner"   ).init(playerSource));
     activatables.push(new("tt_Sphinx"       ).init());

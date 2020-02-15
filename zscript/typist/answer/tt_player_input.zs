@@ -24,8 +24,10 @@ class tt_PlayerInput : tt_AnswerSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_PlayerInput init()
+  tt_PlayerInput init(tt_ModeStorage modeStorage)
   {
+    _modeStorage = modeStorage;
+
     _answer = new("tt_Answer").init();
 
     return self;
@@ -48,6 +50,8 @@ class tt_PlayerInput : tt_AnswerSource
     case tt_Character.ENTER_UP:  reset(); break;
 
     case tt_Character.CTRL_BACKSPACE: reset(); break;
+
+    case tt_Character.ESCAPE: _modeStorage.setMode(tt_Mode.Explore);
     }
   }
 
@@ -68,6 +72,8 @@ class tt_PlayerInput : tt_AnswerSource
   }
 
 // private: ////////////////////////////////////////////////////////////////////
+
+  private tt_ModeStorage _modeStorage;
 
   private tt_Answer _answer;
 

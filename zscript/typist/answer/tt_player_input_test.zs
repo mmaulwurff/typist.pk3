@@ -41,8 +41,8 @@ class tt_PlayerInputTest : tt_Clematis
   private
   void testPlayerInputCheckInput()
   {
-
-    let    playerInput = new("tt_PlayerInput").init();
+    let    modeStorage = new("tt_ModeStorageMock").init();
+    let    playerInput = new("tt_PlayerInput"    ).init(modeStorage);
     String input       = "abc";
 
     throwStringIntoInput(playerInput, input);
@@ -56,7 +56,8 @@ class tt_PlayerInputTest : tt_Clematis
   private
   void testPlayerInputCheckReset()
   {
-    let    playerInput = new("tt_PlayerInput").init();
+    let    modeStorage = new("tt_ModeStorageMock").init();
+    let    playerInput = new("tt_PlayerInput"    ).init(modeStorage);
     String input1      = "abc";
     String input2      = "def";
 
@@ -74,9 +75,10 @@ class tt_PlayerInputTest : tt_Clematis
   private
   void testBackspace()
   {
-    let playerInput = new("tt_PlayerInput").init();
-    let backspace   = new("tt_Character").init(TYPE_CHAR, 8, false);
-    let letterA     = new("tt_Character").init(TYPE_CHAR, 97, false);
+    let modeStorage = new("tt_ModeStorageMock").init();
+    let playerInput = new("tt_PlayerInput"    ).init(modeStorage);
+    let backspace   = new("tt_Character"      ).init(TYPE_CHAR, 8, false);
+    let letterA     = new("tt_Character"      ).init(TYPE_CHAR, 97, false);
 
     //playerInput.reset();
     playerInput.processKey(backspace);
@@ -93,7 +95,8 @@ class tt_PlayerInputTest : tt_Clematis
   private
   void testCtrlBackspace()
   {
-    let playerInput   = new("tt_PlayerInput").init();
+    let modeStorage   = new("tt_ModeStorageMock").init();
+    let playerInput   = new("tt_PlayerInput").init(modeStorage);
     let ctrlBackspace = new("tt_Character").init(TYPE_CHAR, 8, true);
     let letterA       = new("tt_Character").init(TYPE_CHAR, 97, false);
 
