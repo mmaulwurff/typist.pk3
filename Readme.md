@@ -117,7 +117,9 @@ It may be possible to compile this on Windows. Install Msys or something. You're
 
 - LGR for [Sega's Typing of the Dead: A Zombie-Slaying Education](https://youtu.be/iamxvTe9Z5g) video
 - Marrub for [ZScript documentation](https://github.com/marrub--/zscript-doc)
-- Accensus for inviting me into Discord server and for bug reports
+- Accensus for inviting into Discord server and for bug reports
+- Accensus, Tapwave, and IKA for patience in testing and development of certain
+  under-the-hood tech, which is also used in [War Trophies](https://forum.zdoom.org/viewtopic.php?f=43&t=67054#p1132997)
 - kadu522 for support
 - dard22 for bug reports
 - Jarewill for bug reports
