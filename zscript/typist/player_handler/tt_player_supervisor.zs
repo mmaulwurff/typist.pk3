@@ -66,7 +66,11 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                                                     );
 
     let views         = new("tt_Views"        ).init();
-    let targetOverlay = new("tt_TargetOverlay").init(widgetSorter, playerInput, settings);
+    let targetOverlay = new("tt_TargetOverlay").init( widgetSorter
+                                                    , playerInput
+                                                    , settings
+                                                    , modeSource
+                                                    );
     let infoPanel     = new("tt_InfoPanel"    ).init( modeSource
                                                     , playerInput
                                                     , commandDispatcher

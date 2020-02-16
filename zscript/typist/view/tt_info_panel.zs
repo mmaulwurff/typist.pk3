@@ -53,46 +53,12 @@ class tt_InfoPanel : tt_View
     int     screenWidth = Screen.GetWidth();
     int     xStart      = screenWidth / 2;
     Vector2 position    = (xStart, Y_START);
-    Font    fnt         = NewSmallFont;
-
-    drawMode(position);
-    position.y += fnt.GetHeight();
 
     drawTargets (position);
     drawCommands(position);
   }
 
 // private: ////////////////////////////////////////////////////////////////////
-
-  private ui
-  void drawMode(Vector2 xy)
-  {
-    int scale = _settings.getScale();
-    xy /= scale;
-
-    Font   fnt          = NewSmallFont;
-    int    mode         = _modeSource.getMode();
-    let    color        = (mode == tt_Mode.Combat ? Font.CR_RED : Font.CR_BLUE);
-    String modeNames[]  = { "$TT_MODE_UNKNOWN"
-                          , "$TT_MODE_COMBAT"
-                          , "$TT_MODE_EXPLORE"
-                          , "$TT_MODE_NONE"
-                          };
-    String modeName     = StringTable.Localize(modeNames[mode]);
-    int    xStart       = int(xy.x - fnt.StringWidth(modeName) / 2);
-    int    screenWidth  = Screen.GetWidth() / scale;
-    int    screenHeight = Screen.GetHeight() / scale;
-
-    Screen.DrawText( fnt
-                   , color
-                   , xStart
-                   , xy.y
-                   , modeName
-                   , DTA_KeepRatio     , true
-                   , DTA_VirtualWidth  , screenWidth
-                   , DTA_VirtualHeight , screenHeight
-                   );
-  }
 
   private ui
   void drawTargets(Vector2 xy)
@@ -105,6 +71,8 @@ class tt_InfoPanel : tt_View
     let answer      = _answerSource.getAnswer();
     let nTargets    = targets.size();
     let player      = _playerSource.getPawn();
+    int mode        = _modeSource.getMode();
+    int color       = tt_Drawing.getColorForMode(mode);
 
     for (uint i = 0; i < nTargets; ++i)
     {
@@ -120,7 +88,7 @@ class tt_InfoPanel : tt_View
       if (x + targetWidth > screenWidth) { return; }
 
       Vector2 position = (x, y);
-      tt_Drawing.drawTarget(position, questionString, hintedAnswer, _settings, NOT_CENTERED);
+      tt_Drawing.drawTarget(position, questionString, hintedAnswer, _settings, NOT_CENTERED, color);
 
       x += targetWidth + 2;
     }
@@ -136,6 +104,8 @@ class tt_InfoPanel : tt_View
     int  x           = int(xy.x - HORIZONTAL_MARGIN);
     int  y           = int(xy.y + (VERTICAL_MARGIN * scale));
     let answer       = _answerSource.getAnswer().getString();
+    int mode         = _modeSource.getMode();
+    int color        = tt_Drawing.getColorForMode(mode);
 
     for (uint i = 0; i < nCommands; ++i)
     {
@@ -145,7 +115,7 @@ class tt_InfoPanel : tt_View
       if (x - targetWidth < 0) { return; }
 
       Vector2 position = (x - targetWidth, y);
-      tt_Drawing.drawTarget(position, command, answer, _settings, NOT_CENTERED);
+      tt_Drawing.drawTarget(position, command, answer, _settings, NOT_CENTERED, color);
 
       x -= targetWidth + 2;
     }

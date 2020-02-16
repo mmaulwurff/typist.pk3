@@ -15,6 +15,9 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/**
+ * This class is a namespace for common drawing functions.
+ */
 class tt_Drawing
 {
 
@@ -35,6 +38,7 @@ class tt_Drawing
                  , String      answer
                  , tt_Settings settings
                  , bool        isCentered
+                 , int         color
                  )
   {
     int  scale        = settings.getScale();
@@ -52,8 +56,14 @@ class tt_Drawing
     int x = int(Clamp(xStart,     FRAME, screenWidth  - FRAME - width         ));
     int y = int(Clamp(position.y, FRAME, screenHeight - FRAME * 3 - height * 2));
 
-    drawBoxes(x, y, width, height, screenWidth, screenHeight);
+    drawBoxes(x, y, width, height, screenWidth, screenHeight, color);
     drawText(x, y, height, fnt, question, answer, screenWidth, screenHeight);
+  }
+
+  static
+  int getColorForMode(int mode)
+  {
+    return (mode == tt_Mode.Combat) ? COMBAT_COLOR : EXPLORE_COLOR;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -72,6 +82,7 @@ class tt_Drawing
                 , int lineHeight
                 , int screenWidth
                 , int screenHeight
+                , int color
                 )
   {
     // Texture is necessary for drawing, but in fact it isn't used.
@@ -81,7 +92,7 @@ class tt_Drawing
     drawBox(dummyTexture, x, y, width, lineHeight, screenWidth, screenHeight, RGB_GOLD);
 
     int lowerY = y + lineHeight + FRAME * 2;
-    drawBox(dummyTexture, x, lowerY, width, lineHeight, screenWidth, screenHeight, RGB_GREEN);
+    drawBox(dummyTexture, x, lowerY, width, lineHeight, screenWidth, screenHeight, color);
   }
 
   private static
@@ -95,7 +106,7 @@ class tt_Drawing
               , int color
               )
   {
-    {
+    { // border
       int borderX      = x - FRAME;
       int borderY      = y - FRAME;
       int borderWidth  = makeBorderWidth(width);
@@ -111,7 +122,7 @@ class tt_Drawing
                         , DTA_KeepRatio     , true
                         , DTA_VirtualWidth  , screenWidth
                         , DTA_VirtualHeight , screenHeight
-                        , DTA_Alpha         , 0.5
+                        , DTA_Alpha         , BORDER_ALPHA
                         );
     }
 
@@ -121,7 +132,6 @@ class tt_Drawing
       int backgroundWidth  = PADDING * 2 + width;
       int backgroundHeight = PADDING * 2 + lineHeight;
 
-      // background
       Screen.DrawTexture( tex
                         , NOT_ANIMATED
                         , backgroundX
@@ -132,7 +142,7 @@ class tt_Drawing
                         , DTA_KeepRatio     , true
                         , DTA_VirtualWidth  , screenWidth
                         , DTA_VirtualHeight , screenHeight
-                        , DTA_Alpha         , 0.5
+                        , DTA_Alpha         , BACKGROUND_ALPHA
                         );
     }
   }
@@ -178,6 +188,11 @@ class tt_Drawing
 
   const RGB_BLACK    = 0x000000;
   const RGB_GOLD     = 0xF4AF31;
-  const RGB_GREEN    = 0x408436;
+
+  const BORDER_ALPHA     = 0.2;
+  const BACKGROUND_ALPHA = 0.2;
+
+  const COMBAT_COLOR  = 0xFF0000;
+  const EXPLORE_COLOR = 0x0000FF;
 
 } // class tt_Drawing

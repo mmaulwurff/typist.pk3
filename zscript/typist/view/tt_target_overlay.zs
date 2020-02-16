@@ -27,11 +27,13 @@ class tt_TargetOverlay : tt_View
   tt_TargetOverlay init( tt_TargetWidgetSource targetWidgetSource
                        , tt_AnswerSource       answerSource
                        , tt_Settings           settings
+                       , tt_ModeSource         modeSource
                        )
   {
     _targetWidgetSource = targetWidgetSource;
     _answerSource       = answerSource;
     _settings           = settings;
+    _modeSource         = modeSource;
 
     return self;
   }
@@ -43,6 +45,8 @@ class tt_TargetOverlay : tt_View
   {
     let widgets = _targetWidgetSource.getWidgets(event);
     let answer  = _answerSource.getAnswer();
+    int mode    = _modeSource.getMode();
+    int color   = tt_Drawing.getColorForMode(mode);
 
     uint nWidgets = widgets.size();
     for (uint i = 0; i < nWidgets; ++i)
@@ -53,7 +57,7 @@ class tt_TargetOverlay : tt_View
       String hintedAnswer   = question.getHintFor(answer);
       let    position       = widget.getPosition();
 
-      tt_Drawing.drawTarget(position, questionString, hintedAnswer, _settings, CENTERED);
+      tt_Drawing.drawTarget(position, questionString, hintedAnswer, _settings, CENTERED, color);
     }
   }
 
@@ -66,5 +70,6 @@ class tt_TargetOverlay : tt_View
   private tt_TargetWidgetSource _targetWidgetSource;
   private tt_AnswerSource       _answerSource;
   private tt_Settings           _settings;
+  private tt_ModeSource         _modeSource;
 
 } // class tt_TargetOverlay

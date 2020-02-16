@@ -29,11 +29,11 @@ Load it with GZDoom.
 There are two game modes: Combat and Exploration. They are switched
 automatically.
 
-### Exploration Mode
+### Exploration Mode (blue)
 
 Your familiar mode. You can walk, open doors, turn switches, etc.
 
-### Combat Mode
+### Combat Mode (red)
 
 This mode is for fighting enemies. Instead of aiming and shooting, you type
 answers for your targets. When the answer is ready, press Space or Enter, or

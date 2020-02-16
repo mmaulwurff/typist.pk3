@@ -39,13 +39,6 @@ TT_MIXED_LESSON_NOTE       = "Please enable at least one lesson.";
 
 TT_CUSTOM_TEXT = "Custom Text";
 
-// Info Panel //////////////////////////////////////////////////////////////////
-
-TT_MODE_UNKNOWN = "Unknown!";
-TT_MODE_COMBAT  = "Combat";
-TT_MODE_EXPLORE = "Exploration";
-TT_MODE_NONE    = "None!";
-
 // Acknowledgments /////////////////////////////////////////////////////////////
 
 TT_ACKNOWLEDGMENTS_TITLE = "Acknowledgments";
