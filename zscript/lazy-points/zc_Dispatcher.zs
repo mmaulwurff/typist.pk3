@@ -55,7 +55,7 @@ class zc_Dispatcher : EventHandler
   override
   void RenderOverlay(RenderEvent event)
   {
-    if (menuActive)
+    if (menuActive || automapActive)
     {
       return;
     }

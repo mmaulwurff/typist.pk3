@@ -22,6 +22,7 @@
  * The list of conditions:
  * - not in a menu
  * - there are monsters on the level
+ * - automap is closed
  *
  * @attention this class reads data from global scope.
  */
@@ -44,6 +45,7 @@ class tt_ConditionalView : tt_View
   {
     bool areConditionsMet = !isInMenu()
                          && !isLevelClear()
+                         && !isAutomapOpen()
                           ;
     if (areConditionsMet)
     {
@@ -65,6 +67,12 @@ class tt_ConditionalView : tt_View
     int  nMonsters = level.total_monsters - level.killed_monsters;
     bool isClear   = (nMonsters == 0);
     return isClear;
+  }
+
+  private ui
+  bool isAutomapOpen()
+  {
+    return automapActive;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
