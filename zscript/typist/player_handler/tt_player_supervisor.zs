@@ -194,6 +194,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let english1000    = new("tt_StringSet"             ).init("tt_1000");
     let russian1000    = new("tt_StringSet"             ).init("tt_1000_ru");
     let customLesson   = new("tt_CustomLesson"          ).init();
+    let nixLesson      = new("tt_StringSet"             ).init("tt_nix");
 
     let mixedLesson    = new("tt_MixedLesson").init(settings);
 
@@ -206,6 +207,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     selectedSource.add(russian1000 );
     selectedSource.add(mixedLesson );
     selectedSource.add(customLesson);
+    selectedSource.add(nixLesson   );
 
     mixedLesson.add(letterSource);
     mixedLesson.add(numberSource);
@@ -215,6 +217,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     mixedLesson.add(english1000 );
     mixedLesson.add(russian1000 );
     mixedLesson.add(customLesson);
+    mixedLesson.add(nixLesson   );
 
     return selectedSource;
   }

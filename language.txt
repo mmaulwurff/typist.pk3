@@ -39,6 +39,8 @@ TT_MIXED_LESSON_NOTE       = "Please enable at least one lesson.";
 
 TT_CUSTOM_TEXT = "Custom Text";
 
+TT_NIX_LESSON = "*nix Command Line";
+
 // Acknowledgments /////////////////////////////////////////////////////////////
 
 TT_ACKNOWLEDGMENTS_TITLE = "Acknowledgments";

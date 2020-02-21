@@ -4,6 +4,7 @@ abort
 absolute
 accensus
 accumulate
+acpi
 activatable
 activatables
 adjacent
@@ -43,6 +44,7 @@ axlfmgquqize
 back
 backward
 bad
+basename
 basic
 begin
 bessel
@@ -88,8 +90,11 @@ changelogs
 char
 charconv
 chars
+chattr
 chdir
 chesko
+chgrp
+chmod
 chown
 chrono
 cin
@@ -138,6 +143,7 @@ count
 cout
 cpp
 cppreference
+crontab
 csetjmp
 csignal
 cstdarg
@@ -180,6 +186,7 @@ dfiles
 difference
 digit
 directory
+dirname
 distance
 distutils
 dleft
@@ -189,6 +196,7 @@ domain
 doomwiki
 dotall
 double
+dpkg
 drdteam
 dright
 duration
@@ -212,6 +220,7 @@ erase
 errc
 errno
 error
+esac
 eval
 exception
 exchange
@@ -220,9 +229,11 @@ execution
 exists
 explicit
 export
+expr
 extern
 facet
 false
+fdisk
 fence
 fetch
 ffffff
@@ -255,6 +266,7 @@ free
 freedoom
 friend
 front
+fsck
 fstream
 fullscreen
 func
@@ -282,20 +294,26 @@ gteq
 guard
 guncaster
 gzdoom
+gzip
 handler
 hard
 has
 hash
 heap
 hint
+htop
 https
 iamxv
+iconv
 iec
 if
+ifconfig
 ifdef
 ifdef
+ifdown
 ifndef
 ifndef
+ifup
 ignorecase
 impl
 imprecisions
@@ -336,6 +354,7 @@ kadu
 keks
 key
 keyconf
+killall
 known
 kromm
 last
@@ -402,6 +421,7 @@ mutable
 mutex
 namespace
 namespace
+nano
 nclass
 nested
 netevent
@@ -439,12 +459,14 @@ output
 overflow
 override
 packaged
+pacman
 pair
 par
 parallel
 param
 partial
 partition
+passwd
 path
 pathlib
 permissions
@@ -471,6 +493,7 @@ printf
 printf
 priority
 private
+proc
 product
 proj
 promise
@@ -507,6 +530,7 @@ relicensing
 remove
 renderer
 rendermode
+renice
 replace
 repositioning
 requires
@@ -520,14 +544,17 @@ return
 reverse
 rglob
 right
+rmdir
 rmtree
 rotate
+rsync
 runtime
 rvalue
 ryzen
 safety
 sample
 savegame
+sbin
 sbyte
 scan
 scoped
@@ -621,6 +648,7 @@ throw
 time
 timedemo
 titlemaps
+tmux
 todo
 token
 tokenize
@@ -637,6 +665,7 @@ typeid
 typeinfo
 typename
 uint
+uname
 unary
 undef
 undef
@@ -645,6 +674,7 @@ undroppable
 unexpected
 unfilter
 union
+uniq
 unique
 unmodded
 unordered
@@ -653,6 +683,7 @@ unseq
 unsigned
 until
 upper
+uptime
 ushort
 using
 util
