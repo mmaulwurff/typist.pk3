@@ -25,12 +25,14 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
   tt_PlayerSupervisor init(int playerNumber)
   {
+    let playerSource     = new("tt_PlayerSourceImpl").init(playerNumber);
+
+    let eventReporter    = new("tt_SoundReporter").init(playerSource);
     let manualModeSource = new("tt_SettableMode" ).init();
-    let playerInput      = new("tt_PlayerInput"  ).init(manualModeSource);
+    let playerInput      = new("tt_PlayerInput"  ).init(manualModeSource, eventReporter);
     let deathReporter    = new("tt_DeathReporter").init();
 
     let difficultySource = new("tt_SelectedDifficulty").init();
-    let playerSource     = new("tt_PlayerSourceImpl"  ).init(playerNumber);
     let settings         = new("tt_SettingsImpl"      ).init(playerSource);
 
     let originSource     = new("tt_PlayerOriginSource").init(playerSource);
@@ -44,6 +46,11 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                                                  , playerSource
                                                                  );
 
+    let matchReporter = new("tt_MatchReporter").init( eventReporter
+                                                    , targetOriginSource
+                                                    , playerInput
+                                                    );
+
     let aimer              = makeAimer(targetOriginSource, playerSource, settings);
     let firer              = new("tt_FirerImpl"            ).init(playerSource);
     let damager            = new("tt_Gunner"               ).init(targetOriginSource, aimer, firer);
@@ -55,9 +62,13 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     Array<tt_Activatable> commands;
     makeCommands(playerSource, commands);
-    let commandDispatcher = new("tt_CommandDispatcher").init(playerInput, commands, settings);
+    let commandDispatcher = new("tt_CommandDispatcher").init( playerInput
+                                                            , commands
+                                                            , settings
+                                                            , eventReporter
+                                                            );
 
-    let modeSource = makeModeSource(targetRegistry, playerSource, manualModeSource);
+    let modeSource = makeModeSource(targetRegistry, playerSource, manualModeSource, eventReporter);
 
     let oldModeSource = new("tt_SettableMode").init();
     let inputBlockAfterCombat = new("tt_InputBlockAfterCombat").init( playerInput
@@ -104,6 +115,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _inputManager       = inputManager;
     _oldModeSource      = oldModeSource;
     _inputBlockAfterCombat = inputBlockAfterCombat;
+    _matchReporter      = matchReporter;
 
     _projectileSpeedController = projectileSpeedController;
     _enemySpeedController      = enemySpeedController;
@@ -134,6 +146,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     _projectileSpeedController.changeWorld();
     _enemySpeedController.changeWorld();
+
+    _matchReporter.report();
   }
 
   override
@@ -238,6 +252,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   tt_ModeSource makeModeSource( tt_KnownTargetSource knownTargetSource
                               , tt_PlayerSource      playerSource
                               , tt_ModeSource        manualModeSource
+                              , tt_EventReporter     eventReporter
                               )
   {
     let clock = new("tt_TotalClock").init();
@@ -249,9 +264,11 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     modeSources.Push(manualModeSource);
     modeSources.Push(delayedCombatModeSource);
     modeSources.Push(autoModeSource);
-    let result = new("tt_ModeCascade").init(modeSources);
 
-    return result;
+    let cascade  = new("tt_ModeCascade"       ).init(modeSources);
+    let reporter = new("tt_ReportedModeSource").init(eventReporter, cascade);
+
+    return reporter;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -269,6 +286,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_InputManager       _inputManager;
   private tt_SettableMode       _oldModeSource;
   private tt_InputBlockAfterCombat _inputBlockAfterCombat;
+  private tt_MatchReporter      _matchReporter;
 
   private tt_ProjectileSpeedController _projectileSpeedController;
   private tt_EnemySpeedController      _enemySpeedController;

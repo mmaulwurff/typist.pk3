@@ -27,11 +27,13 @@ class tt_CommandDispatcher : tt_Activatable
   tt_CommandDispatcher init( tt_AnswerSource       answerSource
                            , Array<tt_Activatable> activatables
                            , tt_Settings           settings
+                           , tt_EventReporter      eventReporter
                            )
   {
-    _answerSource = answerSource;
+    _answerSource  = answerSource;
     _activatables.copy(activatables);
-    _settings     = settings;
+    _settings      = settings;
+    _eventReporter = eventReporter;
 
     return self;
   }
@@ -56,6 +58,7 @@ class tt_CommandDispatcher : tt_Activatable
 
       if (isActivated)
       {
+        _eventReporter.reportAnswerMatch();
         break;
       }
     }
@@ -132,5 +135,6 @@ class tt_CommandDispatcher : tt_Activatable
   private tt_AnswerSource       _answerSource;
   private Array<tt_Activatable> _activatables;
   private tt_Settings           _settings;
+  private tt_EventReporter      _eventReporter;
 
 } // class tt_CommandDispatcher

@@ -45,7 +45,12 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatables.push(activatable2);
     let answerSource      = new("tt_AnswerSourceMock" ).init();
     let settings          = new("tt_SettingsMock"     ).init();
-    let commandDispatcher = new("tt_CommandDispatcher").init(answerSource, activatables, settings);
+    let eventReporter     = new("tt_EventReporterMock").init();
+    let commandDispatcher = new("tt_CommandDispatcher").init( answerSource
+                                                            , activatables
+                                                            , settings
+                                                            , eventReporter
+                                                            );
 
     let str    = "Hello";
     let answer = new("tt_Answer").init(str);
@@ -58,6 +63,7 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatable1.expect_getCommands(commands1);
     activatable2.expect_getCommands(commands2);
     activatable2.expect_activate();
+    eventReporter.expect_reportAnswerMatch();
 
     commandDispatcher.activate();
 
@@ -66,6 +72,8 @@ class tt_CommandDispatcherTest : tt_Clematis
     It("The first activatable is satisfied",  Assert(activatable1.isSatisfied_getCommands()));
     It("The second activatable is satisfied", Assert(activatable2.isSatisfied_activate()));
     It("The second activatable is satisfied", Assert(activatable2.isSatisfied_getCommands()));
+
+    It("Event reporter is satisfied", Assert(eventReporter.isSatisfied_reportAnswerMatch()));
   }
 
   private play
@@ -78,7 +86,12 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatables.push(activatable2);
     let answerSource      = new("tt_AnswerSourceMock" ).init();
     let settings          = new("tt_SettingsMock"     ).init();
-    let commandDispatcher = new("tt_CommandDispatcher").init(answerSource, activatables, settings);
+    let eventReporter     = new("tt_EventReporterMock").init();
+    let commandDispatcher = new("tt_CommandDispatcher").init( answerSource
+                                                            , activatables
+                                                            , settings
+                                                            , eventReporter
+                                                            );
 
     let commands1 = new("tt_Strings").init();
     let commands2 = new("tt_Strings").init();
@@ -105,6 +118,8 @@ class tt_CommandDispatcherTest : tt_Clematis
     It("The first activatable is satisfied",  Assert(activatable1.isSatisfied_getCommands()));
     It("The second activatable is satisfied", Assert(activatable2.isSatisfied_activate()));
     It("The second activatable is satisfied", Assert(activatable2.isSatisfied_getCommands()));
+
+    It("Event reporter is satisfied", Assert(eventReporter.isSatisfied_reportAnswerMatch()));
   }
 
 } // class tt_CommandDispatcherTest

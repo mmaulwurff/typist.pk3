@@ -41,13 +41,13 @@ class tt_PlayerInputTest : tt_Clematis
   private
   void testPlayerInputCheckInput()
   {
-    let    modeStorage = new("tt_ModeStorageMock").init();
-    let    playerInput = new("tt_PlayerInput"    ).init(modeStorage);
-    String input       = "abc";
+    setUp();
 
-    throwStringIntoInput(playerInput, input);
+    String input = "abc";
 
-    let answer       = playerInput.getAnswer();
+    throwStringIntoInput(_playerInput, input);
+
+    let answer       = _playerInput.getAnswer();
     let answerString = answer.getString();
 
     It("Input must be an answer", Assert(input == answerString));
@@ -56,17 +56,17 @@ class tt_PlayerInputTest : tt_Clematis
   private
   void testPlayerInputCheckReset()
   {
-    let    modeStorage = new("tt_ModeStorageMock").init();
-    let    playerInput = new("tt_PlayerInput"    ).init(modeStorage);
-    String input1      = "abc";
-    String input2      = "def";
+    setUp();
 
-    throwStringIntoInput(playerInput, input1);
+    String input1 = "abc";
+    String input2 = "def";
+
+    throwStringIntoInput(_playerInput, input1);
     let reset = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Backspace, true);
-    playerInput.processKey(reset);
-    throwStringIntoInput(playerInput, input2);
+    _playerInput.processKey(reset);
+    throwStringIntoInput(_playerInput, input2);
 
-    let answer       = playerInput.getAnswer();
+    let answer       = _playerInput.getAnswer();
     let answerString = answer.getString();
 
     It("Second input must be an answer", Assert(input2 == answerString));
@@ -75,18 +75,18 @@ class tt_PlayerInputTest : tt_Clematis
   private
   void testBackspace()
   {
-    let modeStorage = new("tt_ModeStorageMock").init();
-    let playerInput = new("tt_PlayerInput"    ).init(modeStorage);
-    let backspace   = new("tt_Character"      ).init(TYPE_CHAR, 8, false);
-    let letterA     = new("tt_Character"      ).init(TYPE_CHAR, 97, false);
+    setUp();
 
-    //playerInput.reset();
-    playerInput.processKey(backspace);
-    playerInput.processKey(letterA);
-    playerInput.processKey(backspace);
-    playerInput.processKey(letterA);
+    let backspace = new("tt_Character"      ).init(TYPE_CHAR, 8, false);
+    let letterA   = new("tt_Character"      ).init(TYPE_CHAR, 97, false);
 
-    let answer       = playerInput.getAnswer();
+    //_playerInput.reset();
+    _playerInput.processKey(backspace);
+    _playerInput.processKey(letterA);
+    _playerInput.processKey(backspace);
+    _playerInput.processKey(letterA);
+
+    let answer       = _playerInput.getAnswer();
     let answerString = answer.getString();
 
     It("Input after backspace must be valid", Assert(answerString == "a"));
@@ -95,16 +95,16 @@ class tt_PlayerInputTest : tt_Clematis
   private
   void testCtrlBackspace()
   {
-    let modeStorage   = new("tt_ModeStorageMock").init();
-    let playerInput   = new("tt_PlayerInput").init(modeStorage);
+    setUp();
+
     let ctrlBackspace = new("tt_Character").init(TYPE_CHAR, 8, true);
     let letterA       = new("tt_Character").init(TYPE_CHAR, 97, false);
 
-    playerInput.processKey(letterA);
-    playerInput.processKey(letterA);
-    playerInput.processKey(ctrlBackspace);
+    _playerInput.processKey(letterA);
+    _playerInput.processKey(letterA);
+    _playerInput.processKey(ctrlBackspace);
 
-    let answer       = playerInput.getAnswer();
+    let answer       = _playerInput.getAnswer();
     let answerString = answer.getString();
 
     It("Input after ctrl-backspace must be empty", Assert(answerString == ""));
@@ -126,8 +126,22 @@ class tt_PlayerInputTest : tt_Clematis
     input.processKey(enter);
   }
 
+  private
+  void setUp()
+  {
+    _modeStorage   = new("tt_ModeStorageMock"  ).init();
+    _eventReporter = new("tt_EventReporterMock").init();
+    _playerInput   = new("tt_PlayerInput"      ).init(_modeStorage, _eventReporter);
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   const TYPE_CHAR = UiEvent.Type_Char;
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_ModeStorageMock _modeStorage;
+  private tt_EventReporter   _eventReporter;
+  private tt_PlayerInput     _playerInput;
 
 } // class tt_PlayerInputTest

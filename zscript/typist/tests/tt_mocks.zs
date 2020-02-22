@@ -68,6 +68,93 @@ class tt_InputManagerMock : tt_InputManager
 
 } // class tt_InputManagerMock
 
+class tt_EventReporterMock : tt_EventReporter
+{
+
+  tt_EventReporterMock init() { return self; }
+
+  override
+  void reportNewMode(int mode)
+  {
+    ++_mock_reportNewMode_called;
+  }
+
+  void expect_reportNewMode(int expected = 1)
+  {
+    _mock_reportNewMode_expected = expected;
+    _mock_reportNewMode_called = 0;
+  }
+
+  bool isSatisfied_reportNewMode() const
+  {
+    return _mock_reportNewMode_expected == _mock_reportNewMode_called;
+  }
+
+  private int _mock_reportNewMode_expected;
+  private int _mock_reportNewMode_called;
+
+  override
+  void reportKeyPressed()
+  {
+    ++_mock_reportKeyPressed_called;
+  }
+
+  void expect_reportKeyPressed(int expected = 1)
+  {
+    _mock_reportKeyPressed_expected = expected;
+    _mock_reportKeyPressed_called = 0;
+  }
+
+  bool isSatisfied_reportKeyPressed() const
+  {
+    return _mock_reportKeyPressed_expected == _mock_reportKeyPressed_called;
+  }
+
+  private int _mock_reportKeyPressed_expected;
+  private int _mock_reportKeyPressed_called;
+
+  override
+  void reportAnswerMatch()
+  {
+    ++_mock_reportAnswerMatch_called;
+  }
+
+  void expect_reportAnswerMatch(int expected = 1)
+  {
+    _mock_reportAnswerMatch_expected = expected;
+    _mock_reportAnswerMatch_called = 0;
+  }
+
+  bool isSatisfied_reportAnswerMatch() const
+  {
+    return _mock_reportAnswerMatch_expected == _mock_reportAnswerMatch_called;
+  }
+
+  private int _mock_reportAnswerMatch_expected;
+  private int _mock_reportAnswerMatch_called;
+
+  override
+  void reportAnswerNotMatch()
+  {
+    ++_mock_reportAnswerNotMatch_called;
+  }
+
+  void expect_reportAnswerNotMatch(int expected = 1)
+  {
+    _mock_reportAnswerNotMatch_expected = expected;
+    _mock_reportAnswerNotMatch_called = 0;
+  }
+
+  bool isSatisfied_reportAnswerNotMatch() const
+  {
+    return _mock_reportAnswerNotMatch_expected == _mock_reportAnswerNotMatch_called;
+  }
+
+  private int _mock_reportAnswerNotMatch_expected;
+  private int _mock_reportAnswerNotMatch_called;
+
+} // class tt_EventReporterMock
+
 class tt_SettingsMock : tt_Settings
 {
 

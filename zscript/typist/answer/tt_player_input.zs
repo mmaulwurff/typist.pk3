@@ -24,9 +24,10 @@ class tt_PlayerInput : tt_AnswerSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_PlayerInput init(tt_ModeStorage modeStorage)
+  tt_PlayerInput init(tt_ModeStorage modeStorage, tt_EventReporter eventReporter)
   {
-    _modeStorage = modeStorage;
+    _modeStorage   = modeStorage;
+    _eventReporter = eventReporter;
 
     _answer = new("tt_Answer").init();
 
@@ -43,7 +44,11 @@ class tt_PlayerInput : tt_AnswerSource
     {
     case tt_Character.NONE: break;
 
-    case tt_Character.PRINTABLE: _answer.append(character.getCharacter()); break;
+    case tt_Character.PRINTABLE:
+      _answer.append(character.getCharacter());
+      _eventReporter.reportKeyPressed();
+      break;
+
     case tt_Character.BACKSPACE: _answer.deleteLastCharacter(); break;
 
     case tt_Character.ENTER:     _answer.finish(); break;
@@ -73,7 +78,8 @@ class tt_PlayerInput : tt_AnswerSource
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_ModeStorage _modeStorage;
+  private tt_ModeStorage   _modeStorage;
+  private tt_EventReporter _eventReporter;
 
   private tt_Answer _answer;
 

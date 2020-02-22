@@ -1,0 +1,5 @@
+tt/combat    "sounds/combat.ogg"
+tt/explore   "sounds/explore.ogg"
+tt/click     "sounds/click.ogg"
+tt/match     "sounds/match.ogg"
+tt/not-match "sounds/not-match.ogg"
