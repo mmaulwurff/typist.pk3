@@ -1120,36 +1120,6 @@ class tt_ModeSourceMock : tt_ModeSource
 
 } // class tt_ModeSourceMock
 
-class tt_DifficultySourceMock : tt_DifficultySource
-{
-
-  tt_DifficultySourceMock init() { return self; }
-
-  override
-  tt_Difficulty getDifficulty()
-  {
-    ++_mock_getDifficulty_called;
-    return _mock_getDifficulty;
-  }
-
-  void expect_getDifficulty(tt_Difficulty value, int expected = 1)
-  {
-    _mock_getDifficulty = value;
-    _mock_getDifficulty_expected = expected;
-    _mock_getDifficulty_called = 0;
-  }
-
-  bool isSatisfied_getDifficulty() const
-  {
-    return _mock_getDifficulty_expected == _mock_getDifficulty_called;
-  }
-
-  private tt_Difficulty _mock_getDifficulty;
-  private int _mock_getDifficulty_expected;
-  private int _mock_getDifficulty_called;
-
-} // class tt_DifficultySourceMock
-
 class tt_AnswerSourceMock : tt_AnswerSource
 {
 

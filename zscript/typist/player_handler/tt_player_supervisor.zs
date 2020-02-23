@@ -31,13 +31,11 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let manualModeSource = new("tt_SettableMode" ).init();
     let playerInput      = new("tt_PlayerInput"  ).init(manualModeSource, eventReporter);
     let deathReporter    = new("tt_DeathReporter").init();
-
-    let difficultySource = new("tt_SelectedDifficulty").init();
-    let settings         = new("tt_SettingsImpl"      ).init(playerSource);
+    let settings         = new("tt_SettingsImpl" ).init(playerSource);
 
     let originSource     = new("tt_PlayerOriginSource").init(playerSource);
     let targetRadar      = new("tt_TargetRadar"       ).init(originSource);
-    let questionSource   = makeQuestionSource(difficultySource, settings);
+    let questionSource   = makeQuestionSource(settings);
 
     let targetRegistry = new("tt_TargetRegistry").init(targetRadar, questionSource, deathReporter);
 
@@ -197,10 +195,10 @@ class tt_PlayerSupervisor : tt_PlayerHandler
    * @attention See docs/adding-new-lesson.md before editing this function.
    */
   private static
-  tt_QuestionSource makeQuestionSource(tt_DifficultySource difficultySource, tt_Settings settings)
+  tt_QuestionSource makeQuestionSource(tt_Settings settings)
   {
-    let letterSource   = new("tt_RandomLetterSource"    ).init(difficultySource);
-    let numberSource   = new("tt_RandomNumberSource"    ).init(difficultySource);
+    let letterSource   = new("tt_RandomLetterSource"    ).init();
+    let numberSource   = new("tt_RandomNumberSource"    ).init();
     let selectedSource = new("tt_SelectedQuestionSource").init(settings);
     let gzdoomSource   = new("tt_StringSet"             ).init("tt_gzdoom");
     let cppSource      = new("tt_StringSet"             ).init("tt_cpp");

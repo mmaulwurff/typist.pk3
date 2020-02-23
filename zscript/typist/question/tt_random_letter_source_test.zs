@@ -25,16 +25,10 @@ class tt_RandomLetterSourceTest : tt_Clematis
   {
     Describe("Checking Random Letter Source");
 
-    let difficultySource = new("tt_DifficultySourceMock").init();
-    let questionSource   = new("tt_RandomLetterSource").init(difficultySource);
-
-    int stringLength     = 3;
-    let difficulty       = new("tt_Difficulty").init(stringLength);
-    difficultySource.expect_getDifficulty(difficulty);
-
-    let question    = questionSource.getQuestion();
-    let description = question.getDescription();
-    Console.Printf( "zscript/typist/question/tt_random_letter_source_test.zs:37: T: Question: %s"
+    let questionSource = new("tt_RandomLetterSource").init();
+    let question       = questionSource.getQuestion();
+    let description    = question.getDescription();
+    Console.Printf( "zscript/typist/question/tt_random_letter_source_test.zs:31: T: Question: %s"
                   , description
                   );
 
@@ -42,8 +36,6 @@ class tt_RandomLetterSourceTest : tt_Clematis
     let wrongAnswer = new("tt_Answer").init(wrongString);
 
     It("Letter must be not equal to numbers", AssertFalse(question.isRight(wrongAnswer)));
-    It("Question must be of required length", AssertEval(description.length(), "==", stringLength));
-    It("Difficulty Source is satisfied", Assert(difficultySource.isSatisfied_getDifficulty()));
 
     EndDescribe();
   }

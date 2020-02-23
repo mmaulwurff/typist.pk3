@@ -24,10 +24,8 @@ class tt_RandomLetterSource : tt_QuestionSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_RandomLetterSource init(tt_DifficultySource difficultySource)
+  tt_RandomLetterSource init()
   {
-    _difficultySource = difficultySource;
-
     return self;
   }
 
@@ -36,8 +34,7 @@ class tt_RandomLetterSource : tt_QuestionSource
   override
   tt_Question getQuestion()
   {
-    let difficulty   = _difficultySource.getDifficulty();
-    let stringLength = difficulty.shootStringLength();
+    let stringLength = 3;
     let str          = "";
 
     for (int i = 0; i < stringLength; ++i)
@@ -54,9 +51,5 @@ class tt_RandomLetterSource : tt_QuestionSource
 
     return question;
   }
-
-// private: ////////////////////////////////////////////////////////////////////
-
-  private tt_DifficultySource _difficultySource;
 
 } // class tt_RandomLetterSource

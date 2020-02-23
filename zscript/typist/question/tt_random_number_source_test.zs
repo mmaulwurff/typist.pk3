@@ -25,24 +25,17 @@ class tt_RandomNumberSourceTest : tt_Clematis
   {
     Describe("Checking Random Number Source");
 
-    let difficultySource = new("tt_DifficultySourceMock").init();
-    let questionSource   = new("tt_RandomNumberSource").init(difficultySource);
-
-    int stringLength     = 3;
-    let difficulty       = new("tt_Difficulty").init(stringLength);
-    difficultySource.expect_getDifficulty(difficulty);
-
-    let question    = questionSource.getQuestion();
-    let description = question.getDescription();
-    Console.Printf("zscript/typist/question/tt_random_number_source_test.zs:37: T: Question: %s",
-                   description);
+    let questionSource = new("tt_RandomNumberSource").init();
+    let question       = questionSource.getQuestion();
+    let description    = question.getDescription();
+    Console.Printf( "zscript/typist/question/tt_random_number_source_test.zs:31: T: Question: %s"
+                  , description
+                  );
 
     let wrongString = "aaa";
     let wrongAnswer = new("tt_Answer").init(wrongString);
 
     It("Number must be not equal to letters", AssertFalse(question.isRight(wrongAnswer)));
-    It("Question must be of required length", AssertEval(description.length(), "==", stringLength));
-    It("Difficulty Source is satisfied", Assert(difficultySource.isSatisfied_getDifficulty()));
 
     EndDescribe();
   }
