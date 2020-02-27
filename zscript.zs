@@ -88,6 +88,7 @@ version 4.3.3
 #include "zscript/typist/known_target/tt_target_registry.zs"
 #include "zscript/typist/match_reporter/tt_match_reporter.zs"
 #include "zscript/typist/math/tt_math.zs"
+#include "zscript/typist/menu/option_menu_item_tt_animated_submenu.zs"
 #include "zscript/typist/menu/tt_list_menu_note.zs"
 #include "zscript/typist/menu/tt_menu_injector.zs"
 #include "zscript/typist/mode/tt_auto_mode_source_test.zs"

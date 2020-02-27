@@ -2,7 +2,7 @@
 
 AddOptionMenu OptionsMenu
 {
-  Submenu "$TT_TITLE", tt_Options
+  tt_AnimatedSubmenu "$TT_TITLE", tt_Options
 }
 
 OptionMenu tt_Options
