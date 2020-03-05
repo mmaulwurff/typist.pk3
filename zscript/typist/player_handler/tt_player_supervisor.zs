@@ -35,7 +35,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     let originSource     = new("tt_PlayerOriginSource").init(playerSource);
     let targetRadar      = new("tt_TargetRadar"       ).init(originSource);
-    let questionSource   = makeQuestionSource(settings);
+    let questionSource   = makeQuestionSource(settings, playerSource);
 
     let targetRegistry = new("tt_TargetRegistry").init(targetRadar, questionSource, deathReporter);
 
@@ -195,10 +195,11 @@ class tt_PlayerSupervisor : tt_PlayerHandler
    * @attention See docs/adding-new-lesson.md before editing this function.
    */
   private static
-  tt_QuestionSource makeQuestionSource(tt_Settings settings)
+  tt_QuestionSource makeQuestionSource(tt_Settings settings, tt_PlayerSource playerSource)
   {
-    let letterSource   = new("tt_RandomLetterSource"    ).init();
-    let numberSource   = new("tt_RandomNumberSource"    ).init();
+    let randomLessonSettings = new("tt_RandomCharactersLessonSettingsImpl").init(playerSource);
+
+    let randomSource   = new("tt_RandomCharactersLesson").init(randomLessonSettings);
     let selectedSource = new("tt_SelectedQuestionSource").init(settings);
     let gzdoomSource   = new("tt_StringSet"             ).init("tt_gzdoom");
     let cppSource      = new("tt_StringSet"             ).init("tt_cpp");
@@ -210,8 +211,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     let mixedLesson    = new("tt_MixedLesson").init(settings);
 
-    selectedSource.add(letterSource);
-    selectedSource.add(numberSource);
+    selectedSource.add(randomSource);
     selectedSource.add(gzdoomSource);
     selectedSource.add(cppSource   );
     selectedSource.add(mathsSource );
@@ -221,8 +221,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     selectedSource.add(customLesson);
     selectedSource.add(nixLesson   );
 
-    mixedLesson.add(letterSource);
-    mixedLesson.add(numberSource);
+    mixedLesson.add(randomSource);
     mixedLesson.add(gzdoomSource);
     mixedLesson.add(cppSource   );
     mixedLesson.add(mathsSource );

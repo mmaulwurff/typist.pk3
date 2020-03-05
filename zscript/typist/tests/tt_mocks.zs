@@ -877,36 +877,6 @@ class tt_WorldChangerMock : tt_WorldChanger
 
 } // class tt_WorldChangerMock
 
-class tt_QuestionSourceMock : tt_QuestionSource
-{
-
-  tt_QuestionSourceMock init() { return self; }
-
-  override
-  tt_Question getQuestion()
-  {
-    ++_mock_getQuestion_called;
-    return _mock_getQuestion;
-  }
-
-  void expect_getQuestion(tt_Question value, int expected = 1)
-  {
-    _mock_getQuestion = value;
-    _mock_getQuestion_expected = expected;
-    _mock_getQuestion_called = 0;
-  }
-
-  bool isSatisfied_getQuestion() const
-  {
-    return _mock_getQuestion_expected == _mock_getQuestion_called;
-  }
-
-  private tt_Question _mock_getQuestion;
-  private int _mock_getQuestion_expected;
-  private int _mock_getQuestion_called;
-
-} // class tt_QuestionSourceMock
-
 class tt_QuestionMock : tt_Question
 {
 
@@ -1169,6 +1139,36 @@ class tt_AnswerSourceMock : tt_AnswerSource
   private int _mock_processKey_called;
 
 } // class tt_AnswerSourceMock
+
+class tt_QuestionSourceMock : tt_QuestionSource
+{
+
+  tt_QuestionSourceMock init() { return self; }
+
+  override
+  tt_Question getQuestion()
+  {
+    ++_mock_getQuestion_called;
+    return _mock_getQuestion;
+  }
+
+  void expect_getQuestion(tt_Question value, int expected = 1)
+  {
+    _mock_getQuestion = value;
+    _mock_getQuestion_expected = expected;
+    _mock_getQuestion_called = 0;
+  }
+
+  bool isSatisfied_getQuestion() const
+  {
+    return _mock_getQuestion_expected == _mock_getQuestion_called;
+  }
+
+  private tt_Question _mock_getQuestion;
+  private int _mock_getQuestion_expected;
+  private int _mock_getQuestion_called;
+
+} // class tt_QuestionSourceMock
 
 class tt_ViewMock : tt_View
 {

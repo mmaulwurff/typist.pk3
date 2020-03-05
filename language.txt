@@ -41,6 +41,17 @@ TT_CUSTOM_TEXT = "Custom Text";
 
 TT_NIX_LESSON = "*nix Command Line";
 
+TT_LESSON_RANDOM              = "Random Characters";
+TT_RANDOM_LESSON_TITLE        = "Random Characters Lesson Configuration";
+TT_RANDOM_LESSON_LENGTH       = "Length";
+TT_RANDOM_LESSON_UPPERCASE    = "A-Z";
+TT_RANDOM_LESSON_LOWERCASE    = "a-z";
+TT_RANDOM_LESSON_NUMBERS      = "0-9";
+TT_RANDOM_LESSON_PUNCTUATION  = "Punctuation";
+TT_RANDOM_LESSON_SYMBOLS      = "Other characters";
+TT_RANDOM_LESSON_CUSTOM       = "Custom string";
+TT_RANDOM_LESSON_CUSTOM_CHARS = "Custom string:";
+
 // Acknowledgments /////////////////////////////////////////////////////////////
 
 TT_ACKNOWLEDGMENTS_TITLE = "Acknowledgments";

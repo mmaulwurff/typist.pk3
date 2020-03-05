@@ -28,7 +28,7 @@ class tt_QuestionSource abstract
   virtual
   tt_Question getQuestion()
   {
-    Console.Printf("zscript/typist/question/tt_question_source.zs:31: T: override this!");
+    Console.Printf("zscript/typist/lesson/tt_question_source.zs:31: T: override this!");
     return NULL;
   }
 

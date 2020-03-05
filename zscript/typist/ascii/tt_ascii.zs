@@ -50,6 +50,8 @@ class tt_Ascii
     UppercaseA =  65,
     UppercaseZ =  90,
 
+    Backslash  =  92,
+
     LowercaseA =  97,
     LowercaseZ = 122,
 

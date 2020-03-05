@@ -15,29 +15,31 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class tt_RandomLetterSourceTest : tt_Clematis
+/**
+ * This mixin represents any class that wants to load Cvars.
+ */
+mixin class tt_CvarUser
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+// private: ////////////////////////////////////////////////////////////////////
 
-  override
-  void TestSuites()
+  private
+  void initPlayerSource(tt_PlayerSource playerSource)
   {
-    Describe("Checking Random Letter Source");
-
-    let questionSource = new("tt_RandomLetterSource").init();
-    let question       = questionSource.getQuestion();
-    let description    = question.getDescription();
-    Console.Printf( "zscript/typist/question/tt_random_letter_source_test.zs:31: T: Question: %s"
-                  , description
-                  );
-
-    let wrongString = "111";
-    let wrongAnswer = new("tt_Answer").init(wrongString);
-
-    It("Letter must be not equal to numbers", AssertFalse(question.isRight(wrongAnswer)));
-
-    EndDescribe();
+    _playerSource = playerSource;
   }
 
-} // class tt_RandomLetterSourceTest
+  private
+  Cvar getCvar(String cvarName)
+  {
+    let playerInfo = _playerSource.getInfo();
+    let consoleVar = Cvar.GetCvar(cvarName, playerInfo);
+
+    return consoleVar;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_PlayerSource _playerSource;
+
+} // class tt_CvarUser

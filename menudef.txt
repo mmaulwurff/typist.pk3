@@ -22,6 +22,7 @@ OptionMenu tt_Options
   StaticText ""
   Option     "$TT_QUESTION_SOURCE", tt_question_source, tt_QuestionSourceValues
   Submenu    "$TT_MIXED_LESSON_TITLE", tt_MixedLesson
+  Submenu    "$TT_RANDOM_LESSON_TITLE", tt_RandomLesson
   Command    "$TT_APPLY", tt_reset_targets
   StaticText "$TT_QUESTION_SOURCE_NOTE"
 
@@ -57,15 +58,14 @@ OptionMenu tt_MixedLesson
   Title "$TT_MIXED_LESSON_TITLE_FULL"
 
   // See docs/adding-new-lesson.md.
-  Option "$TT_LESSON_LETTERS" , tt_is_lesson_enabled_0, OnOff
-  Option "$TT_LESSON_NUMBERS" , tt_is_lesson_enabled_1, OnOff
-  Option "$TT_LESSON_GZDOOM"  , tt_is_lesson_enabled_2, OnOff
-  Option "$TT_LESSON_CPP"     , tt_is_lesson_enabled_3, OnOff
-  Option "$TT_LESSON_MATH"    , tt_is_lesson_enabled_4, OnOff
-  Option "$TT_LESSON_1000"    , tt_is_lesson_enabled_5, OnOff
-  Option "$TT_LESSON_1000_RU" , tt_is_lesson_enabled_6, OnOff
-  Option "$TT_CUSTOM_TEXT"    , tt_is_lesson_enabled_7, OnOff
-  Option "$TT_NIX_LESSON"     , tt_is_lesson_enabled_8, OnOff
+  Option "$TT_LESSON_RANDOM"  , tt_is_lesson_enabled_0 , OnOff
+  Option "$TT_LESSON_GZDOOM"  , tt_is_lesson_enabled_1 , OnOff
+  Option "$TT_LESSON_CPP"     , tt_is_lesson_enabled_2 , OnOff
+  Option "$TT_LESSON_MATH"    , tt_is_lesson_enabled_3 , OnOff
+  Option "$TT_LESSON_1000"    , tt_is_lesson_enabled_4 , OnOff
+  Option "$TT_LESSON_1000_RU" , tt_is_lesson_enabled_5 , OnOff
+  Option "$TT_CUSTOM_TEXT"    , tt_is_lesson_enabled_6 , OnOff
+  Option "$TT_NIX_LESSON"     , tt_is_lesson_enabled_7 , OnOff
 
   StaticText ""
   StaticText "$TT_MIXED_LESSON_NOTE"
@@ -73,6 +73,24 @@ OptionMenu tt_MixedLesson
   StaticText ""
   Command    "$TT_APPLY", tt_reset_targets
   StaticText "$TT_QUESTION_SOURCE_NOTE"
+}
+
+OptionMenu tt_RandomLesson
+{
+  Title  "$TT_RANDOM_LESSON_TITLE_FULL"
+
+  Slider "$TT_RANDOM_LESSON_LENGTH", tt_rc_length, 1, 10, 1, 0
+
+  StaticText ""
+  Option "$TT_RANDOM_LESSON_UPPERCASE"   , tt_rc_uppercase_letters_enabled , OnOff
+  Option "$TT_RANDOM_LESSON_LOWERCASE"   , tt_rc_lowercase_letters_enabled , OnOff
+  Option "$TT_RANDOM_LESSON_NUMBERS"     , tt_rc_numbers_enabled           , OnOff
+  Option "$TT_RANDOM_LESSON_PUNCTUATION" , tt_rc_punctuation_enabled       , OnOff
+  Option "$TT_RANDOM_LESSON_SYMBOLS"     , tt_rc_symbols_enabled           , OnOff
+
+  StaticText ""
+  Option     "$TT_RANDOM_LESSON_CUSTOM"       , tt_rc_custom_enabled , OnOff
+  TextField  "$TT_RANDOM_LESSON_CUSTOM_CHARS" , tt_rc_custom
 }
 
 // Helper Menu /////////////////////////////////////////////////////////////////
@@ -89,16 +107,15 @@ OptionMenu tt_MenuInjector
 // See docs/adding-new-lesson.md.
 OptionValue tt_QuestionSourceValues
 {
-  0 , "$TT_LESSON_LETTERS"
-  1 , "$TT_LESSON_NUMBERS"
-  2 , "$TT_LESSON_GZDOOM"
-  3 , "$TT_LESSON_CPP"
-  4 , "$TT_LESSON_MATH"
-  5 , "$TT_LESSON_1000"
-  6 , "$TT_LESSON_1000_RU"
-  7 , "$TT_MIXED_LESSON"
-  8 , "$TT_CUSTOM_TEXT"
-  9 , "$TT_NIX_LESSON"
+  0 , "$TT_LESSON_RANDOM"
+  1 , "$TT_LESSON_GZDOOM"
+  2 , "$TT_LESSON_CPP"
+  3 , "$TT_LESSON_MATH"
+  4 , "$TT_LESSON_1000"
+  5 , "$TT_LESSON_1000_RU"
+  6 , "$TT_MIXED_LESSON"
+  7 , "$TT_CUSTOM_TEXT"
+  8 , "$TT_NIX_LESSON"
 }
 
 OptionString tt_CommandPrefixValues

@@ -43,7 +43,7 @@ class tt_MathsLesson : tt_QuestionSource
     case Division:       return makeDivisionQuestion();
     }
 
-    Console.Printf("zscript/typist/question/tt_maths_lesson.zs:46: T: unknown operation!");
+    Console.Printf("zscript/typist/lesson/tt_maths_lesson.zs:46: T: unknown operation!");
     return NULL;
   }
 

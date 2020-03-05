@@ -25,7 +25,7 @@ class tt_SettingsImpl : tt_Settings
 
   tt_SettingsImpl init(tt_PlayerSource playerSource)
   {
-    _playerSource = playerSource;
+    initPlayerSource(playerSource);
 
     return self;
   }
@@ -93,22 +93,9 @@ class tt_SettingsImpl : tt_Settings
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private
-  Cvar getCvar(String cvarName)
-  {
-    let playerInfo = _playerSource.getInfo();
-    let consoleVar = Cvar.GetCvar(cvarName, playerInfo);
-
-    return consoleVar;
-  }
-
-// private: ////////////////////////////////////////////////////////////////////
-
   const N_IS_LESSON_ENABLED_CVARS = 10;
 
-// private: ////////////////////////////////////////////////////////////////////
-
-  private tt_PlayerSource _playerSource;
+  mixin tt_CvarUser;
 
   private transient Cvar _scaleCvar;
   private transient Cvar _autoaimCvar;
