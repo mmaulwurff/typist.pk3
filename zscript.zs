@@ -41,6 +41,7 @@ version 4.3.3
 #include "zscript/typist/activatable/tt_left_dasher.zs"
 #include "zscript/typist/activatable/tt_left_turner_test.zs"
 #include "zscript/typist/activatable/tt_left_turner.zs"
+#include "zscript/typist/activatable/tt_reloader.zs"
 #include "zscript/typist/activatable/tt_right_dasher.zs"
 #include "zscript/typist/activatable/tt_right_turner_test.zs"
 #include "zscript/typist/activatable/tt_right_turner.zs"

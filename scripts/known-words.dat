@@ -521,6 +521,7 @@ proj
 promise
 protected
 proximate
+psprite
 public
 punct
 push
@@ -549,6 +550,7 @@ regular
 reinterpret
 relative
 relicensing
+reloader
 remove
 renderer
 rendermode

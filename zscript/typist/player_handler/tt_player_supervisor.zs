@@ -250,6 +250,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     activatables.push(new("tt_LeftDasher"   ).init(playerSource));
     activatables.push(new("tt_ForwardDasher").init(playerSource));
     activatables.push(new("tt_BackDasher"   ).init(playerSource));
+    activatables.push(new("tt_Reloader"     ).init(playerSource));
   }
 
   private static
