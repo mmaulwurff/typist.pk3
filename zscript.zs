@@ -128,7 +128,7 @@ version 4.3.3
 #include "zscript/typist/player/tt_player_source.zs"
 #include "zscript/typist/question/tt_match.zs"
 #include "zscript/typist/question/tt_question.zs"
-#include "zscript/typist/settings/tt_cvar_user.zs"
+#include "zscript/typist/settings/tt_cvar.zs"
 #include "zscript/typist/settings/tt_random_characters_lesson_settings_impl.zs"
 #include "zscript/typist/settings/tt_random_characters_lesson_settings.zs"
 #include "zscript/typist/settings/tt_settings_impl_test.zs"

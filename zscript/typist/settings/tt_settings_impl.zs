@@ -25,83 +25,42 @@ class tt_SettingsImpl : tt_Settings
 
   tt_SettingsImpl init(tt_PlayerSource playerSource)
   {
-    initPlayerSource(playerSource);
+    _scaleCvar               = new("tt_Cvar").init(playerSource, "tt_view_scale"     );
+    _autoaimCvar             = new("tt_Cvar").init(playerSource, "autoaim"           );
+    _questionSourceIndexCvar = new("tt_Cvar").init(playerSource, "tt_question_source");
+    _commandPrefixCvar       = new("tt_Cvar").init(playerSource, "tt_command_prefix" );
+
+    for (uint i = 0; i < N_IS_LESSON_ENABLED_CVARS; ++i)
+    {
+      String cvarName = String.Format("tt_is_lesson_enabled_%d", i);
+      _isLessonEnabledCvars.Push(new("tt_Cvar").init(playerSource, cvarName));
+    }
 
     return self;
   }
 
 // public: // tt_Settings //////////////////////////////////////////////////////
 
-  override
-  int getScale()
-  {
-    if (_scaleCvar == NULL)
-    {
-      _scaleCvar = getCvar("tt_view_scale");
-    }
-
-    return _scaleCvar.GetInt();
-  }
-
-  override
-  bool isAutoAimEnabled()
-  {
-    if (_autoaimCvar == NULL)
-    {
-      _autoaimCvar = getCvar("autoaim");
-    }
-
-    return (_autoaimCvar.GetFloat() > 34.5);
-  }
-
-  override
-  int getQuestionSourceIndex()
-  {
-    if (_questionSourceIndexCvar == NULL)
-    {
-      _questionSourceIndexCvar = getCvar("tt_question_source");
-    }
-
-    return _questionSourceIndexCvar.GetInt();
-  }
-
-  override
-  String getCommandPrefix()
-  {
-    if (_commandPrefixCvar == NULL)
-    {
-      _commandPrefixCvar = getCvar("tt_command_prefix");
-    }
-
-    return _commandPrefixCvar.GetString();
-  }
+  override int    getScale()               { return _scaleCvar.getInt();               }
+  override bool   isAutoAimEnabled()       { return (_autoaimCvar.getFloat() > 34.5);  }
+  override int    getQuestionSourceIndex() { return _questionSourceIndexCvar.getInt(); }
+  override String getCommandPrefix()       { return _commandPrefixCvar.getString();    }
 
   override
   bool getLessonEnabled(uint index)
   {
-    if (_isLessonEnabledCvars.size() == 0 || _isLessonEnabledCvars[0] == NULL)
-    {
-      for (uint i = 0; i < N_IS_LESSON_ENABLED_CVARS; ++i)
-      {
-        String cvarName = String.Format("tt_is_lesson_enabled_%d", i);
-        _isLessonEnabledCvars.Push(getCvar(cvarName));
-      }
-    }
-
-    return _isLessonEnabledCvars[index].GetBool();
+    return _isLessonEnabledCvars[index].getBool();
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   const N_IS_LESSON_ENABLED_CVARS = 10;
 
-  mixin tt_CvarUser;
+  private tt_Cvar _scaleCvar;
+  private tt_Cvar _autoaimCvar;
+  private tt_Cvar _questionSourceIndexCvar;
+  private tt_Cvar _commandPrefixCvar;
 
-  private transient Cvar _scaleCvar;
-  private transient Cvar _autoaimCvar;
-  private transient Cvar _questionSourceIndexCvar;
-  private transient Cvar _commandPrefixCvar;
-
-  private transient Array<Cvar> _isLessonEnabledCvars;
+  private Array<tt_Cvar> _isLessonEnabledCvars;
 
 } // class tt_SettingsImpl

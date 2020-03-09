@@ -28,112 +28,38 @@ class tt_RandomCharactersLessonSettingsImpl : tt_RandomCharactersLessonSettings
 
   tt_RandomCharactersLessonSettingsImpl init(tt_PlayerSource playerSource)
   {
-    initPlayerSource(playerSource);
+    _lessonLength         = new("tt_Cvar").init(playerSource, "tt_rc_length");
+    _isUppercaseEnabled   = new("tt_Cvar").init(playerSource, "tt_rc_uppercase_letters_enabled");
+    _isLowercaseEnabled   = new("tt_Cvar").init(playerSource, "tt_rc_lowercase_letters_enabled");
+    _isNumbersEnabled     = new("tt_Cvar").init(playerSource, "tt_rc_numbers_enabled");
+    _isPunctuationEnabled = new("tt_Cvar").init(playerSource, "tt_rc_punctuation_enabled");
+    _isSymbolsEnabled     = new("tt_Cvar").init(playerSource, "tt_rc_symbols_enabled");
+    _isCustomEnabled      = new("tt_Cvar").init(playerSource, "tt_rc_custom_enabled");
+    _customCharacters     = new("tt_Cvar").init(playerSource, "tt_rc_custom");
 
     return self;
   }
 
 // public: // tt_RandomCharactersLessonSettings ////////////////////////////////
 
-  override
-  int getLessonLength()
-  {
-    if (_lessonLengthCvar == NULL)
-    {
-      _lessonLengthCvar = getCvar("tt_rc_length");
-    }
-
-    return _lessonLengthCvar.GetInt();
-  }
-
-  override
-  bool isUppercaseLettersEnabled()
-  {
-    if (_isUppercaseLettersEnabledCvar == NULL)
-    {
-      _isUppercaseLettersEnabledCvar = getCvar("tt_rc_uppercase_letters_enabled");
-    }
-
-    return _isUppercaseLettersEnabledCvar.GetBool();
-  }
-
-  override
-  bool isLowercaseLettersEnabled()
-  {
-    if (_isLowercaseLettersEnabledCvar == NULL)
-    {
-      _isLowercaseLettersEnabledCvar = getCvar("tt_rc_lowercase_letters_enabled");
-    }
-
-    return _isLowercaseLettersEnabledCvar.GetBool();
-  }
-
-  override
-  bool isNumbersEnabled()
-  {
-    if (_isNumbersEnabledCvar == NULL)
-    {
-      _isNumbersEnabledCvar = getCvar("tt_rc_numbers_enabled");
-    }
-
-    return _isNumbersEnabledCvar.GetBool();
-  }
-
-  override
-  bool isPunctuationEnabled()
-  {
-    if (_isPunctuationEnabledCvar == NULL)
-    {
-      _isPunctuationEnabledCvar = getCvar("tt_rc_punctuation_enabled");
-    }
-
-    return _isPunctuationEnabledCvar.GetBool();
-  }
-
-  override
-  bool isSymbolsEnabled()
-  {
-    if (_isSymbolsEnabledCvar == NULL)
-    {
-      _isSymbolsEnabledCvar = getCvar("tt_rc_symbols_enabled");
-    }
-
-    return _isSymbolsEnabledCvar.GetBool();
-  }
-
-  override
-  bool isCustomCharactersEnabled()
-  {
-    if (_isCustomEnabledCvar == NULL)
-    {
-      _isCustomEnabledCvar = getCvar("tt_rc_custom_enabled");
-    }
-
-    return _isCustomEnabledCvar.GetBool();
-  }
-
-  override
-  String getCustomCharacters()
-  {
-    if (_customCharactersCvar == NULL)
-    {
-      _customCharactersCvar = getCvar("tt_rc_custom");
-    }
-
-    return _customCharactersCvar.GetString();
-  }
+  override int    getLessonLength()           { return _lessonLength.getInt();          }
+  override bool   isUppercaseLettersEnabled() { return _isUppercaseEnabled.getBool();   }
+  override bool   isLowercaseLettersEnabled() { return _isLowercaseEnabled.getBool();   }
+  override bool   isNumbersEnabled()          { return _isNumbersEnabled.getBool();     }
+  override bool   isPunctuationEnabled()      { return _isPunctuationEnabled.getBool(); }
+  override bool   isSymbolsEnabled()          { return _isSymbolsEnabled.getBool();     }
+  override bool   isCustomCharactersEnabled() { return _isCustomEnabled.getBool();      }
+  override String getCustomCharacters()       { return _customCharacters.getString();   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  mixin tt_CvarUser;
-
-  private transient Cvar _lessonLengthCvar;
-  private transient Cvar _isUppercaseLettersEnabledCvar;
-  private transient Cvar _isLowercaseLettersEnabledCvar;
-  private transient Cvar _isNumbersEnabledCvar;
-  private transient Cvar _isPunctuationEnabledCvar;
-  private transient Cvar _isSymbolsEnabledCvar;
-  private transient Cvar _isCustomEnabledCvar;
-  private transient Cvar _customCharactersCvar;
+  private tt_Cvar _lessonLength;
+  private tt_Cvar _isUppercaseEnabled;
+  private tt_Cvar _isLowercaseEnabled;
+  private tt_Cvar _isNumbersEnabled;
+  private tt_Cvar _isPunctuationEnabled;
+  private tt_Cvar _isSymbolsEnabled;
+  private tt_Cvar _isCustomEnabled;
+  private tt_Cvar _customCharacters;
 
 } // class tt_RandomCharactersLessonSettingsImpl
