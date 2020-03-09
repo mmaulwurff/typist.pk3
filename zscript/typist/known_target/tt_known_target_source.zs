@@ -29,7 +29,7 @@ class tt_KnownTargetSource abstract
   virtual
   tt_KnownTargets getTargets() const
   {
-    Console.Printf("zscript/typist/known_target/tt_known_target_source.zs:32: T: override this!");
+    tt_Log.log("zscript/typist/known_target/tt_known_target_source.zs:32: T: override this!");
     return NULL;
   }
 
@@ -38,7 +38,7 @@ class tt_KnownTargetSource abstract
   virtual
   bool isEmpty() const
   {
-    Console.Printf("zscript/typist/known_target/tt_known_target_source.zs:41: T: override this!");
+    tt_Log.log("zscript/typist/known_target/tt_known_target_source.zs:41: T: override this!");
     return true;
   }
 
@@ -47,7 +47,7 @@ class tt_KnownTargetSource abstract
   virtual
   void update()
   {
-    Console.Printf("zscript/typist/known_target/tt_known_target_source.zs:50: T: override this!");
+    tt_Log.log("zscript/typist/known_target/tt_known_target_source.zs:50: T: override this!");
   }
 
 } // class tt_KnownTargetSource

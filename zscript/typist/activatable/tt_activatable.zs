@@ -27,20 +27,20 @@ class tt_Activatable abstract
   play virtual
   void activate()
   {
-    Console.Printf("zscript/typist/activatable/tt_activatable.zs:30: T: override this!");
+    tt_Log.log("zscript/typist/activatable/tt_activatable.zs:30: T: override this!");
   }
 
   virtual
   tt_Strings getCommands()
   {
-    Console.Printf("zscript/typist/activatable/tt_activatable.zs:36: T: override this!");
+    tt_Log.log("zscript/typist/activatable/tt_activatable.zs:36: T: override this!");
     return NULL;
   }
 
   virtual
   bool isVisible()
   {
-    Console.Printf("zscript/typist/activatable/tt_activatable.zs:43: T: override this!");
+    tt_Log.log("zscript/typist/activatable/tt_activatable.zs:43: T: override this!");
     return false;
   }
 

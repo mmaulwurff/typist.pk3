@@ -26,14 +26,14 @@ class tt_AnswerSource abstract
   virtual
   tt_Answer getAnswer()
   {
-    Console.Printf("zscript/typist/answer/tt_answer_source.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:29: T: override this!");
     return NULL;
   }
 
   virtual
   void processKey(tt_Character character)
   {
-    Console.Printf("zscript/typist/answer/tt_answer_source.zs:36: T: override this!");
+    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:36: T: override this!");
   }
 
 } // class tt_AnswerSource

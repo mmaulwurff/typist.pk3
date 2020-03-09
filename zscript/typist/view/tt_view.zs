@@ -26,7 +26,7 @@ class tt_View abstract
   ui virtual
   void draw(RenderEvent event)
   {
-    Console.Printf("zscript/typist/view/tt_view.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/view/tt_view.zs:29: T: override this!");
   }
 
 } // class tt_View

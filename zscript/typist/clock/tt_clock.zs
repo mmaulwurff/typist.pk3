@@ -31,7 +31,7 @@ class tt_Clock abstract
   virtual
   int getNow()
   {
-    Console.Printf("zscript/typist/clock/tt_clock.zs:34: T: override this!");
+    tt_Log.log("zscript/typist/clock/tt_clock.zs:34: T: override this!");
 
     return 0;
   }
@@ -46,7 +46,7 @@ class tt_Clock abstract
   virtual
   int since(int moment)
   {
-    Console.Printf("zscript/typist/clock/tt_clock.zs:49: T: override this!");
+    tt_Log.log("zscript/typist/clock/tt_clock.zs:49: T: override this!");
 
     return 0;
   }

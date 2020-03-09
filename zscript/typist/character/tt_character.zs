@@ -26,7 +26,7 @@ class tt_Character
   tt_Character init(int type, int code, bool isCtrl)
   {
     _eventType = type;
-    //Console.Printf("type: %d, code: %d", type, code);
+    //tt_Log.log("type: %d, code: %d", type, code);
 
     if (type == UiEvent.Type_KeyUp && (code == tt_Ascii.Enter || code == tt_Ascii.Space))
     {

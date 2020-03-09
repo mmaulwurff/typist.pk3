@@ -29,7 +29,7 @@ class tt_OriginSource abstract
   virtual
   tt_Origin getOrigin()
   {
-    Console.Printf("zscript/typist/origin/tt_origin_source.zs:32: T: override this!");
+    tt_Log.log("zscript/typist/origin/tt_origin_source.zs:32: T: override this!");
     return NULL;
   }
 
@@ -38,7 +38,7 @@ class tt_OriginSource abstract
   virtual
   void update()
   {
-    Console.Printf("zscript/typist/origin/tt_origin_source.zs:41: T: override this!");
+    tt_Log.log("zscript/typist/origin/tt_origin_source.zs:41: T: override this!");
   }
 
 } // class tt_OriginSource

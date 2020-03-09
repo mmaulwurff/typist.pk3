@@ -26,35 +26,35 @@ class tt_Settings abstract
   virtual
   int getScale()
   {
-    Console.Printf("zscript/typist/settings/tt_settings.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/settings/tt_settings.zs:29: T: override this!");
     return 1;
   }
 
   virtual
   bool isAutoAimEnabled()
   {
-    Console.Printf("zscript/typist/settings/tt_settings.zs:36: T: override this!");
+    tt_Log.log("zscript/typist/settings/tt_settings.zs:36: T: override this!");
     return false;
   }
 
   virtual
   int getQuestionSourceIndex()
   {
-    Console.Printf("zscript/typist/settings/tt_settings.zs:43: T: override this!");
+    tt_Log.log("zscript/typist/settings/tt_settings.zs:43: T: override this!");
     return 0;
   }
 
   virtual
   String getCommandPrefix()
   {
-    Console.Printf("zscript/typist/settings/tt_settings.zs:50: T: override this!");
+    tt_Log.log("zscript/typist/settings/tt_settings.zs:50: T: override this!");
     return "";
   }
 
   virtual
   bool getLessonEnabled(uint i)
   {
-    Console.Printf("zscript/typist/settings/tt_settings.zs:57: T: override this!");
+    tt_Log.log("zscript/typist/settings/tt_settings.zs:57: T: override this!");
     return false;
   }
 

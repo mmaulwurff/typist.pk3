@@ -37,7 +37,7 @@ class tt_Turner : tt_Activatable abstract
   virtual
   double getTurnAngle() const
   {
-    Console.Printf("zscript/typist/activatable/tt_turner.zs:40: T: override this!");
+    tt_Log.log("zscript/typist/activatable/tt_turner.zs:40: T: override this!");
     return 0;
   }
 

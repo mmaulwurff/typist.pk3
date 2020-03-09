@@ -26,25 +26,25 @@ class tt_EventReporter abstract
   virtual
   void reportNewMode(int mode)
   {
-    Console.Printf("zscript/typist/event_reporter/tt_event_reporter.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/event_reporter/tt_event_reporter.zs:29: T: override this!");
   }
 
   virtual
   void reportKeyPressed()
   {
-    Console.Printf("zscript/typist/event_reporter/tt_event_reporter.zs:35: T: override this!");
+    tt_Log.log("zscript/typist/event_reporter/tt_event_reporter.zs:35: T: override this!");
   }
 
   virtual
   void reportAnswerMatch()
   {
-    Console.Printf("zscript/typist/event_reporter/tt_event_reporter.zs:41: T: override this!");
+    tt_Log.log("zscript/typist/event_reporter/tt_event_reporter.zs:41: T: override this!");
   }
 
   virtual
   void reportAnswerNotMatch()
   {
-    Console.Printf("zscript/typist/event_reporter/tt_event_reporter.zs:47: T: override this!");
+    tt_Log.log("zscript/typist/event_reporter/tt_event_reporter.zs:47: T: override this!");
   }
 
 } // class tt_EventReporter

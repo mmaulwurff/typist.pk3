@@ -42,7 +42,7 @@ class tt_SoundReporter : tt_EventReporter
     switch (mode)
     {
     case tt_Mode.Unknown:
-      Console.Printf("zscript/typist/event_reporter/tt_sound_reporter.zs:45: T: unknown mode!");
+      tt_Log.log("zscript/typist/event_reporter/tt_sound_reporter.zs:45: T: unknown mode!");
       break;
     case tt_Mode.Combat:  playPlayerSound("tt/combat");  break;
     case tt_Mode.Explore: playPlayerSound("tt/explore"); break;

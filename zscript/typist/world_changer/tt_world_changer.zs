@@ -26,7 +26,7 @@ class tt_WorldChanger abstract
   play virtual
   void changeWorld()
   {
-    Console.Printf("zscript/typist/world_changer/tt_world_changer.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/world_changer/tt_world_changer.zs:29: T: override this!");
   }
 
 } // class tt_WorldChanger

@@ -26,14 +26,14 @@ class tt_PlayerSource abstract
   virtual
   PlayerInfo getInfo()
   {
-    Console.Printf("zscript/typist/player/tt_player_source.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/player/tt_player_source.zs:29: T: override this!");
     return NULL;
   }
 
   virtual
   PlayerPawn getPawn()
   {
-    Console.Printf("zscript/typist/player/tt_player_source.zs:36: T: override this!");
+    tt_Log.log("zscript/typist/player/tt_player_source.zs:36: T: override this!");
     return NULL;
   }
 

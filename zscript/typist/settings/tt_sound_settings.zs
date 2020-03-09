@@ -26,21 +26,21 @@ class tt_SoundSettings abstract
   virtual
   bool isEnabled()
   {
-    Console.Printf("zscript/typist/settings/tt_sound_settings.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/settings/tt_sound_settings.zs:29: T: override this!");
     return false;
   }
 
   virtual
   bool isTypingEnabled()
   {
-    Console.Printf("zscript/typist/settings/tt_sound_settings.zs:36: T: override this!");
+    tt_Log.log("zscript/typist/settings/tt_sound_settings.zs:36: T: override this!");
     return false;
   }
 
   virtual
   int getTheme()
   {
-    Console.Printf("zscript/typist/settings/tt_sound_settings.zs:43: T: override this!");
+    tt_Log.log("zscript/typist/settings/tt_sound_settings.zs:43: T: override this!");
     return 0;
   }
 

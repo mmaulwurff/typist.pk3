@@ -27,8 +27,7 @@ class tt_TargetSource abstract
   virtual
   tt_Targets getTargets()
   {
-    Console.Printf(
-      "zscript/typist/target/tt_target_source.zs:31: T: override this!");
+    tt_Log.log("zscript/typist/target/tt_target_source.zs:30: T: override this!");
     return NULL;
   }
 

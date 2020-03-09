@@ -25,7 +25,7 @@ class tt_Firer abstract
   play virtual
   void fire()
   {
-    Console.Printf("zscript/typist/firer/tt_firer.zs:28: T: override this!");
+    tt_Log.log("zscript/typist/firer/tt_firer.zs:28: T: override this!");
   }
 
 } // class tt_Firer

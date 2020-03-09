@@ -26,7 +26,7 @@ class tt_RandomCharactersLessonSettings
   virtual
   int getLessonLength()
   {
-    Console.Printf(
+    tt_Log.log(
       "zscript/typist/settings/tt_random_characters_lesson_settings.zs:30: T: override this!");
     return 3;
   }
@@ -34,7 +34,7 @@ class tt_RandomCharactersLessonSettings
   virtual
   bool isUppercaseLettersEnabled()
   {
-    Console.Printf(
+    tt_Log.log(
       "zscript/typist/settings/tt_random_characters_lesson_settings.zs:38: T: override this!");
     return false;
   }
@@ -42,7 +42,7 @@ class tt_RandomCharactersLessonSettings
   virtual
   bool isLowercaseLettersEnabled()
   {
-    Console.Printf(
+    tt_Log.log(
       "zscript/typist/settings/tt_random_characters_lesson_settings.zs:46: T: override this!");
     return false;
   }
@@ -50,7 +50,7 @@ class tt_RandomCharactersLessonSettings
   virtual
   bool isNumbersEnabled()
   {
-    Console.Printf(
+    tt_Log.log(
       "zscript/typist/settings/tt_random_characters_lesson_settings.zs:54: T: override this!");
     return false;
   }
@@ -58,7 +58,7 @@ class tt_RandomCharactersLessonSettings
   virtual
   bool isPunctuationEnabled()
   {
-    Console.Printf(
+    tt_Log.log(
       "zscript/typist/settings/tt_random_characters_lesson_settings.zs:62: T: override this!");
     return false;
   }
@@ -66,7 +66,7 @@ class tt_RandomCharactersLessonSettings
   virtual
   bool isSymbolsEnabled()
   {
-    Console.Printf(
+    tt_Log.log(
       "zscript/typist/settings/tt_random_characters_lesson_settings.zs:70: T: override this!");
     return false;
   }
@@ -74,7 +74,7 @@ class tt_RandomCharactersLessonSettings
   virtual
   bool isCustomCharactersEnabled()
   {
-    Console.Printf(
+    tt_Log.log(
       "zscript/typist/settings/tt_random_characters_lesson_settings.zs:78: T: override this!");
     return false;
   }
@@ -82,7 +82,7 @@ class tt_RandomCharactersLessonSettings
   virtual
   String getCustomCharacters()
   {
-    Console.Printf(
+    tt_Log.log(
       "zscript/typist/settings/tt_random_characters_lesson_settings.zs:86: T: override this!");
     return "";
   }

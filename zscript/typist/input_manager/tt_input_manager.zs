@@ -26,13 +26,13 @@ class tt_InputManager abstract
   virtual
   void manageInput()
   {
-    Console.Printf("zscript/typist/input_manager/tt_input_manager.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/input_manager/tt_input_manager.zs:29: T: override this!");
   }
 
   virtual
   bool isCapturingKeys()
   {
-    Console.Printf("zscript/typist/input_manager/tt_input_manager.zs:35: T: override this!");
+    tt_Log.log("zscript/typist/input_manager/tt_input_manager.zs:35: T: override this!");
     return false;
   }
 

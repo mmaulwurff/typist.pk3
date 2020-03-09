@@ -26,7 +26,7 @@ class tt_ModeStorage : tt_ModeSource abstract
   virtual
   void setMode(int mode)
   {
-    Console.Printf("zscript/typist/mode/tt_mode_storage.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/mode/tt_mode_storage.zs:29: T: override this!");
   }
 
 } // class tt_ModeStorage

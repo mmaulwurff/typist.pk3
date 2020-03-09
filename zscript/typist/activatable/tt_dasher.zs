@@ -37,7 +37,7 @@ class tt_Dasher : tt_Activatable abstract
   virtual
   double getDashAngle() const
   {
-    Console.Printf("zscript/typist/activatable/tt_dasher.zs:40: T: override this!");
+    tt_Log.log("zscript/typist/activatable/tt_dasher.zs:40: T: override this!");
     return 0;
   }
 

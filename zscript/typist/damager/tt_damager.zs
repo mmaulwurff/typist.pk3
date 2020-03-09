@@ -25,7 +25,7 @@ class tt_Damager abstract
   play virtual
   void damage()
   {
-    Console.Printf("zscript/typist/damager/tt_damager.zs:28: T: override this!");
+    tt_Log.log("zscript/typist/damager/tt_damager.zs:28: T: override this!");
   }
 
 } // class tt_Damager
