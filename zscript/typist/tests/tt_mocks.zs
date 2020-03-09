@@ -545,6 +545,26 @@ class tt_PlayerHandlerMock : tt_PlayerHandler
   private int _mock_unlockMode_called;
 
   override
+  void forceCombat()
+  {
+    ++_mock_forceCombat_called;
+  }
+
+  void expect_forceCombat(int expected = 1)
+  {
+    _mock_forceCombat_expected = expected;
+    _mock_forceCombat_called = 0;
+  }
+
+  bool isSatisfied_forceCombat() const
+  {
+    return _mock_forceCombat_expected == _mock_forceCombat_called;
+  }
+
+  private int _mock_forceCombat_expected;
+  private int _mock_forceCombat_called;
+
+  override
   void draw(RenderEvent event)
   {
     ++_mock_draw_called;

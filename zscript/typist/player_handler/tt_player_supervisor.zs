@@ -167,6 +167,12 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _manualModeSource.setMode(tt_Mode.None);
   }
 
+  override
+  void forceCombat()
+  {
+    _manualModeSource.setMode(tt_Mode.Combat);
+  }
+
 // public: // ui ///////////////////////////////////////////////////////////////
 
   override

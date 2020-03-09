@@ -26,38 +26,44 @@ class tt_PlayerHandler abstract
   virtual
   void processKey(tt_Character character)
   {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:29: T: override this!");
   }
 
   play virtual
   void tick()
   {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:35: T: override this!");
+    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:35: T: override this!");
   }
 
   virtual
   void reportDead(Actor dead)
   {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:41: T: override this!");
+    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:41: T: override this!");
   }
 
   virtual
   bool isCapturingKeys()
   {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:47: T: override this!");
+    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:47: T: override this!");
     return false;
   }
 
   virtual
   void unlockMode()
   {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:54: T: override this!");
+    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:54: T: override this!");
+  }
+
+  virtual
+  void forceCombat()
+  {
+    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:60: T: override this!");
   }
 
   ui virtual
   void draw(RenderEvent event)
   {
-    Console.Printf("zscript/typist/player_handler/tt_player_handler.zs:60: T: override this!");
+    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:66: T: override this!");
   }
 
 } // class tt_PlayerHandler

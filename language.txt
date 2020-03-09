@@ -5,6 +5,7 @@
 TT_TITLE = "Typist.pk3 v0.6";
 
 TT_UNLOCK = "Unlock Game Mode";
+TT_COMBAT = "Force Combat Mode";
 TT_SCORE  = "Open Score";
 
 TT_DISPLAY_OPTIONS_TITLE_OUT  = "Display Options";

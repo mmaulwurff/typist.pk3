@@ -76,7 +76,10 @@ class tt_EventHandler : EventHandler
   {
     String command = event.Name;
 
+    if (command.Left(3) != "tt_") return;
+
     if      (command == "tt_unlock_mode"  ) _playerHandler.unlockMode();
+    if      (command == "tt_force_combat" ) _playerHandler.forceCombat();
     else if (command == "tt_reset_targets") initPlayer(consolePlayer);
   }
 
