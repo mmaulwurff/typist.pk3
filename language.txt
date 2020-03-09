@@ -52,6 +52,14 @@ TT_RANDOM_LESSON_SYMBOLS      = "Other characters";
 TT_RANDOM_LESSON_CUSTOM       = "Custom string";
 TT_RANDOM_LESSON_CUSTOM_CHARS = "Custom string:";
 
+// Sound menus /////////////////////////////////////////////////////////////////
+
+TT_SOUND_SETTINGS       = "Sound Options";
+TT_SOUND_SETTINGS_FULL  = "Typist.pk3 Sound Options";
+TT_SOUND_THEME          = "Sound theme";
+TT_SOUND_ENABLED        = "Sound effects";
+TT_SOUND_TYPING_ENABLED = "Typing sound";
+
 // Acknowledgments /////////////////////////////////////////////////////////////
 
 TT_ACKNOWLEDGMENTS_TITLE = "Acknowledgments";

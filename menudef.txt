@@ -35,6 +35,9 @@ OptionMenu tt_Options
   Control    "$TT_UNLOCK", tt_unlock_mode
 
   StaticText ""
+  Submenu    "$TT_SOUND_SETTINGS", tt_Sound
+
+  StaticText ""
   Submenu    "$TT_ACKNOWLEDGMENTS_TITLE", tt_Acknowledgments
   Submenu    "$TT_HELP_TITLE", tt_Help
 }
@@ -134,4 +137,23 @@ OptionMenu zc_TopMenu
 {
   class zc_Top
   Title "Top Points"
+}
+
+// Sound settings //////////////////////////////////////////////////////////////
+
+OptionMenu tt_Sound
+{
+  Title  "$TT_SOUND_SETTINGS_FULL"
+
+  Option "$TT_SOUND_ENABLED"        , tt_sound_enabled        , OnOff
+  Option "$TT_SOUND_TYPING_ENABLED" , tt_sound_typing_enabled , OnOff
+  Option "$TT_SOUND_THEME"          , tt_sound_theme          , tt_SoundThemes
+}
+
+OptionValue tt_SoundThemes
+{
+  1, "Default"
+  2, "SNES"
+  4, "Dakka"
+  5, "Grocery Store"
 }

@@ -28,6 +28,7 @@ apply
 args
 argument
 argv
+aris
 array
 asm
 assert
@@ -41,6 +42,7 @@ audit
 auto
 autoaim
 automap
+awrmacd
 axiom
 axlfmgquqize
 back
@@ -81,12 +83,14 @@ cbegin
 ccmd
 cctype
 cdata
+cedarstudios
 ceil
 cend
 cerr
 cerrno
 cfenv
 cfloat
+chanf
 changelog
 changelogs
 char
@@ -164,6 +168,7 @@ cvarinfo
 cvars
 cwchar
 cwctype
+dakka
 damager
 dard
 data
@@ -185,6 +190,7 @@ dest
 destroy
 destructor
 dfiles
+diboz
 difference
 digit
 directory
@@ -193,12 +199,14 @@ distance
 distutils
 dleft
 do
+dobroide
 doesn
 domain
 doomwiki
 dotall
 double
 dpkg
+dpren
 drdteam
 dright
 duration
@@ -236,6 +244,8 @@ extern
 facet
 false
 fdisk
+feeeelllgood
+felfa
 fence
 fetch
 ffffff
@@ -266,6 +276,7 @@ fraggle
 fragglet
 free
 freedoom
+freesound
 friend
 front
 fsck
@@ -351,8 +362,10 @@ itemtt
 iterator
 iwad
 jarewill
+joshuaempyre
 json
 kadu
+kayliebenson
 keks
 key
 keyconf
@@ -383,6 +396,7 @@ lockable
 log
 logic
 long
+longarms
 lower
 lteq
 lvalue
@@ -395,6 +409,7 @@ marrub
 match
 matcher
 mathworld
+matthus
 max
 maxplayers
 mediafire
@@ -404,6 +419,7 @@ menudef
 merchantability
 merge
 message
+michorvath
 min
 miniwad
 minmax
@@ -414,7 +430,9 @@ mkey
 mmaulwurff
 monetary
 money
+monotraum
 move
+mrthenoronha
 msys
 multi
 multimap
@@ -435,6 +453,7 @@ nodelay
 nodraw
 noexcept
 noncommercially
+nooly
 norun
 nosave
 nosound
@@ -475,6 +494,7 @@ permissions
 perms
 permutation
 piecewise
+pitchshiftrange
 pixelstretch
 pkill
 place
@@ -545,6 +565,7 @@ rethrow
 return
 reverse
 rglob
+riccochet
 right
 rmdir
 rmtree
@@ -552,6 +573,7 @@ rotate
 rsync
 runtime
 rvalue
+ryansnook
 ryzen
 safety
 sample
@@ -586,6 +608,8 @@ sizeof
 slade
 sleep
 slice
+snes
+sneserrors
 socket
 sort
 sorted
@@ -627,9 +651,11 @@ submodules
 subprocess
 sudo
 suff
+suicidity
 sum
 swappable
 switch
+swosh
 symlink
 symmetric
 syncstream
@@ -647,6 +673,7 @@ texman
 this
 thread
 throw
+timbijnen
 time
 timedemo
 titlemaps
@@ -662,7 +689,13 @@ true
 try
 tuple
 type
+typea
+typeb
+typec
+typed
 typedef
+typee
+typef
 typeid
 typeinfo
 typename
@@ -738,4 +771,5 @@ youtu
 zain
 zdoom
 zippey
+zott
 zscript

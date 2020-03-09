@@ -134,6 +134,8 @@ version 4.3.3
 #include "zscript/typist/settings/tt_settings_impl_test.zs"
 #include "zscript/typist/settings/tt_settings_impl.zs"
 #include "zscript/typist/settings/tt_settings.zs"
+#include "zscript/typist/settings/tt_sound_settings_impl.zs"
+#include "zscript/typist/settings/tt_sound_settings.zs"
 #include "zscript/typist/strings/tt_strings_test.zs"
 #include "zscript/typist/strings/tt_strings.zs"
 #include "zscript/typist/target/tt_death_reporter_test.zs"

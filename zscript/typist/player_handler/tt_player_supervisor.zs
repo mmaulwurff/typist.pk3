@@ -27,7 +27,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   {
     let playerSource     = new("tt_PlayerSourceImpl").init(playerNumber);
 
-    let eventReporter    = new("tt_SoundReporter").init(playerSource);
+    let soundSettings    = new("tt_SoundSettingsImpl").init(playerSource);
+    let eventReporter    = new("tt_SoundReporter").init(playerSource, soundSettings);
     let manualModeSource = new("tt_SettableMode" ).init();
     let playerInput      = new("tt_PlayerInput"  ).init(manualModeSource, eventReporter);
     let deathReporter    = new("tt_DeathReporter").init();

@@ -1,5 +1,66 @@
-tt/combat    "sounds/combat.ogg"
-tt/explore   "sounds/explore.ogg"
-tt/click     "sounds/click.ogg"
-tt/match     "sounds/match.ogg"
-tt/not-match "sounds/not-match.ogg"
+// Global Typist sound settings ////////////////////////////////////////////////
+
+// Do not randomize pitch shift value.
+$pitchshiftrange 0
+
+// 1. Default sound theme ////////////////////////////////////////////////////@@
+
+tt/combat1    "sounds/Default/danger1.ogg"
+tt/explore1   "sounds/Default/safe1.ogg"
+tt/click1-1   "sounds/Default/typea1.ogg"
+tt/click1-2   "sounds/Default/typea2.ogg"
+tt/click1-3   "sounds/Default/typea3.ogg"
+tt/click1-4   "sounds/Default/typea4.ogg"
+tt/click1-5   "sounds/Default/typea5.ogg"
+tt/match1     "sounds/Default/success1.ogg"
+tt/not-match1 "sounds/Default/fail1.ogg"
+
+$random tt/click1 { tt/click1-1 tt/click1-2 tt/click1-3 tt/click1-4 tt/click1-5 }
+
+$volume tt/combat1  0.4
+$volume tt/explore1 0.6
+$volume tt/match1   0.4
+
+// 2. SNES sound theme /////////////////////////////////////////////////////////
+
+tt/combat2    "sounds/SNES/danger2.ogg"
+tt/explore2   "sounds/SNES/safe2.ogg"
+tt/click2-1   "sounds/SNES/typeb1.ogg"
+tt/click2-2   "sounds/SNES/typeb2.ogg"
+tt/click2-3   "sounds/SNES/typeb3.ogg"
+tt/click2-4   "sounds/SNES/typeb4.ogg"
+tt/click2-5   "sounds/SNES/typeb5.ogg"
+tt/match2     "sounds/SNES/success2.ogg"
+tt/not-match2 "sounds/SNES/fail2.ogg"
+
+$random tt/click2 { tt/click2-1 tt/click2-2 tt/click2-3 tt/click2-4 tt/click2-5 }
+
+// 4. Dakka sound theme ////////////////////////////////////////////////////////
+
+tt/combat4    "sounds/Dakka/danger4.ogg"
+tt/explore4   "sounds/Dakka/safe4.ogg"
+tt/click4-1   "sounds/Dakka/typed1.ogg"
+tt/click4-2   "sounds/Dakka/typed2.ogg"
+tt/click4-3   "sounds/Dakka/typed3.ogg"
+tt/click4-4   "sounds/Dakka/typed4.ogg"
+tt/click4-5   "sounds/Dakka/typed5.ogg"
+tt/match4     "sounds/Dakka/success4.ogg"
+tt/not-match4 "sounds/Dakka/fail4.ogg"
+
+$random tt/click4 { tt/click4-1 tt/click4-2 tt/click4-3 tt/click4-4 tt/click4-5 }
+
+// 5. GroceryStore sound theme /////////////////////////////////////////////////
+
+tt/combat5    "sounds/GroceryStore/danger5.ogg"
+tt/explore5   "sounds/GroceryStore/safe5.ogg"
+tt/click5-1   "sounds/GroceryStore/typee1.ogg"
+tt/click5-2   "sounds/GroceryStore/typee2.ogg"
+tt/click5-3   "sounds/GroceryStore/typee3.ogg"
+tt/click5-4   "sounds/GroceryStore/typee4.ogg"
+tt/click5-5   "sounds/GroceryStore/typee5.ogg"
+tt/match5     "sounds/GroceryStore/success5.ogg"
+tt/not-match5 "sounds/GroceryStore/fail5.ogg"
+
+$random tt/click5 { tt/click5-1 tt/click5-2 tt/click5-3 tt/click5-4 tt/click5-5 }
+
+$volume tt/click5 0.2

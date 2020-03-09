@@ -24,9 +24,10 @@ class tt_SoundReporter : tt_EventReporter
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_SoundReporter init(tt_PlayerSource playerSource)
+  tt_SoundReporter init(tt_PlayerSource playerSource, tt_SoundSettings settings)
   {
     _playerSource = playerSource;
+    _settings     = settings;
 
     return self;
   }
@@ -36,12 +37,14 @@ class tt_SoundReporter : tt_EventReporter
   override
   void reportNewMode(int mode)
   {
+    if (isDisabled()) return;
+
     switch (mode)
     {
     case tt_Mode.Unknown:
-      Console.Printf("zscript/typist/event_reporter/tt_sound_reporter.zs:42: T: unknown mode!");
+      Console.Printf("zscript/typist/event_reporter/tt_sound_reporter.zs:45: T: unknown mode!");
       break;
-    case tt_Mode.Combat:  playPlayerSound("tt/combat"); break;
+    case tt_Mode.Combat:  playPlayerSound("tt/combat");  break;
     case tt_Mode.Explore: playPlayerSound("tt/explore"); break;
     case tt_Mode.None:    break;
     }
@@ -50,32 +53,53 @@ class tt_SoundReporter : tt_EventReporter
   override
   void reportKeyPressed()
   {
+    if (isDisabled() || isTypingDisabled()) return;
     playPlayerSound("tt/click");
   }
 
   override
   void reportAnswerMatch()
   {
+    if (isDisabled()) return;
     playPlayerSound("tt/match");
   }
 
   override
   void reportAnswerNotMatch()
   {
+    if (isDisabled()) return;
     playPlayerSound("tt/not-match");
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private
-  void playPlayerSound(String sound)
+  void playPlayerSound(String s)
   {
+    int theme = _settings.getTheme();
+    s.AppendFormat("%d", theme);
     let player = _playerSource.getPawn();
-    player.A_StartSound(sound);
+
+    player.A_StartSound(s, CHAN_AUTO, CHANF_UI | CHANF_OVERLAP | CHANF_LOCAL);
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_PlayerSource _playerSource;
+  private
+  bool isDisabled()
+  {
+    return (!_settings.isEnabled());
+  }
+
+  private
+  bool isTypingDisabled()
+  {
+    return (!_settings.isTypingEnabled());
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_PlayerSource  _playerSource;
+  private tt_SoundSettings _settings;
 
 } // class tt_SoundReporter

@@ -112,6 +112,7 @@ It may be possible to compile this on Windows. Install Msys or something. You're
 - fraggle for [miniwad.wad](https://github.com/fragglet/miniwad) (BSD license)
 - [1000 basic English words](https://en.wiktionary.org/wiki/Appendix:1000_basic_English_words) (tt_1000.txt) (actually, 1008) CC BY-SA 3.0
 - [Frequency dictionary of the modern Russian language](https://en.wiktionary.org/wiki/Appendix:Frequency_dictionary_of_the_modern_Russian_language_(the_Russian_National_Corpus)) (tt_1000_ru.txt) CC BY-SA 3.0
+- Captain J for sound design. See credits for each sound effect in credits-sounds.md
 
 ### Thanks
 

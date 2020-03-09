@@ -46,3 +46,9 @@ server bool tt_show_notes = true;
 nosave string lp_score = "";
 
 user bool lp_show = true;
+
+// Sound settings //////////////////////////////////////////////////////////////
+
+user bool tt_sound_enabled = true;
+user int  tt_sound_theme = 1;
+user bool tt_sound_typing_enabled = true;

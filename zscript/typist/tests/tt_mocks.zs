@@ -277,6 +277,82 @@ class tt_SettingsMock : tt_Settings
 
 } // class tt_SettingsMock
 
+class tt_SoundSettingsMock : tt_SoundSettings
+{
+
+  tt_SoundSettingsMock init() { return self; }
+
+  override
+  bool isEnabled()
+  {
+    ++_mock_isEnabled_called;
+    return _mock_isEnabled;
+  }
+
+  void expect_isEnabled(bool value, int expected = 1)
+  {
+    _mock_isEnabled = value;
+    _mock_isEnabled_expected = expected;
+    _mock_isEnabled_called = 0;
+  }
+
+  bool isSatisfied_isEnabled() const
+  {
+    return _mock_isEnabled_expected == _mock_isEnabled_called;
+  }
+
+  private bool _mock_isEnabled;
+  private int _mock_isEnabled_expected;
+  private int _mock_isEnabled_called;
+
+  override
+  bool isTypingEnabled()
+  {
+    ++_mock_isTypingEnabled_called;
+    return _mock_isTypingEnabled;
+  }
+
+  void expect_isTypingEnabled(bool value, int expected = 1)
+  {
+    _mock_isTypingEnabled = value;
+    _mock_isTypingEnabled_expected = expected;
+    _mock_isTypingEnabled_called = 0;
+  }
+
+  bool isSatisfied_isTypingEnabled() const
+  {
+    return _mock_isTypingEnabled_expected == _mock_isTypingEnabled_called;
+  }
+
+  private bool _mock_isTypingEnabled;
+  private int _mock_isTypingEnabled_expected;
+  private int _mock_isTypingEnabled_called;
+
+  override
+  int getTheme()
+  {
+    ++_mock_getTheme_called;
+    return _mock_getTheme;
+  }
+
+  void expect_getTheme(int value, int expected = 1)
+  {
+    _mock_getTheme = value;
+    _mock_getTheme_expected = expected;
+    _mock_getTheme_called = 0;
+  }
+
+  bool isSatisfied_getTheme() const
+  {
+    return _mock_getTheme_expected == _mock_getTheme_called;
+  }
+
+  private int _mock_getTheme;
+  private int _mock_getTheme_expected;
+  private int _mock_getTheme_called;
+
+} // class tt_SoundSettingsMock
+
 class tt_TargetSourceMock : tt_TargetSource
 {
 
