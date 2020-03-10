@@ -52,6 +52,24 @@ available:
 - `dr` - dash to the right,
 - `df` - dash forward,
 - `db` - dash backward.
+- `rl` - reload weapon (if it has reloading).
+
+## Key setup
+
+The mod doesn't require any special key setup. However, for smoother experience,
+it may be worth playing keyboard-only with the following assigned keys:
+
+- E - move forward
+- S - strafe left
+- D - move backward
+- F - strafe right
+- I - center view
+- J - turn left
+- K - turn around
+- L - turn right
+
+This way, you'll waste no time switching from mouse to keyboard and back, and
+your fingers are almost at the right typing position!
 
 ## How To Set Up Custom Text Lesson
 
