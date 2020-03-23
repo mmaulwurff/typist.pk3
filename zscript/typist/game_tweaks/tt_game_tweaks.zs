@@ -31,6 +31,7 @@ class tt_GameTweaks play
 
     makeInvulnerable(pawn);
     increaseDamage(pawn);
+    decreaseIncomingDamage(pawn);
     protectFromSelfDamage(pawn);
     disableSeekingMissiles(pawn);
   }
@@ -50,11 +51,19 @@ class tt_GameTweaks play
   static private
   void increaseDamage(PlayerPawn pawn)
   {
-    class<PlayerPawn>    type           = pawn.GetClassName();
-    readonly<PlayerPawn> default        = getDefaultByType(type);
-    double               originalDamage = default.DamageMultiply;
+    let    default        = getDefaultPawn(pawn);
+    double originalDamage = default.DamageMultiply;
 
     pawn.DamageMultiply = originalDamage * 10;
+  }
+
+  static private
+  void decreaseIncomingDamage(PlayerPawn pawn)
+  {
+    let    default        = getDefaultPawn(pawn);
+    double originalFactor = default.DamageFactor;
+
+    pawn.DamageFactor = originalFactor / 2;
   }
 
   static private
@@ -67,6 +76,15 @@ class tt_GameTweaks play
   void disableSeekingMissiles(PlayerPawn pawn)
   {
     pawn.bCantSeek = true;
+  }
+
+  static private
+  readonly<PlayerPawn> getDefaultPawn(PlayerPawn pawn)
+  {
+    class<PlayerPawn>    type    = pawn.GetClassName();
+    readonly<PlayerPawn> default = getDefaultByType(type);
+
+    return default;
   }
 
 } // class tt_GameTweaks
