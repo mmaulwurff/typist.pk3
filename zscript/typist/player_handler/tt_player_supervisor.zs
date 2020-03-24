@@ -26,6 +26,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   tt_PlayerSupervisor init(int playerNumber)
   {
     let playerSource     = new("tt_PlayerSourceImpl").init(playerNumber);
+    let clock            = new("tt_TotalClock").init();
 
     let soundSettings    = new("tt_SoundSettingsImpl").init(playerSource);
     let eventReporter    = new("tt_SoundReporter").init(playerSource, soundSettings);
@@ -36,9 +37,10 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     let originSource     = new("tt_PlayerOriginSource").init(playerSource);
     let targetRadar      = new("tt_TargetRadar"       ).init(originSource);
+    let cachedRadar      = new("tt_CachedTargetSource").init(targetRadar, clock);
     let questionSource   = makeQuestionSource(settings, playerSource);
 
-    let targetRegistry = new("tt_TargetRegistry").init(targetRadar, questionSource, deathReporter);
+    let targetRegistry = new("tt_TargetRegistry").init(cachedRadar, questionSource, deathReporter);
 
     let targetOriginSource = new("tt_QuestionAnswerMatcher").init( targetRegistry
                                                                  , playerInput
@@ -67,7 +69,13 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                                             , eventReporter
                                                             );
 
-    let modeSource = makeModeSource(targetRegistry, playerSource, manualModeSource, eventReporter);
+    let modeSource = makeModeSource( targetRegistry
+                                   , playerSource
+                                   , manualModeSource
+                                   , eventReporter
+                                   , clock
+                                   , cachedRadar
+                                   );
 
     let oldModeSource = new("tt_SettableMode").init();
     let inputBlockAfterCombat = new("tt_InputBlockAfterCombat").init( playerInput
@@ -97,7 +105,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let projectileSpeedController =
       new("tt_ProjectileSpeedController").init(originSource, playerSource);
     let enemySpeedController =
-      new("tt_EnemySpeedController").init(targetRadar);
+      new("tt_EnemySpeedController").init(cachedRadar);
 
     // Initialize attributes ///////////////////////////////////////////////////
 
@@ -258,16 +266,17 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                               , tt_PlayerSource      playerSource
                               , tt_ModeSource        manualModeSource
                               , tt_EventReporter     eventReporter
+                              , tt_Clock             clock
+                              , tt_TargetSource      targetSource
                               )
   {
-    let clock = new("tt_TotalClock").init();
-
     let autoModeSource          = new("tt_AutoModeSource").init(knownTargetSource, playerSource);
     let delayedCombatModeSource = new("tt_DelayedCombatModeSource").init(clock, autoModeSource);
+    let noEnemiesMode = new("tt_NoEnemiesMode").init(delayedCombatModeSource, targetSource);
 
     Array<tt_ModeSource> modeSources;
     modeSources.Push(manualModeSource);
-    modeSources.Push(delayedCombatModeSource);
+    modeSources.Push(noEnemiesMode);
     modeSources.Push(autoModeSource);
 
     let cascade  = new("tt_ModeCascade"       ).init(modeSources);

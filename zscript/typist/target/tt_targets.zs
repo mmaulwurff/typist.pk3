@@ -54,6 +54,11 @@ class tt_Targets
     return find(target) != size();
   }
 
+  bool isEmpty() const
+  {
+    return (size() == 0);
+  }
+
 // public: /////////////////////////////////////////////////////////////////////
 
   /**

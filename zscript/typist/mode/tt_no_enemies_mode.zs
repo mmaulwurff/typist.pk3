@@ -16,20 +16,39 @@
  */
 
 /**
- *This interface represents a source of targets.
- *
- * @see tt_Target
+ * This class implements tt_ModeSource by overriding other source with
+ * Exploration mode if there are no enemies around.
  */
-class tt_TargetSource abstract
+class tt_NoEnemiesMode : tt_ModeSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  tt_Targets getTargets()
+  tt_NoEnemiesMode init(tt_ModeSource modeSource, tt_TargetSource targetSource)
   {
-    tt_Log.log("zscript/typist/target/tt_target_source.zs:31: T: override this!");
-    return NULL;
+    _modeSource   = modeSource;
+    _targetSource = targetSource;
+
+    return self;
   }
 
-} // class tt_TargetSource
+// public: // tt_ModeSource ////////////////////////////////////////////////////
+
+  override
+  int getMode()
+  {
+    let targets = _targetSource.getTargets();
+    if (targets.isEmpty())
+    {
+      return tt_Mode.Explore;
+    }
+
+    return _modeSource.getMode();
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_ModeSource   _modeSource;
+  private tt_TargetSource _targetSource;
+
+} // class tt_NoEnemiesMode

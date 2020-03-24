@@ -16,7 +16,8 @@
  */
 
 /**
- *
+ * This class implements tt_ModeSource by reading other tt_ModeSource, and
+ * switching to Exploration mode only if some time has passed.
  */
 class tt_DelayedCombatModeSource : tt_ModeSource
 {

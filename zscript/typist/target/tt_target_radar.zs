@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements tt_TargetSource by scanning the world around the
+/**
+ * This class implements tt_TargetSource by scanning the world around the
  * supplied origin for actors suitable to be targets.
  */
 class tt_TargetRadar : tt_TargetSource
