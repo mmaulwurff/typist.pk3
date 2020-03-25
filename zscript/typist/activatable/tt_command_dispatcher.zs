@@ -49,23 +49,18 @@ class tt_CommandDispatcher : tt_Activatable
     let answerString = answer.getString();
 
     uint nActivatables = _activatables.size();
-    bool isActivated = false;
     for (uint i = 0; i < nActivatables; ++i)
     {
       let activatable = _activatables[i];
 
-      isActivated = tryActivate(activatable, answerString);
+      bool isActivated = tryActivate(activatable, answerString);
 
       if (isActivated)
       {
         _eventReporter.reportAnswerMatch();
-        break;
+        _answerSource.reset();
+        return;
       }
-    }
-
-    if (isActivated)
-    {
-      _answerSource.reset();
     }
   }
 

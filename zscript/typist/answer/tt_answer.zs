@@ -37,10 +37,22 @@ class tt_Answer
   String getString()  const { return _answer;     }
   bool   isFinished() const { return _isFinished; }
 
-  void append(String character) { _answer = _answer .. character; }
-  void deleteLastCharacter()    { _answer.DeleteLastCharacter();  }
+  void append(String character)
+  {
+    _answer = _answer .. character;
+    _isFinished = false;
+  }
 
-  void finish() { _isFinished = true; }
+  void deleteLastCharacter()
+  {
+    _answer.DeleteLastCharacter();
+    _isFinished = false;
+  }
+
+  void finish()
+  {
+    _isFinished = true;
+  }
 
 // private: ////////////////////////////////////////////////////////////////////
 
