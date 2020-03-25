@@ -28,19 +28,12 @@ class tt_Character
     _eventType = type;
     //tt_Log.log("type: %d, code: %d", type, code);
 
-    if (type == UiEvent.Type_KeyUp && (code == tt_Ascii.Enter || code == tt_Ascii.Space))
-    {
-      type = UiEvent.Type_KeyDown;
-      code = tt_Ascii.EndOfText;
-    }
-
     bool isChar    = (type == UiEvent.Type_Char);
     bool isDown    = (type == UiEvent.Type_KeyDown);
     bool isRepeat  = (type == UiEvent.Type_KeyRepeat);
     bool isControl = (code == tt_Ascii.Backspace
                    || code == tt_Ascii.Enter
                    || code == tt_Ascii.Space
-                   || code == tt_Ascii.EndOfText
                    || code == tt_Ascii.Escape);
 
     if (!isChar && !((isDown || isRepeat) && isControl))
@@ -53,7 +46,6 @@ class tt_Character
     else if (code == tt_Ascii.Delete   )       { _type = CTRL_BACKSPACE; }
     else if (code == tt_Ascii.Enter    )       { _type = ENTER;    }
     else if (code == tt_Ascii.Space    )       { _type = ENTER;    }
-    else if (code == tt_Ascii.EndOfText)       { _type = ENTER_UP; }
     else if (code == tt_Ascii.Escape   )       { _type = ESCAPE;   }
     else if (code <  tt_Ascii.FIRST_PRINTABLE) { _type = NONE;     }
     else
@@ -74,7 +66,6 @@ class tt_Character
     BACKSPACE,
     CTRL_BACKSPACE,
     ENTER,
-    ENTER_UP,
     ESCAPE,
   }
 

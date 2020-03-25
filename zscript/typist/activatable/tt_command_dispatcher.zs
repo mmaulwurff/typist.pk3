@@ -65,8 +65,7 @@ class tt_CommandDispatcher : tt_Activatable
 
     if (isActivated)
     {
-      let reset = new("tt_Character").init(UiEvent.Type_CHAR, tt_Ascii.Backspace, true);
-      _answerSource.processKey(reset);
+      _answerSource.reset();
     }
   }
 

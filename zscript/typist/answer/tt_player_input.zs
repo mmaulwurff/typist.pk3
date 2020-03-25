@@ -34,7 +34,13 @@ class tt_PlayerInput : tt_AnswerSource
     return self;
   }
 
-// public: /////////////////////////////////////////////////////////////////////
+// public: // tt_AnswerSource //////////////////////////////////////////////////
+
+  override
+  tt_Answer getAnswer()
+  {
+    return _answer;
+  }
 
   override
   void processKey(tt_Character character)
@@ -49,28 +55,14 @@ class tt_PlayerInput : tt_AnswerSource
       _eventReporter.reportKeyPressed();
       break;
 
-    case tt_Character.BACKSPACE: _answer.deleteLastCharacter(); break;
-
-    case tt_Character.ENTER:     _answer.finish(); break;
-    case tt_Character.ENTER_UP:  reset(); break;
-
-    case tt_Character.CTRL_BACKSPACE: reset(); break;
-
-    case tt_Character.ESCAPE: _modeStorage.setMode(tt_Mode.Explore);
+    case tt_Character.BACKSPACE:      _answer.deleteLastCharacter();         break;
+    case tt_Character.ENTER:          _answer.finish();                      break;
+    case tt_Character.CTRL_BACKSPACE: reset();                               break;
+    case tt_Character.ESCAPE:         _modeStorage.setMode(tt_Mode.Explore); break;
     }
   }
 
-// public: // tt_AnswerSource //////////////////////////////////////////////////
-
   override
-  tt_Answer getAnswer()
-  {
-    return _answer;
-  }
-
-// private: ////////////////////////////////////////////////////////////////////
-
-  private
   void reset()
   {
     _answer = new("tt_Answer").init();

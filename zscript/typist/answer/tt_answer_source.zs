@@ -36,4 +36,13 @@ class tt_AnswerSource abstract
     tt_Log.log("zscript/typist/answer/tt_answer_source.zs:36: T: override this!");
   }
 
+  /**
+   * Clears answer.
+   */
+  virtual
+  void reset()
+  {
+    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:45: T: override this!");
+  }
+
 } // class tt_AnswerSource

@@ -74,6 +74,8 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
 
       if (isRight && isVisible)
       {
+        _answerSource.reset();
+
         let result = new("tt_Origin").init(target.getTarget().getPosition());
         return result;
       }
