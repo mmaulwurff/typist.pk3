@@ -687,26 +687,6 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
   private int _mock_isEmpty_expected;
   private int _mock_isEmpty_called;
 
-  override
-  void update()
-  {
-    ++_mock_update_called;
-  }
-
-  void expect_update(int expected = 1)
-  {
-    _mock_update_expected = expected;
-    _mock_update_called = 0;
-  }
-
-  bool isSatisfied_update() const
-  {
-    return _mock_update_expected == _mock_update_called;
-  }
-
-  private int _mock_update_expected;
-  private int _mock_update_called;
-
 } // class tt_KnownTargetSourceMock
 
 class tt_DamagerMock : tt_Damager

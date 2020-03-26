@@ -16,6 +16,13 @@
  */
 
 /**
+ * This class implements tt_KnownTargetSource by reading new targets from
+ * tt_TargetSource, assigning them questions, and storing them.
+ *
+ * Deactivated targets are removed from storage.
+ *
+ * Updating is cached and won't happen more than once per specified amount of
+ * ticks.
  */
 class tt_TargetRegistry : tt_KnownTargetSource
 {
@@ -25,13 +32,17 @@ class tt_TargetRegistry : tt_KnownTargetSource
   tt_TargetRegistry init( tt_TargetSource   targetSource
                         , tt_QuestionSource questionSource
                         , tt_TargetSource   disabledTargetSource
+                        , tt_Clock          clock
                         )
   {
     _targetSource         = targetSource;
     _questionSource       = questionSource;
     _disabledTargetSource = disabledTargetSource;
+    _clock                = clock;
 
-    _registry = new("tt_KnownTargets").init();
+    _registry  = new("tt_KnownTargets").init();
+    _isEmpty   = true;
+    _oldMoment = 0;
 
     return self;
   }
@@ -41,17 +52,45 @@ class tt_TargetRegistry : tt_KnownTargetSource
   override
   tt_KnownTargets getTargets() const
   {
+    update();
     return _registry;
   }
 
   override
   bool isEmpty() const
   {
+    update();
     return (_registry.size() == 0);
   }
 
-  override
+// private: ////////////////////////////////////////////////////////////////////
+
+  private
   void update()
+  {
+    if (_isEmpty)
+    {
+      read();
+
+      _oldMoment = _clock.getNow();
+      _isEmpty   = false;
+
+      return;
+    }
+
+    int  passed     = _clock.since(_oldMoment);
+    bool isObsolete = (passed >= REREAD_TICS);
+
+    if (isObsolete)
+    {
+      read();
+
+      _oldMoment = _clock.getNow();
+    }
+  }
+
+  private
+  void read()
   {
     let newTargets = _targetSource.getTargets();
     merge(newTargets);
@@ -62,15 +101,15 @@ class tt_TargetRegistry : tt_KnownTargetSource
     pruneNulls();
   }
 
-// private: ////////////////////////////////////////////////////////////////////
-
-  // Adds targets that are not already registered to the registry.
+  /**
+   * Adds targets that are not already registered to the registry.
+   *
+   * Given that tt_KnownTargets.contains() is O(n), this function is O(n^2).
+   * Optimization possible.
+   */
   private
   void merge(tt_Targets targets)
   {
-    // Given that tt_KnownTargets.contains() is O(n), this function is O(n^2).
-    // There is a room for optimization.
-
     uint nTargets        = targets.size();
     let  newKnownTargets = new("tt_KnownTargets").init();
 
@@ -93,13 +132,14 @@ class tt_TargetRegistry : tt_KnownTargetSource
     _registry.addMany(newKnownTargets);
   }
 
+  /**
+   * Given that tt_KnownTargets.remove() is at least O(n), this function is
+   * at least O(n^2).
+   * Optimization possible.
+   */
   private
   void subtract(tt_Targets targets)
   {
-    // Given that tt_KnownTargets.remove() is at least O(n), this function is
-    // at least O(n^2).
-    // There is a room for optimization.
-
     uint nTargets = targets.size();
     for (uint i = 0; i < nTargets; ++i)
     {
@@ -147,9 +187,15 @@ class tt_TargetRegistry : tt_KnownTargetSource
   private tt_TargetSource   _targetSource;
   private tt_QuestionSource _questionSource;
   private tt_TargetSource   _disabledTargetSource;
+  private tt_Clock          _clock;
 
 // private: ////////////////////////////////////////////////////////////////////
 
+  const REREAD_TICS = 1;
+
   private tt_KnownTargets _registry;
+
+  private bool _isEmpty;
+  private int  _oldMoment;
 
 } // class tt_TargetRegistry

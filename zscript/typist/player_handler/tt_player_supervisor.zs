@@ -40,7 +40,11 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let cachedRadar      = new("tt_CachedTargetSource").init(targetRadar, clock);
     let questionSource   = makeQuestionSource(settings, playerSource);
 
-    let targetRegistry = new("tt_TargetRegistry").init(cachedRadar, questionSource, deathReporter);
+    let targetRegistry = new("tt_TargetRegistry").init( cachedRadar
+                                                      , questionSource
+                                                      , deathReporter
+                                                      , clock
+                                                      );
 
     let targetOriginSource = new("tt_QuestionAnswerMatcher").init( targetRegistry
                                                                  , playerInput
@@ -141,7 +145,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   override
   void tick()
   {
-    _targetRegistry.update();
     _targetOriginSource.update();
     _damager.damage();
     _targetWidgetSource.prepare();

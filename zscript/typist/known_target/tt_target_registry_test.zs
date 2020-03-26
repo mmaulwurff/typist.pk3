@@ -36,8 +36,10 @@ class tt_TargetRegistryTest : tt_Clematis
   {
     targetRegistrySetUp("Checking empty Target Registry");
 
-    let targets = _targetRegistry.getTargets();
-    It("Is empty", Assert(targets.size() == 0));
+    _targetSource        .expect_getTargets(new("tt_Targets").init());
+    _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
+
+    It("Is empty", Assert(_targetRegistry.isEmpty()));
 
     targetRegistryTearDown();
   }
@@ -57,7 +59,6 @@ class tt_TargetRegistryTest : tt_Clematis
     _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
     _questionSource.expect_getQuestion(new("tt_QuestionMock").init(), 2);
 
-    _targetRegistry.update();
     let knownTargets = _targetRegistry.getTargets();
 
     It("Is two targets", AssertEval(knownTargets.size(), "==", 2));
@@ -80,7 +81,6 @@ class tt_TargetRegistryTest : tt_Clematis
     _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
     _questionSource.expect_getQuestion(new("tt_QuestionMock").init());
 
-    _targetRegistry.update();
     let knownTargets = _targetRegistry.getTargets();
 
     It("Is one target", AssertEval(knownTargets.size(), "==", 1));
@@ -92,8 +92,8 @@ class tt_TargetRegistryTest : tt_Clematis
     _targetSource.expect_getTargets(targets);
     _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
     _questionSource.expect_getQuestion(NULL, 0);
+    _clock.expect_since(999);
 
-    _targetRegistry.update();
     knownTargets = _targetRegistry.getTargets();
 
     It("Is one target", AssertEval(knownTargets.size(), "==", 1));
@@ -119,7 +119,6 @@ class tt_TargetRegistryTest : tt_Clematis
     _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
     _questionSource.expect_getQuestion(new("tt_QuestionMock").init(), 2);
 
-    _targetRegistry.update();
     let knownTargets = _targetRegistry.getTargets();
 
     It("Is two targets", AssertEval(knownTargets.size(), "==", 2));
@@ -134,8 +133,8 @@ class tt_TargetRegistryTest : tt_Clematis
     _targetSource.expect_getTargets(new("tt_Targets").init());
     _disabledTargetSource.expect_getTargets(disabledTargets);
     _questionSource.expect_getQuestion(NULL, 0);
+    _clock.expect_since(999);
 
-    _targetRegistry.update();
     knownTargets = _targetRegistry.getTargets();
 
     It("Is one target now", AssertEval(knownTargets.size(), "==", 1));
@@ -150,13 +149,15 @@ class tt_TargetRegistryTest : tt_Clematis
   {
     Describe(description);
 
-    _targetSource         = new("tt_TargetSourceMock").init();
+    _targetSource         = new("tt_TargetSourceMock"  ).init();
     _questionSource       = new("tt_QuestionSourceMock").init();
-    _disabledTargetSource = new("tt_TargetSourceMock").init();
+    _disabledTargetSource = new("tt_TargetSourceMock"  ).init();
+    _clock                = new("tt_ClockMock"         ).init();
 
     _targetRegistry = new("tt_TargetRegistry").init( _targetSource
                                                    , _questionSource
                                                    , _disabledTargetSource
+                                                   , _clock
                                                    );
   }
 
@@ -169,6 +170,7 @@ class tt_TargetRegistryTest : tt_Clematis
     _questionSource       = NULL;
     _disabledTargetSource = NULL;
     _targetRegistry       = NULL;
+    _clock                = NULL;
 
     EndDescribe();
   }
@@ -189,6 +191,8 @@ class tt_TargetRegistryTest : tt_Clematis
   private tt_TargetSourceMock   _targetSource;
   private tt_QuestionSourceMock _questionSource;
   private tt_TargetSourceMock   _disabledTargetSource;
+  private tt_ClockMock          _clock;
+
   private tt_KnownTargetSource  _targetRegistry;
 
 } // class tt_TargetRegistryTest

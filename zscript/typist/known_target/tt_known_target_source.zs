@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface represents a source of known targets.
+/**
+ *This interface represents a source of known targets.
  *
  * @see tt_KnownTarget
  */
@@ -24,30 +25,24 @@ class tt_KnownTargetSource abstract
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  /** This function the currently registered (known) targets.
+  /**
+   * This function the currently registered (known) targets.
    */
   virtual
   tt_KnownTargets getTargets() const
   {
-    tt_Log.log("zscript/typist/known_target/tt_known_target_source.zs:32: T: override this!");
+    tt_Log.log("zscript/typist/known_target/tt_known_target_source.zs:34: T: override this!");
     return NULL;
   }
 
-  /** This function returns true if there are no targets in this source.
+  /**
+   * This function returns true if there are no targets in this source.
    */
   virtual
   bool isEmpty() const
   {
-    tt_Log.log("zscript/typist/known_target/tt_known_target_source.zs:41: T: override this!");
+    tt_Log.log("zscript/typist/known_target/tt_known_target_source.zs:44: T: override this!");
     return true;
-  }
-
-  /** This function asks the source to refresh the list of targets.
-   */
-  virtual
-  void update()
-  {
-    tt_Log.log("zscript/typist/known_target/tt_known_target_source.zs:50: T: override this!");
   }
 
 } // class tt_KnownTargetSource
