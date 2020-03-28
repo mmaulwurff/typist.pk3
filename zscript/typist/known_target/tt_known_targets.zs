@@ -15,14 +15,20 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class represents a list of known targets.
+/**
+ * This class represents a list of known targets.
  */
 class tt_KnownTargets
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_KnownTargets init() { return self; }
+  static
+  tt_KnownTargets of()
+  {
+    let result = new("tt_KnownTargets"); // construct
+    return result;
+  }
 
 // public: /////////////////////////////////////////////////////////////////////
 

@@ -29,7 +29,7 @@ class tt_DelayedCombatModeSourceTest : tt_Clematis
    * N - None Mode (let other decide)
    *
    * |-----|-----|-------------|--------|---------------------|
-   * | new | old | time is up? | result | test                |
+   * |.of | old | time is up? | result | test                |
    * |-----|-----|-------------|--------|---------------------|
    * |  C  |  *  |      *      |   N    | checkNewCombat      |
    * |  E  |  C  |     no      |   C    | checkDelay          |
@@ -64,7 +64,7 @@ class tt_DelayedCombatModeSourceTest : tt_Clematis
     It("New combat -> None", AssertEval(result1, "==", tt_Mode.None));
 
     int result2 = _delay.getMode();
-    It("Again, new combat -> None", AssertEval(result2, "==", tt_Mode.None));
+    It("Again,.of combat -> None", AssertEval(result2, "==", tt_Mode.None));
 
     checkSatisfaction();
   }
@@ -117,9 +117,9 @@ class tt_DelayedCombatModeSourceTest : tt_Clematis
   private
   void initTest()
   {
-    _clock      = new("tt_ClockMock").init();
-    _modeSource = new("tt_ModeSourceMock").init();
-    _delay      = new("tt_DelayedCombatModeSource").init(_clock, _modeSource);
+    _clock      = tt_ClockMock.of();
+    _modeSource = tt_ModeSourceMock.of();
+    _delay      = tt_DelayedCombatModeSource.of(_clock, _modeSource);
   }
 
   private

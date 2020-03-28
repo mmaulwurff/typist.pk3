@@ -24,9 +24,11 @@ class tt_RandomNumberSource : tt_QuestionSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_QuestionSource init()
+  static
+  tt_RandomNumberSource of()
   {
-    return self;
+    let result = new("tt_RandomNumberSource"); // construct
+    return result;
   }
 
 // public: // tt_QuestionSource ////////////////////////////////////////////////
@@ -43,7 +45,7 @@ class tt_RandomNumberSource : tt_QuestionSource
       str.AppendFormat("%c", number);
     }
 
-    let question = new("tt_Match").init(str, str);
+    let question = tt_Match.of(str, str);
 
     return question;
   }

@@ -16,7 +16,7 @@
  */
 
 /** This class implements TargetWidgetSource by storing target widgets, getting
- * new widgets from the source, and updating the coordinates of the widgets that
+ *.of widgets from the source, and updating the coordinates of the widgets that
  * are already registered.
  */
 class tt_TargetWidgetRegistry : tt_TargetWidgetSource
@@ -24,12 +24,15 @@ class tt_TargetWidgetRegistry : tt_TargetWidgetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_TargetWidgetRegistry init(tt_TargetWidgetSource source)
+  static
+  tt_TargetWidgetRegistry of(tt_TargetWidgetSource source)
   {
-    _source   = source;
-    _registry = new("tt_TargetWidgets").init();
+    let result = new("tt_TargetWidgetRegistry"); // construct
 
-    return self;
+    result._source   = source;
+    result._registry = tt_TargetWidgets.of();
+
+    return result;
   }
 
 // public: // tt_TargetWidgetSource ////////////////////////////////////////////
@@ -38,7 +41,7 @@ class tt_TargetWidgetRegistry : tt_TargetWidgetSource
   tt_TargetWidgets getWidgets(RenderEvent event)
   {
     let widgets     = _source.getWidgets(event);
-    let newRegistry = new("tt_TargetWidgets").init();
+    let newRegistry = tt_TargetWidgets.of();
 
     uint nWidgets = widgets.size();
     for (uint i = 0; i < nWidgets; ++i)
@@ -61,7 +64,7 @@ class tt_TargetWidgetRegistry : tt_TargetWidgetSource
       }
     }
 
-    // Widgets that are not new or not updated are thrown away.
+    // Widgets that are not.of or not updated are thrown away.
     _registry = newRegistry;
 
     return _registry;

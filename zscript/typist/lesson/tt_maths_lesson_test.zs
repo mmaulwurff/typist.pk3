@@ -28,11 +28,11 @@ class tt_MathsLessonTest : tt_Clematis
   {
     Describe("Checking Maths Lesson");
 
-    let mathsLesson = new("tt_MathsLesson").init();
+    let mathsLesson = tt_MathsLesson.of();
     let question = mathsLesson.getQuestion();
 
     String description = question.getDescription();
-    let answer = new("tt_Answer").init(description);
+    let answer = tt_Answer.of(description);
 
     It("Question isn't equal to the answer", AssertFalse(question.isRight(answer)));
 

@@ -16,7 +16,7 @@
  */
 
 /**
- * This class implements tt_KnownTargetSource by reading new targets from
+ * This class implements tt_KnownTargetSource by reading.of targets from
  * tt_TargetSource, assigning them questions, and storing them.
  *
  * Deactivated targets are removed from storage.
@@ -29,22 +29,25 @@ class tt_TargetRegistry : tt_KnownTargetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_TargetRegistry init( tt_TargetSource   targetSource
-                        , tt_QuestionSource questionSource
-                        , tt_TargetSource   disabledTargetSource
-                        , tt_Clock          clock
-                        )
+  static
+  tt_TargetRegistry of( tt_TargetSource   targetSource
+                      , tt_QuestionSource questionSource
+                      , tt_TargetSource   disabledTargetSource
+                      , tt_Clock          clock
+                      )
   {
-    _targetSource         = targetSource;
-    _questionSource       = questionSource;
-    _disabledTargetSource = disabledTargetSource;
-    _clock                = clock;
+    let result = new("tt_TargetRegistry"); // construct
 
-    _registry  = new("tt_KnownTargets").init();
-    _isEmpty   = true;
-    _oldMoment = 0;
+    result._targetSource         = targetSource;
+    result._questionSource       = questionSource;
+    result._disabledTargetSource = disabledTargetSource;
+    result._clock                = clock;
 
-    return self;
+    result._registry  = tt_KnownTargets.of();
+    result._isEmpty   = true;
+    result._oldMoment = 0;
+
+    return result;
   }
 
 // public: // tt_KnownTargetSource /////////////////////////////////////////////
@@ -111,7 +114,7 @@ class tt_TargetRegistry : tt_KnownTargetSource
   void merge(tt_Targets targets)
   {
     uint nTargets        = targets.size();
-    let  newKnownTargets = new("tt_KnownTargets").init();
+    let  newKnownTargets = tt_KnownTargets.of();
 
     for (uint i = 0; i < nTargets; ++i)
     {
@@ -157,7 +160,7 @@ class tt_TargetRegistry : tt_KnownTargetSource
       return NULL;
     }
 
-    let newKnownTarget = new("tt_KnownTarget").init(target, question);
+    let newKnownTarget = tt_KnownTarget.of(target, question);
 
     return newKnownTarget;
   }
@@ -165,7 +168,7 @@ class tt_TargetRegistry : tt_KnownTargetSource
   private
   void pruneNulls()
   {
-    let pruned = new("tt_KnownTargets").init();
+    let pruned = tt_KnownTargets.of();
 
     uint nTargets = _registry.size();
     for (uint i = 0; i < nTargets; ++i)

@@ -27,12 +27,15 @@ class tt_SorterByDistance : tt_TargetWidgetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_SorterByDistance init(tt_TargetWidgetSource targetWidgetSource, tt_OriginSource originSource)
+  static
+  tt_SorterByDistance of(tt_TargetWidgetSource targetWidgetSource, tt_OriginSource originSource)
   {
-    _targetWidgetSource = targetWidgetSource;
-    _originSource       = originSource;
+    let result = new("tt_SorterByDistance"); // construct
 
-    return self;
+    result._targetWidgetSource = targetWidgetSource;
+    result._originSource       = originSource;
+
+    return result;
   }
 
 // public: // tt_TargetWidgetSource ////////////////////////////////////////////

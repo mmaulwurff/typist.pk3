@@ -38,27 +38,27 @@ class tt_CommandDispatcherTest : tt_Clematis
   private play
   void checkActivate() const
   {
-    let activatable1      = new("tt_ActivatableMock"  ).init();
-    let activatable2      = new("tt_ActivatableMock"  ).init();
+    let activatable1      = tt_ActivatableMock.of();
+    let activatable2      = tt_ActivatableMock.of();
     Array<tt_Activatable> activatables;
     activatables.push(activatable1);
     activatables.push(activatable2);
-    let answerSource      = new("tt_AnswerSourceMock" ).init();
-    let settings          = new("tt_SettingsMock"     ).init();
-    let eventReporter     = new("tt_EventReporterMock").init();
-    let commandDispatcher = new("tt_CommandDispatcher").init( answerSource
-                                                            , activatables
-                                                            , settings
-                                                            , eventReporter
-                                                            );
+    let answerSource      = tt_AnswerSourceMock.of();
+    let settings          = tt_SettingsMock.of();
+    let eventReporter     = tt_EventReporterMock.of();
+    let commandDispatcher = tt_CommandDispatcher.of( answerSource
+                                                   , activatables
+                                                   , settings
+                                                   , eventReporter
+                                                   );
 
     let str    = "Hello";
-    let answer = new("tt_Answer").init(str);
+    let answer = tt_Answer.of(str);
     answerSource.expect_getAnswer(answer);
     answer.finish();
 
-    let commands1 = new("tt_Strings").init();
-    let commands2 = new("tt_Strings").init();
+    let commands1 = tt_Strings.of();
+    let commands2 = tt_Strings.of();
     commands2.add(str);
     activatable1.expect_getCommands(commands1);
     activatable2.expect_getCommands(commands2);
@@ -79,22 +79,22 @@ class tt_CommandDispatcherTest : tt_Clematis
   private play
   void checkGetCommands() const
   {
-    let activatable1      = new("tt_ActivatableMock"  ).init();
-    let activatable2      = new("tt_ActivatableMock"  ).init();
+    let activatable1      = tt_ActivatableMock.of();
+    let activatable2      = tt_ActivatableMock.of();
     Array<tt_Activatable> activatables;
     activatables.push(activatable1);
     activatables.push(activatable2);
-    let answerSource      = new("tt_AnswerSourceMock" ).init();
-    let settings          = new("tt_SettingsMock"     ).init();
-    let eventReporter     = new("tt_EventReporterMock").init();
-    let commandDispatcher = new("tt_CommandDispatcher").init( answerSource
-                                                            , activatables
-                                                            , settings
-                                                            , eventReporter
-                                                            );
+    let answerSource      = tt_AnswerSourceMock.of();
+    let settings          = tt_SettingsMock.of();
+    let eventReporter     = tt_EventReporterMock.of();
+    let commandDispatcher = tt_CommandDispatcher.of( answerSource
+                                                    , activatables
+                                                    , settings
+                                                    , eventReporter
+                                                    );
 
-    let commands1 = new("tt_Strings").init();
-    let commands2 = new("tt_Strings").init();
+    let commands1 = tt_Strings.of();
+    let commands2 = tt_Strings.of();
     commands1.add("1");
     commands1.add("2");
     commands2.add("3");

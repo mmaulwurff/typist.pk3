@@ -23,11 +23,14 @@ class tt_MixedLesson : tt_QuestionSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_MixedLesson init(tt_Settings settings)
+  static
+  tt_MixedLesson of(tt_Settings settings)
   {
-    _settings = settings;
+    let result = new("tt_MixedLesson"); // construct
 
-    return self;
+    result._settings = settings;
+
+    return result;
   }
 
   void add(tt_QuestionSource questionSource)

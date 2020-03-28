@@ -24,14 +24,17 @@ class tt_PlayerInput : tt_AnswerSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_PlayerInput init(tt_ModeStorage modeStorage, tt_EventReporter eventReporter)
+  static
+  tt_PlayerInput of(tt_ModeStorage modeStorage, tt_EventReporter eventReporter)
   {
-    _modeStorage   = modeStorage;
-    _eventReporter = eventReporter;
+    let result = new("tt_PlayerInput"); // construct
 
-    _answer = new("tt_Answer").init();
+    result._modeStorage   = modeStorage;
+    result._eventReporter = eventReporter;
 
-    return self;
+    result._answer = tt_Answer.of();
+
+    return result;
   }
 
 // public: // tt_AnswerSource //////////////////////////////////////////////////
@@ -65,7 +68,7 @@ class tt_PlayerInput : tt_AnswerSource
   override
   void reset()
   {
-    _answer = new("tt_Answer").init();
+    _answer = tt_Answer.of();
   }
 
 // private: ////////////////////////////////////////////////////////////////////

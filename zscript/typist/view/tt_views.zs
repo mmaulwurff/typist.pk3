@@ -23,9 +23,11 @@ class tt_Views : tt_View
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Views init()
+  static
+  tt_Views of()
   {
-    return self;
+    let result = new("tt_Views"); // construct
+    return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////

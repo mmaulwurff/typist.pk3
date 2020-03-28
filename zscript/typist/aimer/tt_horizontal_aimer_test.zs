@@ -33,18 +33,18 @@ class tt_HorizontalAimerTest : tt_Clematis
     Array<tt_Origin> targetPositions;
     Array<double>    angles;
 
-    targetPositions.push(new("tt_Origin").init(( 100,  100, 0))); angles.push(  45);
-    targetPositions.push(new("tt_Origin").init((-100, -100, 0))); angles.push(-135);
-    targetPositions.push(new("tt_Origin").init((   0,    0, 0))); angles.push(   0);
+    targetPositions.push(tt_Origin.of(( 100,  100, 0))); angles.push(  45);
+    targetPositions.push(tt_Origin.of((-100, -100, 0))); angles.push(-135);
+    targetPositions.push(tt_Origin.of((   0,    0, 0))); angles.push(   0);
 
     movePlayerToZero();
 
     uint nTargetPositions = targetPositions.size();
     for (uint i = 0; i < nTargetPositions; ++i)
     {
-      let    originSource  = new("tt_OriginSourceMock").init();
-      let    playerSource  = new("tt_PlayerSourceMock").init();
-      let    aimer         = new("tt_HorizontalAimer").init(originSource, playerSource);
+      let    originSource  = tt_OriginSourceMock.of();
+      let    playerSource  = tt_PlayerSourceMock.of();
+      let    aimer         = tt_HorizontalAimer.of(originSource, playerSource);
       let    targetOrigin  = targetPositions[i];
       let    pawn          = players[consolePlayer].mo;
       double angle         = angles[i];

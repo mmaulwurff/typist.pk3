@@ -23,9 +23,12 @@ class tt_Character
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Character init(int type, int code, bool isCtrl)
+  static
+  tt_Character of(int type, int code, bool isCtrl)
   {
-    _eventType = type;
+    let result = new("tt_Character"); // construct
+
+    result._eventType = type;
     //tt_Log.log("type: %d, code: %d", type, code);
 
     bool isChar    = (type == UiEvent.Type_Char);
@@ -38,23 +41,23 @@ class tt_Character
 
     if (!isChar && !((isDown || isRepeat) && isControl))
     {
-      _type = NONE;
-      return self;
+      result._type = NONE;
+      return result;
     }
 
-    if      (code == tt_Ascii.Backspace)       { _type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE); }
-    else if (code == tt_Ascii.Delete   )       { _type = CTRL_BACKSPACE; }
-    else if (code == tt_Ascii.Enter    )       { _type = ENTER;    }
-    else if (code == tt_Ascii.Space    )       { _type = ENTER;    }
-    else if (code == tt_Ascii.Escape   )       { _type = ESCAPE;   }
-    else if (code <  tt_Ascii.FIRST_PRINTABLE) { _type = NONE;     }
+    if      (code == tt_Ascii.Backspace) { result._type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE); }
+    else if (code == tt_Ascii.Delete   )       { result._type = CTRL_BACKSPACE; }
+    else if (code == tt_Ascii.Enter    )       { result._type = ENTER;    }
+    else if (code == tt_Ascii.Space    )       { result._type = ENTER;    }
+    else if (code == tt_Ascii.Escape   )       { result._type = ESCAPE;   }
+    else if (code <  tt_Ascii.FIRST_PRINTABLE) { result._type = NONE;     }
     else
     {
-      _type      = PRINTABLE;
-      _character = String.Format("%c", code);
+      result._type      = PRINTABLE;
+      result._character = String.Format("%c", code);
     }
 
-    return self;
+    return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////

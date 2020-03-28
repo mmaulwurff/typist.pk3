@@ -25,12 +25,15 @@ class tt_Projector : tt_TargetWidgetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Projector init(tt_KnownTargetSource knownTargetSource, tt_PlayerSource playerSource)
+  static
+  tt_Projector of(tt_KnownTargetSource knownTargetSource, tt_PlayerSource playerSource)
   {
-    _knownTargetSource = knownTargetSource;
-    _playerSource      = playerSource;
+    let result = new("tt_Projector"); // construct
 
-    return self;
+    result._knownTargetSource = knownTargetSource;
+    result._playerSource      = playerSource;
+
+    return result;
   }
 
 // public: // tt_TargetWidgetSource ////////////////////////////////////////////
@@ -40,7 +43,7 @@ class tt_Projector : tt_TargetWidgetSource
   {
     let targets = _knownTargetSource.getTargets();
     let info    = _playerSource.getInfo();
-    let result  = new("tt_TargetWidgets").init();
+    let result  = tt_TargetWidgets.of();
 
     uint nTargets = targets.size();
     for (uint i = 0; i < nTargets; ++i)
@@ -60,7 +63,7 @@ class tt_Projector : tt_TargetWidgetSource
 
       if (isPositionSuccessful)
       {
-        let widget = new("tt_TargetWidget").init(target, position);
+        let widget = tt_TargetWidget.of(target, position);
         result.add(widget);
       }
     }
@@ -107,8 +110,8 @@ class tt_Projector : tt_TargetWidgetSource
   private
   void initialize()
   {
-    _glProjection = new("tt_Le_GlScreen"); // init() (silencing code check for a third-party class).
-    _swProjection = new("tt_Le_SwScreen"); // init() (silencing code check for a third-party class).
+    _glProjection = new("tt_Le_GlScreen"); // construct (silencing check_init.sh).
+    _swProjection = new("tt_Le_SwScreen"); // construct (silencing check_init.sh).
 
     let info = _playerSource.getInfo();
     _cvarRenderer  = Cvar.GetCvar("vid_rendermode", info);

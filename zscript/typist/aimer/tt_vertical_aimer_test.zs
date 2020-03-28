@@ -38,13 +38,13 @@ class tt_VerticalAimerTest : tt_Clematis
   private play
   void testAim() const
   {
-    let targetOriginSource = new("tt_OriginSourceMock").init();
-    let playerSource       = new("tt_PlayerSourceMock").init();
-    let settings           = new("tt_SettingsMock"    ).init();
+    let targetOriginSource = tt_OriginSourceMock.of();
+    let playerSource       = tt_PlayerSourceMock.of();
+    let settings           = tt_SettingsMock.of();
 
-    let aimer = new("tt_VerticalAimer").init(targetOriginSource, playerSource, settings);
+    let aimer = tt_VerticalAimer.of(targetOriginSource, playerSource, settings);
 
-    let targetOrigin = new("tt_Origin").init((550, 500, 500));
+    let targetOrigin = tt_Origin.of((550, 500, 500));
     let pawn         = players[consolePlayer].mo;
     pawn.SetOrigin((0, 0, 0), false);
 

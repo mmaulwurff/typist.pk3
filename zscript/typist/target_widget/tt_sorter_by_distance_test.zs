@@ -39,8 +39,8 @@ class tt_SorterByDistanceTest : tt_Clematis
   {
     Describe("Checking SorterByDistance: empty");
 
-    let before = new("tt_TargetWidgets").init();
-    let origin = new("tt_Origin"       ).init((0, 0, 0));
+    let before = tt_TargetWidgets.of();
+    let origin = tt_Origin.of((0, 0, 0));
     let after  = tt_SorterByDistance.sort(before, origin.getPosition());
 
     It("Empty collection must remain empty", AssertEval(after.size(), "==", 0));
@@ -53,8 +53,8 @@ class tt_SorterByDistanceTest : tt_Clematis
   {
     Describe("Checking SorterByDistance: sorted");
 
-    let origin = new("tt_Origin"       ).init((0, 0, 0));
-    let before = new("tt_TargetWidgets").init();
+    let origin = tt_Origin.of((0, 0, 0));
+    let before = tt_TargetWidgets.of();
     before.add(createAtPosition((0, 0, 2)));
     before.add(createAtPosition((0, 0, 1)));
     before.add(createAtPosition((0, 0, 0)));
@@ -75,8 +75,8 @@ class tt_SorterByDistanceTest : tt_Clematis
   {
     Describe("Checking SorterByDistance: reverse");
 
-    let origin = new("tt_Origin"       ).init((0, 0, 0));
-    let before = new("tt_TargetWidgets").init();
+    let origin = tt_Origin.of((0, 0, 0));
+    let before = tt_TargetWidgets.of();
     before.add(createAtPosition((0, 0, 0)));
     before.add(createAtPosition((0, 0, 1)));
     before.add(createAtPosition((0, 0, 2)));
@@ -97,8 +97,8 @@ class tt_SorterByDistanceTest : tt_Clematis
   {
     Describe("Checking SorterByDistance: middle");
 
-    let origin = new("tt_Origin"       ).init((0, 0, 0));
-    let before = new("tt_TargetWidgets").init();
+    let origin = tt_Origin.of((0, 0, 0));
+    let before = tt_TargetWidgets.of();
     before.add(createAtPosition((0, 0, 1)));
     before.add(createAtPosition((0, 0, 2)));
     before.add(createAtPosition((0, 0, 0)));
@@ -168,10 +168,10 @@ class tt_SorterByDistanceTest : tt_Clematis
   private
   tt_TargetWidget createAtPosition(Vector3 position)
   {
-    let target      = new("tt_Target").init(Spawn("Demon", position));
-    let question    = new("tt_QuestionMock").init();
-    let knownTarget = new("tt_KnownTarget").init(target, question);
-    let widget      = new("tt_TargetWidget").init(knownTarget, (0, 0));
+    let target      = tt_Target.of(Spawn("Demon", position));
+    let question    = tt_QuestionMock.of();
+    let knownTarget = tt_KnownTarget.of(target, question);
+    let widget      = tt_TargetWidget.of(knownTarget, (0, 0));
 
     return widget;
   }

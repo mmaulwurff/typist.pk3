@@ -23,9 +23,11 @@ class tt_Aimers : tt_Aimer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Aimers init()
+  static
+  tt_Aimers of()
   {
-    return self;
+    let result = new("tt_Aimers"); // construct
+    return result;
   }
 
   void add(tt_Aimer aimer)

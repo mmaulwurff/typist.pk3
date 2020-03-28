@@ -24,11 +24,14 @@ class tt_RandomCharactersLesson : tt_QuestionSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_RandomCharactersLesson init(tt_RandomCharactersLessonSettings settings)
+  static
+  tt_RandomCharactersLesson of(tt_RandomCharactersLessonSettings settings)
   {
-    _settings = settings;
+    let result = new("tt_RandomCharactersLesson"); // construct
 
-    return self;
+    result._settings = settings;
+
+    return result;
   }
 
 // public: // tt_QuestionSource ////////////////////////////////////////////////
@@ -39,7 +42,7 @@ class tt_RandomCharactersLesson : tt_QuestionSource
     String characters = composeCharacterRange();
     int    length     = _settings.getLessonLength();
     String picked     = pick(characters, length);
-    let    question   = new("tt_Match").init(picked, picked);
+    let    question   = tt_Match.of(picked, picked);
 
     return question;
   }

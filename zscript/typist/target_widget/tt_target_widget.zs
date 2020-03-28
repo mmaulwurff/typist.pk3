@@ -22,12 +22,15 @@ class tt_TargetWidget
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_TargetWidget init(tt_KnownTarget target, Vector2 position)
+  static
+  tt_TargetWidget of(tt_KnownTarget target, Vector2 position)
   {
-    _target   = target;
-    _position = position;
+    let result = new("tt_TargetWidget"); // construct
 
-    return self;
+    result._target   = target;
+    result._position = position;
+
+    return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////

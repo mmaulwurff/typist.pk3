@@ -24,11 +24,14 @@ class tt_SelectedQuestionSource : tt_QuestionSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_SelectedQuestionSource init(tt_Settings settings)
+  static
+  tt_SelectedQuestionSource of(tt_Settings settings)
   {
-    _settings = settings;
+    let result = new("tt_SelectedQuestionSource"); // construct
 
-    return self;
+    result._settings = settings;
+
+    return result;
   }
 
   void add(tt_QuestionSource questionSource)
@@ -45,7 +48,7 @@ class tt_SelectedQuestionSource : tt_QuestionSource
 
     if (questionSourceIndex >= _questionSources.size())
     {
-      let message = String.Format("zscript/typist/lesson/tt_selected_question_source.zs:48: T:"
+      let message = String.Format("zscript/typist/lesson/tt_selected_question_source.zs:51: T:"
                                   " no question source at index %d.", questionSourceIndex);
       tt_Log.log(message);
       return NULL;

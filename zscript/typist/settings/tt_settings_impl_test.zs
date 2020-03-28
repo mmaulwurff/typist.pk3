@@ -41,8 +41,8 @@ class tt_SettingsImplTest : tt_Clematis
   private
   void testGetScale()
   {
-    let playerSource = new("tt_PlayerSourceMock").init();
-    let settings     = new("tt_SettingsImpl"    ).init(playerSource);
+    let playerSource = tt_PlayerSourceMock.of();
+    let settings     = tt_SettingsImpl.of(playerSource);
 
     playerSource.expect_getInfo(players[consolePlayer]);
 
@@ -56,8 +56,8 @@ class tt_SettingsImplTest : tt_Clematis
   private
   void testIsAutoaimEnabled()
   {
-    let playerSource = new("tt_PlayerSourceMock").init();
-    let settings     = new("tt_SettingsImpl"    ).init(playerSource);
+    let playerSource = tt_PlayerSourceMock.of();
+    let settings     = tt_SettingsImpl.of(playerSource);
 
     playerSource.expect_getInfo(players[consolePlayer]);
 
@@ -70,8 +70,8 @@ class tt_SettingsImplTest : tt_Clematis
   private
   void testGetQuestionSource()
   {
-    let playerSource = new("tt_PlayerSourceMock").init();
-    let settings     = new("tt_SettingsImpl"    ).init(playerSource);
+    let playerSource = tt_PlayerSourceMock.of();
+    let settings     = tt_SettingsImpl.of(playerSource);
 
     playerSource.expect_getInfo(players[consolePlayer]);
 
@@ -84,8 +84,8 @@ class tt_SettingsImplTest : tt_Clematis
   private
   void testGetCommandPrefix()
   {
-    let playerSource = new("tt_PlayerSourceMock").init();
-    let settings     = new("tt_SettingsImpl"    ).init(playerSource);
+    let playerSource = tt_PlayerSourceMock.of();
+    let settings     = tt_SettingsImpl.of(playerSource);
 
     playerSource.expect_getInfo(players[consolePlayer]);
 

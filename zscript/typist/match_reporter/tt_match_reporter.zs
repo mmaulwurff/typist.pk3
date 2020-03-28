@@ -24,18 +24,21 @@ class tt_MatchReporter
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_MatchReporter init( tt_EventReporter eventReporter
-                       , tt_OriginSource  originSource
-                       , tt_AnswerSource  answerSource
-                       )
+  static
+  tt_MatchReporter of( tt_EventReporter eventReporter
+                     , tt_OriginSource  originSource
+                     , tt_AnswerSource  answerSource
+                     )
   {
-    _eventReporter = eventReporter;
-    _originSource  = originSource;
-    _answerSource  = answerSource;
+    let result = new("tt_MatchReporter"); // construct
 
-    _isReported = false;
+    result._eventReporter = eventReporter;
+    result._originSource  = originSource;
+    result._answerSource  = answerSource;
 
-    return self;
+    result._isReported = false;
+
+    return result;
   }
 
   void report()

@@ -27,22 +27,25 @@ class tt_InfoPanel : tt_View
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_InfoPanel init( tt_ModeSource        modeSource
-                   , tt_AnswerSource      answerSource
-                   , tt_Activatable       activatable
-                   , tt_KnownTargetSource knownTargetSource
-                   , tt_Settings          settings
-                   , tt_PlayerSource      playerSource
-                   )
+  static
+  tt_InfoPanel of( tt_ModeSource        modeSource
+                 , tt_AnswerSource      answerSource
+                 , tt_Activatable       activatable
+                 , tt_KnownTargetSource knownTargetSource
+                 , tt_Settings          settings
+                 , tt_PlayerSource      playerSource
+                 )
   {
-    _modeSource   = modeSource;
-    _answerSource = answerSource;
-    _activatable  = activatable;
-    _targetSource = knownTargetSource;
-    _settings     = settings;
-    _playerSource = playerSource;
+    let result = new("tt_InfoPanel"); // construct
 
-    return self;
+    result._modeSource   = modeSource;
+    result._answerSource = answerSource;
+    result._activatable  = activatable;
+    result._targetSource = knownTargetSource;
+    result._settings     = settings;
+    result._playerSource = playerSource;
+
+    return result;
   }
 
 // public: // tt_View //////////////////////////////////////////////////////////

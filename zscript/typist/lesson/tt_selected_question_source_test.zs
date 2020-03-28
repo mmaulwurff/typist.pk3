@@ -39,8 +39,8 @@ class tt_SelectedQuestionSourceTest : tt_Clematis
   private
   void checkEmpty()
   {
-    let settings               = new("tt_SettingsMock"          ).init();
-    let selectedQuestionSource = new("tt_SelectedQuestionSource").init(settings);
+    let settings               = tt_SettingsMock.of();
+    let selectedQuestionSource = tt_SelectedQuestionSource.of(settings);
 
     settings.expect_getQuestionSourceIndex(0);
 
@@ -53,15 +53,15 @@ class tt_SelectedQuestionSourceTest : tt_Clematis
   private
   void checkTwo()
   {
-    let settings               = new("tt_SettingsMock"          ).init();
-    let selectedQuestionSource = new("tt_SelectedQuestionSource").init(settings);
-    let questionSource1        = new("tt_QuestionSourceMock"    ).init();
-    let questionSource2        = new("tt_QuestionSourceMock"    ).init();
+    let settings               = tt_SettingsMock.of();
+    let selectedQuestionSource = tt_SelectedQuestionSource.of(settings);
+    let questionSource1        = tt_QuestionSourceMock.of();
+    let questionSource2        = tt_QuestionSourceMock.of();
 
     selectedQuestionSource.add(questionSource1);
     selectedQuestionSource.add(questionSource2);
 
-    let mockQuestion = new("tt_QuestionMock").init();
+    let mockQuestion = tt_QuestionMock.of();
     questionSource2.expect_getQuestion(mockQuestion);
     settings       .expect_getQuestionSourceIndex(1);
 

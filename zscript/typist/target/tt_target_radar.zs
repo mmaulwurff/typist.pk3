@@ -24,11 +24,14 @@ class tt_TargetRadar : tt_TargetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_TargetRadar init(tt_OriginSource originSource)
+  static
+  tt_TargetRadar of(tt_OriginSource originSource)
   {
-    _originSource = originSource;
+    let result = new("tt_TargetRadar"); // construct
 
-    return self;
+    result._originSource = originSource;
+
+    return result;
   }
 
 // public: // tt_TargetSource //////////////////////////////////////////////////
@@ -36,7 +39,7 @@ class tt_TargetRadar : tt_TargetSource
   override
   tt_Targets getTargets()
   {
-    let result = new("tt_Targets").init();
+    let result = tt_Targets.of();
 
     let origin = _originSource.getOrigin().getPosition();
 
@@ -46,7 +49,7 @@ class tt_TargetRadar : tt_TargetSource
     {
       if (tt_Math.isInEffectiveRange(a.pos, origin) && isSuitableForTargeting(a))
       {
-        result.add(new("tt_Target").init(a));
+        result.add(tt_Target.of(a));
       }
     }
 

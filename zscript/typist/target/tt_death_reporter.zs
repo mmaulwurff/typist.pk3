@@ -23,16 +23,19 @@ class tt_DeathReporter : tt_TargetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_DeathReporter init()
+  static
+  tt_DeathReporter of()
   {
-    _targets = new("tt_Targets").init();
+    let result = new("tt_DeathReporter"); // construct
 
-    return self;
+    result._targets = tt_Targets.of();
+
+    return result;
   }
 
   void reportDead(Actor thing)
   {
-    let newDisabled = new("tt_Target").init(thing);
+    let newDisabled = tt_Target.of(thing);
     _targets.add(newDisabled);
   }
 
@@ -42,7 +45,7 @@ class tt_DeathReporter : tt_TargetSource
   tt_Targets getTargets()
   {
     let result = _targets;
-    _targets = new("tt_Targets").init();
+    _targets = tt_Targets.of();
     return result;
   }
 

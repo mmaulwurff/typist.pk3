@@ -27,14 +27,15 @@ class tt_ProjectileSpeedController : tt_WorldChanger
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_ProjectileSpeedController init( tt_OriginSource playerOriginSource
-                                   , tt_PlayerSource playerSource
-                                   )
+  static
+  tt_ProjectileSpeedController of(tt_OriginSource playerOriginSource, tt_PlayerSource playerSource)
   {
-    _playerOriginSource = playerOriginSource;
-    _playerSource = playerSource;
+    let result = new("tt_ProjectileSpeedController"); // constructor
 
-    return self;
+    result._playerOriginSource = playerOriginSource;
+    result._playerSource = playerSource;
+
+    return result;
   }
 
 // public: // tt_WorldChanger //////////////////////////////////////////////////

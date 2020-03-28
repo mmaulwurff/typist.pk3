@@ -24,17 +24,20 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_QuestionAnswerMatcher init( tt_KnownTargetSource knownTargetSource
-                               , tt_AnswerSource      answerSource
-                               , tt_PlayerSource      playerSource
-                               )
+  static
+  tt_QuestionAnswerMatcher of( tt_KnownTargetSource knownTargetSource
+                             , tt_AnswerSource      answerSource
+                             , tt_PlayerSource      playerSource
+                             )
   {
-    _knownTargetSource = knownTargetSource;
-    _answerSource      = answerSource;
-    _playerSource      = playerSource;
-    _origin            = NULL;
+    let result = new("tt_QuestionAnswerMatcher"); // construct
 
-    return self;
+    result._knownTargetSource = knownTargetSource;
+    result._answerSource      = answerSource;
+    result._playerSource      = playerSource;
+    result._origin            = NULL;
+
+    return result;
   }
 
 // public: // tt_OriginSource //////////////////////////////////////////////////
@@ -76,7 +79,7 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
       {
         _answerSource.reset();
 
-        let result = new("tt_Origin").init(target.getTarget().getPosition());
+        let result = tt_Origin.of(target.getTarget().getPosition());
         return result;
       }
     }

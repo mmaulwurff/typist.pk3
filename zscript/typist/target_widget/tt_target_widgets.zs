@@ -23,9 +23,11 @@ class tt_TargetWidgets
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_TargetWidgets init()
+  static
+  tt_TargetWidgets of()
   {
-    return self;
+    let result = new("tt_TargetWidgets"); // construct
+    return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////
@@ -69,7 +71,7 @@ class tt_TargetWidgets
 
   tt_TargetWidgets copy() const
   {
-    let result = new("tt_TargetWidgets").init();
+    let result = tt_TargetWidgets.of();
     result._widgets.Reserve(size());
     result._widgets.Copy(_widgets);
 

@@ -27,12 +27,15 @@ class tt_Cvar
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Cvar init(tt_PlayerSource playerSource, String name)
+  static
+  tt_Cvar of(tt_PlayerSource playerSource, String name)
   {
-    _playerSource = playerSource;
-    _name         = name;
+    let result = new("tt_Cvar"); // construct
 
-    return self;
+    result._playerSource = playerSource;
+    result._name         = name;
+
+    return result;
   }
 
   String getString() { load(); return _cvar.GetString(); }

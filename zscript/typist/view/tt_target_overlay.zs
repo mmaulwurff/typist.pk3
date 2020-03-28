@@ -24,18 +24,21 @@ class tt_TargetOverlay : tt_View
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_TargetOverlay init( tt_TargetWidgetSource targetWidgetSource
-                       , tt_AnswerSource       answerSource
-                       , tt_Settings           settings
-                       , tt_ModeSource         modeSource
-                       )
+  static
+  tt_TargetOverlay of( tt_TargetWidgetSource targetWidgetSource
+                     , tt_AnswerSource       answerSource
+                     , tt_Settings           settings
+                     , tt_ModeSource         modeSource
+                     )
   {
-    _targetWidgetSource = targetWidgetSource;
-    _answerSource       = answerSource;
-    _settings           = settings;
-    _modeSource         = modeSource;
+    let result = new("tt_TargetOverlay"); // construct
 
-    return self;
+    result._targetWidgetSource = targetWidgetSource;
+    result._answerSource       = answerSource;
+    result._settings           = settings;
+    result._modeSource         = modeSource;
+
+    return result;
   }
 
 // public: // tt_View //////////////////////////////////////////////////////////

@@ -24,15 +24,18 @@ class tt_CachedTargetSource : tt_TargetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_CachedTargetSource init(tt_TargetSource targetSource, tt_Clock clock)
+  static
+  tt_CachedTargetSource of(tt_TargetSource targetSource, tt_Clock clock)
   {
-    _targetSource = targetSource;
-    _clock        = clock;
+    let result = new("tt_CachedTargetSource"); // construct
 
-    _isEmpty   = true;
-    _oldMoment = 0;
+    result._targetSource = targetSource;
+    result._clock        = clock;
 
-    return self;
+    result._isEmpty   = true;
+    result._oldMoment = 0;
+
+    return result;
   }
 
 // public: // tt_TargetSource //////////////////////////////////////////////////

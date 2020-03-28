@@ -26,14 +26,17 @@ class tt_InputByModeManager : tt_InputManager
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_InputByModeManager init(tt_ModeSource modeSource, tt_PlayerInput playerInput)
+  static
+  tt_InputByModeManager of(tt_ModeSource modeSource, tt_PlayerInput playerInput)
   {
-    _modeSource  = modeSource;
-    _playerInput = playerInput;
+    let result = new("tt_InputByModeManager"); // construct
 
-    _oldMode = tt_Mode.Unknown;
+    result._modeSource  = modeSource;
+    result._playerInput = playerInput;
 
-    return self;
+    result._oldMode = tt_Mode.Unknown;
+
+    return result;
   }
 
 // public: // tt_InputManager //////////////////////////////////////////////////

@@ -35,7 +35,7 @@ class tt_EventHandler : EventHandler
   {
     int code      = event.keyChar;
     int type      = event.type;
-    let character = new("tt_Character").init(type, code, event.isCtrl);
+    let character = tt_Character.of(type, code, event.isCtrl);
     _playerHandler.processKey(character);
 
     return false;
@@ -93,7 +93,7 @@ class tt_EventHandler : EventHandler
 
   void initPlayer(int playerNumber)
   {
-    _playerHandler = new("tt_PlayerSupervisor").init(playerNumber);
+    _playerHandler = tt_PlayerSupervisor.of(playerNumber);
   }
 
 // private: ////////////////////////////////////////////////////////////////////

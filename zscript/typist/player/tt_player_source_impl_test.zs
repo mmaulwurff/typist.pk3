@@ -45,7 +45,7 @@ class tt_PlayerSourceImplTest : tt_Clematis
   {
     for (int playerNumber = 0; playerNumber < MAXPLAYERS; ++playerNumber)
     {
-      let source = new("tt_PlayerSourceImpl").init(playerNumber);
+      let source = tt_PlayerSourceImpl.of(playerNumber);
       let info   = source.getInfo();
 
       It(String.Format("Player info (%d) must be not NULL", playerNumber), Assert(info != NULL));
@@ -55,7 +55,7 @@ class tt_PlayerSourceImplTest : tt_Clematis
   private
   void testConsolePlayer()
   {
-    let source = new("tt_PlayerSourceImpl").init(consolePlayer);
+    let source = tt_PlayerSourceImpl.of(consolePlayer);
     let pawn   = source.getPawn();
 
     It(String.Format("Must get main player (%d) actor", consolePlayer), AssertNotNull(pawn));
@@ -70,7 +70,7 @@ class tt_PlayerSourceImplTest : tt_Clematis
     for (int i = 1; i < MAXPLAYERS; ++i)
     {
       int playerNumber = (consolePlayer + i) % MAXPLAYERS;
-      let source       = new("tt_PlayerSourceImpl").init(playerNumber);
+      let source       = tt_PlayerSourceImpl.of(playerNumber);
       let pawn         = source.getPawn();
 
       It(String.Format("Other player (%d) must be null", playerNumber), AssertNull(pawn));

@@ -25,13 +25,16 @@ class tt_Gunner : tt_Damager
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Gunner init(tt_OriginSource originSource, tt_Aimer aimer, tt_Firer firer)
+  static
+  tt_Gunner of(tt_OriginSource originSource, tt_Aimer aimer, tt_Firer firer)
   {
-    _originSource = originSource;
-    _aimer        = aimer;
-    _firer        = firer;
+    let result = new("tt_Gunner"); // construct
 
-    return self;
+    result._originSource = originSource;
+    result._aimer        = aimer;
+    result._firer        = firer;
+
+    return result;
   }
 
 // public: // tt_Damager ///////////////////////////////////////////////////////

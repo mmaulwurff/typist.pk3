@@ -22,11 +22,14 @@ class tt_FirerImpl : tt_Firer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_FirerImpl init(tt_PlayerSource playerSource)
+  static
+  tt_FirerImpl of(tt_PlayerSource playerSource)
   {
-    _playerSource = playerSource;
+    let result = new("tt_FirerImpl"); // construct
 
-    return self;
+    result._playerSource = playerSource;
+
+    return result;
   }
 
 // public: // tt_Firer /////////////////////////////////////////////////////////

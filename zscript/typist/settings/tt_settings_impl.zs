@@ -23,20 +23,23 @@ class tt_SettingsImpl : tt_Settings
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_SettingsImpl init(tt_PlayerSource playerSource)
+  static
+  tt_SettingsImpl of(tt_PlayerSource playerSource)
   {
-    _scaleCvar               = new("tt_Cvar").init(playerSource, "tt_view_scale"     );
-    _autoaimCvar             = new("tt_Cvar").init(playerSource, "autoaim"           );
-    _questionSourceIndexCvar = new("tt_Cvar").init(playerSource, "tt_question_source");
-    _commandPrefixCvar       = new("tt_Cvar").init(playerSource, "tt_command_prefix" );
+    let result = new("tt_SettingsImpl"); // construct
+
+    result._scaleCvar               = tt_Cvar.of(playerSource, "tt_view_scale"     );
+    result._autoaimCvar             = tt_Cvar.of(playerSource, "autoaim"           );
+    result._questionSourceIndexCvar = tt_Cvar.of(playerSource, "tt_question_source");
+    result._commandPrefixCvar       = tt_Cvar.of(playerSource, "tt_command_prefix" );
 
     for (uint i = 0; i < N_IS_LESSON_ENABLED_CVARS; ++i)
     {
       String cvarName = String.Format("tt_is_lesson_enabled_%d", i);
-      _isLessonEnabledCvars.Push(new("tt_Cvar").init(playerSource, cvarName));
+      result._isLessonEnabledCvars.Push(tt_Cvar.of(playerSource, cvarName));
     }
 
-    return self;
+    return result;
   }
 
 // public: // tt_Settings //////////////////////////////////////////////////////

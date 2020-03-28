@@ -38,9 +38,9 @@ class tt_AimersTest : tt_Clematis
   private play
   void testAdd() const
   {
-    let aimers = new("tt_Aimers"   ).init();
-    let aimer1 = new("tt_AimerMock").init();
-    let aimer2 = new("tt_AimerMock").init();
+    let aimers = tt_Aimers.of();
+    let aimer1 = tt_AimerMock.of();
+    let aimer2 = tt_AimerMock.of();
 
     aimers.add(aimer1);
     aimers.add(aimer2);

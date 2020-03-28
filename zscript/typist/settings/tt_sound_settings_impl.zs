@@ -23,13 +23,16 @@ class tt_SoundSettingsImpl : tt_SoundSettings
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_SoundSettingsImpl init(tt_PlayerSource playerSource)
+  static
+  tt_SoundSettingsImpl of(tt_PlayerSource playerSource)
   {
-    _enabledCvar       = new("tt_Cvar").init(playerSource, "tt_sound_enabled"       );
-    _soundThemeCvar    = new("tt_Cvar").init(playerSource, "tt_sound_theme"         );
-    _typingEnabledCvar = new("tt_Cvar").init(playerSource, "tt_sound_typing_enabled");
+    let result = new("tt_SoundSettingsImpl"); // construct
 
-    return self;
+    result._enabledCvar       = tt_Cvar.of(playerSource, "tt_sound_enabled"       );
+    result._soundThemeCvar    = tt_Cvar.of(playerSource, "tt_sound_theme"         );
+    result._typingEnabledCvar = tt_Cvar.of(playerSource, "tt_sound_typing_enabled");
+
+    return result;
   }
 
 // public: // tt_SoundSettingsImpl /////////////////////////////////////////////

@@ -38,7 +38,7 @@ class tt_StringsTest : tt_Clematis
   private
   void checkEmpty()
   {
-    let strings = new("tt_Strings").init();
+    let strings = tt_Strings.of();
     let size    = strings.size();
 
     It("New Strings is empty", AssertEval(size, "==", 0));
@@ -46,7 +46,7 @@ class tt_StringsTest : tt_Clematis
 
   private void checkAdd()
   {
-    let strings = new("tt_Strings").init();
+    let strings = tt_Strings.of();
     let str     = "a";
 
     strings.add(str);

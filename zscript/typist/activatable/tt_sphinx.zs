@@ -21,9 +21,11 @@
 class tt_Sphinx : tt_Activatable
 {
 
-  tt_Sphinx init()
+  static
+  tt_Sphinx of()
   {
-    return self;
+    let result = new("tt_Sphinx"); // construct
+    return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////
@@ -42,7 +44,7 @@ class tt_Sphinx : tt_Activatable
   override
   tt_Strings getCommands()
   {
-    let strings = new("tt_Strings").init();
+    let strings = tt_Strings.of();
     strings.add("Sphinx_of_black_quartz,_judge_my_vow.");
     return strings;
   }

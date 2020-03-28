@@ -25,18 +25,21 @@ class tt_InputBlockAfterCombat : tt_AnswerSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_InputBlockAfterCombat init( tt_AnswerSource answerSource
-                               , tt_ModeSource   modeSource
-                               , tt_ModeSource   oldModeSource
-                               )
+  static
+  tt_InputBlockAfterCombat of( tt_AnswerSource answerSource
+                             , tt_ModeSource   modeSource
+                             , tt_ModeSource   oldModeSource
+                             )
   {
-    _answerSource  = answerSource;
-    _modeSource    = modeSource;
-    _oldModeSource = oldModeSource;
+    let result = new("tt_InputBlockAfterCombat"); // construct
 
-    _isLocked = false;
+    result._answerSource  = answerSource;
+    result._modeSource    = modeSource;
+    result._oldModeSource = oldModeSource;
 
-    return self;
+    result._isLocked = false;
+
+    return result;
   }
 
   void update()

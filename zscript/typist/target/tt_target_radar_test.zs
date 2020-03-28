@@ -44,13 +44,13 @@ class tt_TargetRadarTest : tt_Clematis
     actors.push(Spawn("DoomImp", ( 0,  0,  5)));
     actors.push(Spawn("DoomImp", ( 0,  0, -5)));
 
-    _targetRadarTestOriginSource.expect_getOrigin(new("tt_Origin").init((0, 0, 0)));
+    _targetRadarTestOriginSource.expect_getOrigin(tt_Origin.of((0, 0, 0)));
 
     let targets  = _targetRadarTestTargetRadar.getTargets();
     uint nActors = actors.size();
     for (uint i = 0; i < nActors; ++i)
     {
-      let a = new("tt_Target").init(actors[i]);
+      let a = tt_Target.of(actors[i]);
       It(String.Format("Actor %d is present in list", i), Assert(targets.contains(a)));
     }
 
@@ -62,10 +62,10 @@ class tt_TargetRadarTest : tt_Clematis
   {
     setUp("Checking Target Radar: distant actor");
 
-    _targetRadarTestOriginSource.expect_getOrigin(new("tt_Origin").init((0, 0, 0)));
+    _targetRadarTestOriginSource.expect_getOrigin(tt_Origin.of((0, 0, 0)));
 
     let distantActor  = Spawn("DoomImp", (1000, 0, 0));
-    let distantTarget = new("tt_Target").init(distantActor);
+    let distantTarget = tt_Target.of(distantActor);
     let targets       = _targetRadarTestTargetRadar.getTargets();
 
     It("Distant actor is not in list", AssertFalse(targets.contains(distantTarget)));
@@ -78,11 +78,11 @@ class tt_TargetRadarTest : tt_Clematis
   {
     setUp("Checking Target Radar: non-living actor");
 
-    _targetRadarTestOriginSource.expect_getOrigin(new("tt_Origin").init((0, 0, 0)));
+    _targetRadarTestOriginSource.expect_getOrigin(tt_Origin.of((0, 0, 0)));
 
     let nonLiving       = Spawn("Medikit", (1, 0, 0));
     let targets         = _targetRadarTestTargetRadar.getTargets();
-    let nonLivingTarget = new("tt_Target").init(nonLiving);
+    let nonLivingTarget = tt_Target.of(nonLiving);
 
     It("Non-living actor is not in list", AssertFalse(targets.contains(nonLivingTarget)));
 
@@ -94,12 +94,12 @@ class tt_TargetRadarTest : tt_Clematis
   {
     setUp("Checking Target Radar: dead actor");
 
-    _targetRadarTestOriginSource.expect_getOrigin(new("tt_Origin").init((0, 0, 0)));
+    _targetRadarTestOriginSource.expect_getOrigin(tt_Origin.of((0, 0, 0)));
 
     let deadActor  = Spawn("DoomImp", (1, 0, 0));
     Kill(deadActor);
     let targets    = _targetRadarTestTargetRadar.getTargets();
-    let deadTarget = new("tt_Target").init(deadActor);
+    let deadTarget = tt_Target.of(deadActor);
 
     It("Dead actor is not in list", AssertFalse(targets.contains(deadTarget)));
 
@@ -113,8 +113,8 @@ class tt_TargetRadarTest : tt_Clematis
   {
     Describe(description);
 
-    _targetRadarTestOriginSource = new("tt_OriginSourceMock").init();
-    _targetRadarTestTargetRadar  = new("tt_TargetRadar").init(_targetRadarTestOriginSource);
+    _targetRadarTestOriginSource = tt_OriginSourceMock.of();
+    _targetRadarTestTargetRadar  = tt_TargetRadar.of(_targetRadarTestOriginSource);
   }
 
   private

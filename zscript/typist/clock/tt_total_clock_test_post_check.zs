@@ -27,7 +27,7 @@ class tt_TotalClockTestPostCheck : tt_Clematis
 
     Describe("Checking TotalClock: Post-test");
 
-    let clock = new("tt_TotalClock").init();
+    let clock = tt_TotalClock.of();
     int oldNow = players[consolePlayer].mo.score;
     int duration = clock.since(oldNow);
 

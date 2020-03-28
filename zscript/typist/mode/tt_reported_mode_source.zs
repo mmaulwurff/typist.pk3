@@ -24,14 +24,17 @@ class tt_ReportedModeSource : tt_ModeSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_ReportedModeSource init(tt_EventReporter reporter, tt_ModeSource modeSource)
+  static
+  tt_ReportedModeSource of(tt_EventReporter reporter, tt_ModeSource modeSource)
   {
-    _reporter   = reporter;
-    _modeSource = modeSource;
+    let result = new("tt_ReportedModeSource"); // construct
 
-    _oldMode = tt_Mode.None;
+    result._reporter   = reporter;
+    result._modeSource = modeSource;
 
-    return self;
+    result._oldMode = tt_Mode.None;
+
+    return result;
   }
 
 // public: // tt_ModeSource ////////////////////////////////////////////////////

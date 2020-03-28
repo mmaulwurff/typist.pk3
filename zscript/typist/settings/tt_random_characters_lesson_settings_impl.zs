@@ -26,18 +26,21 @@ class tt_RandomCharactersLessonSettingsImpl : tt_RandomCharactersLessonSettings
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_RandomCharactersLessonSettingsImpl init(tt_PlayerSource playerSource)
+  static
+  tt_RandomCharactersLessonSettingsImpl of(tt_PlayerSource playerSource)
   {
-    _lessonLength         = new("tt_Cvar").init(playerSource, "tt_rc_length");
-    _isUppercaseEnabled   = new("tt_Cvar").init(playerSource, "tt_rc_uppercase_letters_enabled");
-    _isLowercaseEnabled   = new("tt_Cvar").init(playerSource, "tt_rc_lowercase_letters_enabled");
-    _isNumbersEnabled     = new("tt_Cvar").init(playerSource, "tt_rc_numbers_enabled");
-    _isPunctuationEnabled = new("tt_Cvar").init(playerSource, "tt_rc_punctuation_enabled");
-    _isSymbolsEnabled     = new("tt_Cvar").init(playerSource, "tt_rc_symbols_enabled");
-    _isCustomEnabled      = new("tt_Cvar").init(playerSource, "tt_rc_custom_enabled");
-    _customCharacters     = new("tt_Cvar").init(playerSource, "tt_rc_custom");
+    let result = new("tt_RandomCharactersLessonSettingsImpl"); // construct
 
-    return self;
+    result._lessonLength         = tt_Cvar.of(playerSource, "tt_rc_length");
+    result._isUppercaseEnabled   = tt_Cvar.of(playerSource, "tt_rc_uppercase_letters_enabled");
+    result._isLowercaseEnabled   = tt_Cvar.of(playerSource, "tt_rc_lowercase_letters_enabled");
+    result._isNumbersEnabled     = tt_Cvar.of(playerSource, "tt_rc_numbers_enabled");
+    result._isPunctuationEnabled = tt_Cvar.of(playerSource, "tt_rc_punctuation_enabled");
+    result._isSymbolsEnabled     = tt_Cvar.of(playerSource, "tt_rc_symbols_enabled");
+    result._isCustomEnabled      = tt_Cvar.of(playerSource, "tt_rc_custom_enabled");
+    result._customCharacters     = tt_Cvar.of(playerSource, "tt_rc_custom");
+
+    return result;
   }
 
 // public: // tt_RandomCharactersLessonSettings ////////////////////////////////

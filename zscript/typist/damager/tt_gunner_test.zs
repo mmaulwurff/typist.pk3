@@ -51,7 +51,7 @@ class tt_GunnerTest : tt_Clematis
   {
     setUp();
 
-    let origin = new("tt_Origin").init((0, 0, 0));
+    let origin = tt_Origin.of((0, 0, 0));
 
     _originSource.expect_getOrigin(origin);
     _aimer.expect_aim();
@@ -64,10 +64,10 @@ class tt_GunnerTest : tt_Clematis
   private
   void setUp()
   {
-    _originSource = new("tt_OriginSourceMock").init();
-    _aimer        = new("tt_AimerMock").init();
-    _firer        = new("tt_FirerMock").init();
-    _gunner       = new("tt_Gunner").init(_originSource, _aimer, _firer);
+    _originSource = tt_OriginSourceMock.of();
+    _aimer        = tt_AimerMock.of();
+    _firer        = tt_FirerMock.of();
+    _gunner       = tt_Gunner.of(_originSource, _aimer, _firer);
   }
 
   private

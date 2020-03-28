@@ -28,7 +28,7 @@ class tt_StringSetTest : tt_Clematis
   {
     Describe("Checking String Set");
 
-    let    stringSet   = new("tt_StringSet").init("tt_test");
+    let    stringSet   = tt_StringSet.of("tt_test");
     let    question    = stringSet.getQuestion();
     String description = question.getDescription();
 

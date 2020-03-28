@@ -21,6 +21,18 @@
 class tt_ForwardDasher : tt_Dasher
 {
 
+// public: /////////////////////////////////////////////////////////////////////
+
+  static
+  tt_ForwardDasher of(tt_PlayerSource playerSource)
+  {
+    let result = new("tt_ForwardDasher"); // construct
+
+    result._playerSource = playerSource;
+
+    return result;
+  }
+
 // public: // tt_Dasher ////////////////////////////////////////////////////////
 
   override
@@ -34,7 +46,7 @@ class tt_ForwardDasher : tt_Dasher
   override
   tt_Strings getCommands()
   {
-    let result = new("tt_Strings").init();
+    let result = tt_Strings.of();
     result.add("df");
 
     return result;

@@ -24,16 +24,19 @@ class tt_DelayedCombatModeSource : tt_ModeSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_DelayedCombatModeSource init(tt_Clock clock, tt_ModeSource modeSource)
+  static
+  tt_DelayedCombatModeSource of(tt_Clock clock, tt_ModeSource modeSource)
   {
-    _clock      = clock;
-    _modeSource = modeSource;
+    let result = new("tt_DelayedCombatModeSource"); // construct
 
-    _switchDetected = false;
-    _oldMode        = tt_Mode.None;
-    _switchToExploreMoment = 0;
+    result._clock      = clock;
+    result._modeSource = modeSource;
 
-    return self;
+    result._switchDetected = false;
+    result._oldMode        = tt_Mode.None;
+    result._switchToExploreMoment = 0;
+
+    return result;
   }
 
 // public: // tt_ModeSource ////////////////////////////////////////////////////

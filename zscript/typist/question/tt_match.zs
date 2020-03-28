@@ -25,12 +25,15 @@ class tt_Match : tt_Question
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Question init(String question, String description)
+  static
+  tt_Match of(String question, String description)
   {
-    _question    = question;
-    _description = description;
+    let result = new("tt_Match"); // construct
 
-    return self;
+    result._question    = question;
+    result._description = description;
+
+    return result;
   }
 
 // public: // tt_Question //////////////////////////////////////////////////////

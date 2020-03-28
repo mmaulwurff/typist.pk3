@@ -25,8 +25,8 @@ class tt_FirerImplTest : tt_Clematis
   {
     Describe("Checking FirerImpl");
 
-    let        playerSource = new("tt_PlayerSourceMock").init();
-    let        firerImpl    = new("tt_FirerImpl").init(playerSource);
+    let        playerSource = tt_PlayerSourceMock.of();
+    let        firerImpl    = tt_FirerImpl.of(playerSource);
     PlayerInfo info         = players[consolePlayer];
     let        pawn         = info.mo;
 

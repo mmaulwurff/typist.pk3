@@ -62,7 +62,7 @@ class tt_PlayerInputTest : tt_Clematis
     String input2 = "def";
 
     throwStringIntoInput(_playerInput, input1);
-    let reset = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Backspace, true);
+    let reset = tt_Character.of(TYPE_CHAR, tt_Ascii.Backspace, true);
     _playerInput.processKey(reset);
     throwStringIntoInput(_playerInput, input2);
 
@@ -77,8 +77,8 @@ class tt_PlayerInputTest : tt_Clematis
   {
     setUp();
 
-    let backspace = new("tt_Character"      ).init(TYPE_CHAR, 8, false);
-    let letterA   = new("tt_Character"      ).init(TYPE_CHAR, 97, false);
+    let backspace = tt_Character.of(TYPE_CHAR, 8, false);
+    let letterA   = tt_Character.of(TYPE_CHAR, 97, false);
 
     //_playerInput.reset();
     _playerInput.processKey(backspace);
@@ -97,8 +97,8 @@ class tt_PlayerInputTest : tt_Clematis
   {
     setUp();
 
-    let ctrlBackspace = new("tt_Character").init(TYPE_CHAR, 8, true);
-    let letterA       = new("tt_Character").init(TYPE_CHAR, 97, false);
+    let ctrlBackspace = tt_Character.of(TYPE_CHAR, 8, true);
+    let letterA       = tt_Character.of(TYPE_CHAR, 97, false);
 
     _playerInput.processKey(letterA);
     _playerInput.processKey(letterA);
@@ -118,20 +118,20 @@ class tt_PlayerInputTest : tt_Clematis
     uint inputSize = str.length();
     for (uint i = 0; i < inputSize; ++i)
     {
-      let character = new("tt_Character").init(TYPE_CHAR, str.ByteAt(i), false);
+      let character = tt_Character.of(TYPE_CHAR, str.ByteAt(i), false);
       input.processKey(character);
     }
 
-    let enter = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Enter, false);
+    let enter = tt_Character.of(TYPE_CHAR, tt_Ascii.Enter, false);
     input.processKey(enter);
   }
 
   private
   void setUp()
   {
-    _modeStorage   = new("tt_ModeStorageMock"  ).init();
-    _eventReporter = new("tt_EventReporterMock").init();
-    _playerInput   = new("tt_PlayerInput"      ).init(_modeStorage, _eventReporter);
+    _modeStorage   = tt_ModeStorageMock.of();
+    _eventReporter = tt_EventReporterMock.of();
+    _playerInput   = tt_PlayerInput.of(_modeStorage, _eventReporter);
   }
 
 // private: ////////////////////////////////////////////////////////////////////

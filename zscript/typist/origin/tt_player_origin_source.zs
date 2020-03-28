@@ -24,11 +24,14 @@ class tt_PlayerOriginSource : tt_OriginSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_OriginSource init(tt_PlayerSource playerSource)
+  static
+  tt_PlayerOriginSource of(tt_PlayerSource playerSource)
   {
-    _playerSource = playerSource;
+    let result = new("tt_PlayerOriginSource"); // construct
 
-    return self;
+    result._playerSource = playerSource;
+
+    return result;
   }
 
 // public: // tt_OriginSource //////////////////////////////////////////////////
@@ -40,7 +43,7 @@ class tt_PlayerOriginSource : tt_OriginSource
     let pos  = pawn.pos;
     pos.z += pawn.height / 2;
 
-    return new("tt_Origin").init(pos);
+    return tt_Origin.of(pos);
   }
 
   override

@@ -24,11 +24,14 @@ class tt_Origin
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Origin init(Vector3 pos)
+  static
+  tt_Origin of(Vector3 pos)
   {
-    _pos = pos;
+    let result = new("tt_Origin"); // construct
 
-    return self;
+    result._pos = pos;
+
+    return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////

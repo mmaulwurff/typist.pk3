@@ -33,8 +33,8 @@ class tt_PlayerOriginSourceTest : tt_Clematis
     double z = 3;
     let player = PlayerPawn(Spawn("DoomPlayer", (x, y, z)));
 
-    let playerSource = new("tt_PlayerSourceMock"  ).init();
-    let originSource = new("tt_PlayerOriginSource").init(playerSource);
+    let playerSource = tt_PlayerSourceMock.of();
+    let originSource = tt_PlayerOriginSource.of(playerSource);
 
     playerSource.expect_getPawn(player);
 

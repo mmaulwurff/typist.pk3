@@ -28,40 +28,40 @@ class tt_CharacterTest : tt_Clematis
     Describe("Checking Character");
 
     {
-      let smallA = new("tt_Character").init(TYPE_CHAR, tt_Ascii.LowercaseA, false);
+      let smallA = tt_Character.of(TYPE_CHAR, tt_Ascii.LowercaseA, false);
       It("Small character", Assert(smallA.getType() == tt_Character.PRINTABLE));
       It("Small character", Assert(smallA.getCharacter() == "a"));
     }
 
     {
-      let bigA = new("tt_Character").init(TYPE_CHAR, tt_Ascii.UppercaseA, false);
+      let bigA = tt_Character.of(TYPE_CHAR, tt_Ascii.UppercaseA, false);
       It("Big character", Assert(bigA.getType() == tt_Character.PRINTABLE));
       It("Big character", Assert(bigA.getCharacter() == "A"));
     }
 
     {
-      let number = new("tt_Character").init(TYPE_CHAR, tt_Ascii.Number4, false);
+      let number = tt_Character.of(TYPE_CHAR, tt_Ascii.Number4, false);
       It("Number", Assert(number.getType() == tt_Character.PRINTABLE));
       It("Number", Assert(number.getCharacter() == "4"));
     }
 
     {
-      let backspace = new("tt_Character").init(TYPE_CHAR, tt_Ascii.BACKSPACE, false);
+      let backspace = tt_Character.of(TYPE_CHAR, tt_Ascii.BACKSPACE, false);
       It("Backspace", Assert(backspace.getType() == tt_Character.BACKSPACE));
     }
 
     {
-      let nonPrintable = new("tt_Character").init(TYPE_CHAR, tt_Ascii.NUL, false);
+      let nonPrintable = tt_Character.of(TYPE_CHAR, tt_Ascii.NUL, false);
       It("Non-printable", Assert(nonPrintable.getType() == tt_Character.NONE));
     }
 
     {
-      let ctrlBackspace = new("tt_Character").init(TYPE_CHAR, tt_Ascii.BACKSPACE, true);
+      let ctrlBackspace = tt_Character.of(TYPE_CHAR, tt_Ascii.BACKSPACE, true);
       It("Ctrl-Backspace", Assert(ctrlBackspace.getType() == tt_Character.CTRL_BACKSPACE));
     }
 
     {
-      let enter = new("tt_Character").init(TYPE_CHAR, tt_Ascii.ENTER, true);
+      let enter = tt_Character.of(TYPE_CHAR, tt_Ascii.ENTER, true);
       It("Enter", Assert(enter.getType() == tt_Character.ENTER));
     }
 

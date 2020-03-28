@@ -32,8 +32,8 @@ class OptionMenuItemtt_MenuInjector : OptionMenuItem
     let mainDescriptor = ListMenuDescriptor(MenuDescriptor.GetDescriptor("MainMenu"));
     let textDescriptor = ListMenuDescriptor(MenuDescriptor.GetDescriptor("MainMenuTextOnly"));
 
-    mainDescriptor.mItems.Push(new("tt_ListMenuNote").init());
-    textDescriptor.mItems.Push(new("tt_ListMenuNote").init());
+    mainDescriptor.mItems.Push(new("tt_ListMenuNote").init()); // construct
+    textDescriptor.mItems.Push(new("tt_ListMenuNote").init()); // construct
   }
 
 } // class OptionMenuItemtt_MenuInjector

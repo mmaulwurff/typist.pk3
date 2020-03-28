@@ -36,7 +36,7 @@ class tt_TotalClockTest : tt_Clematis
   private
   void checkNow()
   {
-    let clock = new("tt_TotalClock").init();
+    let clock = tt_TotalClock.of();
 
     int now1 = clock.getNow();
     int now2 = clock.getNow();
@@ -47,7 +47,7 @@ class tt_TotalClockTest : tt_Clematis
   private play
   void checkSince() const
   {
-    let clock = new("tt_TotalClock").init();
+    let clock = tt_TotalClock.of();
     int now   = clock.getNow();
 
     // Store somewhere

@@ -36,8 +36,8 @@ class tt_TargetRegistryTest : tt_Clematis
   {
     targetRegistrySetUp("Checking empty Target Registry");
 
-    _targetSource        .expect_getTargets(new("tt_Targets").init());
-    _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
+    _targetSource        .expect_getTargets(tt_Targets.of());
+    _disabledTargetSource.expect_getTargets(tt_Targets.of());
 
     It("Is empty", Assert(_targetRegistry.isEmpty()));
 
@@ -49,15 +49,15 @@ class tt_TargetRegistryTest : tt_Clematis
   {
     targetRegistrySetUp("Checking adding to Target Registry");
 
-    let target1 = new("tt_Target").init(Spawn("Demon", (0, 0, 0)));
-    let target2 = new("tt_Target").init(Spawn("Demon", (0, 0, 0)));
-    let targets = new("tt_Targets").init();
+    let target1 = tt_Target.of(Spawn("Demon", (0, 0, 0)));
+    let target2 = tt_Target.of(Spawn("Demon", (0, 0, 0)));
+    let targets = tt_Targets.of();
     targets.add(target1);
     targets.add(target2);
 
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
-    _questionSource.expect_getQuestion(new("tt_QuestionMock").init(), 2);
+    _disabledTargetSource.expect_getTargets(tt_Targets.of());
+    _questionSource.expect_getQuestion(tt_QuestionMock.of(), 2);
 
     let knownTargets = _targetRegistry.getTargets();
 
@@ -73,13 +73,13 @@ class tt_TargetRegistryTest : tt_Clematis
 
     // First, add a single target.
     let demon1  = Spawn("Demon", (0, 0, 0));
-    let target  = new("tt_Target").init(demon1);
-    let targets = new("tt_Targets").init();
+    let target  = tt_Target.of(demon1);
+    let targets = tt_Targets.of();
     targets.add(target);
 
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
-    _questionSource.expect_getQuestion(new("tt_QuestionMock").init());
+    _disabledTargetSource.expect_getTargets(tt_Targets.of());
+    _questionSource.expect_getQuestion(tt_QuestionMock.of());
 
     let knownTargets = _targetRegistry.getTargets();
 
@@ -90,7 +90,7 @@ class tt_TargetRegistryTest : tt_Clematis
     // Second, add the same target again. Only a single target must remain
     // registered.
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
+    _disabledTargetSource.expect_getTargets(tt_Targets.of());
     _questionSource.expect_getQuestion(NULL, 0);
     _clock.expect_since(999);
 
@@ -109,15 +109,15 @@ class tt_TargetRegistryTest : tt_Clematis
     // First, add two targets.
     let demon1  = Spawn("Demon", (0, 0, 0));
     let demon2  = Spawn("Demon", (0, 0, 0));
-    let target1 = new("tt_Target").init(demon1);
-    let target2 = new("tt_Target").init(demon2);
-    let targets = new("tt_Targets").init();
+    let target1 = tt_Target.of(demon1);
+    let target2 = tt_Target.of(demon2);
+    let targets = tt_Targets.of();
     targets.add(target1);
     targets.add(target2);
 
     _targetSource.expect_getTargets(targets);
-    _disabledTargetSource.expect_getTargets(new("tt_Targets").init());
-    _questionSource.expect_getQuestion(new("tt_QuestionMock").init(), 2);
+    _disabledTargetSource.expect_getTargets(tt_Targets.of());
+    _questionSource.expect_getQuestion(tt_QuestionMock.of(), 2);
 
     let knownTargets = _targetRegistry.getTargets();
 
@@ -126,11 +126,11 @@ class tt_TargetRegistryTest : tt_Clematis
     assertSourcesSatisfied();
 
     // Second, remove one target.
-    let disabledTarget  = new("tt_Target").init(demon1);
-    let disabledTargets = new("tt_Targets").init();
+    let disabledTarget  = tt_Target.of(demon1);
+    let disabledTargets = tt_Targets.of();
     disabledTargets.add(disabledTarget);
 
-    _targetSource.expect_getTargets(new("tt_Targets").init());
+    _targetSource.expect_getTargets(tt_Targets.of());
     _disabledTargetSource.expect_getTargets(disabledTargets);
     _questionSource.expect_getQuestion(NULL, 0);
     _clock.expect_since(999);
@@ -149,16 +149,16 @@ class tt_TargetRegistryTest : tt_Clematis
   {
     Describe(description);
 
-    _targetSource         = new("tt_TargetSourceMock"  ).init();
-    _questionSource       = new("tt_QuestionSourceMock").init();
-    _disabledTargetSource = new("tt_TargetSourceMock"  ).init();
-    _clock                = new("tt_ClockMock"         ).init();
+    _targetSource         = tt_TargetSourceMock.of();
+    _questionSource       = tt_QuestionSourceMock.of();
+    _disabledTargetSource = tt_TargetSourceMock.of();
+    _clock                = tt_ClockMock.of();
 
-    _targetRegistry = new("tt_TargetRegistry").init( _targetSource
-                                                   , _questionSource
-                                                   , _disabledTargetSource
-                                                   , _clock
-                                                   );
+    _targetRegistry = tt_TargetRegistry.of( _targetSource
+                                           , _questionSource
+                                           , _disabledTargetSource
+                                           , _clock
+                                           );
   }
 
   private

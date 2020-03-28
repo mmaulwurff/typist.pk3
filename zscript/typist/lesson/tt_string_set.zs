@@ -24,16 +24,21 @@ class tt_StringSet : tt_QuestionSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_StringSet init(String lumpName)
+  static
+  tt_StringSet of(String lumpName)
   {
-    _lumpName = lumpName;
-
-    int    lump     = Wads.FindLump(_lumpName, 0, Wads.AnyNamespace);
+    int    lump     = Wads.FindLump(lumpName, 0, Wads.AnyNamespace);
     String contents = Wads.ReadLump(lump);
-    contents.Split(_words, "\n", TOK_SkipEmpty);
-    sanitizeWords();
+    Array<String> words;
+    contents.Split(words, "\n", TOK_SkipEmpty);
+    sanitizeWords(words);
 
-    return self;
+    let result = new("tt_StringSet"); // construct
+
+    result._lumpName = lumpName;
+    words.Move(result._words);
+
+    return result;
   }
 
 // public: // tt_QuestionSource ////////////////////////////////////////////////
@@ -44,7 +49,7 @@ class tt_StringSet : tt_QuestionSource
     int nWords = int(_words.size());
     if (nWords == 0)
     {
-      let message = String.Format("zscript/typist/lesson/tt_string_set.zs:47: T:"
+      let message = String.Format("zscript/typist/lesson/tt_string_set.zs:52: T:"
                                   "no words in lump %s.", _lumpName);
       tt_Log.log(message);
       return NULL;
@@ -52,27 +57,27 @@ class tt_StringSet : tt_QuestionSource
 
     int    wordIndex = Random(0, nWords - 1);
     String word      = _words[wordIndex];
-    let    question  = new("tt_Match").init(word, word);
+    let    question  = tt_Match.of(word, word);
 
     return question;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private
-  void sanitizeWords()
+  private static
+  void sanitizeWords(out Array<String> words)
   {
-    uint nWords = _words.size();
+    uint nWords = words.size();
     for (uint i = 0; i < nWords; ++i)
     {
-      _words[i] = Strip(_words[i]);
+      words[i] = Strip(words[i]);
     }
 
-    for (uint i = 0; i < _words[i].length();)
+    for (uint i = 0; i < words[i].length();)
     {
-      if (_words[i].length() == 0)
+      if (words[i].length() == 0)
       {
-        _words.Delete(i);
+        words.Delete(i);
       }
       else
       {
@@ -80,13 +85,13 @@ class tt_StringSet : tt_QuestionSource
       }
     }
 
-    _words.Pop();
+    words.Pop();
   }
 
   /**
    * Removes spaces from left and right.
    */
-  private
+  private static
   String Strip(String str)
   {
     uint length = str.length();
@@ -108,10 +113,10 @@ class tt_StringSet : tt_QuestionSource
     return result;
   }
 
-  private
+  private static
   bool isSpace(int byte)
   {
-    return (byte <= 32); // control characters and space.
+    return (byte <= tt_Ascii.Space); // control characters and space.
   }
 
 // private: ////////////////////////////////////////////////////////////////////

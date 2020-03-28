@@ -25,7 +25,7 @@ class tt_DeathReporterTest : tt_Clematis
   {
     Describe("Checking Death Reporter");
 
-    let _deathReporter = new("tt_DeathReporter").init();
+    let _deathReporter = tt_DeathReporter.of();
     let targetsBefore  = _deathReporter.getTargets();
     It("No targets before reporting", AssertEval(targetsBefore.size(), "==", 0));
 
@@ -35,7 +35,7 @@ class tt_DeathReporterTest : tt_Clematis
     It("Single target after reporting", AssertEval(targetsAfter.size(), "==", 1));
 
     let targetsAfterAfter = _deathReporter.getTargets();
-    It("No new targets", AssertEval(targetsAfterAfter.size(), "==", 0));
+    It("No.of targets", AssertEval(targetsAfterAfter.size(), "==", 0));
 
     EndDescribe();
   }

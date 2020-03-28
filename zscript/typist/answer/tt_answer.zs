@@ -24,12 +24,15 @@ class tt_Answer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Answer init(String answer = "")
+  static
+  tt_Answer of(String answer = "")
   {
-    _answer     = answer;
-    _isFinished = false;
+    let result = new("tt_Answer"); // construct
 
-    return self;
+    result._answer     = answer;
+    result._isFinished = false;
+
+    return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////

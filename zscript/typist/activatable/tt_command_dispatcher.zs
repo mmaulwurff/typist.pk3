@@ -24,18 +24,21 @@ class tt_CommandDispatcher : tt_Activatable
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_CommandDispatcher init( tt_AnswerSource       answerSource
-                           , Array<tt_Activatable> activatables
-                           , tt_Settings           settings
-                           , tt_EventReporter      eventReporter
-                           )
+  static
+  tt_CommandDispatcher of( tt_AnswerSource       answerSource
+                         , Array<tt_Activatable> activatables
+                         , tt_Settings           settings
+                         , tt_EventReporter      eventReporter
+                         )
   {
-    _answerSource  = answerSource;
-    _activatables.copy(activatables);
-    _settings      = settings;
-    _eventReporter = eventReporter;
+    let result = new("tt_CommandDispatcher"); // construct
 
-    return self;
+    result._answerSource  = answerSource;
+    result._activatables.copy(activatables);
+    result._settings      = settings;
+    result._eventReporter = eventReporter;
+
+    return result;
   }
 
 // public: // tt_Activatable ///////////////////////////////////////////////////
@@ -67,7 +70,7 @@ class tt_CommandDispatcher : tt_Activatable
   override
   tt_Strings getCommands()
   {
-    let result = new("tt_Strings").init();
+    let result = tt_Strings.of();
 
     uint nActivatables = _activatables.size();
     for (uint i = 0; i < nActivatables; ++i)

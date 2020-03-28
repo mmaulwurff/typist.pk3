@@ -25,11 +25,14 @@ class tt_Reloader : tt_Activatable
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Reloader init(tt_PlayerSource playerSource)
+  static
+  tt_Reloader of(tt_PlayerSource playerSource)
   {
-    _playerSource = playerSource;
+    let result = new("tt_Reloader"); // construct
 
-    return self;
+    result._playerSource = playerSource;
+
+    return result;
   }
 
 // public: // tt_Activatable ///////////////////////////////////////////////////
@@ -69,7 +72,7 @@ class tt_Reloader : tt_Activatable
   override
   tt_Strings getCommands()
   {
-    let result = new("tt_Strings").init();
+    let result = tt_Strings.of();
     result.add("rl");
 
     return result;

@@ -23,11 +23,14 @@ class tt_SettableMode : tt_ModeStorage
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_SettableMode init()
+  static
+  tt_SettableMode of()
   {
-    _mode = tt_Mode.None;
+    let result = new("tt_SettableMode"); // construct
 
-    return self;
+    result._mode = tt_Mode.None;
+
+    return result;
   }
 
 // public: // tt_ModeSource ////////////////////////////////////////////////////

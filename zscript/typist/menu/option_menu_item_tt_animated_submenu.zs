@@ -20,6 +20,9 @@ class OptionMenuItemtt_AnimatedSubmenu : OptionMenuItemSubmenu
 
 // public: /////////////////////////////////////////////////////////////////////
 
+  /**
+   * Signature mirrors OptionMenuItemSubmenu.Init().
+   */
   OptionMenuItemtt_AnimatedSubmenu Init( String label
                                        , Name   command
                                        , int    param    = 0

@@ -23,12 +23,15 @@ class tt_AutoModeSource : tt_ModeSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_AutoModeSource init(tt_KnownTargetSource knownTargetSource, tt_PlayerSource playerSource)
+  static
+  tt_AutoModeSource of(tt_KnownTargetSource knownTargetSource, tt_PlayerSource playerSource)
   {
-    _knownTargetSource = knownTargetSource;
-    _playerSource      = playerSource;
+    let result = new("tt_AutoModeSource"); // construct
 
-    return self;
+    result._knownTargetSource = knownTargetSource;
+    result._playerSource      = playerSource;
+
+    return result;
   }
 
 // public: // tt_ModeSource ////////////////////////////////////////////////////

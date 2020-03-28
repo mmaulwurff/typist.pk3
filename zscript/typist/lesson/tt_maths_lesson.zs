@@ -23,9 +23,11 @@ class tt_MathsLesson : tt_QuestionSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_MathsLesson init()
+  static
+  tt_MathsLesson of()
   {
-    return self;
+    let result = new("tt_MathsLesson"); // construct
+    return result;
   }
 
 // public: // tt_QuestionSource ////////////////////////////////////////////////
@@ -43,7 +45,7 @@ class tt_MathsLesson : tt_QuestionSource
     case Division:       return makeDivisionQuestion();
     }
 
-    tt_Log.log("zscript/typist/lesson/tt_maths_lesson.zs:46: T: unknown operation!");
+    tt_Log.log("zscript/typist/lesson/tt_maths_lesson.zs:48: T: unknown operation!");
     return NULL;
   }
 
@@ -59,7 +61,7 @@ class tt_MathsLesson : tt_QuestionSource
     String description = String.Format("%d + %d", leftAddend,  rightAddend);
     String answer      = String.Format("%d", sum);
 
-    let question = new("tt_Match").init(answer, description);
+    let question = tt_Match.of(answer, description);
     return question;
   }
 
@@ -73,7 +75,7 @@ class tt_MathsLesson : tt_QuestionSource
     String description = String.Format("%d - %d", minuend, subtrahend);
     String answer      = String.Format("%d", difference);
 
-    let question = new("tt_Match").init(answer, description);
+    let question = tt_Match.of(answer, description);
     return question;
   }
 
@@ -87,7 +89,7 @@ class tt_MathsLesson : tt_QuestionSource
     String description = String.Format("%d * %d", multiplicand, multiplier);
     String answer      = String.Format("%d", product);
 
-    let question = new("tt_Match").init(answer, description);
+    let question = tt_Match.of(answer, description);
     return question;
   }
 
@@ -101,7 +103,7 @@ class tt_MathsLesson : tt_QuestionSource
     String description = String.Format("%d / %d", dividend, divisor);
     String answer      = String.Format("%d", quotient);
 
-    let question = new("tt_Match").init(answer, description);
+    let question = tt_Match.of(answer, description);
     return question;
   }
 

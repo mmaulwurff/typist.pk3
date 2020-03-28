@@ -23,11 +23,14 @@ class tt_EnemySpeedController : tt_WorldChanger
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_EnemySpeedController init(tt_TargetSource targetSource)
+  static
+  tt_EnemySpeedController of(tt_TargetSource targetSource)
   {
-    _targetSource = targetSource;
+    let result = new("tt_EnemySpeedController"); // construct
 
-    return self;
+    result._targetSource = targetSource;
+
+    return result;
   }
 
 // public: // tt_WorldChanger //////////////////////////////////////////////////

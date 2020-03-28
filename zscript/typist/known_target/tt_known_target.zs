@@ -15,19 +15,23 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class represents a target that already has been seen and registered.
+/**
+ * This class represents a target that already has been seen and registered.
  */
 class tt_KnownTarget
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_KnownTarget init(tt_Target target, tt_Question question)
+  static
+  tt_KnownTarget of(tt_Target target, tt_Question question)
   {
-    _target   = target;
-    _question = question;
+    let result = new("tt_KnownTarget"); // construct
 
-    return self;
+    result._target   = target;
+    result._question = question;
+
+    return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////

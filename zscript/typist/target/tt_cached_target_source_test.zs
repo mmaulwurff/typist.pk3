@@ -87,10 +87,10 @@ class tt_CachedTargetSourceTest : tt_Clematis
   private
   void setUp()
   {
-    _targetSource = new("tt_TargetSourceMock").init();
-    _clock        = new("tt_ClockMock"       ).init();
+    _targetSource = tt_TargetSourceMock.of();
+    _clock        = tt_ClockMock.of();
 
-    _cachedTargetSource = new("tt_CachedTargetSource").init(_targetSource, _clock);
+    _cachedTargetSource = tt_CachedTargetSource.of(_targetSource, _clock);
   }
 
   private

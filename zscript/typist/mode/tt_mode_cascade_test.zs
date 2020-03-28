@@ -41,7 +41,7 @@ class tt_ModeCascadeTest : tt_Clematis
   void checkZeroSources()
   {
     Array<tt_ModeSource> sources;
-    let cascade = new("tt_ModeCascade").init(sources);
+    let cascade = tt_ModeCascade.of(sources);
 
     int mode = cascade.getMode();
 
@@ -51,13 +51,13 @@ class tt_ModeCascadeTest : tt_Clematis
   private
   void checkCascadeFirst()
   {
-    let source1 = new("tt_ModeSourceMock").init();
-    let source2 = new("tt_ModeSourceMock").init();
+    let source1 = tt_ModeSourceMock.of();
+    let source2 = tt_ModeSourceMock.of();
     Array<tt_ModeSource> sources;
     sources.Push(source1);
     sources.Push(source2);
 
-    let cascade = new("tt_ModeCascade").init(sources);
+    let cascade = tt_ModeCascade.of(sources);
 
     source1.expect_getMode(tt_Mode.Explore);
     source2.expect_getMode(tt_Mode.Combat);
@@ -70,13 +70,13 @@ class tt_ModeCascadeTest : tt_Clematis
   private
   void checkCascadeSecond()
   {
-    let source1 = new("tt_ModeSourceMock").init();
-    let source2 = new("tt_ModeSourceMock").init();
+    let source1 = tt_ModeSourceMock.of();
+    let source2 = tt_ModeSourceMock.of();
     Array<tt_ModeSource> sources;
     sources.Push(source1);
     sources.Push(source2);
 
-    let cascade = new("tt_ModeCascade").init(sources);
+    let cascade = tt_ModeCascade.of(sources);
 
     source1.expect_getMode(tt_Mode.None);
     source2.expect_getMode(tt_Mode.Combat);

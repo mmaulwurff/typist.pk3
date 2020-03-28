@@ -25,12 +25,15 @@ class tt_HorizontalAimer : tt_Aimer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_HorizontalAimer init(tt_OriginSource targetOriginSource, tt_PlayerSource playerSource)
+  static
+  tt_HorizontalAimer of(tt_OriginSource targetOriginSource, tt_PlayerSource playerSource)
   {
-    _targetOriginSource = targetOriginSource;
-    _playerSource       = playerSource;
+    let result = new("tt_HorizontalAimer"); // construct
 
-    return self;
+    result._targetOriginSource = targetOriginSource;
+    result._playerSource       = playerSource;
+
+    return result;
   }
 
 // public: // tt_Aimer /////////////////////////////////////////////////////////

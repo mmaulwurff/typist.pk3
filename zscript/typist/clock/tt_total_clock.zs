@@ -23,9 +23,11 @@ class tt_TotalClock : tt_Clock
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_TotalClock init()
+  static
+  tt_TotalClock of()
   {
-    return self;
+    let result = new("tt_TotalClock"); // construct
+    return result;
   }
 
 // public: // tt_Clock /////////////////////////////////////////////////////////

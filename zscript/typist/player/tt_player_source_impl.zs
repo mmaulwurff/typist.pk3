@@ -23,11 +23,14 @@ class tt_PlayerSourceImpl : tt_PlayerSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_PlayerSourceImpl init(int playerNumber)
+  static
+  tt_PlayerSourceImpl of(int playerNumber)
   {
-    _playerNumber = playerNumber;
+    let result = new("tt_PlayerSourceImpl"); // construct
 
-    return self;
+    result._playerNumber = playerNumber;
+
+    return result;
   }
 
 // public: // tt_PlayerSource //////////////////////////////////////////////////

@@ -23,55 +23,49 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_PlayerSupervisor init(int playerNumber)
+  static
+  tt_PlayerSupervisor of(int playerNumber)
   {
-    let playerSource     = new("tt_PlayerSourceImpl").init(playerNumber);
-    let clock            = new("tt_TotalClock").init();
+    let playerSource     = tt_PlayerSourceImpl.of(playerNumber);
+    let clock            = tt_TotalClock      .of();
 
-    let soundSettings    = new("tt_SoundSettingsImpl").init(playerSource);
-    let eventReporter    = new("tt_SoundReporter").init(playerSource, soundSettings);
-    let manualModeSource = new("tt_SettableMode" ).init();
-    let playerInput      = new("tt_PlayerInput"  ).init(manualModeSource, eventReporter);
-    let deathReporter    = new("tt_DeathReporter").init();
-    let settings         = new("tt_SettingsImpl" ).init(playerSource);
+    let soundSettings    = tt_SoundSettingsImpl.of(playerSource);
+    let eventReporter    = tt_SoundReporter    .of(playerSource, soundSettings);
+    let manualModeSource = tt_SettableMode     .of();
+    let playerInput      = tt_PlayerInput      .of(manualModeSource, eventReporter);
+    let deathReporter    = tt_DeathReporter    .of();
+    let settings         = tt_SettingsImpl     .of(playerSource);
 
-    let originSource     = new("tt_PlayerOriginSource").init(playerSource);
-    let targetRadar      = new("tt_TargetRadar"       ).init(originSource);
-    let cachedRadar      = new("tt_CachedTargetSource").init(targetRadar, clock);
+    let originSource     = tt_PlayerOriginSource.of(playerSource);
+    let targetRadar      = tt_TargetRadar       .of(originSource);
+    let cachedRadar      = tt_CachedTargetSource.of(targetRadar, clock);
     let questionSource   = makeQuestionSource(settings, playerSource);
 
-    let targetRegistry = new("tt_TargetRegistry").init( cachedRadar
-                                                      , questionSource
-                                                      , deathReporter
-                                                      , clock
-                                                      );
+    let targetRegistry = tt_TargetRegistry.of(cachedRadar, questionSource, deathReporter, clock);
 
-    let targetOriginSource = new("tt_QuestionAnswerMatcher").init( targetRegistry
-                                                                 , playerInput
-                                                                 , playerSource
-                                                                 );
+    let targetOriginSource = tt_QuestionAnswerMatcher.of( targetRegistry
+                                                        , playerInput
+                                                        , playerSource
+                                                        );
 
-    let matchReporter = new("tt_MatchReporter").init( eventReporter
-                                                    , targetOriginSource
-                                                    , playerInput
-                                                    );
+    let matchReporter = tt_MatchReporter.of(eventReporter, targetOriginSource, playerInput);
 
     let aimer              = makeAimer(targetOriginSource, playerSource, settings);
-    let firer              = new("tt_FirerImpl"            ).init(playerSource);
-    let damager            = new("tt_Gunner"               ).init(targetOriginSource, aimer, firer);
+    let firer              = tt_FirerImpl.of(playerSource);
+    let damager            = tt_Gunner   .of(targetOriginSource, aimer, firer);
 
-    let projector        = new("tt_Projector"           ).init(targetRegistry, playerSource);
-    let visibilityFilter = new("tt_VisibilityFilter"    ).init(projector, playerSource);
-    let widgetRegistry   = new("tt_TargetWidgetRegistry").init(visibilityFilter);
-    let widgetSorter     = new("tt_SorterByDistance"    ).init(widgetRegistry, originSource);
+    let projector        = tt_Projector           .of(targetRegistry, playerSource);
+    let visibilityFilter = tt_VisibilityFilter    .of(projector, playerSource);
+    let widgetRegistry   = tt_TargetWidgetRegistry.of(visibilityFilter);
+    let widgetSorter     = tt_SorterByDistance    .of(widgetRegistry, originSource);
 
     Array<tt_Activatable> commands;
     makeCommands(playerSource, commands);
-    let commandDispatcher = new("tt_CommandDispatcher").init( playerInput
-                                                            , commands
-                                                            , settings
-                                                            , eventReporter
-                                                            );
+    let commandDispatcher = tt_CommandDispatcher.of( playerInput
+                                                   , commands
+                                                   , settings
+                                                   , eventReporter
+                                                   );
 
     let modeSource = makeModeSource( targetRegistry
                                    , playerSource
@@ -81,57 +75,54 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                    , cachedRadar
                                    );
 
-    let oldModeSource = new("tt_SettableMode").init();
-    let inputBlockAfterCombat = new("tt_InputBlockAfterCombat").init( playerInput
-                                                                    , modeSource
-                                                                    , oldModeSource
-                                                                    );
+    let oldModeSource         = tt_SettableMode.of();
+    let inputBlockAfterCombat = tt_InputBlockAfterCombat.of(playerInput, modeSource, oldModeSource);
 
-    let views         = new("tt_Views"        ).init();
-    let targetOverlay = new("tt_TargetOverlay").init( widgetSorter
-                                                    , playerInput
-                                                    , settings
-                                                    , modeSource
-                                                    );
-    let infoPanel     = new("tt_InfoPanel"    ).init( modeSource
-                                                    , playerInput
-                                                    , commandDispatcher
-                                                    , targetRegistry
-                                                    , settings
-                                                    , playerSource
-                                                    );
-    let conditionalView = new("tt_ConditionalView").init(views);
+    let views         = tt_Views.of();
+    let targetOverlay = tt_TargetOverlay.of( widgetSorter
+                                           , playerInput
+                                           , settings
+                                           , modeSource
+                                           );
+    let infoPanel     = tt_InfoPanel.of( modeSource
+                                       , playerInput
+                                       , commandDispatcher
+                                       , targetRegistry
+                                       , settings
+                                       , playerSource
+                                       );
+    let conditionalView = tt_ConditionalView.of(views);
     views.add(targetOverlay);
     views.add(infoPanel);
 
-    let inputManager = new("tt_InputByModeManager").init(modeSource, playerInput);
+    let inputManager = tt_InputByModeManager.of(modeSource, playerInput);
 
-    let projectileSpeedController =
-      new("tt_ProjectileSpeedController").init(originSource, playerSource);
-    let enemySpeedController =
-      new("tt_EnemySpeedController").init(cachedRadar);
+    let projectileSpeedController = tt_ProjectileSpeedController.of(originSource, playerSource);
+    let enemySpeedController      = tt_EnemySpeedController     .of(cachedRadar);
 
     // Initialize attributes ///////////////////////////////////////////////////
 
-    _playerInput        = inputBlockAfterCombat;
-    _deathReporter      = deathReporter;
-    _targetRegistry     = targetRegistry;
-    _view               = conditionalView;
-    _modeSource         = modeSource;
-    _damager            = damager;
-    _targetWidgetSource = projector;
-    _targetOriginSource = targetOriginSource;
-    _commandDispatcher  = commandDispatcher;
-    _manualModeSource   = manualModeSource;
-    _inputManager       = inputManager;
-    _oldModeSource      = oldModeSource;
-    _inputBlockAfterCombat = inputBlockAfterCombat;
-    _matchReporter      = matchReporter;
+    let result = new("tt_PlayerSupervisor"); // construct
 
-    _projectileSpeedController = projectileSpeedController;
-    _enemySpeedController      = enemySpeedController;
+    result._playerInput        = inputBlockAfterCombat;
+    result._deathReporter      = deathReporter;
+    result._targetRegistry     = targetRegistry;
+    result._view               = conditionalView;
+    result._modeSource         = modeSource;
+    result._damager            = damager;
+    result._targetWidgetSource = projector;
+    result._targetOriginSource = targetOriginSource;
+    result._commandDispatcher  = commandDispatcher;
+    result._manualModeSource   = manualModeSource;
+    result._inputManager       = inputManager;
+    result._oldModeSource      = oldModeSource;
+    result._inputBlockAfterCombat = inputBlockAfterCombat;
+    result._matchReporter      = matchReporter;
 
-    return self;
+    result._projectileSpeedController = projectileSpeedController;
+    result._enemySpeedController      = enemySpeedController;
+
+    return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////
@@ -200,9 +191,9 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                     , tt_Settings     settings
                     )
   {
-    let horizontalAimer = new("tt_HorizontalAimer").init(targetOriginSource, playerSource);
-    let verticalAimer = new("tt_VerticalAimer").init(targetOriginSource, playerSource, settings);
-    let aimer         = new("tt_Aimers"       ).init();
+    let horizontalAimer = tt_HorizontalAimer.of(targetOriginSource, playerSource);
+    let verticalAimer = tt_VerticalAimer.of(targetOriginSource, playerSource, settings);
+    let aimer         = tt_Aimers.of();
     aimer.add(horizontalAimer);
     aimer.add(verticalAimer);
 
@@ -210,24 +201,24 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   }
 
   /**
-   * @attention See docs/adding-new-lesson.md before editing this function.
+   * @attention See docs/adding.of-lesson.md before editing this function.
    */
   private static
   tt_QuestionSource makeQuestionSource(tt_Settings settings, tt_PlayerSource playerSource)
   {
-    let randomLessonSettings = new("tt_RandomCharactersLessonSettingsImpl").init(playerSource);
+    let randomLessonSettings = tt_RandomCharactersLessonSettingsImpl.of(playerSource);
 
-    let randomSource   = new("tt_RandomCharactersLesson").init(randomLessonSettings);
-    let selectedSource = new("tt_SelectedQuestionSource").init(settings);
-    let gzdoomSource   = new("tt_StringSet"             ).init("tt_gzdoom");
-    let cppSource      = new("tt_StringSet"             ).init("tt_cpp");
-    let mathsSource    = new("tt_MathsLesson"           ).init();
-    let english1000    = new("tt_StringSet"             ).init("tt_1000");
-    let russian1000    = new("tt_StringSet"             ).init("tt_1000_ru");
-    let customLesson   = new("tt_CustomLesson"          ).init();
-    let nixLesson      = new("tt_StringSet"             ).init("tt_nix");
+    let randomSource   = tt_RandomCharactersLesson.of(randomLessonSettings);
+    let selectedSource = tt_SelectedQuestionSource.of(settings);
+    let gzdoomSource   = tt_StringSet.of("tt_gzdoom");
+    let cppSource      = tt_StringSet.of("tt_cpp");
+    let mathsSource    = tt_MathsLesson.of();
+    let english1000    = tt_StringSet.of("tt_1000");
+    let russian1000    = tt_StringSet.of("tt_1000_ru");
+    let customLesson   = tt_CustomLesson.of();
+    let nixLesson      = tt_StringSet.of("tt_nix");
 
-    let mixedLesson    = new("tt_MixedLesson").init(settings);
+    let mixedLesson    = tt_MixedLesson.of(settings);
 
     selectedSource.add(randomSource);
     selectedSource.add(gzdoomSource);
@@ -254,14 +245,14 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private static
   void makeCommands(tt_PlayerSource playerSource, out Array<tt_Activatable> activatables)
   {
-    activatables.push(new("tt_RightTurner"  ).init(playerSource));
-    activatables.push(new("tt_LeftTurner"   ).init(playerSource));
-    activatables.push(new("tt_Sphinx"       ).init());
-    activatables.push(new("tt_RightDasher"  ).init(playerSource));
-    activatables.push(new("tt_LeftDasher"   ).init(playerSource));
-    activatables.push(new("tt_ForwardDasher").init(playerSource));
-    activatables.push(new("tt_BackDasher"   ).init(playerSource));
-    activatables.push(new("tt_Reloader"     ).init(playerSource));
+    activatables.push(tt_RightTurner.of(playerSource));
+    activatables.push(tt_LeftTurner.of(playerSource));
+    activatables.push(tt_Sphinx.of());
+    activatables.push(tt_RightDasher.of(playerSource));
+    activatables.push(tt_LeftDasher.of(playerSource));
+    activatables.push(tt_ForwardDasher.of(playerSource));
+    activatables.push(tt_BackDasher.of(playerSource));
+    activatables.push(tt_Reloader.of(playerSource));
   }
 
   private static
@@ -273,17 +264,17 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                               , tt_TargetSource      targetSource
                               )
   {
-    let autoModeSource          = new("tt_AutoModeSource").init(knownTargetSource, playerSource);
-    let delayedCombatModeSource = new("tt_DelayedCombatModeSource").init(clock, autoModeSource);
-    let noEnemiesMode = new("tt_NoEnemiesMode").init(delayedCombatModeSource, targetSource);
+    let autoModeSource          = tt_AutoModeSource.of(knownTargetSource, playerSource);
+    let delayedCombatModeSource = tt_DelayedCombatModeSource.of(clock, autoModeSource);
+    let noEnemiesMode = tt_NoEnemiesMode.of(delayedCombatModeSource, targetSource);
 
     Array<tt_ModeSource> modeSources;
     modeSources.Push(manualModeSource);
     modeSources.Push(noEnemiesMode);
     modeSources.Push(autoModeSource);
 
-    let cascade  = new("tt_ModeCascade"       ).init(modeSources);
-    let reporter = new("tt_ReportedModeSource").init(eventReporter, cascade);
+    let cascade  = tt_ModeCascade.of(modeSources);
+    let reporter = tt_ReportedModeSource.of(eventReporter, cascade);
 
     return reporter;
   }

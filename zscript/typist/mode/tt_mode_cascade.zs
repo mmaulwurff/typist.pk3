@@ -24,11 +24,14 @@ class tt_ModeCascade : tt_ModeSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_ModeCascade init(Array<tt_ModeSource> modeSources)
+  static
+  tt_ModeCascade of(Array<tt_ModeSource> modeSources)
   {
-    _modeSources.copy(modeSources);
+    let result = new("tt_ModeCascade"); // construct
 
-    return self;
+    result._modeSources.copy(modeSources);
+
+    return result;
   }
 
 // public: // tt_ModeSource ////////////////////////////////////////////////////

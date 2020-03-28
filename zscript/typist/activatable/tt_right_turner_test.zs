@@ -40,8 +40,8 @@ class tt_RightTurnerTest : tt_Clematis
   void checkTurn() const
   {
     let pawn         = players[consolePlayer].mo;
-    let playerSource = new("tt_PlayerSourceMock").init();
-    let rightTurner  = new("tt_RightTurner"     ).init(playerSource);
+    let playerSource = tt_PlayerSourceMock.of();
+    let rightTurner  = tt_RightTurner.of(playerSource);
 
     double before = pawn.Angle;
 
@@ -60,8 +60,8 @@ class tt_RightTurnerTest : tt_Clematis
   private
   void checkCommand()
   {
-    let playerSource = new("tt_PlayerSourceMock").init();
-    let rightTurner  = new("tt_RightTurner"     ).init(playerSource);
+    let playerSource = tt_PlayerSourceMock.of();
+    let rightTurner  = tt_RightTurner.of(playerSource);
 
     let commands = rightTurner.getCommands();
 

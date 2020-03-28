@@ -21,6 +21,18 @@
 class tt_RightTurner : tt_Turner
 {
 
+// public: /////////////////////////////////////////////////////////////////////
+
+  static
+  tt_RightTurner of(tt_PlayerSource playerSource)
+  {
+    let result = new("tt_RightTurner"); // construct
+
+    result._playerSource = playerSource;
+
+    return result;
+  }
+
 // public: // tt_Turner ////////////////////////////////////////////////////////
 
   override
@@ -34,7 +46,7 @@ class tt_RightTurner : tt_Turner
   override
   tt_Strings getCommands()
   {
-    let result = new("tt_Strings").init();
+    let result = tt_Strings.of();
     result.add("tr");
 
     return result;

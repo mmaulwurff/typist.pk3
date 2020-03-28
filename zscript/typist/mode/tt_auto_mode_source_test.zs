@@ -53,10 +53,10 @@ class tt_AutoModeSourceTest : tt_Clematis
   {
     setUp();
 
-    let knownTargets = new("tt_KnownTargets").init();
-    let target       = new("tt_Target"      ).init(Spawn("Demon", (0, 0, 0)));
-    let question     = new("tt_QuestionMock").init();
-    let knownTarget  = new("tt_KnownTarget" ).init(target, question);
+    let knownTargets = tt_KnownTargets.of();
+    let target       = tt_Target.of(Spawn("Demon", (0, 0, 0)));
+    let question     = tt_QuestionMock.of();
+    let knownTarget  = tt_KnownTarget.of(target, question);
     knownTargets.add(knownTarget);
 
     _knownTargetSource.expect_isEmpty(false);
@@ -75,10 +75,10 @@ class tt_AutoModeSourceTest : tt_Clematis
   {
     setUp();
 
-    let knownTargets = new("tt_KnownTargets").init();
-    let target       = new("tt_Target"      ).init(Spawn("Demon", (9999999, 0, 0)));
-    let question     = new("tt_QuestionMock").init();
-    let knownTarget  = new("tt_KnownTarget" ).init(target, question);
+    let knownTargets = tt_KnownTargets.of();
+    let target       = tt_Target.of(Spawn("Demon", (9999999, 0, 0)));
+    let question     = tt_QuestionMock.of();
+    let knownTarget  = tt_KnownTarget.of(target, question);
     knownTargets.add(knownTarget);
 
     _knownTargetSource.expect_isEmpty(false);
@@ -97,9 +97,9 @@ class tt_AutoModeSourceTest : tt_Clematis
   private
   void setUp()
   {
-    _knownTargetSource = new("tt_KnownTargetSourceMock").init();
-    _playerSource      = new("tt_PlayerSourceMock").init();
-    _autoModeSource    = new("tt_AutoModeSource").init(_knownTargetSource, _playerSource);
+    _knownTargetSource = tt_KnownTargetSourceMock.of();
+    _playerSource      = tt_PlayerSourceMock.of();
+    _autoModeSource    = tt_AutoModeSource.of(_knownTargetSource, _playerSource);
   }
 
   private

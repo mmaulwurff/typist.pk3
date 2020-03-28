@@ -24,12 +24,15 @@ class tt_SoundReporter : tt_EventReporter
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_SoundReporter init(tt_PlayerSource playerSource, tt_SoundSettings settings)
+  static
+  tt_SoundReporter of(tt_PlayerSource playerSource, tt_SoundSettings settings)
   {
-    _playerSource = playerSource;
-    _settings     = settings;
+    let result = new("tt_SoundReporter"); // construct
 
-    return self;
+    result._playerSource = playerSource;
+    result._settings     = settings;
+
+    return result;
   }
 
 // public: // tt_EventReporter /////////////////////////////////////////////////
@@ -42,7 +45,7 @@ class tt_SoundReporter : tt_EventReporter
     switch (mode)
     {
     case tt_Mode.Unknown:
-      tt_Log.log("zscript/typist/event_reporter/tt_sound_reporter.zs:45: T: unknown mode!");
+      tt_Log.log("zscript/typist/event_reporter/tt_sound_reporter.zs:48: T: unknown mode!");
       break;
     case tt_Mode.Combat:  playPlayerSound("tt/combat");  break;
     case tt_Mode.Explore: playPlayerSound("tt/explore"); break;

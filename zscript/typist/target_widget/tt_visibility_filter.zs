@@ -15,7 +15,8 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class implements TargetWidgetSource by taking target widgets from
+/**
+ * This class implements TargetWidgetSource by taking target widgets from
  * source and removing widgets that represent targets not visible by the player.
  */
 class tt_VisibilityFilter : tt_TargetWidgetSource
@@ -23,12 +24,15 @@ class tt_VisibilityFilter : tt_TargetWidgetSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_VisibilityFilter init(tt_TargetWidgetSource widgetSource, tt_PlayerSource playerSource)
+  static
+  tt_VisibilityFilter of(tt_TargetWidgetSource widgetSource, tt_PlayerSource playerSource)
   {
-    _widgetSource = widgetSource;
-    _playerSource = playerSource;
+    let result = new("tt_VisibilityFilter"); // construct
 
-    return self;
+    result._widgetSource = widgetSource;
+    result._playerSource = playerSource;
+
+    return result;
   }
 
 // public: // tt_TargetWidgetSource ////////////////////////////////////////////
@@ -42,7 +46,7 @@ class tt_VisibilityFilter : tt_TargetWidgetSource
     let widgets = _widgetSource.getWidgets(event);
     if (widgets == NULL) { return NULL; }
 
-    tt_TargetWidgets result = new("tt_TargetWidgets").init();
+    tt_TargetWidgets result = tt_TargetWidgets.of();
 
     uint nWidgets = widgets.size();
     for (uint i = 0; i < nWidgets; ++i)

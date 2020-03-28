@@ -77,7 +77,7 @@ def generate_mock_class(tokens):
     mock_name = make_mock_name(class_name)
     out = 'class {} : {}\n{{\n\n'.format(mock_name, class_name)
 
-    out += '  {} init() {{ return self; }}\n\n'.format(mock_name)
+    out += '  static {n} of() {{ return new("{n}"); }} // construct\n\n'.format(n=mock_name)
 
     functions = get_function_starts(tokens)
 

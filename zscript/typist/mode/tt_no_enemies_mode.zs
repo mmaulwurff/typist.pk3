@@ -24,12 +24,15 @@ class tt_NoEnemiesMode : tt_ModeSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_NoEnemiesMode init(tt_ModeSource modeSource, tt_TargetSource targetSource)
+  static
+  tt_NoEnemiesMode of(tt_ModeSource modeSource, tt_TargetSource targetSource)
   {
-    _modeSource   = modeSource;
-    _targetSource = targetSource;
+    let result = new("tt_NoEnemiesMode"); // construct
 
-    return self;
+    result._modeSource   = modeSource;
+    result._targetSource = targetSource;
+
+    return result;
   }
 
 // public: // tt_ModeSource ////////////////////////////////////////////////////

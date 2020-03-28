@@ -25,19 +25,10 @@ class tt_Turner : tt_Activatable abstract
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Turner init(tt_PlayerSource playerSource)
-  {
-    _playerSource = playerSource;
-
-    return self;
-  }
-
-// public: /////////////////////////////////////////////////////////////////////
-
   virtual
   double getTurnAngle() const
   {
-    tt_Log.log("zscript/typist/activatable/tt_turner.zs:40: T: override this!");
+    tt_Log.log("zscript/typist/activatable/tt_turner.zs:31: T: override this!");
     return 0;
   }
 
@@ -63,8 +54,8 @@ class tt_Turner : tt_Activatable abstract
 
   const FLAGS = SPF_FORCECLAMP | SPF_INTERPOLATE;
 
-// private: ////////////////////////////////////////////////////////////////////
+// protected: //////////////////////////////////////////////////////////////////
 
-  private tt_PlayerSource _playerSource;
+  protected tt_PlayerSource _playerSource;
 
 } // class tt_Turner

@@ -21,7 +21,7 @@
 class tt_InputManagerMock : tt_InputManager
 {
 
-  tt_InputManagerMock init() { return self; }
+  static tt_InputManagerMock of() { return new("tt_InputManagerMock"); } // construct
 
   override
   void manageInput()
@@ -71,7 +71,7 @@ class tt_InputManagerMock : tt_InputManager
 class tt_EventReporterMock : tt_EventReporter
 {
 
-  tt_EventReporterMock init() { return self; }
+  static tt_EventReporterMock of() { return new("tt_EventReporterMock"); } // construct
 
   override
   void reportNewMode(int mode)
@@ -158,7 +158,7 @@ class tt_EventReporterMock : tt_EventReporter
 class tt_SettingsMock : tt_Settings
 {
 
-  tt_SettingsMock init() { return self; }
+  static tt_SettingsMock of() { return new("tt_SettingsMock"); } // construct
 
   override
   int getScale()
@@ -280,7 +280,7 @@ class tt_SettingsMock : tt_Settings
 class tt_SoundSettingsMock : tt_SoundSettings
 {
 
-  tt_SoundSettingsMock init() { return self; }
+  static tt_SoundSettingsMock of() { return new("tt_SoundSettingsMock"); } // construct
 
   override
   bool isEnabled()
@@ -356,7 +356,7 @@ class tt_SoundSettingsMock : tt_SoundSettings
 class tt_TargetSourceMock : tt_TargetSource
 {
 
-  tt_TargetSourceMock init() { return self; }
+  static tt_TargetSourceMock of() { return new("tt_TargetSourceMock"); } // construct
 
   override
   tt_Targets getTargets()
@@ -386,7 +386,7 @@ class tt_TargetSourceMock : tt_TargetSource
 class tt_ClockMock : tt_Clock
 {
 
-  tt_ClockMock init() { return self; }
+  static tt_ClockMock of() { return new("tt_ClockMock"); } // construct
 
   override
   int getNow()
@@ -439,7 +439,7 @@ class tt_ClockMock : tt_Clock
 class tt_PlayerHandlerMock : tt_PlayerHandler
 {
 
-  tt_PlayerHandlerMock init() { return self; }
+  static tt_PlayerHandlerMock of() { return new("tt_PlayerHandlerMock"); } // construct
 
   override
   void processKey(tt_Character character)
@@ -589,7 +589,7 @@ class tt_PlayerHandlerMock : tt_PlayerHandler
 class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
 {
 
-  tt_TargetWidgetSourceMock init() { return self; }
+  static tt_TargetWidgetSourceMock of() { return new("tt_TargetWidgetSourceMock"); } // construct
 
   override
   tt_TargetWidgets getWidgets(RenderEvent event)
@@ -639,7 +639,7 @@ class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
 class tt_KnownTargetSourceMock : tt_KnownTargetSource
 {
 
-  tt_KnownTargetSourceMock init() { return self; }
+  static tt_KnownTargetSourceMock of() { return new("tt_KnownTargetSourceMock"); } // construct
 
   override
   tt_KnownTargets getTargets()
@@ -692,7 +692,7 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
 class tt_DamagerMock : tt_Damager
 {
 
-  tt_DamagerMock init() { return self; }
+  static tt_DamagerMock of() { return new("tt_DamagerMock"); } // construct
 
   override
   void damage()
@@ -719,7 +719,7 @@ class tt_DamagerMock : tt_Damager
 class tt_ActivatableMock : tt_Activatable
 {
 
-  tt_ActivatableMock init() { return self; }
+  static tt_ActivatableMock of() { return new("tt_ActivatableMock"); } // construct
 
   override
   void activate()
@@ -792,7 +792,7 @@ class tt_ActivatableMock : tt_Activatable
 class tt_DasherMock : tt_Dasher
 {
 
-  tt_DasherMock init() { return self; }
+  static tt_DasherMock of() { return new("tt_DasherMock"); } // construct
 
   override
   double getDashAngle()
@@ -822,7 +822,7 @@ class tt_DasherMock : tt_Dasher
 class tt_TurnerMock : tt_Turner
 {
 
-  tt_TurnerMock init() { return self; }
+  static tt_TurnerMock of() { return new("tt_TurnerMock"); } // construct
 
   override
   double getTurnAngle()
@@ -852,7 +852,7 @@ class tt_TurnerMock : tt_Turner
 class tt_OriginSourceMock : tt_OriginSource
 {
 
-  tt_OriginSourceMock init() { return self; }
+  static tt_OriginSourceMock of() { return new("tt_OriginSourceMock"); } // construct
 
   override
   tt_Origin getOrigin()
@@ -902,7 +902,7 @@ class tt_OriginSourceMock : tt_OriginSource
 class tt_FirerMock : tt_Firer
 {
 
-  tt_FirerMock init() { return self; }
+  static tt_FirerMock of() { return new("tt_FirerMock"); } // construct
 
   override
   void fire()
@@ -929,7 +929,7 @@ class tt_FirerMock : tt_Firer
 class tt_WorldChangerMock : tt_WorldChanger
 {
 
-  tt_WorldChangerMock init() { return self; }
+  static tt_WorldChangerMock of() { return new("tt_WorldChangerMock"); } // construct
 
   override
   void changeWorld()
@@ -956,7 +956,7 @@ class tt_WorldChangerMock : tt_WorldChanger
 class tt_QuestionMock : tt_Question
 {
 
-  tt_QuestionMock init() { return self; }
+  static tt_QuestionMock of() { return new("tt_QuestionMock"); } // construct
 
   override
   bool isRight(tt_Answer answer)
@@ -1032,7 +1032,7 @@ class tt_QuestionMock : tt_Question
 class tt_AimerMock : tt_Aimer
 {
 
-  tt_AimerMock init() { return self; }
+  static tt_AimerMock of() { return new("tt_AimerMock"); } // construct
 
   override
   void aim()
@@ -1059,7 +1059,7 @@ class tt_AimerMock : tt_Aimer
 class tt_PlayerSourceMock : tt_PlayerSource
 {
 
-  tt_PlayerSourceMock init() { return self; }
+  static tt_PlayerSourceMock of() { return new("tt_PlayerSourceMock"); } // construct
 
   override
   PlayerInfo getInfo()
@@ -1112,7 +1112,7 @@ class tt_PlayerSourceMock : tt_PlayerSource
 class tt_ModeStorageMock : tt_ModeStorage
 {
 
-  tt_ModeStorageMock init() { return self; }
+  static tt_ModeStorageMock of() { return new("tt_ModeStorageMock"); } // construct
 
   override
   void setMode(int mode)
@@ -1139,7 +1139,7 @@ class tt_ModeStorageMock : tt_ModeStorage
 class tt_ModeSourceMock : tt_ModeSource
 {
 
-  tt_ModeSourceMock init() { return self; }
+  static tt_ModeSourceMock of() { return new("tt_ModeSourceMock"); } // construct
 
   override
   int getMode()
@@ -1169,7 +1169,7 @@ class tt_ModeSourceMock : tt_ModeSource
 class tt_AnswerSourceMock : tt_AnswerSource
 {
 
-  tt_AnswerSourceMock init() { return self; }
+  static tt_AnswerSourceMock of() { return new("tt_AnswerSourceMock"); } // construct
 
   override
   tt_Answer getAnswer()
@@ -1239,7 +1239,7 @@ class tt_AnswerSourceMock : tt_AnswerSource
 class tt_QuestionSourceMock : tt_QuestionSource
 {
 
-  tt_QuestionSourceMock init() { return self; }
+  static tt_QuestionSourceMock of() { return new("tt_QuestionSourceMock"); } // construct
 
   override
   tt_Question getQuestion()
@@ -1269,7 +1269,7 @@ class tt_QuestionSourceMock : tt_QuestionSource
 class tt_ViewMock : tt_View
 {
 
-  tt_ViewMock init() { return self; }
+  static tt_ViewMock of() { return new("tt_ViewMock"); } // construct
 
   override
   void draw(RenderEvent event)

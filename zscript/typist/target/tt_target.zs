@@ -23,11 +23,14 @@ class tt_Target
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Target init(Actor a)
+  static
+  tt_Target of(Actor a)
   {
-    _actor = a;
+    let result = new("tt_Target"); // construct
 
-    return self;
+    result._actor = a;
+
+    return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////

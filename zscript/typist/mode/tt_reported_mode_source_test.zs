@@ -88,10 +88,10 @@ class tt_ReportedModeSourceTest : tt_Clematis
 
   void init()
   {
-    _eventReporter = new("tt_EventReporterMock").init();
-    _modeSource    = new("tt_ModeSourceMock"   ).init();
+    _eventReporter = tt_EventReporterMock.of();
+    _modeSource    = tt_ModeSourceMock.of();
 
-    _reportedMode  = new("tt_ReportedModeSource").init(_eventReporter, _modeSource);
+    _reportedMode  = tt_ReportedModeSource.of(_eventReporter, _modeSource);
   }
 
   void tearDown()

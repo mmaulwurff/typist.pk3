@@ -31,11 +31,14 @@ class tt_ConditionalView : tt_View
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_ConditionalView init(tt_View view)
+  static
+  tt_ConditionalView of(tt_View view)
   {
-    _view = view;
+    let result = new("tt_ConditionalView"); // construct
 
-    return self;
+    result._view = view;
+
+    return result;
   }
 
 // public: // tt_View //////////////////////////////////////////////////////////

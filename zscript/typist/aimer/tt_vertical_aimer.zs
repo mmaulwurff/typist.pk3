@@ -28,16 +28,19 @@ class tt_VerticalAimer : tt_Aimer
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_VerticalAimer init( tt_OriginSource targetOriginSource
-                       , tt_PlayerSource playerSource
-                       , tt_Settings     settings
-                       )
+  static
+  tt_VerticalAimer of( tt_OriginSource targetOriginSource
+                     , tt_PlayerSource playerSource
+                     , tt_Settings     settings
+                     )
   {
-    _targetOriginSource = targetOriginSource;
-    _playerSource       = playerSource;
-    _settings           = settings;
+    let result = new("tt_VerticalAimer"); // construct
 
-    return self;
+    result._targetOriginSource = targetOriginSource;
+    result._playerSource       = playerSource;
+    result._settings           = settings;
+
+    return result;
   }
 
 // public: // tt_Aimer /////////////////////////////////////////////////////////

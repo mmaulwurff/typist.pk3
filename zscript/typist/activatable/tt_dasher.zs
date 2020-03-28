@@ -25,19 +25,10 @@ class tt_Dasher : tt_Activatable abstract
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_Dasher init(tt_PlayerSource playerSource)
-  {
-    _playerSource = playerSource;
-
-    return self;
-  }
-
-// public: /////////////////////////////////////////////////////////////////////
-
   virtual
   double getDashAngle() const
   {
-    tt_Log.log("zscript/typist/activatable/tt_dasher.zs:40: T: override this!");
+    tt_Log.log("zscript/typist/activatable/tt_dasher.zs:31: T: override this!");
     return 0;
   }
 
@@ -60,8 +51,8 @@ class tt_Dasher : tt_Activatable abstract
 
   const SPEED = 18;
 
-// private: ////////////////////////////////////////////////////////////////////
+// protected: //////////////////////////////////////////////////////////////////
 
-  private tt_PlayerSource _playerSource;
+  protected tt_PlayerSource _playerSource;
 
 } // class tt_Dasher

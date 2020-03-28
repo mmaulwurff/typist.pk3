@@ -23,16 +23,19 @@ class tt_CustomLesson : tt_QuestionSource
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  tt_CustomLesson init()
+  static
+  tt_CustomLesson of()
   {
+    let result = new("tt_CustomLesson"); // construct
+
     int    contentsIndex = Wads.FindLump("typist_custom_text");
     String contents      = Wads.ReadLump(contentsIndex);
     String filtered      = filterLetters(contents);
     Array<String> words;
     filtered.Split(words, SPACE, TOK_SkipEmpty);
-    filterWords(words, _wordSet);
+    filterWords(words, result._wordSet);
 
-    return self;
+    return result;
   }
 
 // public: // tt_QuestionSource ////////////////////////////////////////////////
@@ -44,7 +47,7 @@ class tt_CustomLesson : tt_QuestionSource
     uint   nWords    = _wordSet.size();
     uint   wordIndex = Random(0, nWords - 1);
     String word      = _wordSet[wordIndex];
-    let    question  = new("tt_Match").init(word, word);
+    let    question  = tt_Match.of(word, word);
 
     return question;
   }

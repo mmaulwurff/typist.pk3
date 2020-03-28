@@ -21,6 +21,18 @@
 class tt_LeftDasher : tt_Dasher
 {
 
+// public: /////////////////////////////////////////////////////////////////////
+
+  static
+  tt_LeftDasher of(tt_PlayerSource playerSource)
+  {
+    let result = new("tt_LeftDasher"); // construct
+
+    result._playerSource = playerSource;
+
+    return result;
+  }
+
 // public: // tt_Dasher ////////////////////////////////////////////////////////
 
   override
@@ -34,7 +46,7 @@ class tt_LeftDasher : tt_Dasher
   override
   tt_Strings getCommands()
   {
-    let result = new("tt_Strings").init();
+    let result = tt_Strings.of();
     result.add("dl");
 
     return result;
