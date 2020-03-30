@@ -16,68 +16,55 @@
  */
 
 /**
- * This class implements tt_TargetSource by calling other tt_TargetSource only
- * when some time has passed.
+ * This class implements tt_KnownTargetSource by reading other
+ * tt_KnownTargetSource only if the data is stale.
  */
-class tt_CachedTargetSource : tt_TargetSource
+class tt_KnownTargetSourceCache : tt_KnownTargetSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_CachedTargetSource of(tt_TargetSource targetSource, tt_Clock clock)
+  tt_KnownTargetSourceCache of(tt_KnownTargetSource targetSource, tt_StaleMarker staleMarker)
   {
-    let result = new("tt_CachedTargetSource"); // construct
+    let result = new("tt_KnownTargetSourceCache"); // construct
 
     result._targetSource = targetSource;
-    result._clock        = clock;
-
-    result._isEmpty   = true;
-    result._oldMoment = 0;
+    result._staleMarker  = staleMarker;
 
     return result;
   }
 
-// public: // tt_TargetSource //////////////////////////////////////////////////
+// public: // tt_KnownTargetSource /////////////////////////////////////////////
 
   override
-  tt_Targets getTargets()
+  tt_KnownTargets getTargets()
   {
-    if (_isEmpty)
-    {
-      read();
-    }
-    else
-    {
-      int  passed     = _clock.since(_oldMoment);
-      bool isObsolete = (passed >= REREAD_TICS);
-
-      if (isObsolete)
-      {
-        read();
-      }
-    }
-
+    ensureUpdated();
     return _targets;
+  }
+
+  override
+  bool isEmpty()
+  {
+    ensureUpdated();
+    return (_targets.size() == 0);
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private
-  void read()
+  void ensureUpdated()
   {
-    _targets   = _targetSource.getTargets();
-    _oldMoment = _clock.getNow();
-    _isEmpty   = false;
+    if (_staleMarker.isStale())
+    {
+      _targets = _targetSource.getTargets();
+    }
   }
 
-  const REREAD_TICS = 1;
+  private tt_KnownTargetSource _targetSource;
+  private tt_StaleMarker       _staleMarker;
 
-  private tt_TargetSource _targetSource;
-  private tt_Clock        _clock;
+  private tt_KnownTargets _targets;
 
-  private bool       _isEmpty;
-  private int        _oldMoment;
-  private tt_Targets _targets;
-
-} // class tt_CachedTargetSource
+} // class tt_KnownTargetSourceCache

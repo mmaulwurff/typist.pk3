@@ -38,15 +38,17 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     let originSource     = tt_PlayerOriginSource.of(playerSource);
     let targetRadar      = tt_TargetRadar       .of(originSource);
-    let cachedRadar      = tt_CachedTargetSource.of(targetRadar, clock);
+    let radarStaleMarker = tt_StaleMarkerImpl   .of(clock);
+    let radarCache       = tt_TargetSourceCache .of(targetRadar, radarStaleMarker);
     let questionSource   = makeQuestionSource(settings, playerSource);
 
-    let targetRegistry = tt_TargetRegistry.of(cachedRadar, questionSource, deathReporter, clock);
+    let targetRegistry = makeTargetRegistry(radarCache, questionSource, deathReporter, clock);
 
-    let targetOriginSource = tt_QuestionAnswerMatcher.of( targetRegistry
-                                                        , playerInput
-                                                        , playerSource
-                                                        );
+    let targetOriginSource = makeTargetOriginSource( targetRegistry
+                                                   , playerInput
+                                                   , playerSource
+                                                   , clock
+                                                   );
 
     let matchReporter = tt_MatchReporter.of(eventReporter, targetOriginSource, playerInput);
 
@@ -72,7 +74,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                    , manualModeSource
                                    , eventReporter
                                    , clock
-                                   , cachedRadar
+                                   , radarCache
                                    );
 
     let oldModeSource         = tt_SettableMode.of();
@@ -98,7 +100,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let inputManager = tt_InputByModeManager.of(modeSource, playerInput);
 
     let projectileSpeedController = tt_ProjectileSpeedController.of(originSource, playerSource);
-    let enemySpeedController      = tt_EnemySpeedController     .of(cachedRadar);
+    let enemySpeedController      = tt_EnemySpeedController     .of(radarCache);
 
     // Initialize attributes ///////////////////////////////////////////////////
 
@@ -111,7 +113,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     result._modeSource         = modeSource;
     result._damager            = damager;
     result._targetWidgetSource = projector;
-    result._targetOriginSource = targetOriginSource;
     result._commandDispatcher  = commandDispatcher;
     result._manualModeSource   = manualModeSource;
     result._inputManager       = inputManager;
@@ -136,7 +137,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   override
   void tick()
   {
-    _targetOriginSource.update();
     _damager.damage();
     _targetWidgetSource.prepare();
     _commandDispatcher.activate();
@@ -279,6 +279,33 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     return reporter;
   }
 
+  private static
+  tt_OriginSource makeTargetOriginSource( tt_KnownTargetSource targetSource
+                                        , tt_AnswerSource      answerSource
+                                        , tt_PlayerSource      playerSource
+                                        , tt_Clock             clock
+                                        )
+  {
+    let matcher      = tt_QuestionAnswerMatcher.of(targetSource, answerSource, playerSource);
+    let staleMarker  = tt_StaleMarkerImpl      .of(clock);
+    let originSource = tt_OriginSourceCache    .of(matcher, staleMarker);
+
+    return originSource;
+  }
+
+  private static
+  tt_KnownTargetSource makeTargetRegistry( tt_TargetSource   targetSource
+                                         , tt_QuestionSource questionSource
+                                         , tt_TargetSource   deathReporter
+                                         , tt_Clock          clock
+                                         )
+  {
+    let registry      = tt_TargetRegistry .of(targetSource, questionSource, deathReporter);
+    let staleMarker   = tt_StaleMarkerImpl.of(clock);
+    let registryCache = tt_KnownTargetSourceCache.of(registry, staleMarker);
+
+    return registryCache;
+  }
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_AnswerSource       _playerInput;
@@ -288,7 +315,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_ModeSource         _modeSource;
   private tt_Damager            _damager;
   private tt_TargetWidgetSource _targetWidgetSource;
-  private tt_OriginSource       _targetOriginSource;
   private tt_CommandDispatcher  _commandDispatcher;
   private tt_ModeStorage        _manualModeSource;
   private tt_InputManager       _inputManager;

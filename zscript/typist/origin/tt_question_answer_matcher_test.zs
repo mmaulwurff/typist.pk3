@@ -44,7 +44,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     _knownTargetSource.expect_getTargets(NULL);
 
-    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("NULL known targets -> NULL origin", AssertNull(origin));
@@ -60,7 +59,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     let targets = tt_KnownTargets.of();
     _knownTargetSource.expect_getTargets(targets);
 
-    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("Zero known targets -> NULL origin", AssertNull(origin));
@@ -78,7 +76,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     _knownTargetSource.expect_getTargets(targets);
     _answerSource.expect_getAnswer(NULL);
 
-    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("NULL known target -> NULL origin", AssertNull(origin));
@@ -99,7 +96,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     _knownTargetSource.expect_getTargets(knownTargets);
     _answerSource.expect_getAnswer(NULL);
 
-    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("NULL answer -> NULL origin", AssertNull(origin));
@@ -124,7 +120,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     _answerSource.expect_getAnswer(answer);
     _playerSource.expect_getPawn(players[consolePlayer].mo);
 
-    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("Question is satisfied" , Assert(question.isSatisfied_isRight()));
@@ -150,7 +145,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     _answerSource.expect_getAnswer(answer);
     _playerSource.expect_getPawn(players[consolePlayer].mo);
 
-    _matcher.update();
     let origin = _matcher.getOrigin();
 
     It("Question is satisfied" , Assert(question.isSatisfied_isRight()));

@@ -92,7 +92,6 @@ class tt_TargetRegistryTest : tt_Clematis
     _targetSource.expect_getTargets(targets);
     _disabledTargetSource.expect_getTargets(tt_Targets.of());
     _questionSource.expect_getQuestion(NULL, 0);
-    _clock.expect_since(999);
 
     knownTargets = _targetRegistry.getTargets();
 
@@ -133,7 +132,6 @@ class tt_TargetRegistryTest : tt_Clematis
     _targetSource.expect_getTargets(tt_Targets.of());
     _disabledTargetSource.expect_getTargets(disabledTargets);
     _questionSource.expect_getQuestion(NULL, 0);
-    _clock.expect_since(999);
 
     knownTargets = _targetRegistry.getTargets();
 
@@ -149,16 +147,11 @@ class tt_TargetRegistryTest : tt_Clematis
   {
     Describe(description);
 
-    _targetSource         = tt_TargetSourceMock.of();
+    _targetSource         = tt_TargetSourceMock  .of();
     _questionSource       = tt_QuestionSourceMock.of();
-    _disabledTargetSource = tt_TargetSourceMock.of();
-    _clock                = tt_ClockMock.of();
+    _disabledTargetSource = tt_TargetSourceMock  .of();
 
-    _targetRegistry = tt_TargetRegistry.of( _targetSource
-                                           , _questionSource
-                                           , _disabledTargetSource
-                                           , _clock
-                                           );
+    _targetRegistry = tt_TargetRegistry.of(_targetSource, _questionSource, _disabledTargetSource);
   }
 
   private
@@ -170,7 +163,6 @@ class tt_TargetRegistryTest : tt_Clematis
     _questionSource       = NULL;
     _disabledTargetSource = NULL;
     _targetRegistry       = NULL;
-    _clock                = NULL;
 
     EndDescribe();
   }
@@ -191,7 +183,6 @@ class tt_TargetRegistryTest : tt_Clematis
   private tt_TargetSourceMock   _targetSource;
   private tt_QuestionSourceMock _questionSource;
   private tt_TargetSourceMock   _disabledTargetSource;
-  private tt_ClockMock          _clock;
 
   private tt_KnownTargetSource  _targetRegistry;
 

@@ -35,7 +35,6 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     result._knownTargetSource = knownTargetSource;
     result._answerSource      = answerSource;
     result._playerSource      = playerSource;
-    result._origin            = NULL;
 
     return result;
   }
@@ -44,20 +43,6 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
 
   override
   tt_Origin getOrigin()
-  {
-    return _origin;
-  }
-
-  override
-  void update()
-  {
-    _origin = getUpdatedOrigin();
-  }
-
-// private: ////////////////////////////////////////////////////////////////////
-
-  private
-  tt_Origin getUpdatedOrigin()
   {
     let targets = _knownTargetSource.getTargets();
     if (targets == NULL || targets.size() == 0) { return NULL; }
@@ -87,6 +72,8 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     return NULL;
   }
 
+// private: ////////////////////////////////////////////////////////////////////
+
   private play
   bool isVisible(tt_KnownTarget target, PlayerPawn pawn) const
   {
@@ -105,6 +92,5 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
   private tt_KnownTargetSource _knownTargetSource;
   private tt_AnswerSource      _answerSource;
   private tt_PlayerSource      _playerSource;
-  private tt_Origin            _origin;
 
 } // class tt_QuestionAnswerMatcher

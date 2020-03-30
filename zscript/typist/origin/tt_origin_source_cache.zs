@@ -16,23 +16,45 @@
  */
 
 /**
- * This interface represents a source of origins.
+ * This class implements tt_OriginSource by reading other tt_OriginSource
+ * only if origin is stale.
  */
-class tt_OriginSource abstract
+class tt_OriginSourceCache : tt_OriginSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  /**
-   * Returns the origin (coordinate in 3D space).
-   *
-   * Getting the origin doesn't change it.
-   */
-  virtual
-  tt_Origin getOrigin()
+  static
+  tt_OriginSourceCache of(tt_OriginSource originSource, tt_StaleMarker staleMarker)
   {
-    tt_Log.log("zscript/typist/origin/tt_origin_source.zs:34: T: override this!");
-    return NULL;
+    let result = new("tt_OriginSourceCache"); // construct
+
+    result._originSource = originSource;
+    result._staleMarker  = staleMarker;
+
+    result._origin = NULL;
+
+    return result;
   }
 
-} // class tt_OriginSource
+// public: // tt_OriginSource //////////////////////////////////////////////////
+
+  override
+  tt_Origin getOrigin()
+  {
+    if (_staleMarker.isStale())
+    {
+      _origin = _originSource.getOrigin();
+    }
+
+    return _origin;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_OriginSource _originSource;
+  private tt_StaleMarker  _staleMarker;
+
+  private tt_Origin _origin;
+
+} // class tt_OriginSourceCache

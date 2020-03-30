@@ -16,38 +16,43 @@
  */
 
 /**
- * This class implements tt_OriginSource.
- * It takes the center of the player pawn.
+ * This class implements tt_TargetSource by calling other tt_TargetSource only
+ * if previously received target is stale.
  */
-class tt_PlayerOriginSource : tt_OriginSource
+class tt_TargetSourceCache : tt_TargetSource
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_PlayerOriginSource of(tt_PlayerSource playerSource)
+  tt_TargetSourceCache of(tt_TargetSource targetSource, tt_StaleMarker staleMarker)
   {
-    let result = new("tt_PlayerOriginSource"); // construct
+    let result = new("tt_TargetSourceCache"); // construct
 
-    result._playerSource = playerSource;
+    result._targetSource = targetSource;
+    result._staleMarker  = staleMarker;
 
     return result;
   }
 
-// public: // tt_OriginSource //////////////////////////////////////////////////
+// public: // tt_TargetSource //////////////////////////////////////////////////
 
   override
-  tt_Origin getOrigin()
+  tt_Targets getTargets()
   {
-    let pawn = _playerSource.getPawn();
-    let pos  = pawn.pos;
-    pos.z += pawn.height / 2;
+    if (_staleMarker.isStale())
+    {
+      _targets = _targetSource.getTargets();
+    }
 
-    return tt_Origin.of(pos);
+    return _targets;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_PlayerSource _playerSource;
+  private tt_TargetSource _targetSource;
+  private tt_StaleMarker  _staleMarker;
 
-} // class tt_PawnOriginSource
+  private tt_Targets _targets;
+
+} // class tt_TargetSourceCache
