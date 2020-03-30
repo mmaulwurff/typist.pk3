@@ -953,6 +953,36 @@ class tt_WorldChangerMock : tt_WorldChanger
 
 } // class tt_WorldChangerMock
 
+class tt_StaleMarkerMock : tt_StaleMarker
+{
+
+  static tt_StaleMarkerMock of() { return new("tt_StaleMarkerMock"); } // construct
+
+  override
+  bool isStale()
+  {
+    ++_mock_isStale_called;
+    return _mock_isStale;
+  }
+
+  void expect_isStale(bool value, int expected = 1)
+  {
+    _mock_isStale = value;
+    _mock_isStale_expected = expected;
+    _mock_isStale_called = 0;
+  }
+
+  bool isSatisfied_isStale() const
+  {
+    return _mock_isStale_expected == _mock_isStale_called;
+  }
+
+  private bool _mock_isStale;
+  private int _mock_isStale_expected;
+  private int _mock_isStale_called;
+
+} // class tt_StaleMarkerMock
+
 class tt_QuestionMock : tt_Question
 {
 
