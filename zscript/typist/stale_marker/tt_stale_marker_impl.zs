@@ -88,6 +88,6 @@ class tt_StaleMarkerImpl : tt_StaleMarker
 
   private int  _updateTicks;
   private bool _isEmpty;
-  private bool _oldMoment;
+  private int  _oldMoment;
 
 } // class tt_StaleMarkerImpl
