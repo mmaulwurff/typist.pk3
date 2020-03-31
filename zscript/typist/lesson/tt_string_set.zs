@@ -36,7 +36,7 @@ class tt_StringSet : tt_QuestionSource
     let result = new("tt_StringSet"); // construct
 
     result._lumpName = lumpName;
-    words.Move(result._words);
+    result._words.Move(words);
 
     return result;
   }
