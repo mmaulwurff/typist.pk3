@@ -4,7 +4,7 @@
 user int tt_view_scale = 1;
 
 // Attention! Do not set values which are not in the list in menudef.txt.
-user int tt_question_source = 5;
+user int tt_question_source = 4;
 
 // Game variables //////////////////////////////////////////////////////////////
 
