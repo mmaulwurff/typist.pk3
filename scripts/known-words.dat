@@ -98,6 +98,7 @@ charconv
 chars
 chattr
 chdir
+checksum
 chesko
 chgrp
 chmod
@@ -500,6 +501,7 @@ pitchshiftrange
 pixelstretch
 pkill
 place
+playlist
 playloop
 point
 pointer
@@ -545,6 +547,7 @@ readonly
 rect
 recursive
 reduce
+refactor
 reference
 regex
 register
@@ -558,6 +561,7 @@ renderer
 rendermode
 renice
 replace
+reposition
 repositioning
 requires
 reserve

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script writes versioned title to language lump.
+# This script writes a title with version to language lump.
 #
 # Usage:
 # ./scripts/make_title.sh
