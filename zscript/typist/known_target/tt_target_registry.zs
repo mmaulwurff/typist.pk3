@@ -48,6 +48,22 @@ class tt_TargetRegistry : tt_KnownTargetSource
   override
   tt_KnownTargets getTargets()
   {
+    update();
+    return _registry;
+  }
+
+  override
+  bool isEmpty()
+  {
+    update();
+    return (_registry.size() == 0);
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private
+  void update()
+  {
     let newTargets = _targetSource.getTargets();
     merge(newTargets);
 
@@ -55,17 +71,7 @@ class tt_TargetRegistry : tt_KnownTargetSource
     subtract(disabledTargets);
 
     pruneNulls();
-
-    return _registry;
   }
-
-  override
-  bool isEmpty()
-  {
-    return (_registry.size() == 0);
-  }
-
-// private: ////////////////////////////////////////////////////////////////////
 
   /**
    * Adds targets that are not already registered to the registry.
