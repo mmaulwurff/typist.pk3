@@ -614,26 +614,6 @@ class tt_TargetWidgetSourceMock : tt_TargetWidgetSource
   private int _mock_getWidgets_expected;
   private int _mock_getWidgets_called;
 
-  override
-  void prepare()
-  {
-    ++_mock_prepare_called;
-  }
-
-  void expect_prepare(int expected = 1)
-  {
-    _mock_prepare_expected = expected;
-    _mock_prepare_called = 0;
-  }
-
-  bool isSatisfied_prepare() const
-  {
-    return _mock_prepare_expected == _mock_prepare_called;
-  }
-
-  private int _mock_prepare_expected;
-  private int _mock_prepare_called;
-
 } // class tt_TargetWidgetSourceMock
 
 class tt_KnownTargetSourceMock : tt_KnownTargetSource

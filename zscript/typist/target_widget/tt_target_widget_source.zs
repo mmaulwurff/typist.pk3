@@ -15,30 +15,24 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This interface provides a source of target widgets.
+/**
+ * This interface provides a source of target widgets.
  */
 class tt_TargetWidgetSource abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  /** Get a list of target widgets.
+  /**
+   * Get a list of target widgets.
    *
    * @returns a list of target widgets.
    */
   ui virtual
   tt_TargetWidgets getWidgets(RenderEvent event)
   {
-    tt_Log.log("zscript/typist/target_widget/tt_target_widget_source.zs:32: T: override this!");
+    tt_Log.log("zscript/typist/target_widget/tt_target_widget_source.zs:34: T: override this!");
     return NULL;
-  }
-
-  /** Makes necessary preparations.
-   */
-  virtual
-  void prepare()
-  {
-    tt_Log.log("zscript/typist/target_widget/tt_target_widget_source.zs:41: T: override this!");
   }
 
 } // class tt_TargetWidgetSource

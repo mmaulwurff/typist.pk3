@@ -32,6 +32,10 @@ class tt_Projector : tt_TargetWidgetSource
 
     result._knownTargetSource = knownTargetSource;
     result._playerSource      = playerSource;
+    result._cvarRenderer      = tt_Cvar.of(playerSource, "vid_rendermode");
+
+    result._glProjection = new("tt_Le_GlScreen"); // construct (silencing check_init.sh).
+    result._swProjection = new("tt_Le_SwScreen"); // construct (silencing check_init.sh).
 
     return result;
   }
@@ -44,6 +48,16 @@ class tt_Projector : tt_TargetWidgetSource
     let targets = _knownTargetSource.getTargets();
     let info    = _playerSource.getInfo();
     let result  = tt_TargetWidgets.of();
+
+    prepareProjection();
+
+    _projection.CacheResolution();
+    _projection.CacheFov(info.fov);
+    _projection.OrientForRenderOverlay(event);
+    _projection.BeginProjection();
+
+    tt_Le_Viewport viewport;
+    viewport.FromHud();
 
     uint nTargets = targets.size();
     for (uint i = 0; i < nTargets; ++i)
@@ -59,7 +73,7 @@ class tt_Projector : tt_TargetWidgetSource
       let     targetPos = target.getTarget().getPosition();
       Vector2 position;
       bool    isPositionSuccessful;
-      [position, isPositionSuccessful] = makeDrawPos(info, event, targetPos);
+      [position, isPositionSuccessful] = makeDrawPos(targetPos, viewport);
 
       if (isPositionSuccessful)
       {
@@ -71,13 +85,6 @@ class tt_Projector : tt_TargetWidgetSource
     return result;
   }
 
-  override
-  void prepare()
-  {
-    if (!_isInitialized) { initialize(); }
-    prepareProjection();
-  }
-
 // private: ////////////////////////////////////////////////////////////////////
 
   /**
@@ -85,13 +92,8 @@ class tt_Projector : tt_TargetWidgetSource
    * @returns screen position and success flag.
    */
   private ui
-  Vector2, bool makeDrawPos(PlayerInfo player, RenderEvent event, Vector3 targetPos)
+  Vector2, bool makeDrawPos(Vector3 targetPos, tt_Le_Viewport viewport)
   {
-    _projection.CacheResolution();
-    _projection.CacheFov(player.fov);
-    _projection.OrientForRenderOverlay(event);
-    _projection.BeginProjection();
-
     _projection.ProjectWorldPos(targetPos);
 
     if(!_projection.IsInFront())
@@ -99,32 +101,17 @@ class tt_Projector : tt_TargetWidgetSource
       return (0, 0), false;
     }
 
-    tt_Le_Viewport viewport;
-    viewport.FromHud();
-
     Vector2 drawPos = viewport.SceneToWindow(_projection.ProjectToNormal());
 
     return drawPos, true;
   }
 
   private
-  void initialize()
-  {
-    _glProjection = new("tt_Le_GlScreen"); // construct (silencing check_init.sh).
-    _swProjection = new("tt_Le_SwScreen"); // construct (silencing check_init.sh).
-
-    let info = _playerSource.getInfo();
-    _cvarRenderer  = Cvar.GetCvar("vid_rendermode", info);
-
-    _isInitialized = true;
-  }
-
-  private
   void prepareProjection()
   {
-    if(_cvarRenderer)
+    if(_cvarRenderer.isDefined())
     {
-      switch (_cvarRenderer.GetInt())
+      switch (_cvarRenderer.getInt())
       {
       case 0:
       case 1:  _projection = _swProjection; break;
@@ -135,8 +122,6 @@ class tt_Projector : tt_TargetWidgetSource
     {
       _projection = _glProjection;
     }
-
-    _isPrepared = (_projection != NULL);
   }
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -148,8 +133,8 @@ class tt_Projector : tt_TargetWidgetSource
   private tt_Le_GlScreen   _glProjection;
   private tt_Le_SwScreen   _swProjection;
 
-  private transient bool   _isInitialized;
-  private transient bool   _isPrepared;
-  private transient CVar   _cvarRenderer;
+  private transient bool _isInitialized;
+
+  private tt_Cvar _cvarRenderer;
 
 } // class tt_Projector

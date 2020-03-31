@@ -64,16 +64,10 @@ class tt_TargetWidgetRegistry : tt_TargetWidgetSource
       }
     }
 
-    // Widgets that are not.of or not updated are thrown away.
+    // Widgets that are not new or not updated are thrown away.
     _registry = newRegistry;
 
     return _registry;
-  }
-
-  override
-  void prepare()
-  {
-    // do nothing - nothing to do.
   }
 
 // private: ////////////////////////////////////////////////////////////////////

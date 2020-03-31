@@ -38,6 +38,7 @@ class tt_Cvar
     return result;
   }
 
+  bool   isDefined() { load(); return (_cvar != NULL);   }
   String getString() { load(); return _cvar.GetString(); }
   bool   getBool()   { load(); return _cvar.GetInt();    }
   int    getInt()    { load(); return _cvar.GetInt();    }

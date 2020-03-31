@@ -138,7 +138,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   void tick()
   {
     _damager.damage();
-    _targetWidgetSource.prepare();
+
     _commandDispatcher.activate();
     _inputManager.manageInput();
 
