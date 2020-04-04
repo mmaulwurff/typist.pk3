@@ -102,6 +102,12 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let projectileSpeedController = tt_ProjectileSpeedController.of(originSource, playerSource);
     let enemySpeedController      = tt_EnemySpeedController     .of(radarCache);
 
+    Array<tt_WorldChanger> worldChangers;
+    worldChangers.push(damager);
+    worldChangers.push(projectileSpeedController);
+    worldChangers.push(enemySpeedController);
+    let worldChanger = tt_WorldChangers.of(worldChangers);
+
     // Initialize attributes ///////////////////////////////////////////////////
 
     let result = new("tt_PlayerSupervisor"); // construct
@@ -111,7 +117,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     result._targetRegistry     = targetRegistry;
     result._view               = conditionalView;
     result._modeSource         = modeSource;
-    result._damager            = damager;
     result._targetWidgetSource = projector;
     result._commandDispatcher  = commandDispatcher;
     result._manualModeSource   = manualModeSource;
@@ -119,9 +124,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     result._oldModeSource      = oldModeSource;
     result._inputBlockAfterCombat = inputBlockAfterCombat;
     result._matchReporter      = matchReporter;
-
-    result._projectileSpeedController = projectileSpeedController;
-    result._enemySpeedController      = enemySpeedController;
+    result._worldChanger       = worldChanger;
 
     return result;
   }
@@ -137,16 +140,13 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   override
   void tick()
   {
-    _damager.changeWorld();
-
     _commandDispatcher.activate();
     _inputManager.manageInput();
 
     _inputBlockAfterCombat.update();
     _oldModeSource.setMode(_modeSource.getMode());
 
-    _projectileSpeedController.changeWorld();
-    _enemySpeedController.changeWorld();
+    _worldChanger.changeWorld();
 
     _matchReporter.report();
   }
@@ -306,6 +306,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     return registryCache;
   }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_AnswerSource       _playerInput;
@@ -313,7 +314,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_DeathReporter      _deathReporter;
   private tt_View               _view;
   private tt_ModeSource         _modeSource;
-  private tt_WorldChanger       _damager;
   private tt_TargetWidgetSource _targetWidgetSource;
   private tt_CommandDispatcher  _commandDispatcher;
   private tt_ModeStorage        _manualModeSource;
@@ -321,8 +321,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_SettableMode       _oldModeSource;
   private tt_InputBlockAfterCombat _inputBlockAfterCombat;
   private tt_MatchReporter      _matchReporter;
-
-  private tt_ProjectileSpeedController _projectileSpeedController;
-  private tt_EnemySpeedController      _enemySpeedController;
+  private tt_WorldChanger       _worldChanger;
 
 } // class tt_PlayerSupervisor

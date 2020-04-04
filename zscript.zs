@@ -172,6 +172,7 @@ version 4.3.3
 #include "zscript/typist/world_changer/tt_gunner.zs"
 #include "zscript/typist/world_changer/tt_projectile_speed_controller.zs"
 #include "zscript/typist/world_changer/tt_velocity_storage.zs"
+#include "zscript/typist/world_changer/tt_world_changers.zs"
 #include "zscript/typist/world_changer/tt_world_changer.zs"
 // class extensions:
 #include "zscript/clematis/ASSERTIONS/BOOLEAN/FALSE_tt.zs"
