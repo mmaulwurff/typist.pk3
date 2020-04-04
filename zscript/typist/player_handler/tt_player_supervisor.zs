@@ -137,7 +137,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   override
   void tick()
   {
-    _damager.damage();
+    _damager.changeWorld();
 
     _commandDispatcher.activate();
     _inputManager.manageInput();
@@ -313,7 +313,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_DeathReporter      _deathReporter;
   private tt_View               _view;
   private tt_ModeSource         _modeSource;
-  private tt_Damager            _damager;
+  private tt_WorldChanger       _damager;
   private tt_TargetWidgetSource _targetWidgetSource;
   private tt_CommandDispatcher  _commandDispatcher;
   private tt_ModeStorage        _manualModeSource;

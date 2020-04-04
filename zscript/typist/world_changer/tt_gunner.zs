@@ -15,12 +15,13 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class is an implementation of tt_Damager interface.
+/**
+ * This class implements tt_WorldChanger by aiming and firing at target, if any.
  *
- * It fires at the origin received from the OriginSource with
- * the help of Aimer and Firer classes.
+ * It fires at the origin received from the OriginSource with the help of Aimer
+ * and Firer classes.
  */
-class tt_Gunner : tt_Damager
+class tt_Gunner : tt_WorldChanger
 {
 
 // public: /////////////////////////////////////////////////////////////////////
@@ -37,10 +38,10 @@ class tt_Gunner : tt_Damager
     return result;
   }
 
-// public: // tt_Damager ///////////////////////////////////////////////////////
+// public: // tt_WorldChanger //////////////////////////////////////////////////
 
   override
-  void damage()
+  void changeWorld()
   {
     let origin = _originSource.getOrigin();
     if (origin == NULL) { return; }
@@ -55,4 +56,4 @@ class tt_Gunner : tt_Damager
   private tt_Aimer        _aimer;
   private tt_Firer        _firer;
 
-} // class tt_GunnerImpl
+} // class tt_Gunner

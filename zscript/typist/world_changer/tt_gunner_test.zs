@@ -81,7 +81,7 @@ class tt_GunnerTest : tt_Clematis
   private play
   void shoot() const
   {
-    _gunner.damage();
+    _gunner.changeWorld();
   }
 
 // private: ////////////////////////////////////////////////////////////////////

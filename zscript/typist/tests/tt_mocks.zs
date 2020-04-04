@@ -669,33 +669,6 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
 
 } // class tt_KnownTargetSourceMock
 
-class tt_DamagerMock : tt_Damager
-{
-
-  static tt_DamagerMock of() { return new("tt_DamagerMock"); } // construct
-
-  override
-  void damage()
-  {
-    ++_mock_damage_called;
-  }
-
-  void expect_damage(int expected = 1)
-  {
-    _mock_damage_expected = expected;
-    _mock_damage_called = 0;
-  }
-
-  bool isSatisfied_damage() const
-  {
-    return _mock_damage_expected == _mock_damage_called;
-  }
-
-  private int _mock_damage_expected;
-  private int _mock_damage_called;
-
-} // class tt_DamagerMock
-
 class tt_ActivatableMock : tt_Activatable
 {
 
