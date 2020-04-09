@@ -44,7 +44,7 @@ class tt_SorterByDistance : tt_TargetWidgetSource
   tt_TargetWidgets getWidgets(RenderEvent event)
   {
     let widgets = _targetWidgetSource.getWidgets(event);
-    let origin  = _originSource.getOrigin().getPosition();
+    let origin  = _originSource.getOrigin().getVector();
     let sorted  = sort(widgets, origin);
 
     return sorted;

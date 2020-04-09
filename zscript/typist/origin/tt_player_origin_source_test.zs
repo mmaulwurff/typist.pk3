@@ -38,7 +38,7 @@ class tt_PlayerOriginSourceTest : tt_Clematis
 
     playerSource.expect_getPawn(player);
 
-    let origin  = originSource.getOrigin().getPosition();
+    let origin  = originSource.getOrigin().getVector();
 
     It("X matches",  AssertEval(x, "==", origin.x));
     It("Y matches",  AssertEval(y, "==", origin.y));

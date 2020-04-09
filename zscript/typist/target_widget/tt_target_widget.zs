@@ -47,7 +47,7 @@ class tt_TargetWidget
 
   double getDistanceTo(Vector3 other)
   {
-    let worldPosition = _target.getTarget().getPosition();
+    let worldPosition = _target.getTarget().getPosition().getVector();
     let distance      = (worldPosition - other).Length();
 
     return distance;

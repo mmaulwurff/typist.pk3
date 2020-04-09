@@ -41,7 +41,7 @@ class tt_SorterByDistanceTest : tt_Clematis
 
     let before = tt_TargetWidgets.of();
     let origin = tt_Origin.of((0, 0, 0));
-    let after  = tt_SorterByDistance.sort(before, origin.getPosition());
+    let after  = tt_SorterByDistance.sort(before, origin.getVector());
 
     It("Empty collection must remain empty", AssertEval(after.size(), "==", 0));
 
@@ -59,13 +59,13 @@ class tt_SorterByDistanceTest : tt_Clematis
     before.add(createAtPosition((0, 0, 1)));
     before.add(createAtPosition((0, 0, 0)));
 
-    It("Before: sorted", Assert(isSorted(before, origin.getPosition())));
+    It("Before: sorted", Assert(isSorted(before, origin.getVector())));
 
-    let after = tt_SorterByDistance.sort(before, origin.getPosition());
+    let after = tt_SorterByDistance.sort(before, origin.getVector());
 
     It("Size of collection must the same", AssertEval(after.size(), "==", before.size()));
     It("Contains same elements", Assert(isSameElements(before, after)));
-    It("After: sorted", Assert(isSorted(after, origin.getPosition())));
+    It("After: sorted", Assert(isSorted(after, origin.getVector())));
 
     EndDescribe();
   }
@@ -81,13 +81,13 @@ class tt_SorterByDistanceTest : tt_Clematis
     before.add(createAtPosition((0, 0, 1)));
     before.add(createAtPosition((0, 0, 2)));
 
-    It("Before: not sorted", Assert(!isSorted(before, origin.getPosition())));
+    It("Before: not sorted", Assert(!isSorted(before, origin.getVector())));
 
-    let after = tt_SorterByDistance.sort(before, origin.getPosition());
+    let after = tt_SorterByDistance.sort(before, origin.getVector());
 
     It("Size of collection must the same", AssertEval(after.size(), "==", before.size()));
     It("Contains same elements", Assert(isSameElements(before, after)));
-    It("After: sorted", Assert(isSorted(after, origin.getPosition())));
+    It("After: sorted", Assert(isSorted(after, origin.getVector())));
 
     EndDescribe();
   }
@@ -103,13 +103,13 @@ class tt_SorterByDistanceTest : tt_Clematis
     before.add(createAtPosition((0, 0, 2)));
     before.add(createAtPosition((0, 0, 0)));
 
-    It("Before: not sorted", Assert(!isSorted(before, origin.getPosition())));
+    It("Before: not sorted", Assert(!isSorted(before, origin.getVector())));
 
-    let after = tt_SorterByDistance.sort(before, origin.getPosition());
+    let after = tt_SorterByDistance.sort(before, origin.getVector());
 
     It("Size of collection must the same", AssertEval(after.size(), "==", before.size()));
     It("Contains same elements", Assert(isSameElements(before, after)));
-    It("After: sorted", Assert(isSorted(after, origin.getPosition())));
+    It("After: sorted", Assert(isSorted(after, origin.getVector())));
 
     EndDescribe();
   }

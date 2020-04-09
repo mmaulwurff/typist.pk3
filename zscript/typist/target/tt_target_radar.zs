@@ -41,7 +41,7 @@ class tt_TargetRadar : tt_TargetSource
   {
     let result = tt_Targets.of();
 
-    let origin = _originSource.getOrigin().getPosition();
+    let origin = _originSource.getOrigin().getVector();
 
     let iterator = ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT);
     Actor a;

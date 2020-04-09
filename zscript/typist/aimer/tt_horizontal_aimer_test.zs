@@ -53,7 +53,7 @@ class tt_HorizontalAimerTest : tt_Clematis
       playerSource.expect_getPawn(pawn);
 
       // Just for a visual check.
-      Spawn("DoomImp", targetOrigin.getPosition());
+      Spawn("DoomImp", targetOrigin.getVector());
 
       aim(aimer);
 

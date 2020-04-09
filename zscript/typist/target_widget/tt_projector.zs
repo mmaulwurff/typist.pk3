@@ -70,7 +70,7 @@ class tt_Projector : tt_TargetWidgetSource
         continue;
       }
 
-      let     targetPos = target.getTarget().getPosition();
+      Vector3 targetPos = target.getTarget().getPosition().getVector();
       Vector2 position;
       bool    isPositionSuccessful;
       [position, isPositionSuccessful] = makeDrawPos(targetPos, viewport);

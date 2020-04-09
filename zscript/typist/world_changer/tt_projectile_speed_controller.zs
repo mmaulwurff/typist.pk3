@@ -43,7 +43,7 @@ class tt_ProjectileSpeedController : tt_WorldChanger
   override
   void changeWorld()
   {
-    let origin   = _playerOriginSource.getOrigin().getPosition();
+    let origin   = _playerOriginSource.getOrigin().getVector();
     let iterator = ThinkerIterator.Create("Actor", Thinker.STAT_DEFAULT);
     let pawn     = _playerSource.getPawn();
 

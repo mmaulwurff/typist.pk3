@@ -36,7 +36,7 @@ class tt_Origin
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  Vector3 getPosition() const
+  Vector3 getVector() const
   {
     return _pos;
   }

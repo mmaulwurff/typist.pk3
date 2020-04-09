@@ -74,7 +74,7 @@ class tt_VerticalAimer : tt_Aimer
     Vector3 myPosition = pawn.pos;
     myPosition.z += pawn.Height / 2 + pawn.AttackZOffset;
 
-    Vector3 otherPosition = targetOrigin.getPosition();
+    Vector3 otherPosition = targetOrigin.getVector();
     Vector3 diff          = myPosition - otherPosition;
     double  angle         = Atan2(diff.z, sqrt(diff.x * diff.x + diff.y * diff.y));
 

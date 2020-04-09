@@ -55,18 +55,19 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     uint nTargets = targets.size();
     for (uint i = 0; i < nTargets; ++i)
     {
-      let  target    = targets.at(i);
-      let  question  = target.getQuestion();
-      bool isRight   = question.isRight(answer);
+      let target   = targets.at(i);
+      let question = target.getQuestion();
+
+      bool isRight = question.isRight(answer);
+      if (!isRight) { continue; }
+
       bool isVisible = isVisible(target, pawn);
+      if (!isVisible) { continue; }
 
-      if (isRight && isVisible)
-      {
-        _answerSource.reset();
+      _answerSource.reset();
 
-        let result = tt_Origin.of(target.getTarget().getPosition());
-        return result;
-      }
+      let result = target.getTarget().getPosition();
+      return result;
     }
 
     return NULL;

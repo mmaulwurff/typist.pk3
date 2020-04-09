@@ -38,12 +38,14 @@ class tt_Target
   /**
    * Get position in game space of this target.
    */
-  Vector3 getPosition() const
+  tt_Origin getPosition() const
   {
     Vector3 position = _actor.pos;
     position.z += _actor.height / 2;
 
-    return position;
+    let result = tt_Origin.of(position);
+
+    return result;
   }
 
   bool isEqual(tt_Target other) const
