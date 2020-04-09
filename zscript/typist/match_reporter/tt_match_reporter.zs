@@ -27,14 +27,12 @@ class tt_MatchReporter
   static
   tt_MatchReporter of( tt_EventReporter eventReporter
                      , tt_OriginSource  originSource
-                     , tt_AnswerSource  answerSource
                      )
   {
     let result = new("tt_MatchReporter"); // construct
 
     result._eventReporter = eventReporter;
     result._originSource  = originSource;
-    result._answerSource  = answerSource;
 
     result._isReported = false;
 
@@ -43,13 +41,6 @@ class tt_MatchReporter
 
   void report()
   {
-    let isFinished = (_answerSource.getAnswer().isFinished());
-    if (!isFinished)
-    {
-      _isReported = false;
-      return;
-    }
-
     if (_isReported)
     {
       return;
@@ -72,7 +63,6 @@ class tt_MatchReporter
 
   private tt_EventReporter _eventReporter;
   private tt_OriginSource  _originSource;
-  private tt_AnswerSource  _answerSource;
 
   private bool _isReported;
 

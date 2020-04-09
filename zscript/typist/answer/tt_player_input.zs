@@ -59,7 +59,6 @@ class tt_PlayerInput : tt_AnswerSource
       break;
 
     case tt_Character.BACKSPACE:      _answer.deleteLastCharacter();         break;
-    case tt_Character.ENTER:          _answer.finish();                      break;
     case tt_Character.CTRL_BACKSPACE: reset();                               break;
     case tt_Character.ESCAPE:         _modeStorage.setMode(tt_Mode.Explore); break;
     }

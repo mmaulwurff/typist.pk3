@@ -55,7 +55,6 @@ class tt_CommandDispatcherTest : tt_Clematis
     let str    = "Hello";
     let answer = tt_Answer.of(str);
     answerSource.expect_getAnswer(answer);
-    answer.finish();
 
     let commands1 = tt_Strings.of();
     let commands2 = tt_Strings.of();

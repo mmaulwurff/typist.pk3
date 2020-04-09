@@ -41,10 +41,7 @@ class tt_Match : tt_Question
   override
   bool isRight(tt_Answer answer)
   {
-    if (!answer.isFinished()) { return false; }
-
     bool isEqual = (_question == answer.getString());
-
     return isEqual;
   }
 

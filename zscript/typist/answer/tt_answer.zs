@@ -30,36 +30,29 @@ class tt_Answer
     let result = new("tt_Answer"); // construct
 
     result._answer     = answer;
-    result._isFinished = false;
 
     return result;
   }
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  String getString()  const { return _answer;     }
-  bool   isFinished() const { return _isFinished; }
+  String getString() const
+  {
+    return _answer;
+  }
 
   void append(String character)
   {
     _answer = _answer .. character;
-    _isFinished = false;
   }
 
   void deleteLastCharacter()
   {
     _answer.DeleteLastCharacter();
-    _isFinished = false;
-  }
-
-  void finish()
-  {
-    _isFinished = true;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private String _answer;
-  private bool   _isFinished;
 
 } // class tt_Answer
