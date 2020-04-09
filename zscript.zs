@@ -79,6 +79,8 @@ version 4.3.3
 #include "zscript/typist/game_tweaks/tt_game_tweaks.zs"
 #include "zscript/typist/input_manager/tt_input_by_mode_manager.zs"
 #include "zscript/typist/input_manager/tt_input_manager.zs"
+#include "zscript/typist/key_processor/tt_key_processors.zs"
+#include "zscript/typist/key_processor/tt_key_processor.zs"
 #include "zscript/typist/known_target/tt_known_target_source_cache.zs"
 #include "zscript/typist/known_target/tt_known_target_source.zs"
 #include "zscript/typist/known_target/tt_known_targets.zs"

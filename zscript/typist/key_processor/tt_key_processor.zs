@@ -16,27 +16,17 @@
  */
 
 /**
- * This interface represents a source of answers.
+ * This interface represents an entity that processes input keys.
  */
-class tt_AnswerSource : tt_KeyProcessor abstract
+class tt_KeyProcessor abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  tt_Answer getAnswer()
+  void processKey(tt_Character character)
   {
-    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:29: T: override this!");
-    return NULL;
+    tt_Log.log("zscript/typist/key_processor/tt_key_processor.zs:29: T: override this!");
   }
 
-  /**
-   * Clears answer.
-   */
-  virtual
-  void reset()
-  {
-    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:39: T: override this!");
-  }
-
-} // class tt_AnswerSource
+} // class tt_KeyProcessor

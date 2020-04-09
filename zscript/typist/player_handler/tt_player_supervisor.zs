@@ -50,7 +50,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                                    , clock
                                                    );
 
-    let matchReporter = tt_MatchReporter.of(eventReporter, targetOriginSource, playerInput);
+    let matchReporter = tt_MatchReporter.of(eventReporter, targetOriginSource);
 
     let aimer              = makeAimer(targetOriginSource, playerSource, settings);
     let firer              = tt_FirerImpl.of(playerSource);
@@ -108,11 +108,15 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     worldChangers.push(enemySpeedController);
     let worldChanger = tt_WorldChangers.of(worldChangers);
 
+    Array<tt_KeyProcessor> keyProcessors;
+    keyProcessors.Push(inputBlockAfterCombat);
+    let keyProcessor = tt_KeyProcessors.of(keyProcessors);
+
     // Initialize attributes ///////////////////////////////////////////////////
 
     let result = new("tt_PlayerSupervisor"); // construct
 
-    result._playerInput        = inputBlockAfterCombat;
+    result._keyProcessor       = keyProcessor;
     result._deathReporter      = deathReporter;
     result._targetRegistry     = targetRegistry;
     result._view               = conditionalView;
@@ -134,7 +138,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   override
   void processKey(tt_Character character)
   {
-    _playerInput.processKey(character);
+    _keyProcessor.processKey(character);
   }
 
   override
@@ -309,7 +313,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_AnswerSource       _playerInput;
+  private tt_KeyProcessor       _keyProcessor;
   private tt_KnownTargetSource  _targetRegistry;
   private tt_DeathReporter      _deathReporter;
   private tt_View               _view;

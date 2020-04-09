@@ -16,27 +16,38 @@
  */
 
 /**
- * This interface represents a source of answers.
+ * This class implements tt_KeyProcessor interface by calling several instances
+ * of tt_KeyProcessor
  */
-class tt_AnswerSource : tt_KeyProcessor abstract
+class tt_KeyProcessors : tt_KeyProcessor
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  virtual
-  tt_Answer getAnswer()
+  static
+  tt_KeyProcessors of(Array<tt_KeyProcessor> keyProcessors)
   {
-    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:29: T: override this!");
-    return NULL;
+    let result = new("tt_KeyProcessors"); // construct
+
+    result._keyProcessors.Copy(keyProcessors);
+
+    return result;
   }
 
-  /**
-   * Clears answer.
-   */
-  virtual
-  void reset()
+// public: // tt_KeyProcessor //////////////////////////////////////////////////
+
+  override
+  void processKey(tt_Character character)
   {
-    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:39: T: override this!");
+    uint nProcessors = _keyProcessors.size();
+    for (uint i = 0; i < nProcessors; ++i)
+    {
+      _keyProcessors[i].processKey(character);
+    }
   }
 
-} // class tt_AnswerSource
+// private: ////////////////////////////////////////////////////////////////////
+
+  private Array<tt_KeyProcessor> _keyProcessors;
+
+} // class tt_KeyProcessors
