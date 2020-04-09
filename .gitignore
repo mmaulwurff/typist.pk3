@@ -6,6 +6,9 @@
 # Except the following file types:
 
 !.gitignore
+!.gitmodules
+!.gitattributes
+
 !**.txt
 !**.md
 !**.zs
