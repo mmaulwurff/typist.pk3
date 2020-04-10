@@ -22,6 +22,10 @@ TT_CONTROLS_TITLE             = "Controls";
 TT_BUDDHA_ENABLED = "Player cannot die";
 TT_BUDDHA_NOTE    = "Applies on new level start.";
 
+TT_CONFIRMATION = "Answer confirmation";
+TT_CONFIRMATION_MANUAL = "Enter/Space";
+TT_CONFIRMATION_AUTO   = "As soon as it matches";
+
 TT_LESSON_LETTERS = "Random Letters";
 TT_LESSON_NUMBERS = "Random Numbers";
 TT_LESSON_GZDOOM  = "GZDoom Dev";

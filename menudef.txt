@@ -16,6 +16,7 @@ OptionMenu tt_Options
 
   StaticText ""
   StaticText "$TT_GAMEPLAY_OPTIONS_TITLE_OUT", 1
+  Option     "$TT_CONFIRMATION", tt_confirm_type, tt_ConfirmationTypes
   Option     "$TT_BUDDHA_ENABLED", tt_buddha_enabled, OnOff
   StaticText "$TT_BUDDHA_NOTE"
 
@@ -129,6 +130,12 @@ OptionString tt_CommandPrefixValues
   "@" , "@"
   "." , "."
   "-" , "-"
+}
+
+OptionValue tt_ConfirmationTypes
+{
+  0, "$TT_CONFIRMATION_MANUAL"
+  1, "$TT_CONFIRMATION_AUTO"
 }
 
 // Score Menu //////////////////////////////////////////////////////////////////
