@@ -31,6 +31,14 @@ class tt_Character
     result._eventType = type;
     //tt_Log.log("type: %d, code: %d", type, code);
 
+    // Normally, KeyUp events aren't registered, but releasing Enter or Space
+    // key has special meaning, important for Hold Fire feature.
+    if (type == UiEvent.Type_KeyUp && (code == tt_Ascii.Enter || code == tt_Ascii.Space))
+    {
+      result._type = ENTER_UP;
+      return result;
+    }
+
     bool isChar    = (type == UiEvent.Type_Char);
     bool isDown    = (type == UiEvent.Type_KeyDown);
     bool isRepeat  = (type == UiEvent.Type_KeyRepeat);
@@ -47,10 +55,10 @@ class tt_Character
 
     if      (code == tt_Ascii.Backspace) { result._type = (isCtrl ? CTRL_BACKSPACE : BACKSPACE); }
     else if (code == tt_Ascii.Delete   )       { result._type = CTRL_BACKSPACE; }
-    else if (code == tt_Ascii.Enter    )       { result._type = ENTER;    }
-    else if (code == tt_Ascii.Space    )       { result._type = ENTER;    }
-    else if (code == tt_Ascii.Escape   )       { result._type = ESCAPE;   }
-    else if (code <  tt_Ascii.FIRST_PRINTABLE) { result._type = NONE;     }
+    else if (code == tt_Ascii.Enter    )       { result._type = ENTER;          }
+    else if (code == tt_Ascii.Space    )       { result._type = ENTER;          }
+    else if (code == tt_Ascii.Escape   )       { result._type = ESCAPE;         }
+    else if (code <  tt_Ascii.FIRST_PRINTABLE) { result._type = NONE;           }
     else
     {
       result._type      = PRINTABLE;
@@ -62,13 +70,14 @@ class tt_Character
 
 // public: /////////////////////////////////////////////////////////////////////
 
-  enum CHARACTER_TYPES
+  enum _
   {
     NONE,
     PRINTABLE,
     BACKSPACE,
     CTRL_BACKSPACE,
     ENTER,
+    ENTER_UP,
     ESCAPE,
   }
 

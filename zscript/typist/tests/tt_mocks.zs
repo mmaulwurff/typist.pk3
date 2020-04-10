@@ -383,6 +383,36 @@ class tt_TargetSourceMock : tt_TargetSource
 
 } // class tt_TargetSourceMock
 
+class tt_AnswerStateSourceMock : tt_AnswerStateSource
+{
+
+  static tt_AnswerStateSourceMock of() { return new("tt_AnswerStateSourceMock"); } // construct
+
+  override
+  tt_AnswerState getAnswerState()
+  {
+    ++_mock_getAnswerState_called;
+    return _mock_getAnswerState;
+  }
+
+  void expect_getAnswerState(tt_AnswerState value, int expected = 1)
+  {
+    _mock_getAnswerState = value;
+    _mock_getAnswerState_expected = expected;
+    _mock_getAnswerState_called = 0;
+  }
+
+  bool isSatisfied_getAnswerState() const
+  {
+    return _mock_getAnswerState_expected == _mock_getAnswerState_called;
+  }
+
+  private tt_AnswerState _mock_getAnswerState;
+  private int _mock_getAnswerState_expected;
+  private int _mock_getAnswerState_called;
+
+} // class tt_AnswerStateSourceMock
+
 class tt_ClockMock : tt_Clock
 {
 

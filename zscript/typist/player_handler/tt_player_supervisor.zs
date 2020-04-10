@@ -44,10 +44,12 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     let targetRegistry = makeTargetRegistry(radarCache, questionSource, deathReporter, clock);
 
+    let pressedAnswerState = tt_PressedAnswerState.of();
     let targetOriginSource = makeTargetOriginSource( targetRegistry
                                                    , playerInput
                                                    , playerSource
                                                    , clock
+                                                   , pressedAnswerState
                                                    );
 
     let matchReporter = tt_MatchReporter.of(eventReporter, targetOriginSource);
@@ -110,6 +112,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     Array<tt_KeyProcessor> keyProcessors;
     keyProcessors.Push(inputBlockAfterCombat);
+    keyProcessors.Push(pressedAnswerState);
     let keyProcessor = tt_KeyProcessors.of(keyProcessors);
 
     // Initialize attributes ///////////////////////////////////////////////////
@@ -288,11 +291,17 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                         , tt_AnswerSource      answerSource
                                         , tt_PlayerSource      playerSource
                                         , tt_Clock             clock
+                                        , tt_AnswerStateSource answerStateSource
                                         )
   {
-    let matcher      = tt_QuestionAnswerMatcher.of(targetSource, answerSource, playerSource);
-    let staleMarker  = tt_StaleMarkerImpl      .of(clock);
-    let originSource = tt_OriginSourceCache    .of(matcher, staleMarker);
+    let matcher      = tt_QuestionAnswerMatcher.of( targetSource
+                                                  , answerSource
+                                                  , playerSource
+                                                  , answerStateSource
+                                                  );
+
+    let staleMarker  = tt_StaleMarkerImpl  .of(clock);
+    let originSource = tt_OriginSourceCache.of(matcher, staleMarker);
 
     return originSource;
   }

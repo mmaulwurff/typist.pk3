@@ -28,6 +28,7 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
   tt_QuestionAnswerMatcher of( tt_KnownTargetSource knownTargetSource
                              , tt_AnswerSource      answerSource
                              , tt_PlayerSource      playerSource
+                             , tt_AnswerStateSource answerStateSource
                              )
   {
     let result = new("tt_QuestionAnswerMatcher"); // construct
@@ -35,6 +36,7 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     result._knownTargetSource = knownTargetSource;
     result._answerSource      = answerSource;
     result._playerSource      = playerSource;
+    result._answerStateSource = answerStateSource;
 
     return result;
   }
@@ -49,6 +51,9 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
 
     let answer = _answerSource.getAnswer();
     if (answer == NULL) { return NULL; }
+
+    let answerState = _answerStateSource.getAnswerState();
+    if (!answerState.isReady()) { return NULL; }
 
     let pawn = _playerSource.getPawn();
 
@@ -70,6 +75,11 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
       return result;
     }
 
+    if (answerState.isFinished())
+    {
+      _answerSource.reset();
+    }
+
     return NULL;
   }
 
@@ -88,10 +98,9 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
 
   const ALL_AROUND = 1; // true
 
-// private: ////////////////////////////////////////////////////////////////////
-
   private tt_KnownTargetSource _knownTargetSource;
   private tt_AnswerSource      _answerSource;
   private tt_PlayerSource      _playerSource;
+  private tt_AnswerStateSource _answerStateSource;
 
 } // class tt_QuestionAnswerMatcher

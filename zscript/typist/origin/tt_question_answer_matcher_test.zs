@@ -118,6 +118,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     let answer = tt_Answer.of("abc");
     _answerSource.expect_getAnswer(answer);
+    _answerStateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
     _playerSource.expect_getPawn(players[consolePlayer].mo);
 
     let origin = _matcher.getOrigin();
@@ -143,6 +144,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     let answer = tt_Answer.of("abc");
     _answerSource.expect_getAnswer(answer);
+    _answerStateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
     _playerSource.expect_getPawn(players[consolePlayer].mo);
 
     let origin = _matcher.getOrigin();
@@ -163,8 +165,13 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     _knownTargetSource = tt_KnownTargetSourceMock.of();
     _answerSource      = tt_AnswerSourceMock.of();
     _playerSource      = tt_PlayerSourceMock.of();
+    _answerStateSource = tt_AnswerStateSourceMock.of();
 
-    _matcher = tt_QuestionAnswerMatcher.of(_knownTargetSource, _answerSource, _playerSource);
+    _matcher = tt_QuestionAnswerMatcher.of( _knownTargetSource
+                                          , _answerSource
+                                          , _playerSource
+                                          , _answerStateSource
+                                          );
   }
 
   private
@@ -183,5 +190,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
   private tt_AnswerSourceMock      _answerSource;
   private tt_PlayerSourceMock      _playerSource;
   private tt_QuestionAnswerMatcher _matcher;
+  private tt_AnswerStateSourceMock _answerStateSource;
 
 } // class tt_QuestionAnswerMatcherTest
