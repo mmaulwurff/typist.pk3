@@ -25,6 +25,7 @@ and
 any
 applaunch
 apply
+aren
 args
 argument
 argv
@@ -300,6 +301,7 @@ getsomethingfromstatusbar
 getters
 gitattributes
 github
+gitignore
 gitmodules
 gmail
 goto
