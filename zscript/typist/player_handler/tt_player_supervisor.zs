@@ -44,12 +44,12 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     let targetRegistry = makeTargetRegistry(radarCache, questionSource, deathReporter, clock);
 
-    let pressedAnswerState = tt_PressedAnswerState.of();
+    let answerStateSource  = makeAnswerStateSource(playerSource);
     let targetOriginSource = makeTargetOriginSource( targetRegistry
                                                    , playerInput
                                                    , playerSource
                                                    , clock
-                                                   , pressedAnswerState
+                                                   , answerStateSource
                                                    );
 
     let matchReporter = tt_MatchReporter.of(eventReporter, targetOriginSource);
@@ -69,6 +69,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                                    , commands
                                                    , settings
                                                    , eventReporter
+                                                   , answerStateSource
                                                    );
 
     let modeSource = makeModeSource( targetRegistry
@@ -112,7 +113,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     Array<tt_KeyProcessor> keyProcessors;
     keyProcessors.Push(inputBlockAfterCombat);
-    keyProcessors.Push(pressedAnswerState);
+    keyProcessors.Push(answerStateSource);
     let keyProcessor = tt_KeyProcessors.of(keyProcessors);
 
     // Initialize attributes ///////////////////////////////////////////////////
@@ -318,6 +319,18 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let registryCache = tt_KnownTargetSourceCache.of(registry, staleMarker);
 
     return registryCache;
+  }
+
+  private static
+  tt_AnswerStateSource makeAnswerStateSource(tt_PlayerSource playerSource)
+  {
+    Array<tt_AnswerStateSource> answerSources;
+    answerSources.Push(tt_PressedAnswerState.of());
+    answerSources.Push(tt_AlwaysReadyAnswerStateSource.of());
+
+    let selector = tt_AnswerStateSourceSelector.of(answerSources, playerSource);
+
+    return selector;
   }
 
 // private: ////////////////////////////////////////////////////////////////////

@@ -29,14 +29,16 @@ class tt_CommandDispatcher : tt_Activatable
                          , Array<tt_Activatable> activatables
                          , tt_Settings           settings
                          , tt_EventReporter      eventReporter
+                         ,  tt_AnswerStateSource answerStateSource
                          )
   {
     let result = new("tt_CommandDispatcher"); // construct
 
     result._answerSource  = answerSource;
-    result._activatables.copy(activatables);
+    result._activatables.Copy(activatables);
     result._settings      = settings;
     result._eventReporter = eventReporter;
+    result._answerStateSource = answerStateSource;
 
     return result;
   }
@@ -46,6 +48,9 @@ class tt_CommandDispatcher : tt_Activatable
   override
   void activate()
   {
+    let answerState = _answerStateSource.getAnswerState();
+    if (!answerState.isReady()) { return; }
+
     let answer       = _answerSource.getAnswer();
     let answerString = answer.getString();
 
@@ -131,5 +136,6 @@ class tt_CommandDispatcher : tt_Activatable
   private Array<tt_Activatable> _activatables;
   private tt_Settings           _settings;
   private tt_EventReporter      _eventReporter;
+  private tt_AnswerStateSource  _answerStateSource;
 
 } // class tt_CommandDispatcher

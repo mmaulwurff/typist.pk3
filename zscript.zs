@@ -55,6 +55,8 @@ version 4.3.3
 #include "zscript/typist/aimer/tt_horizontal_aimer.zs"
 #include "zscript/typist/aimer/tt_vertical_aimer_test.zs"
 #include "zscript/typist/aimer/tt_vertical_aimer.zs"
+#include "zscript/typist/answer_state/tt_always_ready_answer_state_source.zs"
+#include "zscript/typist/answer_state/tt_answer_state_source_selector.zs"
 #include "zscript/typist/answer_state/tt_answer_state_source.zs"
 #include "zscript/typist/answer_state/tt_answer_state.zs"
 #include "zscript/typist/answer_state/tt_pressed_answer_state.zs"

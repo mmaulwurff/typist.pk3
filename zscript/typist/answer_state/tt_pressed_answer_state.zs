@@ -34,6 +34,10 @@ class tt_PressedAnswerState : tt_AnswerStateSource
   tt_PressedAnswerState of()
   {
     let result = new("tt_PressedAnswerState"); // construct
+
+    result._isPressed  = false;
+    result._isReleased = false;
+
     return result;
   }
 

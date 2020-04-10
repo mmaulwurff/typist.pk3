@@ -11,6 +11,10 @@ user int tt_question_source = 4;
 server bool   tt_buddha_enabled = true;
 user   string tt_command_prefix = "/";
 
+// 0: by Enter or Space
+// 1: Automatic, as soon as an answer matches.
+user   int    tt_confirm_type   = 0;
+
 // Mixed Lesson configuration //////////////////////////////////////////////////
 
 server bool tt_is_lesson_enabled_0 = false;

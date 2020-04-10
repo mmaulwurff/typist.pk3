@@ -41,15 +41,17 @@ class tt_CommandDispatcherTest : tt_Clematis
     let activatable1      = tt_ActivatableMock.of();
     let activatable2      = tt_ActivatableMock.of();
     Array<tt_Activatable> activatables;
-    activatables.push(activatable1);
-    activatables.push(activatable2);
+    activatables.Push(activatable1);
+    activatables.Push(activatable2);
     let answerSource      = tt_AnswerSourceMock.of();
     let settings          = tt_SettingsMock.of();
     let eventReporter     = tt_EventReporterMock.of();
+    let answerStateSource = tt_AnswerStateSourceMock.of();
     let commandDispatcher = tt_CommandDispatcher.of( answerSource
                                                    , activatables
                                                    , settings
                                                    , eventReporter
+                                                   , answerStateSource
                                                    );
 
     let str    = "Hello";
@@ -63,6 +65,7 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatable2.expect_getCommands(commands2);
     activatable2.expect_activate();
     eventReporter.expect_reportAnswerMatch();
+    answerStateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
 
     commandDispatcher.activate();
 
@@ -81,16 +84,18 @@ class tt_CommandDispatcherTest : tt_Clematis
     let activatable1      = tt_ActivatableMock.of();
     let activatable2      = tt_ActivatableMock.of();
     Array<tt_Activatable> activatables;
-    activatables.push(activatable1);
-    activatables.push(activatable2);
+    activatables.Push(activatable1);
+    activatables.Push(activatable2);
     let answerSource      = tt_AnswerSourceMock.of();
     let settings          = tt_SettingsMock.of();
     let eventReporter     = tt_EventReporterMock.of();
+    let answerStateSource = tt_AnswerStateSourceMock.of();
     let commandDispatcher = tt_CommandDispatcher.of( answerSource
-                                                    , activatables
-                                                    , settings
-                                                    , eventReporter
-                                                    );
+                                                   , activatables
+                                                   , settings
+                                                   , eventReporter
+                                                   , answerStateSource
+                                                   );
 
     let commands1 = tt_Strings.of();
     let commands2 = tt_Strings.of();
@@ -102,6 +107,7 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatable2.expect_getCommands(commands2);
     activatable1.expect_isVisible(true);
     activatable2.expect_isVisible(true);
+    answerStateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
 
     let allCommands = commandDispatcher.getCommands();
     let size        = allCommands.size();
