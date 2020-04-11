@@ -29,6 +29,7 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
                              , tt_AnswerSource      answerSource
                              , tt_PlayerSource      playerSource
                              , tt_AnswerStateSource answerStateSource
+                             , tt_EventReporter     eventReporter
                              )
   {
     let result = new("tt_QuestionAnswerMatcher"); // construct
@@ -37,6 +38,7 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     result._answerSource      = answerSource;
     result._playerSource      = playerSource;
     result._answerStateSource = answerStateSource;
+    result._eventReporter     = eventReporter;
 
     return result;
   }
@@ -57,6 +59,11 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
 
     let pawn = _playerSource.getPawn();
 
+    if (!answerState.isFinished())
+    {
+      _isNotMatchReported = false;
+    }
+
     uint nTargets = targets.size();
     for (uint i = 0; i < nTargets; ++i)
     {
@@ -69,7 +76,8 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
       bool isVisible = isVisible(target, pawn);
       if (!isVisible) { continue; }
 
-      _answerSource.reset();
+      _eventReporter.reportAnswerMatch();
+      resetAnswer();
 
       let result = target.getTarget().getPosition();
       return result;
@@ -77,7 +85,8 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
 
     if (answerState.isFinished())
     {
-      _answerSource.reset();
+      reportNotMatch();
+      resetAnswer();
     }
 
     return NULL;
@@ -94,6 +103,22 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     return visible;
   }
 
+  private
+  void reportNotMatch()
+  {
+    if (!_isNotMatchReported)
+    {
+      _eventReporter.reportAnswerNotMatch();
+      _isNotMatchReported = true;
+    }
+  }
+
+  private
+  void resetAnswer()
+  {
+    _answerSource.reset();
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   const ALL_AROUND = 1; // true
@@ -102,5 +127,8 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
   private tt_AnswerSource      _answerSource;
   private tt_PlayerSource      _playerSource;
   private tt_AnswerStateSource _answerStateSource;
+  private tt_EventReporter     _eventReporter;
+
+  private bool _isNotMatchReported;
 
 } // class tt_QuestionAnswerMatcher

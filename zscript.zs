@@ -104,7 +104,6 @@ version 4.3.3
 #include "zscript/typist/lesson/tt_string_set_test.zs"
 #include "zscript/typist/lesson/tt_string_set.zs"
 #include "zscript/typist/log/tt_log.zs"
-#include "zscript/typist/match_reporter/tt_match_reporter.zs"
 #include "zscript/typist/math/tt_math.zs"
 #include "zscript/typist/menu/option_menu_item_tt_animated_submenu.zs"
 #include "zscript/typist/menu/tt_list_menu_note.zs"

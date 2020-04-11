@@ -50,9 +50,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                                    , playerSource
                                                    , clock
                                                    , answerStateSource
+                                                   , eventReporter
                                                    );
-
-    let matchReporter = tt_MatchReporter.of(eventReporter, targetOriginSource);
 
     let aimer              = makeAimer(targetOriginSource, playerSource, settings);
     let firer              = tt_FirerImpl.of(playerSource);
@@ -131,7 +130,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     result._inputManager       = inputManager;
     result._oldModeSource      = oldModeSource;
     result._inputBlockAfterCombat = inputBlockAfterCombat;
-    result._matchReporter      = matchReporter;
     result._worldChanger       = worldChanger;
 
     return result;
@@ -155,8 +153,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _oldModeSource.setMode(_modeSource.getMode());
 
     _worldChanger.changeWorld();
-
-    _matchReporter.report();
   }
 
   override
@@ -293,12 +289,14 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                         , tt_PlayerSource      playerSource
                                         , tt_Clock             clock
                                         , tt_AnswerStateSource answerStateSource
+                                        , tt_EventReporter     eventReporter
                                         )
   {
     let matcher      = tt_QuestionAnswerMatcher.of( targetSource
                                                   , answerSource
                                                   , playerSource
                                                   , answerStateSource
+                                                  , eventReporter
                                                   );
 
     let staleMarker  = tt_StaleMarkerImpl  .of(clock);
@@ -346,7 +344,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_InputManager       _inputManager;
   private tt_SettableMode       _oldModeSource;
   private tt_InputBlockAfterCombat _inputBlockAfterCombat;
-  private tt_MatchReporter      _matchReporter;
   private tt_WorldChanger       _worldChanger;
 
 } // class tt_PlayerSupervisor
