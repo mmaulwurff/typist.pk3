@@ -249,14 +249,13 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private static
   void makeCommands(tt_PlayerSource playerSource, out Array<tt_Activatable> activatables)
   {
-    activatables.push(tt_RightTurner.of(playerSource));
-    activatables.push(tt_LeftTurner.of(playerSource));
-    activatables.push(tt_Sphinx.of());
-    activatables.push(tt_RightDasher.of(playerSource));
-    activatables.push(tt_LeftDasher.of(playerSource));
-    activatables.push(tt_ForwardDasher.of(playerSource));
-    activatables.push(tt_BackDasher.of(playerSource));
-    activatables.push(tt_Reloader.of(playerSource));
+    activatables.Push(tt_Sphinx       .of());
+    activatables.Push(tt_Reloader     .of(playerSource));
+
+    activatables.Push(tt_RightDasher  .of(playerSource));
+    activatables.Push(tt_LeftDasher   .of(playerSource));
+    activatables.Push(tt_BackDasher   .of(playerSource));
+    activatables.Push(tt_ForwardDasher.of(playerSource));
   }
 
   private static

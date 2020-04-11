@@ -802,36 +802,6 @@ class tt_DasherMock : tt_Dasher
 
 } // class tt_DasherMock
 
-class tt_TurnerMock : tt_Turner
-{
-
-  static tt_TurnerMock of() { return new("tt_TurnerMock"); } // construct
-
-  override
-  double getTurnAngle()
-  {
-    ++_mock_getTurnAngle_called;
-    return _mock_getTurnAngle;
-  }
-
-  void expect_getTurnAngle(double value, int expected = 1)
-  {
-    _mock_getTurnAngle = value;
-    _mock_getTurnAngle_expected = expected;
-    _mock_getTurnAngle_called = 0;
-  }
-
-  bool isSatisfied_getTurnAngle() const
-  {
-    return _mock_getTurnAngle_expected == _mock_getTurnAngle_called;
-  }
-
-  private double _mock_getTurnAngle;
-  private int _mock_getTurnAngle_expected;
-  private int _mock_getTurnAngle_called;
-
-} // class tt_TurnerMock
-
 class tt_OriginSourceMock : tt_OriginSource
 {
 
