@@ -66,9 +66,13 @@ OptionMenu tt_LessonOptions
 
 OptionMenu tt_Controls
 {
-  Title   "$TT_CONTROLS_TITLE_IN"
+  Title      "$TT_CONTROLS_TITLE_IN"
 
-  Control "$TT_UNLOCK", tt_unlock_mode
+  Control    "$TT_UNLOCK", tt_unlock_mode
+  Control    "$TT_COMBAT", tt_force_combat
+
+  StaticText ""
+  Control    "$TT_SCORE", zc_top
 }
 
 OptionMenu tt_SoundOptions
