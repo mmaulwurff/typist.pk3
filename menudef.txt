@@ -1,4 +1,4 @@
-// Menus ///////////////////////////////////////////////////////////////////////
+// Main Menu ///////////////////////////////////////////////////////////////////
 
 AddOptionMenu OptionsMenu
 {
@@ -7,39 +7,77 @@ AddOptionMenu OptionsMenu
 
 OptionMenu tt_Options
 {
-  Title "$TT_TITLE"
+  Title      "$TT_TITLE"
+
+  Submenu    "$TT_CONTROLS_TITLE_OUT"         , tt_Controls
 
   StaticText ""
-  StaticText "$TT_DISPLAY_OPTIONS_TITLE_OUT", 1
+  Submenu    "$TT_DISPLAY_OPTIONS_TITLE_OUT"  , tt_DisplayOptions
+  Submenu    "$TT_GAMEPLAY_OPTIONS_TITLE_OUT" , tt_GameplayOptions
+  Submenu    "$TT_LESSON_OPTIONS_TITLE_OUT"   , tt_LessonOptions
+  Submenu    "$TT_COMMANDS_TITLE_OUT"         , tt_CommandOptions
+  Submenu    "$TT_SOUND_OPTIONS_TITLE_OUT"    , tt_SoundOptions
+
+  StaticText ""
+  Submenu    "$TT_ACKNOWLEDGMENTS_TITLE"      , tt_Acknowledgments
+}
+
+// Submenus ////////////////////////////////////////////////////////////////////
+
+OptionMenu tt_DisplayOptions
+{
+  Title      "$TT_DISPLAY_OPTIONS_TITLE_IN"
+
   Slider     "$TT_TARGET_SCALE", tt_view_scale, 1, 4, 1, 0
-  Option     "$TT_SHOW_NOTES", tt_show_notes, OnOff
 
   StaticText ""
-  StaticText "$TT_GAMEPLAY_OPTIONS_TITLE_OUT", 1
+  Option     "$TT_SHOW_NOTES"   , tt_show_notes  , OnOff
+  Option     "$TT_SCREEN_SAVER" , tt_screensaver , OnOff
+}
+
+OptionMenu tt_GameplayOptions
+{
+  Title      "$TT_GAMEPLAY_OPTIONS_TITLE_IN"
+
   Option     "$TT_CONFIRMATION", tt_confirm_type, tt_ConfirmationTypes
+
+  StaticText ""
   Option     "$TT_BUDDHA_ENABLED", tt_buddha_enabled, OnOff
   StaticText "$TT_BUDDHA_NOTE"
+}
+
+OptionMenu tt_LessonOptions
+{
+  Title      "$TT_LESSON_OPTIONS_TITLE_IN"
+
+  Option     "$TT_QUESTION_SOURCE", tt_question_source, tt_QuestionSourceValues
 
   StaticText ""
-  Option     "$TT_QUESTION_SOURCE", tt_question_source, tt_QuestionSourceValues
   Submenu    "$TT_MIXED_LESSON_TITLE", tt_MixedLesson
   Submenu    "$TT_RANDOM_LESSON_TITLE", tt_RandomLesson
+
+  StaticText ""
   Command    "$TT_APPLY", tt_reset_targets
   StaticText "$TT_QUESTION_SOURCE_NOTE"
 
   StaticText ""
-  Submenu    "$TT_COMMANDS_TITLE", tt_Commands
+  StaticText "$TT_CUSTOM_LESSON_HELP_TEXT"
+}
 
-  StaticText ""
-  StaticText "$TT_CONTROLS_TITLE", 1
-  Control    "$TT_UNLOCK", tt_unlock_mode
+OptionMenu tt_Controls
+{
+  Title   "$TT_CONTROLS_TITLE_IN"
 
-  StaticText ""
-  Submenu    "$TT_SOUND_SETTINGS", tt_Sound
+  Control "$TT_UNLOCK", tt_unlock_mode
+}
 
-  StaticText ""
-  Submenu    "$TT_ACKNOWLEDGMENTS_TITLE", tt_Acknowledgments
-  Submenu    "$TT_HELP_TITLE", tt_Help
+OptionMenu tt_SoundOptions
+{
+  Title  "$TT_SOUND_OPTIONS_TITLE_IN"
+
+  Option "$TT_SOUND_ENABLED"        , tt_sound_enabled        , OnOff
+  Option "$TT_SOUND_TYPING_ENABLED" , tt_sound_typing_enabled , OnOff
+  Option "$TT_SOUND_THEME"          , tt_sound_theme          , tt_SoundThemes
 }
 
 OptionMenu tt_Acknowledgments
@@ -47,13 +85,6 @@ OptionMenu tt_Acknowledgments
   Title "$TT_ACKNOWLEDGMENTS_TITLE_FULL"
 
   StaticText "$TT_ACKNOWLEDGMENTS_TEXT"
-}
-
-OptionMenu tt_Help
-{
-  Title "$TT_HELP_TITLE_FULL"
-
-  StaticText "$TT_HELP_TEXT"
 }
 
 OptionMenu tt_MixedLesson
@@ -96,9 +127,9 @@ OptionMenu tt_RandomLesson
   TextField  "$TT_RANDOM_LESSON_CUSTOM_CHARS" , tt_rc_custom
 }
 
-OptionMenu tt_Commands
+OptionMenu tt_CommandOptions
 {
-  Title      "$TT_COMMANDS_TITLE_FULL"
+  Title      "$TT_COMMANDS_TITLE_IN"
 
   StaticText ""
   Option     "$TT_COMMAND_PREFIX", tt_command_prefix, tt_CommandPrefixValues
@@ -166,6 +197,14 @@ OptionValue tt_ConfirmationTypes
   1, "$TT_CONFIRMATION_AUTO"
 }
 
+OptionValue tt_SoundThemes
+{
+  1, "Default"
+  2, "SNES"
+  4, "Dakka"
+  5, "Grocery Store"
+}
+
 // Score Menu //////////////////////////////////////////////////////////////////
 
 OptionMenu zc_TopMenu
@@ -175,20 +214,3 @@ OptionMenu zc_TopMenu
 }
 
 // Sound settings //////////////////////////////////////////////////////////////
-
-OptionMenu tt_Sound
-{
-  Title  "$TT_SOUND_SETTINGS_FULL"
-
-  Option "$TT_SOUND_ENABLED"        , tt_sound_enabled        , OnOff
-  Option "$TT_SOUND_TYPING_ENABLED" , tt_sound_typing_enabled , OnOff
-  Option "$TT_SOUND_THEME"          , tt_sound_theme          , tt_SoundThemes
-}
-
-OptionValue tt_SoundThemes
-{
-  1, "Default"
-  2, "SNES"
-  4, "Dakka"
-  5, "Grocery Store"
-}

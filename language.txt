@@ -11,13 +11,17 @@ TT_SCORE  = "Open Score";
 TT_DISPLAY_OPTIONS_TITLE_OUT  = "Display Options";
 TT_DISPLAY_OPTIONS_TITLE_IN   = "Typist.pk3 Display Options";
 TT_TARGET_SCALE               = "Target text scale";
-TT_SHOW_NOTES                 = "Show notes in Main Menu";
+TT_SHOW_NOTES                 = "Notes in Main Menu";
+TT_SCREEN_SAVER               = "Screensaver";
 
 TT_GAMEPLAY_OPTIONS_TITLE_OUT = "Gameplay Options";
+TT_GAMEPLAY_OPTIONS_TITLE_IN  = "Typist.pk3 Gameplay Options";
 TT_QUESTION_SOURCE            = "Lesson";
 TT_APPLY                      = "Apply";
 TT_QUESTION_SOURCE_NOTE       = "Or existing targets will retain question from the previous Lesson.";
-TT_CONTROLS_TITLE             = "Controls";
+
+TT_CONTROLS_TITLE_OUT         = "Controls";
+TT_CONTROLS_TITLE_IN          = "Typist.pk3 Controls";
 
 TT_BUDDHA_ENABLED = "Player cannot die";
 TT_BUDDHA_NOTE    = "Applies on new level start.";
@@ -25,6 +29,9 @@ TT_BUDDHA_NOTE    = "Applies on new level start.";
 TT_CONFIRMATION = "Answer confirmation";
 TT_CONFIRMATION_MANUAL = "Enter/Space";
 TT_CONFIRMATION_AUTO   = "As soon as it matches";
+
+TT_LESSON_OPTIONS_TITLE_OUT = "Lesson Options";
+TT_LESSON_OPTIONS_TITLE_IN  = "Typist.pk3 Lesson Options";
 
 TT_LESSON_LETTERS = "Random Letters";
 TT_LESSON_NUMBERS = "Random Numbers";
@@ -35,11 +42,18 @@ TT_LESSON_1000    = "1000 Basic English Words";
 TT_LESSON_1000_RU = "1000 Basic Russian Words";
 
 TT_MIXED_LESSON            = "Mixed";
-TT_MIXED_LESSON_TITLE      = "Mixed Lesson Configuration";
-TT_MIXED_LESSON_TITLE_FULL = "Typist.pk3 Mixed Lesson Configuration";
+TT_MIXED_LESSON_TITLE      = "Mixed Lesson configuration";
+TT_MIXED_LESSON_TITLE_FULL = "Typist.pk3 Mixed Lesson configuration";
 TT_MIXED_LESSON_NOTE       = "Please enable at least one lesson.";
 
 TT_CUSTOM_TEXT = "Custom Text";
+
+TT_CUSTOM_LESSON_HELP_TEXT = "\cfHow to set up Custom Text lesson\c-\
+\
+1. Find any text or book in ASCII .txt file (UTF-8 may also work).\
+2. Rename text file to `typist_custom_text.txt`.\
+3. Load `typist_custom_text.txt` with GZDoom alongside Typist.pk3.\
+4. Select Custom Text in Typist options menu.";
 
 TT_NIX_LESSON = "*nix Command Line";
 
@@ -56,8 +70,9 @@ TT_RANDOM_LESSON_CUSTOM_CHARS = "Custom string:";
 
 // Sound menus /////////////////////////////////////////////////////////////////
 
-TT_SOUND_SETTINGS       = "Sound Options";
-TT_SOUND_SETTINGS_FULL  = "Typist.pk3 Sound Options";
+TT_SOUND_OPTIONS_TITLE_OUT = "Sound Options";
+TT_SOUND_OPTIONS_TITLE_IN  = "Typist.pk3 Sound Options";
+
 TT_SOUND_THEME          = "Sound theme";
 TT_SOUND_ENABLED        = "Sound effects";
 TT_SOUND_TYPING_ENABLED = "Typing sound";
@@ -66,31 +81,12 @@ TT_SOUND_TYPING_ENABLED = "Typing sound";
 
 TT_ACKNOWLEDGMENTS_TITLE = "Acknowledgments";
 TT_ACKNOWLEDGMENTS_TITLE_FULL = "Typist.pk3 Acknowledgments";
-TT_ACKNOWLEDGMENTS_TEXT = "Credits\n\n- KeksDose for libeye (Level and screen projections)\n- ZippeyKeys12 (Zain Aamer) for Clematis\n- fraggle for miniwad.wad\n- 1000 basic English words from Wikipedia\n- Frequency dictionary of the modern Russian language from Wikipedia\n\nThanks\n\n- LGR for Sega's Typing of the Dead: A Zombie-Slaying Education video\n- Marrub for ZScript documentation\n- Accensus for inviting me into Discord server and for bug reports\n- kadu522 for support\n- dard22 for bug reports\n- Jarewill for bug reports\n\n(see details in the Readme.md file inside the pk3)\n";
-
-// Help ////////////////////////////////////////////////////////////////////////
-
-TT_HELP_TITLE = "Help";
-TT_HELP_TITLE_FULL = "Typist.pk3 Help";
-TT_HELP_TEXT = "Commands:\
-/exp - switch to Exploration mode\
-/tr  - turn right\
-/tl  - turn left\
-/dr  - dash right\
-/dl  - dash left\
-/df  - dash forward\
-/db  - dash backward\
-\
-How to set up Custom Text lesson:\
-1. Find any text or book in ASCII .txt file (UTF-8 may also work).\
-2. Rename text file to `typist_custom_text.txt`.\
-3. Load `typist_custom_text.txt` with GZDoom alongside Typist.pk3.\
-4. Select Custom Text in Typist options menu.";
+TT_ACKNOWLEDGMENTS_TEXT = "\cfCredits\c-\n\n- libeye (Level and screen projections): KeksDose\n- Clematis: ZippeyKeys12 (Zain Aamer)\n- miniwad.wad: fraggle\n- 1000 basic English words: Wikipedia\n- Frequency dictionary of the modern Russian language: Wikipedia\n- Sound design: Captain J\n\n\cfThanks\c-\n\n- LGR for Sega's Typing of the Dead: A Zombie-Slaying Education video\n- Marrub for ZScript documentation\n- Accensus for inviting me into Discord server and for bug reports\n- kadu522 for support\n- dard22 for bug reports\n- Jarewill for bug reports\n\n(see details in the Readme.md file inside the pk3)\n";
 
 // Commands menu ///////////////////////////////////////////////////////////////
 
-TT_COMMANDS_TITLE      = "Commands Options";
-TT_COMMANDS_TITLE_FULL = "Typist.pk3 Commands";
+TT_COMMANDS_TITLE_OUT  = "Command Options";
+TT_COMMANDS_TITLE_IN   = "Typist.pk3 Command Options";
 
 TT_COMMAND_PREFIX      = "Command prefix";
 TT_COMMAND_PREFIX_NOTE = "It's inadvisable to select a prefix that may occur in a lesson.";
