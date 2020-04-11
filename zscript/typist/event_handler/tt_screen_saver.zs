@@ -19,7 +19,7 @@
  * This class provides a screen saver for GZDoom.
  *
  * Appearance: Matrix-style green running numbers.
- * Screen saver activates after 1 minute in the menu.
+ * Screen saver activates after 3 minutes in the menu.
  */
 class tt_ScreenSaver : StaticEventHandler
 {
@@ -28,6 +28,8 @@ class tt_ScreenSaver : StaticEventHandler
 
   override void RenderOverlay(RenderEvent event)
   {
+    if (!Cvar.GetCvar("tt_screensaver", players[consolePlayer]).GetBool()) { return; }
+
     if (!menuActive)
     {
       _idle = 0;
@@ -60,6 +62,7 @@ class tt_ScreenSaver : StaticEventHandler
     Font fnt         = NewSmallFont;
     int  fntHeight   = fnt.GetHeight();
     bool isShiftTime = (_throttle % REFRESH_RATE) == 0;
+    bool isCharTime  = (_throttle % Char_RATE   ) == 0;
 
     for (int i = 0; i < N_HEADS; ++i)
     {
@@ -83,10 +86,14 @@ class tt_ScreenSaver : StaticEventHandler
         alpha -= ALPHA_STEP;
       }
 
-      if (isShiftTime)
+      if (isCharTime)
       {
         resetChars();
-        _heads[i].y += fntHeight;
+      }
+
+      if (isShiftTime)
+      {
+        _heads[i].y += fntHeight * 0.2;
         if (_heads[i].y - TAIL_LENGTH * fntHeight > screenHeight)
         {
           _heads[i].x = random(0, screenWidth - 1);
@@ -102,7 +109,9 @@ class tt_ScreenSaver : StaticEventHandler
   {
     for (int i = 0; i < N_CHARS; ++i)
     {
-      _chars    [i] = random(41, 126); // printable ASCII characters
+      // https://en.wikipedia.org/wiki/Half-width_kana
+      // https://en.wikipedia.org/wiki/Halfwidth_and_Fullwidth_Forms_(Unicode_block)
+      _chars    [i] = random(0xFF01, 0xFF9D);
       _flippedXs[i] = random(0, 1);
       _flippedYs[i] = random(0, 1);
     }
@@ -110,12 +119,13 @@ class tt_ScreenSaver : StaticEventHandler
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  const N_HEADS      = 40;
+  const N_HEADS      = 30;
   const TAIL_LENGTH  = 15;
   const ALPHA_STEP   = 1.0 / TAIL_LENGTH;
   const N_CHARS      = N_HEADS * TAIL_LENGTH;
   const REFRESH_RATE = 35 / 8;
-  const TIMEOUT      = 35 * 60; // 1 minute
+  const CHAR_RATE    = 35 / 4;
+  const TIMEOUT      = 35 * 60 * 3; // 3 minutes
   const GREEN        = "008800";
 
   ui int     _idle;

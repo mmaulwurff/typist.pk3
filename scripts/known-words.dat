@@ -285,6 +285,7 @@ front
 fsck
 fstream
 fullscreen
+fullwidth
 func
 function
 functional
@@ -312,6 +313,7 @@ guard
 guncaster
 gzdoom
 gzip
+halfwidth
 handler
 hard
 has

@@ -3,6 +3,8 @@
 // Do not set this variable to 0.
 user int tt_view_scale = 1;
 
+user bool tt_screensaver = true;
+
 // Attention! Do not set values which are not in the list in menudef.txt.
 user int tt_question_source = 4;
 
