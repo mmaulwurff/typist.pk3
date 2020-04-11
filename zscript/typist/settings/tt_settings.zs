@@ -45,16 +45,9 @@ class tt_Settings abstract
   }
 
   virtual
-  String getCommandPrefix()
-  {
-    tt_Log.log("zscript/typist/settings/tt_settings.zs:50: T: override this!");
-    return "";
-  }
-
-  virtual
   bool getLessonEnabled(uint i)
   {
-    tt_Log.log("zscript/typist/settings/tt_settings.zs:57: T: override this!");
+    tt_Log.log("zscript/typist/settings/tt_settings.zs:50: T: override this!");
     return false;
   }
 

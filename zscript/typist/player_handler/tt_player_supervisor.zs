@@ -62,11 +62,12 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let widgetRegistry   = tt_TargetWidgetRegistry.of(visibilityFilter);
     let widgetSorter     = tt_SorterByDistance    .of(widgetRegistry, originSource);
 
+    let commandSettings = tt_CommandSettingsImpl.of(playerSource);
     Array<tt_Activatable> commands;
-    makeCommands(playerSource, commands);
+    makeCommands(playerSource, commandSettings, commands);
     let commandDispatcher = tt_CommandDispatcher.of( playerInput
                                                    , commands
-                                                   , settings
+                                                   , commandSettings
                                                    , eventReporter
                                                    , answerStateSource
                                                    );
@@ -247,15 +248,18 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   }
 
   private static
-  void makeCommands(tt_PlayerSource playerSource, out Array<tt_Activatable> activatables)
+  void makeCommands( tt_PlayerSource    playerSource
+                   , tt_CommandSettings settings
+                   , out Array<tt_Activatable> activatables
+                   )
   {
     activatables.Push(tt_Sphinx       .of());
-    activatables.Push(tt_Reloader     .of(playerSource));
+    activatables.Push(tt_Reloader     .of(playerSource, settings));
 
-    activatables.Push(tt_RightDasher  .of(playerSource));
-    activatables.Push(tt_LeftDasher   .of(playerSource));
-    activatables.Push(tt_BackDasher   .of(playerSource));
-    activatables.Push(tt_ForwardDasher.of(playerSource));
+    activatables.Push(tt_RightDasher  .of(playerSource, settings));
+    activatables.Push(tt_LeftDasher   .of(playerSource, settings));
+    activatables.Push(tt_BackDasher   .of(playerSource, settings));
+    activatables.Push(tt_ForwardDasher.of(playerSource, settings));
   }
 
   private static

@@ -39,6 +39,7 @@ class tt_Cvar
   }
 
   bool   isDefined() { load(); return (_cvar != NULL);   }
+
   String getString() { load(); return _cvar.GetString(); }
   bool   getBool()   { load(); return _cvar.GetInt();    }
   int    getInt()    { load(); return _cvar.GetInt();    }
@@ -54,6 +55,11 @@ class tt_Cvar
       let playerInfo = _playerSource.getInfo();
 
       _cvar = Cvar.GetCvar(_name, playerInfo);
+
+      if (_cvar == NULL)
+      {
+        Console.Printf("Cvar %s not found.", _name);
+      }
     }
   }
 

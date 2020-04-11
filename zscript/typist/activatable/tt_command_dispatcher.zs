@@ -27,7 +27,7 @@ class tt_CommandDispatcher : tt_Activatable
   static
   tt_CommandDispatcher of( tt_AnswerSource       answerSource
                          , Array<tt_Activatable> activatables
-                         , tt_Settings           settings
+                         , tt_CommandSettings    settings
                          , tt_EventReporter      eventReporter
                          ,  tt_AnswerStateSource answerStateSource
                          )
@@ -134,7 +134,7 @@ class tt_CommandDispatcher : tt_Activatable
 
   private tt_AnswerSource       _answerSource;
   private Array<tt_Activatable> _activatables;
-  private tt_Settings           _settings;
+  private tt_CommandSettings    _settings;
   private tt_EventReporter      _eventReporter;
   private tt_AnswerStateSource  _answerStateSource;
 

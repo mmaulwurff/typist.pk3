@@ -28,8 +28,7 @@ OptionMenu tt_Options
   StaticText "$TT_QUESTION_SOURCE_NOTE"
 
   StaticText ""
-  Option     "$TT_COMMAND_PREFIX", tt_command_prefix, tt_CommandPrefixValues
-  StaticText "$TT_COMMAND_PREFIX_NOTE"
+  Submenu    "$TT_COMMANDS_TITLE", tt_Commands
 
   StaticText ""
   StaticText "$TT_CONTROLS_TITLE", 1
@@ -95,6 +94,35 @@ OptionMenu tt_RandomLesson
   StaticText ""
   Option     "$TT_RANDOM_LESSON_CUSTOM"       , tt_rc_custom_enabled , OnOff
   TextField  "$TT_RANDOM_LESSON_CUSTOM_CHARS" , tt_rc_custom
+}
+
+OptionMenu tt_Commands
+{
+  Title      "$TT_COMMANDS_TITLE_FULL"
+
+  StaticText ""
+  Option     "$TT_COMMAND_PREFIX", tt_command_prefix, tt_CommandPrefixValues
+  StaticText "$TT_COMMAND_PREFIX_NOTE"
+
+  StaticText ""
+  TextField  "$TT_FORWARD_DASH"  , tt_command_forward_dash
+  Command    "$TT_RESET_COMMAND" , tt_reset_forward_dash_command
+
+  StaticText ""
+  TextField  "$TT_BACKWARD_DASH" , tt_command_backward_dash
+  Command    "$TT_RESET_COMMAND" , tt_reset_backward_dash_command
+
+  StaticText ""
+  TextField  "$TT_LEFT_DASH"     , tt_command_left_dash
+  Command    "$TT_RESET_COMMAND" , tt_reset_left_dash_command
+
+  StaticText ""
+  TextField  "$TT_RIGHT_DASH"    , tt_command_right_dash
+  Command    "$TT_RESET_COMMAND" , tt_reset_right_dash_command
+
+  StaticText ""
+  TextField  "$TT_RELOAD"        , tt_command_reload
+  Command    "$TT_RESET_COMMAND" , tt_reset_reload_command
 }
 
 // Helper Menu /////////////////////////////////////////////////////////////////

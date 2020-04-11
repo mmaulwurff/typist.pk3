@@ -34,9 +34,6 @@ TT_LESSON_MATH    = "Arithmetic";
 TT_LESSON_1000    = "1000 Basic English Words";
 TT_LESSON_1000_RU = "1000 Basic Russian Words";
 
-TT_COMMAND_PREFIX      = "Command Prefix";
-TT_COMMAND_PREFIX_NOTE = "It's inadvisable to select a prefix that may occur in a lesson.";
-
 TT_MIXED_LESSON            = "Mixed";
 TT_MIXED_LESSON_TITLE      = "Mixed Lesson Configuration";
 TT_MIXED_LESSON_TITLE_FULL = "Typist.pk3 Mixed Lesson Configuration";
@@ -89,3 +86,19 @@ How to set up Custom Text lesson:\
 2. Rename text file to `typist_custom_text.txt`.\
 3. Load `typist_custom_text.txt` with GZDoom alongside Typist.pk3.\
 4. Select Custom Text in Typist options menu.";
+
+// Commands menu ///////////////////////////////////////////////////////////////
+
+TT_COMMANDS_TITLE      = "Commands Options";
+TT_COMMANDS_TITLE_FULL = "Typist.pk3 Commands";
+
+TT_COMMAND_PREFIX      = "Command prefix";
+TT_COMMAND_PREFIX_NOTE = "It's inadvisable to select a prefix that may occur in a lesson.";
+
+TT_FORWARD_DASH  = "Dash forward";
+TT_BACKWARD_DASH = "Dash backward";
+TT_RIGHT_DASH    = "Dash right";
+TT_LEFT_DASH     = "Dash left";
+TT_RELOAD        = "Reload";
+
+TT_RESET_COMMAND = "Reset to default";

@@ -56,3 +56,12 @@ user bool lp_show = true;
 user bool tt_sound_enabled = true;
 user int  tt_sound_theme = 1;
 user bool tt_sound_typing_enabled = true;
+
+// Commands ////////////////////////////////////////////////////////////////////
+
+// Note that default values must correspond to keyconf command definitions.
+user string tt_command_forward_dash  = "df";
+user string tt_command_backward_dash = "db";
+user string tt_command_right_dash    = "dr";
+user string tt_command_left_dash     = "dl";
+user string tt_command_reload        = "rl";

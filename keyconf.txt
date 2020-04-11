@@ -4,6 +4,13 @@ Alias tt_unlock_mode   "netevent tt_unlock_mode"
 Alias tt_force_combat  "netevent tt_force_combat"
 Alias tt_reset_targets "netevent tt_reset_targets"
 
+// Note that default values must correspond to cvarinfo definitions.
+Alias tt_reset_right_dash_command    "tt_command_right_dash    dr"
+Alias tt_reset_forward_dash_command  "tt_command_forward_dash  df"
+Alias tt_reset_backward_dash_command "tt_command_backward_dash db"
+Alias tt_reset_left_dash_command     "tt_command_left_dash     dl"
+Alias tt_reset_reload_command        "tt_command_reload        rl"
+
 Alias zc_top "openMenu zc_TopMenu"
 
 // Keys ////////////////////////////////////////////////////////////////////////

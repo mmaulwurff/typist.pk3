@@ -26,11 +26,12 @@ class tt_Reloader : tt_Activatable
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_Reloader of(tt_PlayerSource playerSource)
+  tt_Reloader of(tt_PlayerSource playerSource, tt_CommandSettings settings)
   {
     let result = new("tt_Reloader"); // construct
 
     result._playerSource = playerSource;
+    result._settings     = settings;
 
     return result;
   }
@@ -72,14 +73,12 @@ class tt_Reloader : tt_Activatable
   override
   tt_Strings getCommands()
   {
-    let result = tt_Strings.of();
-    result.add("rl");
-
-    return result;
+    return tt_Strings.ofOne(_settings.getReloadCommand());
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_PlayerSource _playerSource;
+  private tt_PlayerSource    _playerSource;
+  private tt_CommandSettings _settings;
 
 } // class tt_Reloader

@@ -29,6 +29,16 @@ class tt_Strings
     return result;
   }
 
+  static
+  tt_Strings ofOne(String s)
+  {
+    let result = new("tt_Strings"); // construct
+
+    result.add(s);
+
+    return result;
+  }
+
 // public: /////////////////////////////////////////////////////////////////////
 
   uint size() const

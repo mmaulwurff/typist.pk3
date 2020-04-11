@@ -24,11 +24,12 @@ class tt_BackDasher : tt_Dasher
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_BackDasher of(tt_PlayerSource playerSource)
+  tt_BackDasher of(tt_PlayerSource playerSource, tt_CommandSettings settings)
   {
     let result = new("tt_BackDasher"); // construct
 
     result._playerSource = playerSource;
+    result._settings     = settings;
 
     return result;
   }
@@ -46,10 +47,11 @@ class tt_BackDasher : tt_Dasher
   override
   tt_Strings getCommands()
   {
-    let result = tt_Strings.of();
-    result.add("db");
-
-    return result;
+    return tt_Strings.ofOne(_settings.getBackwardDashCommand());
   }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private tt_CommandSettings _settings;
 
 } // class tt_BackDasher

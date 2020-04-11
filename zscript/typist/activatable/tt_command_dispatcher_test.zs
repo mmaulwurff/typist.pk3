@@ -43,9 +43,9 @@ class tt_CommandDispatcherTest : tt_Clematis
     Array<tt_Activatable> activatables;
     activatables.Push(activatable1);
     activatables.Push(activatable2);
-    let answerSource      = tt_AnswerSourceMock.of();
-    let settings          = tt_SettingsMock.of();
-    let eventReporter     = tt_EventReporterMock.of();
+    let answerSource      = tt_AnswerSourceMock     .of();
+    let settings          = tt_CommandSettingsMock  .of();
+    let eventReporter     = tt_EventReporterMock    .of();
     let answerStateSource = tt_AnswerStateSourceMock.of();
     let commandDispatcher = tt_CommandDispatcher.of( answerSource
                                                    , activatables
@@ -86,9 +86,9 @@ class tt_CommandDispatcherTest : tt_Clematis
     Array<tt_Activatable> activatables;
     activatables.Push(activatable1);
     activatables.Push(activatable2);
-    let answerSource      = tt_AnswerSourceMock.of();
-    let settings          = tt_SettingsMock.of();
-    let eventReporter     = tt_EventReporterMock.of();
+    let answerSource      = tt_AnswerSourceMock     .of();
+    let settings          = tt_CommandSettingsMock  .of();
+    let eventReporter     = tt_EventReporterMock    .of();
     let answerStateSource = tt_AnswerStateSourceMock.of();
     let commandDispatcher = tt_CommandDispatcher.of( answerSource
                                                    , activatables

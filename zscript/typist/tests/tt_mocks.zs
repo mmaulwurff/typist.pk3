@@ -155,6 +155,151 @@ class tt_EventReporterMock : tt_EventReporter
 
 } // class tt_EventReporterMock
 
+class tt_CommandSettingsMock : tt_CommandSettings
+{
+
+  static tt_CommandSettingsMock of() { return new("tt_CommandSettingsMock"); } // construct
+
+  override
+  String getForwardDashCommand()
+  {
+    ++_mock_getForwardDashCommand_called;
+    return _mock_getForwardDashCommand;
+  }
+
+  void expect_getForwardDashCommand(String value, int expected = 1)
+  {
+    _mock_getForwardDashCommand = value;
+    _mock_getForwardDashCommand_expected = expected;
+    _mock_getForwardDashCommand_called = 0;
+  }
+
+  bool isSatisfied_getForwardDashCommand() const
+  {
+    return _mock_getForwardDashCommand_expected == _mock_getForwardDashCommand_called;
+  }
+
+  private String _mock_getForwardDashCommand;
+  private int _mock_getForwardDashCommand_expected;
+  private int _mock_getForwardDashCommand_called;
+
+  override
+  String getBackwardDashCommand()
+  {
+    ++_mock_getBackwardDashCommand_called;
+    return _mock_getBackwardDashCommand;
+  }
+
+  void expect_getBackwardDashCommand(String value, int expected = 1)
+  {
+    _mock_getBackwardDashCommand = value;
+    _mock_getBackwardDashCommand_expected = expected;
+    _mock_getBackwardDashCommand_called = 0;
+  }
+
+  bool isSatisfied_getBackwardDashCommand() const
+  {
+    return _mock_getBackwardDashCommand_expected == _mock_getBackwardDashCommand_called;
+  }
+
+  private String _mock_getBackwardDashCommand;
+  private int _mock_getBackwardDashCommand_expected;
+  private int _mock_getBackwardDashCommand_called;
+
+  override
+  String getLeftDashCommand()
+  {
+    ++_mock_getLeftDashCommand_called;
+    return _mock_getLeftDashCommand;
+  }
+
+  void expect_getLeftDashCommand(String value, int expected = 1)
+  {
+    _mock_getLeftDashCommand = value;
+    _mock_getLeftDashCommand_expected = expected;
+    _mock_getLeftDashCommand_called = 0;
+  }
+
+  bool isSatisfied_getLeftDashCommand() const
+  {
+    return _mock_getLeftDashCommand_expected == _mock_getLeftDashCommand_called;
+  }
+
+  private String _mock_getLeftDashCommand;
+  private int _mock_getLeftDashCommand_expected;
+  private int _mock_getLeftDashCommand_called;
+
+  override
+  String getRightDashCommand()
+  {
+    ++_mock_getRightDashCommand_called;
+    return _mock_getRightDashCommand;
+  }
+
+  void expect_getRightDashCommand(String value, int expected = 1)
+  {
+    _mock_getRightDashCommand = value;
+    _mock_getRightDashCommand_expected = expected;
+    _mock_getRightDashCommand_called = 0;
+  }
+
+  bool isSatisfied_getRightDashCommand() const
+  {
+    return _mock_getRightDashCommand_expected == _mock_getRightDashCommand_called;
+  }
+
+  private String _mock_getRightDashCommand;
+  private int _mock_getRightDashCommand_expected;
+  private int _mock_getRightDashCommand_called;
+
+  override
+  String getReloadCommand()
+  {
+    ++_mock_getReloadCommand_called;
+    return _mock_getReloadCommand;
+  }
+
+  void expect_getReloadCommand(String value, int expected = 1)
+  {
+    _mock_getReloadCommand = value;
+    _mock_getReloadCommand_expected = expected;
+    _mock_getReloadCommand_called = 0;
+  }
+
+  bool isSatisfied_getReloadCommand() const
+  {
+    return _mock_getReloadCommand_expected == _mock_getReloadCommand_called;
+  }
+
+  private String _mock_getReloadCommand;
+  private int _mock_getReloadCommand_expected;
+  private int _mock_getReloadCommand_called;
+
+  override
+  String getCommandPrefix()
+  {
+    ++_mock_getCommandPrefix_called;
+    return _mock_getCommandPrefix;
+  }
+
+  void expect_getCommandPrefix(String value, int expected = 1)
+  {
+    _mock_getCommandPrefix = value;
+    _mock_getCommandPrefix_expected = expected;
+    _mock_getCommandPrefix_called = 0;
+  }
+
+  bool isSatisfied_getCommandPrefix() const
+  {
+    return _mock_getCommandPrefix_expected == _mock_getCommandPrefix_called;
+  }
+
+  private String _mock_getCommandPrefix;
+  private int _mock_getCommandPrefix_expected;
+  private int _mock_getCommandPrefix_called;
+
+} // class tt_CommandSettingsMock
+
 class tt_SettingsMock : tt_Settings
 {
 
@@ -228,29 +373,6 @@ class tt_SettingsMock : tt_Settings
   private int _mock_getQuestionSourceIndex;
   private int _mock_getQuestionSourceIndex_expected;
   private int _mock_getQuestionSourceIndex_called;
-
-  override
-  String getCommandPrefix()
-  {
-    ++_mock_getCommandPrefix_called;
-    return _mock_getCommandPrefix;
-  }
-
-  void expect_getCommandPrefix(String value, int expected = 1)
-  {
-    _mock_getCommandPrefix = value;
-    _mock_getCommandPrefix_expected = expected;
-    _mock_getCommandPrefix_called = 0;
-  }
-
-  bool isSatisfied_getCommandPrefix() const
-  {
-    return _mock_getCommandPrefix_expected == _mock_getCommandPrefix_called;
-  }
-
-  private String _mock_getCommandPrefix;
-  private int _mock_getCommandPrefix_expected;
-  private int _mock_getCommandPrefix_called;
 
   override
   bool getLessonEnabled(uint i)

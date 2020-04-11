@@ -31,7 +31,6 @@ class tt_SettingsImplTest : tt_Clematis
     testGetScale();
     testIsAutoaimEnabled();
     testGetQuestionSource();
-    testGetCommandPrefix();
 
     EndDescribe();
   }
@@ -79,20 +78,6 @@ class tt_SettingsImplTest : tt_Clematis
 
     It("Question source index is reasonable" , AssertEval(questionSourceIndex, ">=", 0));
     It("Player Info Source is satisfied"     , Assert(playerSource.isSatisfied_getInfo()));
-  }
-
-  private
-  void testGetCommandPrefix()
-  {
-    let playerSource = tt_PlayerSourceMock.of();
-    let settings     = tt_SettingsImpl.of(playerSource);
-
-    playerSource.expect_getInfo(players[consolePlayer]);
-
-    String prefix = settings.getCommandPrefix();
-
-    It("Command prefix is 1 character"   , AssertEval(prefix.length(), "==", 1));
-    It("Player Info Source is satisfied" , Assert(playerSource.isSatisfied_getInfo()));
   }
 
 } // class tt_SettingsImplTest
