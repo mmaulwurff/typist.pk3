@@ -1,30 +1,27 @@
 # Typist.pk3
 
-[![Build Status](https://travis-ci.com/mmaulwurff/typist.pk3.svg?branch=master)](https://travis-ci.com/mmaulwurff/typist.pk3)
+<a href="https://github.com/mmaulwurff/typist.pk3/releases" alt="Downloads">
+  <img src="https://img.shields.io/github/downloads/mmaulwurff/typist.pk3/total" />
+</a>
+<a href="https://github.com/mmaulwurff/typist.pk3" alt="Stars">
+  <img src="https://img.shields.io/github/stars/mmaulwurff/typist.pk3" />
+</a>
+<a href="https://travis-ci.com/mmaulwurff/typist.pk3" alt="Build status">
+  <img src="https://img.shields.io/travis/com/mmaulwurff/typist.pk3" />
+</a>
+<a href="https://discord.gg/cFpdvWZ" alt="Discord">
+  <img src="https://img.shields.io/discord/553717447077920800" />
+</a>
 
-[Download](http://www.mediafire.com/folder/axlfmgquqize8/Typist.pk3)
+[YouTube](https://www.youtube.com/playlist?list=PL13LmqbAWk2cE8d3vkG0zDuCiwSVlKtUZ)
 
-[Discord](https://discord.gg/cFpdvWZ)
+Typist.pk3 is a mod for Doom engine games that turns them into typing exercises.
 
-[Youtube](https://www.youtube.com/playlist?list=PL13LmqbAWk2cE8d3vkG0zDuCiwSVlKtUZ)
-
-[GitHub](https://github.com/mmaulwurff/typist.pk3)
-
-Typist.pk3 is a gameplay mod that turns your game into a typing exercise.
-
-The following Lessons are available:
-- 1000 basic English words;
-- 1000 most used Russian words;
-- Arithmetic;
-- C++ Development;
-- GZDoom Development;
-- Random letters;
-- Random numbers;
-- Custom text (see below for instructions).
+There are several lessons, including user-defined lessons.
 
 ## How To Play
 
-Load it with GZDoom.
+Load it with [GZDoom](https://zdoom.org/index).
 
 There are two game modes: Combat and Exploration. They are switched
 automatically.
@@ -46,13 +43,13 @@ hold for continuous fire.
 Because you cannot move normally in Combat mode, the following commands are
 available:
 
-- `tl` - turn to the left,
-- `tr` - turn to the right,
 - `dl` - dash to the left,
 - `dr` - dash to the right,
 - `df` - dash forward,
 - `db` - dash backward.
 - `rl` - reload weapon (if it has reloading).
+
+Commands are configurable.
 
 ## Key setup
 
@@ -125,12 +122,15 @@ It may be possible to compile this on Windows. Install Msys or something. You're
 
 ### Credits
 
-- KeksDose for [libeye](https://forum.zdoom.org/viewtopic.php?f=105&t=64566#p1102157) (Level and screen projections)
-- ZippeyKeys12 (Zain Aamer) for [Clematis](https://github.com/ZippeyKeys12/clematis) (Basic ZScript unit test framework for GZDoom). Clematis is under the [BSD 3-Clause License](https://github.com/ZippeyKeys12/clematis/blob/master/LICENSE).
-- fraggle for [miniwad.wad](https://github.com/fragglet/miniwad) (BSD license)
+- [libeye](https://forum.zdoom.org/viewtopic.php?f=105&t=64566#p1102157) (Level
+  and screen projections): KeksDose
+- [Clematis](https://github.com/ZippeyKeys12/clematis) (Basic ZScript unit test
+  framework for GZDoom): ZippeyKeys12 (Zain Aamer). Clematis is under the [BSD 3-Clause
+  License](https://github.com/ZippeyKeys12/clematis/blob/master/LICENSE).
+- [miniwad.wad](https://github.com/fragglet/miniwad) (BSD license): fraggle
 - [1000 basic English words](https://en.wiktionary.org/wiki/Appendix:1000_basic_English_words) (tt_1000.txt) (actually, 1008) CC BY-SA 3.0
 - [Frequency dictionary of the modern Russian language](https://en.wiktionary.org/wiki/Appendix:Frequency_dictionary_of_the_modern_Russian_language_(the_Russian_National_Corpus)) (tt_1000_ru.txt) CC BY-SA 3.0
-- Captain J for sound design. See credits for each sound effect in credits-sounds.md
+- Sound design: Captain J. See credits for each sound effect in credits-sounds.md
 
 ### Thanks
 
