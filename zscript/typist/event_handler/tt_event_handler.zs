@@ -24,6 +24,14 @@ class tt_EventHandler : EventHandler
 // public: // EventHandler /////////////////////////////////////////////////////
 
   override
+  void OnRegister()
+  {
+    self.RequireMouse = true;
+
+    _playerHandler = tt_PlayerHandlerStub.of();
+  }
+
+  override
   void WorldTick()
   {
     _playerHandler.tick();
@@ -81,12 +89,6 @@ class tt_EventHandler : EventHandler
     if      (command == "tt_unlock_mode"  ) _playerHandler.unlockMode();
     else if (command == "tt_force_combat" ) _playerHandler.forceCombat();
     else if (command == "tt_reset_targets") initPlayer(consolePlayer);
-  }
-
-  override
-  void OnRegister()
-  {
-    self.RequireMouse = true;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
