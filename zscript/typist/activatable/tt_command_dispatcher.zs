@@ -28,16 +28,16 @@ class tt_CommandDispatcher : tt_Activatable
   tt_CommandDispatcher of( tt_AnswerSource       answerSource
                          , Array<tt_Activatable> activatables
                          , tt_CommandSettings    settings
-                         , tt_EventReporter      eventReporter
-                         ,  tt_AnswerStateSource answerStateSource
+                         , tt_AnswerReporter     answerReporter
+                         , tt_AnswerStateSource  answerStateSource
                          )
   {
     let result = new("tt_CommandDispatcher"); // construct
 
-    result._answerSource  = answerSource;
+    result._answerSource      = answerSource;
     result._activatables.Copy(activatables);
-    result._settings      = settings;
-    result._eventReporter = eventReporter;
+    result._settings          = settings;
+    result._answerReporter    = answerReporter;
     result._answerStateSource = answerStateSource;
 
     return result;
@@ -63,7 +63,7 @@ class tt_CommandDispatcher : tt_Activatable
 
       if (isActivated)
       {
-        _eventReporter.reportAnswerMatch();
+        _answerReporter.reportMatch();
         _answerSource.reset();
         return;
       }
@@ -135,7 +135,7 @@ class tt_CommandDispatcher : tt_Activatable
   private tt_AnswerSource       _answerSource;
   private Array<tt_Activatable> _activatables;
   private tt_CommandSettings    _settings;
-  private tt_EventReporter      _eventReporter;
+  private tt_AnswerReporter     _answerReporter;
   private tt_AnswerStateSource  _answerStateSource;
 
 } // class tt_CommandDispatcher

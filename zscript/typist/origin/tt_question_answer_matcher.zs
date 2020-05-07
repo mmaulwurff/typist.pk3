@@ -29,7 +29,7 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
                              , tt_AnswerSource      answerSource
                              , tt_PlayerSource      playerSource
                              , tt_AnswerStateSource answerStateSource
-                             , tt_EventReporter     eventReporter
+                             , tt_AnswerReporter    reporter
                              )
   {
     let result = new("tt_QuestionAnswerMatcher"); // construct
@@ -38,7 +38,7 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     result._answerSource      = answerSource;
     result._playerSource      = playerSource;
     result._answerStateSource = answerStateSource;
-    result._eventReporter     = eventReporter;
+    result._reporter          = reporter;
 
     return result;
   }
@@ -76,7 +76,7 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
       bool isVisible = isVisible(target, pawn);
       if (!isVisible) { continue; }
 
-      _eventReporter.reportAnswerMatch();
+      _reporter.reportMatch();
       resetAnswer();
 
       let result = target.getTarget().getPosition();
@@ -108,7 +108,7 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
   {
     if (!_isNotMatchReported)
     {
-      _eventReporter.reportAnswerNotMatch();
+      _reporter.reportNotMatch();
       _isNotMatchReported = true;
     }
   }
@@ -127,7 +127,7 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
   private tt_AnswerSource      _answerSource;
   private tt_PlayerSource      _playerSource;
   private tt_AnswerStateSource _answerStateSource;
-  private tt_EventReporter     _eventReporter;
+  private tt_AnswerReporter    _reporter;
 
   private bool _isNotMatchReported;
 

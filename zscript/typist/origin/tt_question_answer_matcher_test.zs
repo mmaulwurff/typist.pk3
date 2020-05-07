@@ -166,13 +166,13 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     _answerSource      = tt_AnswerSourceMock.of();
     _playerSource      = tt_PlayerSourceMock.of();
     _answerStateSource = tt_AnswerStateSourceMock.of();
-    _eventReporter     = tt_EventReporterMock.of();
+    _reporter          = tt_AnswerReporterMock.of();
 
     _matcher = tt_QuestionAnswerMatcher.of( _knownTargetSource
                                           , _answerSource
                                           , _playerSource
                                           , _answerStateSource
-                                          , _eventReporter
+                                          , _reporter
                                           );
   }
 
@@ -193,6 +193,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
   private tt_PlayerSourceMock      _playerSource;
   private tt_QuestionAnswerMatcher _matcher;
   private tt_AnswerStateSourceMock _answerStateSource;
-  private tt_EventReporterMock     _eventReporter;
+  private tt_AnswerReporterMock    _reporter;
 
 } // class tt_QuestionAnswerMatcherTest

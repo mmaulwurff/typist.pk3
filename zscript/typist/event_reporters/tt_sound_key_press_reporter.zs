@@ -16,52 +16,38 @@
  */
 
 /**
- * This class implements tt_ModeSource by reading other mode source, and
- * reporting an event when the mode has changed.
+ * This class implements tt_KeyPressReporter by playing a sound.
+ *
+ * The sound won't play if it's disabled in settings.
  */
-class tt_ReportedModeSource : tt_ModeSource
+class tt_SoundKeyPressReporter : tt_KeyPressReporter
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_ReportedModeSource of(tt_ModeReporter reporter, tt_ModeSource modeSource)
+  tt_SoundKeyPressReporter of(tt_SoundPlayer soundPlayer, tt_SoundSettings settings)
   {
-    let result = new("tt_ReportedModeSource"); // construct
+    let result = new("tt_SoundKeyPressReporter"); // construct
 
-    result._reporter   = reporter;
-    result._modeSource = modeSource;
-
-    result._oldMode = tt_Mode.None;
+    result._soundPlayer = soundPlayer;
+    result._settings    = settings;
 
     return result;
   }
 
-// public: // tt_ModeSource ////////////////////////////////////////////////////
-
   override
-  int getMode()
+  void report()
   {
-    int newMode = _modeSource.getMode();
-
-    if (newMode != _oldMode)
+    if (_settings.isTypingEnabled())
     {
-      if (_oldMode != tt_Mode.None)
-      {
-        _reporter.report(newMode);
-      }
-
-      _oldMode = newMode;
+      _soundPlayer.playSound("tt/click");
     }
-
-    return newMode;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_ModeReporter _reporter;
-  private tt_ModeSource   _modeSource;
+  private tt_SoundPlayer   _soundPlayer;
+  private tt_SoundSettings _settings;
 
-  private int _oldMode;
-
-} // class tt_ReportedModeSource
+} // class tt_SoundKeyPressReporter

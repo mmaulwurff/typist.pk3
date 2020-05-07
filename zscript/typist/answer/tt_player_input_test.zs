@@ -129,9 +129,9 @@ class tt_PlayerInputTest : tt_Clematis
   private
   void setUp()
   {
-    _modeStorage   = tt_ModeStorageMock.of();
-    _eventReporter = tt_EventReporterMock.of();
-    _playerInput   = tt_PlayerInput.of(_modeStorage, _eventReporter);
+    _modeStorage      = tt_ModeStorageMock.of();
+    _keyPressReporter = tt_KeyPressReporterMock.of();
+    _playerInput      = tt_PlayerInput.of(_modeStorage, _keyPressReporter);
   }
 
 // private: ////////////////////////////////////////////////////////////////////
@@ -140,8 +140,8 @@ class tt_PlayerInputTest : tt_Clematis
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_ModeStorageMock _modeStorage;
-  private tt_EventReporter   _eventReporter;
-  private tt_PlayerInput     _playerInput;
+  private tt_ModeStorageMock      _modeStorage;
+  private tt_KeyPressReporterMock _keyPressReporter;
+  private tt_PlayerInput          _playerInput;
 
 } // class tt_PlayerInputTest

@@ -30,9 +30,14 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let clock            = tt_TotalClock      .of();
 
     let soundSettings    = tt_SoundSettingsImpl.of(playerSource);
-    let eventReporter    = tt_SoundReporter    .of(playerSource, soundSettings);
+    let soundPlayer      = tt_PlayerSoundPlayer.of(playerSource, soundSettings);
+
+    let answerReporter   = tt_SoundAnswerReporter  .of(soundPlayer);
+    let modeReporter     = tt_SoundModeReporter    .of(soundPlayer);
+    let keyPressReporter = tt_SoundKeyPressReporter.of(soundPlayer, soundSettings);
+
     let manualModeSource = tt_SettableMode     .of();
-    let playerInput      = tt_PlayerInput      .of(manualModeSource, eventReporter);
+    let playerInput      = tt_PlayerInput      .of(manualModeSource, keyPressReporter);
     let deathReporter    = tt_DeathReporter    .of();
     let settings         = tt_SettingsImpl     .of(playerSource);
 
@@ -50,7 +55,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                                    , playerSource
                                                    , clock
                                                    , answerStateSource
-                                                   , eventReporter
+                                                   , answerReporter
                                                    );
 
     let aimer              = makeAimer(targetOriginSource, playerSource, settings);
@@ -68,14 +73,14 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let commandDispatcher = tt_CommandDispatcher.of( playerInput
                                                    , commands
                                                    , commandSettings
-                                                   , eventReporter
+                                                   , answerReporter
                                                    , answerStateSource
                                                    );
 
     let modeSource = makeModeSource( targetRegistry
                                    , playerSource
                                    , manualModeSource
-                                   , eventReporter
+                                   , modeReporter
                                    , clock
                                    , radarCache
                                    );
@@ -266,7 +271,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   tt_ModeSource makeModeSource( tt_KnownTargetSource knownTargetSource
                               , tt_PlayerSource      playerSource
                               , tt_ModeSource        manualModeSource
-                              , tt_EventReporter     eventReporter
+                              , tt_ModeReporter      modeReporter
                               , tt_Clock             clock
                               , tt_TargetSource      targetSource
                               )
@@ -281,7 +286,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     modeSources.Push(autoModeSource);
 
     let cascade  = tt_ModeCascade.of(modeSources);
-    let reporter = tt_ReportedModeSource.of(eventReporter, cascade);
+    let reporter = tt_ReportedModeSource.of(modeReporter, cascade);
 
     return reporter;
   }
@@ -292,14 +297,14 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                         , tt_PlayerSource      playerSource
                                         , tt_Clock             clock
                                         , tt_AnswerStateSource answerStateSource
-                                        , tt_EventReporter     eventReporter
+                                        , tt_AnswerReporter    answerReporter
                                         )
   {
     let matcher      = tt_QuestionAnswerMatcher.of( targetSource
                                                   , answerSource
                                                   , playerSource
                                                   , answerStateSource
-                                                  , eventReporter
+                                                  , answerReporter
                                                   );
 
     let staleMarker  = tt_StaleMarkerImpl  .of(clock);

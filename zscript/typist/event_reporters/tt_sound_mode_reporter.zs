@@ -16,52 +16,38 @@
  */
 
 /**
- * This class implements tt_ModeSource by reading other mode source, and
- * reporting an event when the mode has changed.
+ * This class implements tt_ModeReporter by playing the corresponding sound for
+ * each mode.
  */
-class tt_ReportedModeSource : tt_ModeSource
+class tt_SoundModeReporter : tt_ModeReporter
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_ReportedModeSource of(tt_ModeReporter reporter, tt_ModeSource modeSource)
+  tt_SoundModeReporter of(tt_SoundPlayer soundPlayer)
   {
-    let result = new("tt_ReportedModeSource"); // construct
-
-    result._reporter   = reporter;
-    result._modeSource = modeSource;
-
-    result._oldMode = tt_Mode.None;
-
+    let result = new("tt_SoundModeReporter"); // construct
+    result._soundPlayer = soundPlayer;
     return result;
   }
 
-// public: // tt_ModeSource ////////////////////////////////////////////////////
-
   override
-  int getMode()
+  void report(int mode)
   {
-    int newMode = _modeSource.getMode();
-
-    if (newMode != _oldMode)
+    switch (mode)
     {
-      if (_oldMode != tt_Mode.None)
-      {
-        _reporter.report(newMode);
-      }
-
-      _oldMode = newMode;
+    case tt_Mode.Unknown:
+      tt_Log.log("zscript/typist/event_reporters/tt_sound_mode_reporter.zs:41: T: unknown mode!");
+      break;
+    case tt_Mode.Combat:  _soundPlayer.playSound("tt/combat");  break;
+    case tt_Mode.Explore: _soundPlayer.playSound("tt/explore"); break;
+    case tt_Mode.None:    break;
     }
-
-    return newMode;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_ModeReporter _reporter;
-  private tt_ModeSource   _modeSource;
+  private tt_SoundPlayer _soundPlayer;
 
-  private int _oldMode;
-
-} // class tt_ReportedModeSource
+} // class tt_SoundModeReporter

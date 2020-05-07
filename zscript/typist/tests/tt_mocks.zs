@@ -68,93 +68,6 @@ class tt_InputManagerMock : tt_InputManager
 
 } // class tt_InputManagerMock
 
-class tt_EventReporterMock : tt_EventReporter
-{
-
-  static tt_EventReporterMock of() { return new("tt_EventReporterMock"); } // construct
-
-  override
-  void reportNewMode(int mode)
-  {
-    ++_mock_reportNewMode_called;
-  }
-
-  void expect_reportNewMode(int expected = 1)
-  {
-    _mock_reportNewMode_expected = expected;
-    _mock_reportNewMode_called = 0;
-  }
-
-  bool isSatisfied_reportNewMode() const
-  {
-    return _mock_reportNewMode_expected == _mock_reportNewMode_called;
-  }
-
-  private int _mock_reportNewMode_expected;
-  private int _mock_reportNewMode_called;
-
-  override
-  void reportKeyPressed()
-  {
-    ++_mock_reportKeyPressed_called;
-  }
-
-  void expect_reportKeyPressed(int expected = 1)
-  {
-    _mock_reportKeyPressed_expected = expected;
-    _mock_reportKeyPressed_called = 0;
-  }
-
-  bool isSatisfied_reportKeyPressed() const
-  {
-    return _mock_reportKeyPressed_expected == _mock_reportKeyPressed_called;
-  }
-
-  private int _mock_reportKeyPressed_expected;
-  private int _mock_reportKeyPressed_called;
-
-  override
-  void reportAnswerMatch()
-  {
-    ++_mock_reportAnswerMatch_called;
-  }
-
-  void expect_reportAnswerMatch(int expected = 1)
-  {
-    _mock_reportAnswerMatch_expected = expected;
-    _mock_reportAnswerMatch_called = 0;
-  }
-
-  bool isSatisfied_reportAnswerMatch() const
-  {
-    return _mock_reportAnswerMatch_expected == _mock_reportAnswerMatch_called;
-  }
-
-  private int _mock_reportAnswerMatch_expected;
-  private int _mock_reportAnswerMatch_called;
-
-  override
-  void reportAnswerNotMatch()
-  {
-    ++_mock_reportAnswerNotMatch_called;
-  }
-
-  void expect_reportAnswerNotMatch(int expected = 1)
-  {
-    _mock_reportAnswerNotMatch_expected = expected;
-    _mock_reportAnswerNotMatch_called = 0;
-  }
-
-  bool isSatisfied_reportAnswerNotMatch() const
-  {
-    return _mock_reportAnswerNotMatch_expected == _mock_reportAnswerNotMatch_called;
-  }
-
-  private int _mock_reportAnswerNotMatch_expected;
-  private int _mock_reportAnswerNotMatch_called;
-
-} // class tt_EventReporterMock
-
 class tt_CommandSettingsMock : tt_CommandSettings
 {
 
@@ -534,6 +447,134 @@ class tt_AnswerStateSourceMock : tt_AnswerStateSource
   private int _mock_getAnswerState_called;
 
 } // class tt_AnswerStateSourceMock
+
+class tt_SoundPlayerMock : tt_SoundPlayer
+{
+
+  static tt_SoundPlayerMock of() { return new("tt_SoundPlayerMock"); } // construct
+
+  override
+  void playSound(String soundId)
+  {
+    ++_mock_playSound_called;
+  }
+
+  void expect_playSound(int expected = 1)
+  {
+    _mock_playSound_expected = expected;
+    _mock_playSound_called = 0;
+  }
+
+  bool isSatisfied_playSound() const
+  {
+    return _mock_playSound_expected == _mock_playSound_called;
+  }
+
+  private int _mock_playSound_expected;
+  private int _mock_playSound_called;
+
+} // class tt_SoundPlayerMock
+
+class tt_ModeReporterMock : tt_ModeReporter
+{
+
+  static tt_ModeReporterMock of() { return new("tt_ModeReporterMock"); } // construct
+
+  override
+  void report(int mode)
+  {
+    ++_mock_report_called;
+  }
+
+  void expect_report(int expected = 1)
+  {
+    _mock_report_expected = expected;
+    _mock_report_called = 0;
+  }
+
+  bool isSatisfied_report() const
+  {
+    return _mock_report_expected == _mock_report_called;
+  }
+
+  private int _mock_report_expected;
+  private int _mock_report_called;
+
+} // class tt_ModeReporterMock
+
+class tt_KeyPressReporterMock : tt_KeyPressReporter
+{
+
+  static tt_KeyPressReporterMock of() { return new("tt_KeyPressReporterMock"); } // construct
+
+  override
+  void report()
+  {
+    ++_mock_report_called;
+  }
+
+  void expect_report(int expected = 1)
+  {
+    _mock_report_expected = expected;
+    _mock_report_called = 0;
+  }
+
+  bool isSatisfied_report() const
+  {
+    return _mock_report_expected == _mock_report_called;
+  }
+
+  private int _mock_report_expected;
+  private int _mock_report_called;
+
+} // class tt_KeyPressReporterMock
+
+class tt_AnswerReporterMock : tt_AnswerReporter
+{
+
+  static tt_AnswerReporterMock of() { return new("tt_AnswerReporterMock"); } // construct
+
+  override
+  void reportMatch()
+  {
+    ++_mock_reportMatch_called;
+  }
+
+  void expect_reportMatch(int expected = 1)
+  {
+    _mock_reportMatch_expected = expected;
+    _mock_reportMatch_called = 0;
+  }
+
+  bool isSatisfied_reportMatch() const
+  {
+    return _mock_reportMatch_expected == _mock_reportMatch_called;
+  }
+
+  private int _mock_reportMatch_expected;
+  private int _mock_reportMatch_called;
+
+  override
+  void reportNotMatch()
+  {
+    ++_mock_reportNotMatch_called;
+  }
+
+  void expect_reportNotMatch(int expected = 1)
+  {
+    _mock_reportNotMatch_expected = expected;
+    _mock_reportNotMatch_called = 0;
+  }
+
+  bool isSatisfied_reportNotMatch() const
+  {
+    return _mock_reportNotMatch_expected == _mock_reportNotMatch_called;
+  }
+
+  private int _mock_reportNotMatch_expected;
+  private int _mock_reportNotMatch_called;
+
+} // class tt_AnswerReporterMock
 
 class tt_ClockMock : tt_Clock
 {

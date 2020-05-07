@@ -25,12 +25,12 @@ class tt_PlayerInput : tt_AnswerSource
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_PlayerInput of(tt_ModeStorage modeStorage, tt_EventReporter eventReporter)
+  tt_PlayerInput of(tt_ModeStorage modeStorage, tt_KeyPressReporter keyPressReporter)
   {
     let result = new("tt_PlayerInput"); // construct
 
-    result._modeStorage   = modeStorage;
-    result._eventReporter = eventReporter;
+    result._modeStorage      = modeStorage;
+    result._keyPressReporter = keyPressReporter;
 
     result._answer = tt_Answer.of();
 
@@ -55,7 +55,7 @@ class tt_PlayerInput : tt_AnswerSource
 
     case tt_Character.PRINTABLE:
       _answer.append(character.getCharacter());
-      _eventReporter.reportKeyPressed();
+      _keyPressReporter.report();
       break;
 
     case tt_Character.BACKSPACE:      _answer.deleteLastCharacter();         break;
@@ -72,8 +72,8 @@ class tt_PlayerInput : tt_AnswerSource
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_ModeStorage   _modeStorage;
-  private tt_EventReporter _eventReporter;
+  private tt_ModeStorage      _modeStorage;
+  private tt_KeyPressReporter _keyPressReporter;
 
   private tt_Answer _answer;
 

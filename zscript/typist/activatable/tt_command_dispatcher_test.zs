@@ -45,12 +45,12 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatables.Push(activatable2);
     let answerSource      = tt_AnswerSourceMock     .of();
     let settings          = tt_CommandSettingsMock  .of();
-    let eventReporter     = tt_EventReporterMock    .of();
+    let answerReporter    = tt_AnswerReporterMock   .of();
     let answerStateSource = tt_AnswerStateSourceMock.of();
     let commandDispatcher = tt_CommandDispatcher.of( answerSource
                                                    , activatables
                                                    , settings
-                                                   , eventReporter
+                                                   , answerReporter
                                                    , answerStateSource
                                                    );
 
@@ -64,7 +64,7 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatable1.expect_getCommands(commands1);
     activatable2.expect_getCommands(commands2);
     activatable2.expect_activate();
-    eventReporter.expect_reportAnswerMatch();
+    answerReporter.expect_reportMatch();
     answerStateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
 
     commandDispatcher.activate();
@@ -75,7 +75,7 @@ class tt_CommandDispatcherTest : tt_Clematis
     It("The second activatable is satisfied", Assert(activatable2.isSatisfied_activate()));
     It("The second activatable is satisfied", Assert(activatable2.isSatisfied_getCommands()));
 
-    It("Event reporter is satisfied", Assert(eventReporter.isSatisfied_reportAnswerMatch()));
+    It("Event reporter is satisfied", Assert(answerReporter.isSatisfied_reportMatch()));
   }
 
   private play
@@ -88,12 +88,12 @@ class tt_CommandDispatcherTest : tt_Clematis
     activatables.Push(activatable2);
     let answerSource      = tt_AnswerSourceMock     .of();
     let settings          = tt_CommandSettingsMock  .of();
-    let eventReporter     = tt_EventReporterMock    .of();
+    let answerReporter    = tt_AnswerReporterMock   .of();
     let answerStateSource = tt_AnswerStateSourceMock.of();
     let commandDispatcher = tt_CommandDispatcher.of( answerSource
                                                    , activatables
                                                    , settings
-                                                   , eventReporter
+                                                   , answerReporter
                                                    , answerStateSource
                                                    );
 
@@ -124,7 +124,7 @@ class tt_CommandDispatcherTest : tt_Clematis
     It("The second activatable is satisfied", Assert(activatable2.isSatisfied_activate()));
     It("The second activatable is satisfied", Assert(activatable2.isSatisfied_getCommands()));
 
-    It("Event reporter is satisfied", Assert(eventReporter.isSatisfied_reportAnswerMatch()));
+    It("Event reporter is satisfied", Assert(answerReporter.isSatisfied_reportMatch()));
   }
 
 } // class tt_CommandDispatcherTest

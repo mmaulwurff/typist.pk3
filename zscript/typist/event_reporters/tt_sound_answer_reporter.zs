@@ -16,52 +16,35 @@
  */
 
 /**
- * This class implements tt_ModeSource by reading other mode source, and
- * reporting an event when the mode has changed.
+ * This class implements tt_AnswerReporter by playing a sound.
  */
-class tt_ReportedModeSource : tt_ModeSource
+class tt_SoundAnswerReporter : tt_AnswerReporter
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_ReportedModeSource of(tt_ModeReporter reporter, tt_ModeSource modeSource)
+  tt_SoundAnswerReporter of(tt_SoundPlayer soundPlayer)
   {
-    let result = new("tt_ReportedModeSource"); // construct
-
-    result._reporter   = reporter;
-    result._modeSource = modeSource;
-
-    result._oldMode = tt_Mode.None;
-
+    let result = new("tt_SoundAnswerReporter"); // construct
+    result._soundPlayer = soundPlayer;
     return result;
   }
 
-// public: // tt_ModeSource ////////////////////////////////////////////////////
+  override
+  void reportMatch()
+  {
+    _soundPlayer.playSound("tt/match");
+  }
 
   override
-  int getMode()
+  void reportNotMatch()
   {
-    int newMode = _modeSource.getMode();
-
-    if (newMode != _oldMode)
-    {
-      if (_oldMode != tt_Mode.None)
-      {
-        _reporter.report(newMode);
-      }
-
-      _oldMode = newMode;
-    }
-
-    return newMode;
+    _soundPlayer.playSound("tt/not-match");
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_ModeReporter _reporter;
-  private tt_ModeSource   _modeSource;
+  private tt_SoundPlayer _soundPlayer;
 
-  private int _oldMode;
-
-} // class tt_ReportedModeSource
+} // class tt_SoundAnswerReporter

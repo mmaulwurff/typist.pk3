@@ -57,7 +57,7 @@ class tt_ReportedModeSourceTest : tt_Clematis
   {
     init();
 
-    _eventReporter.expect_reportNewMode();
+    _reporter.expect_report();
 
     _modeSource.expect_getMode(tt_Mode.Explore);
     int mode1 = _reportedMode.getMode();
@@ -73,7 +73,7 @@ class tt_ReportedModeSourceTest : tt_Clematis
   {
     init();
 
-    _eventReporter.expect_reportNewMode();
+    _reporter.expect_report();
 
     _modeSource.expect_getMode(tt_Mode.Combat);
     int mode1 = _reportedMode.getMode();
@@ -88,25 +88,21 @@ class tt_ReportedModeSourceTest : tt_Clematis
 
   void init()
   {
-    _eventReporter = tt_EventReporterMock.of();
-    _modeSource    = tt_ModeSourceMock.of();
+    _reporter   = tt_ModeReporterMock.of();
+    _modeSource = tt_ModeSourceMock.of();
 
-    _reportedMode  = tt_ReportedModeSource.of(_eventReporter, _modeSource);
+    _reportedMode  = tt_ReportedModeSource.of(_reporter, _modeSource);
   }
 
   void tearDown()
   {
-    It("Reporter satisfied: mode",      Assert(_eventReporter.isSatisfied_reportNewMode()       ));
-    It("Reporter satisfied: key",       Assert(_eventReporter.isSatisfied_reportKeyPressed()    ));
-    It("Reporter satisfied: match",     Assert(_eventReporter.isSatisfied_reportAnswerMatch()   ));
-    It("Reporter satisfied: not match", Assert(_eventReporter.isSatisfied_reportAnswerNotMatch()));
-
-    It("Mode Source satisfied", Assert(_modeSource.isSatisfied_getMode()));
+    It("Reporter satisfied: mode" , Assert(_reporter.isSatisfied_report()));
+    It("Mode Source satisfied"    , Assert(_modeSource.isSatisfied_getMode()));
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_EventReporterMock  _eventReporter;
+  private tt_ModeReporterMock   _reporter;
   private tt_ModeSourceMock     _modeSource;
   private tt_ReportedModeSource _reportedMode;
 

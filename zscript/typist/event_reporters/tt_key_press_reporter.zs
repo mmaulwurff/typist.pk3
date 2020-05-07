@@ -16,35 +16,17 @@
  */
 
 /**
- * This class is an interface for reporting events.
+ * This class is an interface for reporting key press events.
  */
-class tt_EventReporter abstract
+class tt_KeyPressReporter abstract
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   virtual
-  void reportNewMode(int mode)
+  void report()
   {
-    tt_Log.log("zscript/typist/event_reporter/tt_event_reporter.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/event_reporters/tt_key_press_reporter.zs:29: T: override this!");
   }
 
-  virtual
-  void reportKeyPressed()
-  {
-    tt_Log.log("zscript/typist/event_reporter/tt_event_reporter.zs:35: T: override this!");
-  }
-
-  virtual
-  void reportAnswerMatch()
-  {
-    tt_Log.log("zscript/typist/event_reporter/tt_event_reporter.zs:41: T: override this!");
-  }
-
-  virtual
-  void reportAnswerNotMatch()
-  {
-    tt_Log.log("zscript/typist/event_reporter/tt_event_reporter.zs:47: T: override this!");
-  }
-
-} // class tt_EventReporter
+} // class tt_KeyPressReporter

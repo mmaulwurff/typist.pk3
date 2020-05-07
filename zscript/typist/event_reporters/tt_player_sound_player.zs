@@ -16,52 +16,49 @@
  */
 
 /**
- * This class implements tt_ModeSource by reading other mode source, and
- * reporting an event when the mode has changed.
+ * This class implements tt_SoundPlayer by playing sounds for a player.
+ *
+ * The sounds won't play if they are disabled in settings.
  */
-class tt_ReportedModeSource : tt_ModeSource
+class tt_PlayerSoundPlayer : tt_SoundPlayer
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_ReportedModeSource of(tt_ModeReporter reporter, tt_ModeSource modeSource)
+  tt_PlayerSoundPlayer of(tt_PlayerSource playerSource, tt_SoundSettings settings)
   {
-    let result = new("tt_ReportedModeSource"); // construct
+    let result = new("tt_PlayerSoundPlayer"); // construct
 
-    result._reporter   = reporter;
-    result._modeSource = modeSource;
-
-    result._oldMode = tt_Mode.None;
+    result._playerSource = playerSource;
+    result._settings     = settings;
 
     return result;
   }
 
-// public: // tt_ModeSource ////////////////////////////////////////////////////
-
   override
-  int getMode()
+  void playSound(String soundId)
   {
-    int newMode = _modeSource.getMode();
+    if (isDisabled()) return;
 
-    if (newMode != _oldMode)
-    {
-      if (_oldMode != tt_Mode.None)
-      {
-        _reporter.report(newMode);
-      }
+    let player = _playerSource.getPawn();
+    int theme  = _settings.getTheme();
+    soundId.AppendFormat("%d", theme);
 
-      _oldMode = newMode;
-    }
-
-    return newMode;
+    player.A_StartSound(soundId, CHAN_AUTO, SOUND_FLAGS);
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_ModeReporter _reporter;
-  private tt_ModeSource   _modeSource;
+  private
+  bool isDisabled()
+  {
+    return (!_settings.isEnabled());
+  }
 
-  private int _oldMode;
+  const SOUND_FLAGS = CHANF_UI | CHANF_OVERLAP | CHANF_LOCAL;
 
-} // class tt_ReportedModeSource
+  private tt_PlayerSource  _playerSource;
+  private tt_SoundSettings _settings;
+
+} // class tt_PlayerSoundPlayer
