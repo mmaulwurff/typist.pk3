@@ -42,7 +42,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
   {
     setUp("Checking Question-Answer Matcher: NULL known targets");
 
-    _knownTargetSource.expect_getTargets(NULL);
+    _targetSource.expect_getTargets(NULL);
 
     let origin = _matcher.getOrigin();
 
@@ -57,7 +57,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     setUp("Checking Question-Answer Matcher: zero known targets");
 
     let targets = tt_KnownTargets.of();
-    _knownTargetSource.expect_getTargets(targets);
+    _targetSource.expect_getTargets(targets);
 
     let origin = _matcher.getOrigin();
 
@@ -73,7 +73,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     let targets = tt_KnownTargets.of();
     targets.add(NULL);
-    _knownTargetSource.expect_getTargets(targets);
+    _targetSource.expect_getTargets(targets);
     _answerSource.expect_getAnswer(NULL);
 
     let origin = _matcher.getOrigin();
@@ -93,7 +93,7 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     let question     = tt_QuestionMock.of();
     let knownTarget  = tt_KnownTarget.of(target, question);
     knownTargets.add(knownTarget);
-    _knownTargetSource.expect_getTargets(knownTargets);
+    _targetSource.expect_getTargets(knownTargets);
     _answerSource.expect_getAnswer(NULL);
 
     let origin = _matcher.getOrigin();
@@ -113,13 +113,16 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     let question     = tt_QuestionMock.of();
     let knownTarget  = tt_KnownTarget.of(target, question);
     knownTargets.add(knownTarget);
-    _knownTargetSource.expect_getTargets(knownTargets);
+    _targetSource.expect_getTargets(knownTargets);
     question.expect_isRight(true);
 
     let answer = tt_Answer.of("abc");
     _answerSource.expect_getAnswer(answer);
-    _answerStateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
+    _answerSource.expect_reset();
+    _stateSource.expect_reset();
+    _stateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
     _playerSource.expect_getPawn(players[consolePlayer].mo);
+    _reporter.expect_reportMatch();
 
     let origin = _matcher.getOrigin();
 
@@ -139,13 +142,16 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     let question     = tt_QuestionMock.of();
     let knownTarget  = tt_KnownTarget.of(target, question);
     knownTargets.add(knownTarget);
-    _knownTargetSource.expect_getTargets(knownTargets);
+    _targetSource.expect_getTargets(knownTargets);
     question.expect_isRight(false);
 
     let answer = tt_Answer.of("abc");
     _answerSource.expect_getAnswer(answer);
-    _answerStateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
+    _answerSource.expect_reset();
+    _stateSource.expect_reset();
+    _stateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
     _playerSource.expect_getPawn(players[consolePlayer].mo);
+    _reporter.expect_reportNotMatch();
 
     let origin = _matcher.getOrigin();
 
@@ -162,16 +168,16 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
   {
     Describe(description);
 
-    _knownTargetSource = tt_KnownTargetSourceMock.of();
+    _targetSource = tt_KnownTargetSourceMock.of();
     _answerSource      = tt_AnswerSourceMock.of();
     _playerSource      = tt_PlayerSourceMock.of();
-    _answerStateSource = tt_AnswerStateSourceMock.of();
+    _stateSource = tt_AnswerStateSourceMock.of();
     _reporter          = tt_AnswerReporterMock.of();
 
-    _matcher = tt_QuestionAnswerMatcher.of( _knownTargetSource
+    _matcher = tt_QuestionAnswerMatcher.of( _targetSource
                                           , _answerSource
                                           , _playerSource
-                                          , _answerStateSource
+                                          , _stateSource
                                           , _reporter
                                           );
   }
@@ -179,20 +185,23 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
   private
   void tearDown()
   {
-    It("Known Target Source is satisfied" , Assert(_knownTargetSource.isSatisfied_getTargets()));
-    It("Answer Source is satisfied"       , Assert(_answerSource.isSatisfied_getAnswer()));
-    It("Player Source is satisfied"       , Assert(_playerSource.isSatisfied_getPawn()));
+    It("Known Target Source is satisfied" , Assert(_targetSource.isSatisfied_getTargets    ()));
+    It("Answer Source is satisfied"       , Assert(_answerSource.isSatisfied_getAnswer     ()));
+    It("Answer Source is satisfied"       , Assert(_answerSource.isSatisfied_reset         ()));
+    It("Answer State Source is satisfied" , Assert(_stateSource .isSatisfied_getAnswerState()));
+    It("Answer State Source is satisfied" , Assert(_stateSource .isSatisfied_reset         ()));
+    It("Player Source is satisfied"       , Assert(_playerSource.isSatisfied_getPawn       ()));
+    It("Reporter is satisfied: matches"   , Assert(_reporter    .isSatisfied_reportMatch   ()));
+    It("Reporter is satisfied: not match" , Assert(_reporter    .isSatisfied_reportNotMatch()));
 
     EndDescribe();
   }
 
-// private: ////////////////////////////////////////////////////////////////////
-
-  private tt_KnownTargetSourceMock _knownTargetSource;
+  private tt_KnownTargetSourceMock _targetSource;
   private tt_AnswerSourceMock      _answerSource;
   private tt_PlayerSourceMock      _playerSource;
   private tt_QuestionAnswerMatcher _matcher;
-  private tt_AnswerStateSourceMock _answerStateSource;
+  private tt_AnswerStateSourceMock _stateSource;
   private tt_AnswerReporterMock    _reporter;
 
 } // class tt_QuestionAnswerMatcherTest

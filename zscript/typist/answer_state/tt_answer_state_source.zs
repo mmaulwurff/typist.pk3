@@ -30,4 +30,10 @@ class tt_AnswerStateSource : tt_KeyProcessor abstract
     return tt_AnswerState.of(tt_AnswerState.Unknown);
   }
 
+  virtual
+  void reset()
+  {
+    tt_Log.log("zscript/typist/answer_state/tt_answer_state_source.zs:36: T: override this!");
+  }
+
 } // class tt_AnswerStateSource

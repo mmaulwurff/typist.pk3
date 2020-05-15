@@ -59,11 +59,6 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
 
     let pawn = _playerSource.getPawn();
 
-    if (!answerState.isFinished())
-    {
-      _isNotMatchReported = false;
-    }
-
     uint nTargets = targets.size();
     for (uint i = 0; i < nTargets; ++i)
     {
@@ -83,11 +78,8 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
       return result;
     }
 
-    if (answerState.isFinished())
-    {
-      reportNotMatch();
-      resetAnswer();
-    }
+    _reporter.reportNotMatch();
+    resetAnswer();
 
     return NULL;
   }
@@ -104,22 +96,11 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
   }
 
   private
-  void reportNotMatch()
-  {
-    if (!_isNotMatchReported)
-    {
-      _reporter.reportNotMatch();
-      _isNotMatchReported = true;
-    }
-  }
-
-  private
   void resetAnswer()
   {
     _answerSource.reset();
+    _answerStateSource.reset();
   }
-
-// private: ////////////////////////////////////////////////////////////////////
 
   const ALL_AROUND = 1; // true
 
@@ -128,7 +109,5 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
   private tt_PlayerSource      _playerSource;
   private tt_AnswerStateSource _answerStateSource;
   private tt_AnswerReporter    _reporter;
-
-  private bool _isNotMatchReported;
 
 } // class tt_QuestionAnswerMatcher

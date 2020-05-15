@@ -446,6 +446,26 @@ class tt_AnswerStateSourceMock : tt_AnswerStateSource
   private int _mock_getAnswerState_expected;
   private int _mock_getAnswerState_called;
 
+  override
+  void reset()
+  {
+    ++_mock_reset_called;
+  }
+
+  void expect_reset(int expected = 1)
+  {
+    _mock_reset_expected = expected;
+    _mock_reset_called = 0;
+  }
+
+  bool isSatisfied_reset() const
+  {
+    return _mock_reset_expected == _mock_reset_called;
+  }
+
+  private int _mock_reset_expected;
+  private int _mock_reset_called;
+
 } // class tt_AnswerStateSourceMock
 
 class tt_SoundPlayerMock : tt_SoundPlayer

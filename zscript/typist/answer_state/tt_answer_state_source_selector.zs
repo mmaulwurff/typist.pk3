@@ -64,6 +64,16 @@ class tt_AnswerStateSourceSelector : tt_AnswerStateSource
     return result;
   }
 
+  override
+  void reset()
+  {
+    let source = getCurrentAnswerSource();
+    if (source != NULL)
+    {
+      source.reset();
+    }
+  }
+
 // private: ////////////////////////////////////////////////////////////////////
 
   tt_AnswerStateSource getCurrentAnswerSource()

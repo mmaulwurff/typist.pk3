@@ -44,4 +44,10 @@ class tt_AlwaysReadyAnswerStateSource : tt_AnswerStateSource
     return tt_AnswerState.of(tt_AnswerState.Ready);
   }
 
+  override
+  void reset()
+  {
+    // do nothing
+  }
+
 } // class tt_AlwaysReadyAnswerStateSource

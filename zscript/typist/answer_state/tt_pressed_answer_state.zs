@@ -34,10 +34,7 @@ class tt_PressedAnswerState : tt_AnswerStateSource
   tt_PressedAnswerState of()
   {
     let result = new("tt_PressedAnswerState"); // construct
-
-    result._isPressed  = false;
-    result._isReleased = false;
-
+    result._answerState = DEFAULT_STATE;
     return result;
   }
 
@@ -46,33 +43,27 @@ class tt_PressedAnswerState : tt_AnswerStateSource
   override
   void processKey(tt_Character character)
   {
-    switch (character.getType())
-    {
-    case tt_Character.ENTER:    _isPressed = true;  _isReleased = false; break;
-    case tt_Character.ENTER_UP: _isPressed = false; _isReleased = true;  break;
-    default:                    _isPressed = false; _isReleased = false; break;
-    }
+    _answerState = (character.getType() == tt_Character.ENTER)
+      ? tt_AnswerState.Ready
+      : tt_AnswerState.Preparing;
   }
 
   override
   tt_AnswerState getAnswerState()
   {
-    if (_isPressed)
-    {
-      return tt_AnswerState.of(tt_AnswerState.Ready);
-    }
+    return tt_AnswerState.of(_answerState);
+  }
 
-    if (_isReleased)
-    {
-      return tt_AnswerState.of(tt_AnswerState.Finished);
-    }
-
-    return tt_AnswerState.of(tt_AnswerState.Preparing);
+  override
+  void reset()
+  {
+    _answerState = DEFAULT_STATE;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private bool _isPressed;
-  private bool _isReleased;
+  const DEFAULT_STATE = tt_AnswerState.Preparing;
+
+  private int _answerState;
 
 } // class tt_PressedAnswerState
