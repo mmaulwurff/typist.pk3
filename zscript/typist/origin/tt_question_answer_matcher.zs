@@ -29,7 +29,6 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
                              , tt_AnswerSource      answerSource
                              , tt_PlayerSource      playerSource
                              , tt_AnswerStateSource answerStateSource
-                             , tt_AnswerReporter    reporter
                              )
   {
     let result = new("tt_QuestionAnswerMatcher"); // construct
@@ -38,7 +37,6 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     result._answerSource      = answerSource;
     result._playerSource      = playerSource;
     result._answerStateSource = answerStateSource;
-    result._reporter          = reporter;
 
     return result;
   }
@@ -57,49 +55,42 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
     let answerState = _answerStateSource.getAnswerState();
     if (!answerState.isReady()) { return NULL; }
 
-    let pawn = _playerSource.getPawn();
+    let pawn   = _playerSource.getPawn();
+    let result = findMatchedTarget(targets, answer, pawn);
 
+    return result;
+  }
+
+// private: ////////////////////////////////////////////////////////////////////
+
+  private
+  tt_Origin findMatchedTarget(tt_KnownTargets targets, tt_Answer answer, Actor pawn)
+  {
     uint nTargets = targets.size();
     for (uint i = 0; i < nTargets; ++i)
     {
       let target   = targets.at(i);
       let question = target.getQuestion();
 
-      bool isRight = question.isRight(answer);
-      if (!isRight) { continue; }
-
-      bool isVisible = isVisible(target, pawn);
-      if (!isVisible) { continue; }
-
-      _reporter.reportMatch();
-      resetAnswer();
+      if (!question.isRight(answer) || !isVisible(target, pawn))
+      {
+        continue;
+      }
 
       let result = target.getTarget().getPosition();
       return result;
     }
 
-    _reporter.reportNotMatch();
-    resetAnswer();
-
     return NULL;
   }
 
-// private: ////////////////////////////////////////////////////////////////////
-
   private play
-  bool isVisible(tt_KnownTarget target, PlayerPawn pawn) const
+  bool isVisible(tt_KnownTarget target, Actor pawn) const
   {
     let  targetActor = target.getTarget().getActor();
     bool visible     = pawn.IsVisible(targetActor, ALL_AROUND);
 
     return visible;
-  }
-
-  private
-  void resetAnswer()
-  {
-    _answerSource.reset();
-    _answerStateSource.reset();
   }
 
   const ALL_AROUND = 1; // true
@@ -108,6 +99,5 @@ class tt_QuestionAnswerMatcher : tt_OriginSource
   private tt_AnswerSource      _answerSource;
   private tt_PlayerSource      _playerSource;
   private tt_AnswerStateSource _answerStateSource;
-  private tt_AnswerReporter    _reporter;
 
 } // class tt_QuestionAnswerMatcher

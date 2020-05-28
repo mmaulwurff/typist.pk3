@@ -118,11 +118,8 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     let answer = tt_Answer.of("abc");
     _answerSource.expect_getAnswer(answer);
-    _answerSource.expect_reset();
-    _stateSource.expect_reset();
     _stateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
     _playerSource.expect_getPawn(players[consolePlayer].mo);
-    _reporter.expect_reportMatch();
 
     let origin = _matcher.getOrigin();
 
@@ -147,11 +144,8 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
 
     let answer = tt_Answer.of("abc");
     _answerSource.expect_getAnswer(answer);
-    _answerSource.expect_reset();
-    _stateSource.expect_reset();
     _stateSource.expect_getAnswerState(tt_AnswerState.of(tt_AnswerState.Ready));
     _playerSource.expect_getPawn(players[consolePlayer].mo);
-    _reporter.expect_reportNotMatch();
 
     let origin = _matcher.getOrigin();
 
@@ -169,16 +163,14 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     Describe(description);
 
     _targetSource = tt_KnownTargetSourceMock.of();
-    _answerSource      = tt_AnswerSourceMock.of();
-    _playerSource      = tt_PlayerSourceMock.of();
-    _stateSource = tt_AnswerStateSourceMock.of();
-    _reporter          = tt_AnswerReporterMock.of();
+    _answerSource = tt_AnswerSourceMock.of();
+    _playerSource = tt_PlayerSourceMock.of();
+    _stateSource  = tt_AnswerStateSourceMock.of();
 
     _matcher = tt_QuestionAnswerMatcher.of( _targetSource
                                           , _answerSource
                                           , _playerSource
                                           , _stateSource
-                                          , _reporter
                                           );
   }
 
@@ -191,8 +183,6 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
     It("Answer State Source is satisfied" , Assert(_stateSource .isSatisfied_getAnswerState()));
     It("Answer State Source is satisfied" , Assert(_stateSource .isSatisfied_reset         ()));
     It("Player Source is satisfied"       , Assert(_playerSource.isSatisfied_getPawn       ()));
-    It("Reporter is satisfied: matches"   , Assert(_reporter    .isSatisfied_reportMatch   ()));
-    It("Reporter is satisfied: not match" , Assert(_reporter    .isSatisfied_reportNotMatch()));
 
     EndDescribe();
   }
@@ -202,6 +192,5 @@ class tt_QuestionAnswerMatcherTest : tt_Clematis
   private tt_PlayerSourceMock      _playerSource;
   private tt_QuestionAnswerMatcher _matcher;
   private tt_AnswerStateSourceMock _stateSource;
-  private tt_AnswerReporterMock    _reporter;
 
 } // class tt_QuestionAnswerMatcherTest

@@ -40,11 +40,17 @@ class tt_AnswerState
     Unknown,
     Preparing,
     Ready,
+    Finished
   }
 
   bool isReady() const
   {
     return (_state >= Ready);
+  }
+
+  bool isFinished() const
+  {
+    return (_state == Finished);
   }
 
 // private: ////////////////////////////////////////////////////////////////////

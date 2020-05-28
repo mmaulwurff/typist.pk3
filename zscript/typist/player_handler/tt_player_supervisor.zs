@@ -55,7 +55,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                                    , playerSource
                                                    , clock
                                                    , answerStateSource
-                                                   , answerReporter
                                                    );
 
     let aimer              = makeAimer(targetOriginSource, playerSource, settings);
@@ -297,14 +296,12 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                         , tt_PlayerSource      playerSource
                                         , tt_Clock             clock
                                         , tt_AnswerStateSource answerStateSource
-                                        , tt_AnswerReporter    answerReporter
                                         )
   {
     let matcher      = tt_QuestionAnswerMatcher.of( targetSource
                                                   , answerSource
                                                   , playerSource
                                                   , answerStateSource
-                                                  , answerReporter
                                                   );
 
     let staleMarker  = tt_StaleMarkerImpl  .of(clock);

@@ -43,9 +43,12 @@ class tt_PressedAnswerState : tt_AnswerStateSource
   override
   void processKey(tt_Character character)
   {
-    _answerState = (character.getType() == tt_Character.ENTER)
-      ? tt_AnswerState.Ready
-      : tt_AnswerState.Preparing;
+    switch (character.getType())
+    {
+    case tt_Character.ENTER:    _answerState = tt_AnswerState.Ready;     break;
+    case tt_Character.ENTER_UP: _answerState = tt_AnswerState.Finished;  break;
+    default:                    _answerState = tt_AnswerState.Preparing; break;
+    }
   }
 
   override
