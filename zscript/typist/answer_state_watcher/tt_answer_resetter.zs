@@ -16,50 +16,44 @@
  */
 
 /**
- * This class represents Answer state.
  *
- * @see tt_Answer class
  */
-class tt_AnswerState
+class tt_AnswerResetter
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_AnswerState of(int state)
+  tt_AnswerResetter of( tt_AnswerStateSource answerStateSource
+                      , tt_AnswerSource      answerSource
+                      )
   {
-    let result = new("tt_AnswerState"); // construct
+    let result = new("tt_AnswerResetter"); // construct
 
-    result._state = state;
+    result._answerStateSource = answerStateSource;
+    result._answerSource      = answerSource;
+    result._oldAnswerState    = tt_AnswerState.of(tt_AnswerState.Unknown);
 
     return result;
   }
 
-  enum _
+  void react()
   {
-    Unknown,
-    Preparing,
-    Ready,
-    Finished
-  }
+    let newAnswerState = _answerStateSource.getAnswerState();
+    if (!_oldAnswerState.isFinished() && newAnswerState.isFinished())
+    {
+      _answerStateSource.reset();
+      _answerSource.reset();
+    }
 
-  bool isReady() const
-  {
-    return (_state >= Ready);
-  }
-
-  bool isFinished() const
-  {
-    return (_state == Finished);
-  }
-
-  bool isEqual(tt_AnswerState other)
-  {
-    return _state == other._state;
+    _oldAnswerState = newAnswerState;
   }
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private int _state;
+  private tt_AnswerStateSource _answerStateSource;
+  private tt_AnswerSource      _answerSource;
 
-} // class tt_AnswerState
+  private tt_AnswerState _oldAnswerState;
+
+} // class tt_AnswerResetter

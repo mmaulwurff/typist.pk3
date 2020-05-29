@@ -18,6 +18,8 @@
 /**
  * This class implements OriginSource by finding an origin for a known target
  * that fits to for the answer.
+ *
+ * This class searches far matching target only if answer state is Ready.
  */
 class tt_QuestionAnswerMatcher : tt_OriginSource
 {

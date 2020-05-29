@@ -49,7 +49,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
 
     let targetRegistry = makeTargetRegistry(radarCache, questionSource, deathReporter, clock);
 
-    let answerStateSource  = makeAnswerStateSource(playerSource);
+    let answerStateSource  = tt_PressedAnswerState.of();
     let targetOriginSource = makeTargetOriginSource( targetRegistry
                                                    , playerInput
                                                    , playerSource
@@ -120,6 +120,9 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     keyProcessors.Push(answerStateSource);
     let keyProcessor = tt_KeyProcessors.of(keyProcessors);
 
+    let answerResetter = tt_AnswerResetter.of(answerStateSource, playerInput);
+    let matchWatcher   = tt_MatchWatcher.of(answerStateSource, answerReporter, targetOriginSource);
+
     // Initialize attributes ///////////////////////////////////////////////////
 
     let result = new("tt_PlayerSupervisor"); // construct
@@ -136,6 +139,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     result._oldModeSource      = oldModeSource;
     result._inputBlockAfterCombat = inputBlockAfterCombat;
     result._worldChanger       = worldChanger;
+    result._answerResetter     = answerResetter;
+    result._matchWatcher       = matchWatcher;
 
     return result;
   }
@@ -158,6 +163,9 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _oldModeSource.setMode(_modeSource.getMode());
 
     _worldChanger.changeWorld();
+
+    _answerResetter.react();
+    _matchWatcher.react();
   }
 
   override
@@ -324,18 +332,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     return registryCache;
   }
 
-  private static
-  tt_AnswerStateSource makeAnswerStateSource(tt_PlayerSource playerSource)
-  {
-    Array<tt_AnswerStateSource> answerSources;
-    answerSources.Push(tt_PressedAnswerState.of());
-    answerSources.Push(tt_AlwaysReadyAnswerStateSource.of());
-
-    let selector = tt_AnswerStateSourceSelector.of(answerSources, playerSource);
-
-    return selector;
-  }
-
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_KeyProcessor       _keyProcessor;
@@ -350,5 +346,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_SettableMode       _oldModeSource;
   private tt_InputBlockAfterCombat _inputBlockAfterCombat;
   private tt_WorldChanger       _worldChanger;
+  private tt_AnswerResetter     _answerResetter;
+  private tt_MatchWatcher       _matchWatcher;
 
 } // class tt_PlayerSupervisor
