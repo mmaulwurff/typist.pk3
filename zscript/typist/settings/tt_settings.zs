@@ -51,4 +51,11 @@ class tt_Settings abstract
     return false;
   }
 
+  virtual
+  bool isFastConfirmation()
+  {
+    tt_Log.log("zscript/typist/settings/tt_settings.zs:57: T: override this!");
+    return false;
+  }
+
 } // class tt_Settings

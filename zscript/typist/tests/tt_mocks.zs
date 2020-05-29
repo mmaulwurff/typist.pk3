@@ -310,6 +310,29 @@ class tt_SettingsMock : tt_Settings
   private int _mock_getLessonEnabled_expected;
   private int _mock_getLessonEnabled_called;
 
+  override
+  bool isFastConfirmation()
+  {
+    ++_mock_isFastConfirmation_called;
+    return _mock_isFastConfirmation;
+  }
+
+  void expect_isFastConfirmation(bool value, int expected = 1)
+  {
+    _mock_isFastConfirmation = value;
+    _mock_isFastConfirmation_expected = expected;
+    _mock_isFastConfirmation_called = 0;
+  }
+
+  bool isSatisfied_isFastConfirmation() const
+  {
+    return _mock_isFastConfirmation_expected == _mock_isFastConfirmation_called;
+  }
+
+  private bool _mock_isFastConfirmation;
+  private int _mock_isFastConfirmation_expected;
+  private int _mock_isFastConfirmation_called;
+
 } // class tt_SettingsMock
 
 class tt_SoundSettingsMock : tt_SoundSettings

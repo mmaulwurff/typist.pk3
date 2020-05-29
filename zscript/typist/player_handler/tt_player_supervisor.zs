@@ -55,6 +55,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                                    , playerSource
                                                    , clock
                                                    , answerStateSource
+                                                   , answerReporter
+                                                   , settings
                                                    );
 
     let aimer              = makeAimer(targetOriginSource, playerSource, settings);
@@ -301,18 +303,25 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                         , tt_PlayerSource      playerSource
                                         , tt_Clock             clock
                                         , tt_AnswerStateSource answerStateSource
+                                        , tt_AnswerReporter    answerReporter
+                                        , tt_Settings          settings
                                         )
   {
-    let matcher      = tt_QuestionAnswerMatcher.of( targetSource
+    let pressMatcher = tt_QuestionAnswerMatcher.of( targetSource
                                                   , answerSource
                                                   , playerSource
                                                   , answerStateSource
                                                   );
+    let hastyMatcher = tt_HastyQuestionAnswerMatcher.of( targetSource
+                                                       , answerSource
+                                                       , playerSource
+                                                       , answerReporter
+                                                       );
+    let selector    = tt_SelectableOriginSource.of(hastyMatcher, pressMatcher, settings);
+    let staleMarker = tt_StaleMarkerImpl  .of(clock);
+    let result      = tt_OriginSourceCache.of(selector, staleMarker);
 
-    let staleMarker  = tt_StaleMarkerImpl  .of(clock);
-    let originSource = tt_OriginSourceCache.of(matcher, staleMarker);
-
-    return originSource;
+    return result;
   }
 
   private static

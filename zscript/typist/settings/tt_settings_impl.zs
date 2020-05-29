@@ -31,6 +31,7 @@ class tt_SettingsImpl : tt_Settings
     result._scaleCvar               = tt_Cvar.of(playerSource, "tt_view_scale"     );
     result._autoaimCvar             = tt_Cvar.of(playerSource, "autoaim"           );
     result._questionSourceIndexCvar = tt_Cvar.of(playerSource, "tt_question_source");
+    result._isFastConfirmationCvar  = tt_Cvar.of(playerSource, "tt_confirm_type"   );
 
     for (uint i = 0; i < N_IS_LESSON_ENABLED_CVARS; ++i)
     {
@@ -46,6 +47,7 @@ class tt_SettingsImpl : tt_Settings
   override int  getScale()               { return _scaleCvar.getInt();               }
   override bool isAutoAimEnabled()       { return (_autoaimCvar.getFloat() > 34.5);  }
   override int  getQuestionSourceIndex() { return _questionSourceIndexCvar.getInt(); }
+  override bool isFastConfirmation()     { return _isFastConfirmationCvar.getInt();  }
 
   override
   bool getLessonEnabled(uint index)
@@ -60,6 +62,7 @@ class tt_SettingsImpl : tt_Settings
   private tt_Cvar _scaleCvar;
   private tt_Cvar _autoaimCvar;
   private tt_Cvar _questionSourceIndexCvar;
+  private tt_Cvar _isFastConfirmationCvar;
 
   private Array<tt_Cvar> _isLessonEnabledCvars;
 
