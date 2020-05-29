@@ -16,34 +16,47 @@
  */
 
 /**
+ * This class watches for answer state source and reports match or not match
+ * when the state changes from Preparing to Ready.
  *
+ * Match is determined by tt_OriginSource result being not NULL.
  */
-class tt_AnswerResetter
+class tt_MatchWatcher : tt_WorldChanger
 {
 
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_AnswerResetter of( tt_AnswerStateSource answerStateSource
-                      , tt_AnswerSource      answerSource
-                      )
+  tt_MatchWatcher of( tt_AnswerStateSource answerStateSource
+                    , tt_AnswerReporter    answerReporter
+                    , tt_OriginSource      originSource
+                    )
   {
-    let result = new("tt_AnswerResetter"); // construct
+    let result = new("tt_MatchWatcher"); // construct
 
     result._answerStateSource = answerStateSource;
-    result._answerSource      = answerSource;
+    result._answerReporter    = answerReporter;
+    result._originSource      = originSource;
     result._oldAnswerState    = tt_AnswerState.of(tt_AnswerState.Unknown);
 
     return result;
   }
 
-  void react()
+  override
+  void changeWorld()
   {
     let newAnswerState = _answerStateSource.getAnswerState();
-    if (!_oldAnswerState.isFinished() && newAnswerState.isFinished())
+    if (!_oldAnswerState.isReady() && newAnswerState.isReady())
     {
-      _answerStateSource.reset();
-      _answerSource.reset();
+      let isMatched = (_originSource.getOrigin() != NULL);
+      if (isMatched)
+      {
+        _answerReporter.reportMatch();
+      }
+      else
+      {
+        _answerReporter.reportNotMatch();
+      }
     }
 
     _oldAnswerState = newAnswerState;
@@ -52,8 +65,9 @@ class tt_AnswerResetter
 // private: ////////////////////////////////////////////////////////////////////
 
   private tt_AnswerStateSource _answerStateSource;
-  private tt_AnswerSource      _answerSource;
+  private tt_AnswerReporter    _answerReporter;
+  private tt_OriginSource      _originSource;
 
   private tt_AnswerState _oldAnswerState;
 
-} // class tt_AnswerResetter
+} // class tt_MatchWatcher

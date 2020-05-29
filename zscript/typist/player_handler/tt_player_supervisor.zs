@@ -109,19 +109,21 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let projectileSpeedController = tt_ProjectileSpeedController.of(originSource, playerSource);
     let enemySpeedController      = tt_EnemySpeedController     .of(radarCache);
 
+    let answerResetter = tt_AnswerResetter.of(answerStateSource, playerInput);
+    let matchWatcher   = tt_MatchWatcher.of(answerStateSource, answerReporter, targetOriginSource);
+
     Array<tt_WorldChanger> worldChangers;
     worldChangers.push(damager);
     worldChangers.push(projectileSpeedController);
     worldChangers.push(enemySpeedController);
+    worldChangers.push(answerResetter);
+    worldChangers.push(matchWatcher);
     let worldChanger = tt_WorldChangers.of(worldChangers);
 
     Array<tt_KeyProcessor> keyProcessors;
     keyProcessors.Push(inputBlockAfterCombat);
     keyProcessors.Push(answerStateSource);
     let keyProcessor = tt_KeyProcessors.of(keyProcessors);
-
-    let answerResetter = tt_AnswerResetter.of(answerStateSource, playerInput);
-    let matchWatcher   = tt_MatchWatcher.of(answerStateSource, answerReporter, targetOriginSource);
 
     // Initialize attributes ///////////////////////////////////////////////////
 
@@ -139,8 +141,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     result._oldModeSource      = oldModeSource;
     result._inputBlockAfterCombat = inputBlockAfterCombat;
     result._worldChanger       = worldChanger;
-    result._answerResetter     = answerResetter;
-    result._matchWatcher       = matchWatcher;
 
     return result;
   }
@@ -163,9 +163,6 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     _oldModeSource.setMode(_modeSource.getMode());
 
     _worldChanger.changeWorld();
-
-    _answerResetter.react();
-    _matchWatcher.react();
   }
 
   override
@@ -346,7 +343,5 @@ class tt_PlayerSupervisor : tt_PlayerHandler
   private tt_SettableMode       _oldModeSource;
   private tt_InputBlockAfterCombat _inputBlockAfterCombat;
   private tt_WorldChanger       _worldChanger;
-  private tt_AnswerResetter     _answerResetter;
-  private tt_MatchWatcher       _matchWatcher;
 
 } // class tt_PlayerSupervisor
