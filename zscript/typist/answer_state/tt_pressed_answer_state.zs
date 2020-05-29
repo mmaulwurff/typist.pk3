@@ -47,6 +47,7 @@ class tt_PressedAnswerState : tt_AnswerStateSource
     {
     case tt_Character.ENTER:    _answerState = tt_AnswerState.Ready;     break;
     case tt_Character.ENTER_UP: _answerState = tt_AnswerState.Finished;  break;
+    case tt_Character.NONE:     break;
     default:                    _answerState = tt_AnswerState.Preparing; break;
     }
   }
