@@ -57,14 +57,14 @@ class tt_CommandDispatcher : tt_Activatable
     uint nActivatables = _activatables.size();
     for (uint i = 0; i < nActivatables; ++i)
     {
-      let activatable = _activatables[i];
-
+      let  activatable = _activatables[i];
       bool isActivated = tryActivate(activatable, answerString);
 
       if (isActivated)
       {
         _answerReporter.reportMatch();
         _answerSource.reset();
+        _answerStateSource.reset();
         return;
       }
     }
