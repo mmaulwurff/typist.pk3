@@ -47,11 +47,13 @@ class tt_CommandDispatcherTest : tt_Clematis
     let settings          = tt_CommandSettingsMock  .of();
     let answerReporter    = tt_AnswerReporterMock   .of();
     let answerStateSource = tt_AnswerStateSourceMock.of();
+    let globalSettings    = tt_SettingsMock         .of();
     let commandDispatcher = tt_CommandDispatcher.of( answerSource
                                                    , activatables
                                                    , settings
                                                    , answerReporter
                                                    , answerStateSource
+                                                   , globalSettings
                                                    );
 
     let str    = "Hello";
@@ -90,11 +92,13 @@ class tt_CommandDispatcherTest : tt_Clematis
     let settings          = tt_CommandSettingsMock  .of();
     let answerReporter    = tt_AnswerReporterMock   .of();
     let answerStateSource = tt_AnswerStateSourceMock.of();
+    let globalSettings    = tt_SettingsMock         .of();
     let commandDispatcher = tt_CommandDispatcher.of( answerSource
                                                    , activatables
                                                    , settings
                                                    , answerReporter
                                                    , answerStateSource
+                                                   , globalSettings
                                                    );
 
     let commands1 = tt_Strings.of();

@@ -76,6 +76,7 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                                                    , commandSettings
                                                    , answerReporter
                                                    , answerStateSource
+                                                   , settings
                                                    );
 
     let modeSource = makeModeSource( targetRegistry

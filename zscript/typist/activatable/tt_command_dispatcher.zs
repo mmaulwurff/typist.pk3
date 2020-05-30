@@ -30,6 +30,7 @@ class tt_CommandDispatcher : tt_Activatable
                          , tt_CommandSettings    settings
                          , tt_AnswerReporter     answerReporter
                          , tt_AnswerStateSource  answerStateSource
+                         , tt_Settings           globalSettings
                          )
   {
     let result = new("tt_CommandDispatcher"); // construct
@@ -39,6 +40,7 @@ class tt_CommandDispatcher : tt_Activatable
     result._settings          = settings;
     result._answerReporter    = answerReporter;
     result._answerStateSource = answerStateSource;
+    result._globalSettings    = globalSettings;
 
     return result;
   }
@@ -49,7 +51,7 @@ class tt_CommandDispatcher : tt_Activatable
   void activate()
   {
     let answerState = _answerStateSource.getAnswerState();
-    if (!answerState.isReady()) { return; }
+    if (!answerState.isReady() && !_globalSettings.isFastConfirmation()) { return; }
 
     let answer       = _answerSource.getAnswer();
     let answerString = answer.getString();
@@ -130,12 +132,11 @@ class tt_CommandDispatcher : tt_Activatable
     return prefixedCommand;
   }
 
-// private: ////////////////////////////////////////////////////////////////////
-
   private tt_AnswerSource       _answerSource;
   private Array<tt_Activatable> _activatables;
   private tt_CommandSettings    _settings;
   private tt_AnswerReporter     _answerReporter;
   private tt_AnswerStateSource  _answerStateSource;
+  private tt_Settings           _globalSettings;
 
 } // class tt_CommandDispatcher
