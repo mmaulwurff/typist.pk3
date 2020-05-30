@@ -39,9 +39,7 @@ class tt_AutoModeSource : tt_ModeSource
   override
   int getMode()
   {
-    bool isNoTargets = _knownTargetSource.isEmpty();
-
-    if (isNoTargets)
+    if (_knownTargetSource.isEmpty())
     {
       return tt_Mode.Explore;
     }
@@ -76,11 +74,7 @@ class tt_AutoModeSource : tt_ModeSource
     return visible;
   }
 
-// private: ////////////////////////////////////////////////////////////////////
-
   const ALL_AROUND = 1; // true
-
-// private: ////////////////////////////////////////////////////////////////////
 
   private tt_KnownTargetSource _knownTargetSource;
   private tt_PlayerSource      _playerSource;

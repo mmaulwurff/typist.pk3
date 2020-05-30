@@ -283,12 +283,13 @@ class tt_PlayerSupervisor : tt_PlayerHandler
                               )
   {
     let autoModeSource          = tt_AutoModeSource.of(knownTargetSource, playerSource);
-    let delayedCombatModeSource = tt_DelayedCombatModeSource.of(clock, autoModeSource);
-    let noEnemiesMode = tt_NoEnemiesMode.of(delayedCombatModeSource, targetSource);
-
+    let delayedCombatModeSource = tt_DelayedCombatModeSource.of( clock
+                                                               , autoModeSource
+                                                               , targetSource
+                                                               );
     Array<tt_ModeSource> modeSources;
     modeSources.Push(manualModeSource);
-    modeSources.Push(noEnemiesMode);
+    modeSources.Push(delayedCombatModeSource);
     modeSources.Push(autoModeSource);
 
     let cascade  = tt_ModeCascade.of(modeSources);

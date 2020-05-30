@@ -116,7 +116,6 @@ version 4.3.3
 #include "zscript/typist/mode/tt_mode_source.zs"
 #include "zscript/typist/mode/tt_mode_storage.zs"
 #include "zscript/typist/mode/tt_mode.zs"
-#include "zscript/typist/mode/tt_no_enemies_mode.zs"
 #include "zscript/typist/mode/tt_reported_mode_source_test.zs"
 #include "zscript/typist/mode/tt_reported_mode_source.zs"
 #include "zscript/typist/mode/tt_settable_mode_test.zs"

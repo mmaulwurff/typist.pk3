@@ -17,7 +17,8 @@
 
 /**
  * This class implements tt_ModeSource by reading other tt_ModeSource, and
- * switching to Exploration mode only if some time has passed.
+ * switching to Exploration mode only if some time has passed or there is no
+ * enemies around.
  */
 class tt_DelayedCombatModeSource : tt_ModeSource
 {
@@ -25,12 +26,16 @@ class tt_DelayedCombatModeSource : tt_ModeSource
 // public: /////////////////////////////////////////////////////////////////////
 
   static
-  tt_DelayedCombatModeSource of(tt_Clock clock, tt_ModeSource modeSource)
+  tt_DelayedCombatModeSource of( tt_Clock        clock
+                               , tt_ModeSource   modeSource
+                               , tt_TargetSource targetSource
+                               )
   {
     let result = new("tt_DelayedCombatModeSource"); // construct
 
-    result._clock      = clock;
-    result._modeSource = modeSource;
+    result._clock        = clock;
+    result._modeSource   = modeSource;
+    result._targetSource = targetSource;
 
     result._switchDetected = false;
     result._oldMode        = tt_Mode.None;
@@ -53,7 +58,10 @@ class tt_DelayedCombatModeSource : tt_ModeSource
       return tt_Mode.None;
     }
 
-    if (_oldMode == tt_Mode.Combat && topMode == tt_Mode.Explore)
+    if (  _oldMode == tt_Mode.Combat
+       &&  topMode == tt_Mode.Explore
+       && !_targetSource.getTargets().isEmpty()
+       )
     {
       _switchDetected        = true;
       _switchToExploreMoment = _clock.getNow();
@@ -82,8 +90,9 @@ class tt_DelayedCombatModeSource : tt_ModeSource
 
 // private: ////////////////////////////////////////////////////////////////////
 
-  private tt_Clock      _clock;
-  private tt_ModeSource _modeSource;
+  private tt_Clock        _clock;
+  private tt_ModeSource   _modeSource;
+  private tt_TargetSource _targetSource;
 
   private int _switchDetected;
   private int _oldMode;
