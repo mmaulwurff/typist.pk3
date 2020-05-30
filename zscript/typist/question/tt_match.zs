@@ -82,8 +82,7 @@ class tt_Match : tt_Question
       bool   isCharSame = (originCode == matchedCode);
       String colorCode  = (isCharSame ? "q" : "g"); // dark green, red
 
-      String matchedChar = matched.Mid(matchedCharPos, nextMatchedCharPos - matchedCharPos);
-      result.appendFormat("\c%s%s", colorCode, matchedChar);
+      result.appendFormat("\c%s%c", colorCode, matchedCode);
 
       originCharPos  = nextOriginCharPos;
       matchedCharPos = nextMatchedCharPos;
