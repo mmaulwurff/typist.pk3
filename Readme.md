@@ -71,9 +71,11 @@ your fingers are almost at the right typing position!
 ## How To Set Up Custom Text Lesson
 
 1. Find any text or book in ASCII .txt file (UTF-8 may also work).
-2. Rename text file to `typist_custom_text.txt`.
-3. Load `typist_custom_text.txt` with GZDoom alongside Typist.pk3.
-4. Select Custom Text in Typist options menu.
+2. If a file is supposed to be in ASCII but actually is not, use `grep -P
+"[^\x00-\x7F]" file.txt` to find non-ASCII characters.
+3. Rename text file to `typist_custom_text.txt`.
+4. Load `typist_custom_text.txt` with GZDoom alongside Typist.pk3.
+5. Select Custom Text in Typist options menu.
 
 ## Incompatible Mods
 
