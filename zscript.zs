@@ -129,7 +129,6 @@ version 4.3.3
 #include "zscript/typist/origin/tt_question_answer_matcher_test.zs"
 #include "zscript/typist/origin/tt_question_answer_matcher.zs"
 #include "zscript/typist/origin/tt_selectable_origin_source.zs"
-#include "zscript/typist/player_handler/tt_player_handler_stub.zs"
 #include "zscript/typist/player_handler/tt_player_handler.zs"
 #include "zscript/typist/player_handler/tt_player_supervisor.zs"
 #include "zscript/typist/player/tt_player_source_impl_test.zs"

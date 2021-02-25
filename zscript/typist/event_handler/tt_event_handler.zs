@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -24,14 +24,6 @@ class tt_EventHandler : EventHandler
 // public: // EventHandler /////////////////////////////////////////////////////
 
   override
-  void OnRegister()
-  {
-    self.RequireMouse = true;
-
-    _playerHandler = tt_PlayerHandlerStub.of();
-  }
-
-  override
   void WorldTick()
   {
     _playerHandler.tick();
@@ -52,6 +44,8 @@ class tt_EventHandler : EventHandler
   override
   void PlayerEntered(PlayerEvent event)
   {
+    self.RequireMouse = true;
+
     int playerNumber = event.PlayerNumber;
     if (playerNumber != consolePlayer) { return; }
     if (gameState != GS_Level && gameState != GS_StartUp) { return; }
