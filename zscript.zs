@@ -163,7 +163,6 @@ version 4.3.3
 #include "zscript/typist/target_widget/tt_projector.zs"
 #include "zscript/typist/target_widget/tt_sorter_by_distance_test.zs"
 #include "zscript/typist/target_widget/tt_sorter_by_distance.zs"
-#include "zscript/typist/target_widget/tt_target_projector.zs"
 #include "zscript/typist/target_widget/tt_target_widget_registry.zs"
 #include "zscript/typist/target_widget/tt_target_widget_source.zs"
 #include "zscript/typist/target_widget/tt_target_widgets.zs"
