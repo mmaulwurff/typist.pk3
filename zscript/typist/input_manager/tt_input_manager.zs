@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,19 +21,10 @@
 class tt_InputManager abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  void manageInput();
 
-  virtual
-  void manageInput()
-  {
-    tt_Log.log("zscript/typist/input_manager/tt_input_manager.zs:29: T: override this!");
-  }
-
-  virtual
-  bool isCapturingKeys()
-  {
-    tt_Log.log("zscript/typist/input_manager/tt_input_manager.zs:35: T: override this!");
-    return false;
-  }
+  abstract
+  bool isCapturingKeys();
 
 } // class tt_InputManager

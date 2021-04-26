@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,8 +21,6 @@
 class tt_StaleMarker abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
   /**
    * Update stale status.
    *
@@ -30,11 +28,7 @@ class tt_StaleMarker abstract
    *
    * @returns true if this instance is currently stale.
    */
-  virtual
-  bool isStale()
-  {
-    tt_Log.log("zscript/typist/stale_marker/tt_stale_marker.zs:36: T: override this!");
-    return false;
-  }
+  abstract
+  bool isStale();
 
 } // class tt_StaleMarker

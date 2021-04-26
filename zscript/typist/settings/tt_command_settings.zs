@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,48 +21,22 @@
 class tt_CommandSettings abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  String getForwardDashCommand();
 
-  virtual
-  String getForwardDashCommand()
-  {
-    tt_Log.log("zscript/typist/settings/tt_command_settings.zs:29: T: override this!");
-    return "";
-  }
+  abstract
+  String getBackwardDashCommand();
 
-  virtual
-  String getBackwardDashCommand()
-  {
-    tt_Log.log("zscript/typist/settings/tt_command_settings.zs:36: T: override this!");
-    return "";
-  }
+  abstract
+  String getLeftDashCommand();
 
-  virtual
-  String getLeftDashCommand()
-  {
-    tt_Log.log("zscript/typist/settings/tt_command_settings.zs:43: T: override this!");
-    return "";
-  }
+  abstract
+  String getRightDashCommand();
 
-  virtual
-  String getRightDashCommand()
-  {
-    tt_Log.log("zscript/typist/settings/tt_command_settings.zs:50: T: override this!");
-    return "";
-  }
+  abstract
+  String getReloadCommand();
 
-  virtual
-  String getReloadCommand()
-  {
-    tt_Log.log("zscript/typist/settings/tt_command_settings.zs:57: T: override this!");
-    return "";
-  }
-
-  virtual
-  String getCommandPrefix()
-  {
-    tt_Log.log("zscript/typist/settings/tt_command_settings.zs:64: T: override this!");
-    return "";
-  }
+  abstract
+  String getCommandPrefix();
 
 } // class tt_CommandSettings

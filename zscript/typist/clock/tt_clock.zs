@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,20 +21,13 @@
 class tt_Clock abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
   /**
    * Provides access to getting points in time.
    *
    * @returns a moment in time.
    */
-  virtual
-  int getNow()
-  {
-    tt_Log.log("zscript/typist/clock/tt_clock.zs:34: T: override this!");
-
-    return 0;
-  }
+  abstract
+  int getNow();
 
   /**
    * Provides a way to determine how many ticks passed since a moment in time.
@@ -43,12 +36,7 @@ class tt_Clock abstract
    *
    * @returns a number of ticks since @a moment.
    */
-  virtual
-  int since(int moment)
-  {
-    tt_Log.log("zscript/typist/clock/tt_clock.zs:49: T: override this!");
-
-    return 0;
-  }
+  abstract
+  int since(int moment);
 
 } // class tt_Clock

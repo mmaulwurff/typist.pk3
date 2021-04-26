@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -23,13 +23,7 @@
 class tt_ModeSource abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  virtual
-  int getMode()
-  {
-    tt_Log.log("zscript/typist/mode/tt_mode_source.zs:31: T: override this!");
-    return tt_Mode.Unknown;
-  }
+  abstract
+  int getMode();
 
 } // class tt_ModeSource

@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -23,26 +23,16 @@
 class tt_KnownTargetSource abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
   /**
    * This function the currently registered (known) targets.
    */
-  virtual
-  tt_KnownTargets getTargets() const
-  {
-    tt_Log.log("zscript/typist/known_target/tt_known_target_source.zs:34: T: override this!");
-    return NULL;
-  }
+  abstract
+  tt_KnownTargets getTargets() const;
 
   /**
    * This function returns true if there are no targets in this source.
    */
-  virtual
-  bool isEmpty() const
-  {
-    tt_Log.log("zscript/typist/known_target/tt_known_target_source.zs:44: T: override this!");
-    return true;
-  }
+  abstract
+  bool isEmpty() const;
 
 } // class tt_KnownTargetSource

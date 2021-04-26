@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -18,73 +18,31 @@
 /**
  * This class represents settings for tt_RandomCharactersLesson.
  */
-class tt_RandomCharactersLessonSettings
+class tt_RandomCharactersLessonSettings abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  int getLessonLength();
 
-  virtual
-  int getLessonLength()
-  {
-    tt_Log.log(
-      "zscript/typist/settings/tt_random_characters_lesson_settings.zs:30: T: override this!");
-    return 3;
-  }
+  abstract
+  bool isUppercaseLettersEnabled();
 
-  virtual
-  bool isUppercaseLettersEnabled()
-  {
-    tt_Log.log(
-      "zscript/typist/settings/tt_random_characters_lesson_settings.zs:38: T: override this!");
-    return false;
-  }
+  abstract
+  bool isLowercaseLettersEnabled();
 
-  virtual
-  bool isLowercaseLettersEnabled()
-  {
-    tt_Log.log(
-      "zscript/typist/settings/tt_random_characters_lesson_settings.zs:46: T: override this!");
-    return false;
-  }
+  abstract
+  bool isNumbersEnabled();
 
-  virtual
-  bool isNumbersEnabled()
-  {
-    tt_Log.log(
-      "zscript/typist/settings/tt_random_characters_lesson_settings.zs:54: T: override this!");
-    return false;
-  }
+  abstract
+  bool isPunctuationEnabled();
 
-  virtual
-  bool isPunctuationEnabled()
-  {
-    tt_Log.log(
-      "zscript/typist/settings/tt_random_characters_lesson_settings.zs:62: T: override this!");
-    return false;
-  }
+  abstract
+  bool isSymbolsEnabled();
 
-  virtual
-  bool isSymbolsEnabled()
-  {
-    tt_Log.log(
-      "zscript/typist/settings/tt_random_characters_lesson_settings.zs:70: T: override this!");
-    return false;
-  }
+  abstract
+  bool isCustomCharactersEnabled();
 
-  virtual
-  bool isCustomCharactersEnabled()
-  {
-    tt_Log.log(
-      "zscript/typist/settings/tt_random_characters_lesson_settings.zs:78: T: override this!");
-    return false;
-  }
-
-  virtual
-  String getCustomCharacters()
-  {
-    tt_Log.log(
-      "zscript/typist/settings/tt_random_characters_lesson_settings.zs:86: T: override this!");
-    return "";
-  }
+  abstract
+  String getCustomCharacters();
 
 } // class tt_RandomCharactersLessonSettings

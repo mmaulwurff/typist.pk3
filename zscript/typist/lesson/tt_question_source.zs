@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -23,13 +23,7 @@
 class tt_QuestionSource abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  virtual
-  tt_Question getQuestion()
-  {
-    tt_Log.log("zscript/typist/lesson/tt_question_source.zs:31: T: override this!");
-    return NULL;
-  }
+  abstract
+  tt_Question getQuestion();
 
 } // class tt_QuestionSource

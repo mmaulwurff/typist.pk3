@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -15,17 +15,13 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This class is an interface for aiming.
+/**
+ * This class is an interface for aiming.
  */
 class tt_Aimer abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  play virtual
-  void aim()
-  {
-    tt_Log.log("zscript/typist/aimer/tt_aimer.zs:28: T: override this!");
-  }
+  play abstract
+  void aim();
 
 } // class tt_Aimer

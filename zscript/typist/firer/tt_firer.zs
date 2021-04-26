@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -15,17 +15,13 @@
  * Typist.pk3.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/** This is an interface for firing at target.
+/**
+ * This is an interface for firing at target.
  */
 class tt_Firer abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  play virtual
-  void fire()
-  {
-    tt_Log.log("zscript/typist/firer/tt_firer.zs:28: T: override this!");
-  }
+  play abstract
+  void fire();
 
 } // class tt_Firer

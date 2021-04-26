@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,12 +21,14 @@
 class tt_ModeStorage : tt_ModeSource abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  void setMode(int mode);
 
-  virtual
-  void setMode(int mode)
+  override
+  int getMode()
   {
-    tt_Log.log("zscript/typist/mode/tt_mode_storage.zs:29: T: override this!");
+    tt_Log.log("zscript/typist/mode/tt_mode_storage.zs:30: T: override this!");
+    return 0;
   }
 
 } // class tt_ModeStorage

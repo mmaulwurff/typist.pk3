@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,41 +21,19 @@
 class tt_Settings abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  int getScale();
 
-  virtual
-  int getScale()
-  {
-    tt_Log.log("zscript/typist/settings/tt_settings.zs:29: T: override this!");
-    return 1;
-  }
+  abstract
+  bool isAutoAimEnabled();
 
-  virtual
-  bool isAutoAimEnabled()
-  {
-    tt_Log.log("zscript/typist/settings/tt_settings.zs:36: T: override this!");
-    return false;
-  }
+  abstract
+  int getQuestionSourceIndex();
 
-  virtual
-  int getQuestionSourceIndex()
-  {
-    tt_Log.log("zscript/typist/settings/tt_settings.zs:43: T: override this!");
-    return 0;
-  }
+  abstract
+  bool getLessonEnabled(uint i);
 
-  virtual
-  bool getLessonEnabled(uint i)
-  {
-    tt_Log.log("zscript/typist/settings/tt_settings.zs:50: T: override this!");
-    return false;
-  }
-
-  virtual
-  bool isFastConfirmation()
-  {
-    tt_Log.log("zscript/typist/settings/tt_settings.zs:57: T: override this!");
-    return false;
-  }
+  abstract
+  bool isFastConfirmation();
 
 } // class tt_Settings

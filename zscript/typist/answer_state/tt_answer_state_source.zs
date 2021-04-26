@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,19 +21,16 @@
 class tt_AnswerStateSource : tt_KeyProcessor abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  tt_AnswerState getAnswerState();
 
-  virtual
-  tt_AnswerState getAnswerState()
-  {
-    tt_Log.log("zscript/typist/answer_state/tt_answer_state_source.zs:29: T: override this!");
-    return tt_AnswerState.of(tt_AnswerState.Unknown);
-  }
+  abstract
+  void reset();
 
-  virtual
-  void reset()
+  override
+  void processKey(tt_Character character)
   {
-    tt_Log.log("zscript/typist/answer_state/tt_answer_state_source.zs:36: T: override this!");
+    tt_Log.log("zscript/typist/answer_state/tt_answer_state_source.zs:33: T: override this!");
   }
 
 } // class tt_AnswerStateSource

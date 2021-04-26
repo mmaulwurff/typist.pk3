@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,12 +21,7 @@
 class tt_SoundPlayer abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  virtual
-  void playSound(String soundId)
-  {
-    tt_Log.log("zscript/typist/event_reporters/tt_sound_player.zs:29: T: override this!");
-  }
+  abstract
+  void playSound(String soundId);
 
 } // class tt_SoundPlayer

@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,12 +21,7 @@
 class tt_KeyProcessor abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  virtual
-  void processKey(tt_Character character)
-  {
-    tt_Log.log("zscript/typist/key_processor/tt_key_processor.zs:29: T: override this!");
-  }
+  abstract
+  void processKey(tt_Character character);
 
 } // class tt_KeyProcessor

@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,8 +21,6 @@
  */
 class tt_CommandDispatcher : tt_Activatable
 {
-
-// public: /////////////////////////////////////////////////////////////////////
 
   static
   tt_CommandDispatcher of( tt_AnswerSource       answerSource
@@ -97,6 +95,12 @@ class tt_CommandDispatcher : tt_Activatable
     }
 
     return result;
+  }
+
+  override
+  bool isVisible()
+  {
+    return true;
   }
 
 // private: ////////////////////////////////////////////////////////////////////

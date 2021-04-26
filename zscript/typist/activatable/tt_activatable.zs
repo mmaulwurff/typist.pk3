@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -17,31 +17,18 @@
 
 /**
  * This interface represents a game element that can be activated by the same
- * way the target is damaged. Such elements can be considered pseudo-targets.
+ * way the target is damaged. Such elements can be considered generic targets.
  */
 class tt_Activatable abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  play abstract
+  void activate();
 
-  play virtual
-  void activate()
-  {
-    tt_Log.log("zscript/typist/activatable/tt_activatable.zs:30: T: override this!");
-  }
+  abstract
+  tt_Strings getCommands();
 
-  virtual
-  tt_Strings getCommands()
-  {
-    tt_Log.log("zscript/typist/activatable/tt_activatable.zs:36: T: override this!");
-    return NULL;
-  }
-
-  virtual
-  bool isVisible()
-  {
-    tt_Log.log("zscript/typist/activatable/tt_activatable.zs:43: T: override this!");
-    return false;
-  }
+  abstract
+  bool isVisible();
 
 } // class tt_Activatable

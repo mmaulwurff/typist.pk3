@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,22 +21,19 @@
 class tt_AnswerSource : tt_KeyProcessor abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  virtual
-  tt_Answer getAnswer()
-  {
-    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:29: T: override this!");
-    return NULL;
-  }
+  abstract
+  tt_Answer getAnswer();
 
   /**
    * Clears answer.
    */
-  virtual
-  void reset()
+  abstract
+  void reset();
+
+  override
+  void processKey(tt_Character character)
   {
-    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:39: T: override this!");
+    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:36: T: override this!");
   }
 
 } // class tt_AnswerSource

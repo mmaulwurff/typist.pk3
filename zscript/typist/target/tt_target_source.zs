@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -23,13 +23,7 @@
 class tt_TargetSource abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  virtual
-  tt_Targets getTargets()
-  {
-    tt_Log.log("zscript/typist/target/tt_target_source.zs:31: T: override this!");
-    return NULL;
-  }
+  abstract
+  tt_Targets getTargets();
 
 } // class tt_TargetSource

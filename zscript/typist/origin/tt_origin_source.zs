@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,18 +21,12 @@
 class tt_OriginSource abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
   /**
    * Returns the origin (coordinate in 3D space).
    *
    * Getting the origin doesn't change it.
    */
-  virtual
-  tt_Origin getOrigin()
-  {
-    tt_Log.log("zscript/typist/origin/tt_origin_source.zs:34: T: override this!");
-    return NULL;
-  }
+  abstract
+  tt_Origin getOrigin();
 
 } // class tt_OriginSource

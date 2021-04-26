@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,49 +21,25 @@
 class tt_PlayerHandler abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  void processKey(tt_Character character);
 
-  virtual
-  void processKey(tt_Character character)
-  {
-    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:29: T: override this!");
-  }
+  play abstract
+  void tick();
 
-  play virtual
-  void tick()
-  {
-    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:35: T: override this!");
-  }
+  abstract
+  void reportDead(Actor dead);
 
-  virtual
-  void reportDead(Actor dead)
-  {
-    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:41: T: override this!");
-  }
+  abstract
+  bool isCapturingKeys();
 
-  virtual
-  bool isCapturingKeys()
-  {
-    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:47: T: override this!");
-    return false;
-  }
+  abstract
+  void unlockMode();
 
-  virtual
-  void unlockMode()
-  {
-    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:54: T: override this!");
-  }
+  abstract
+  void forceCombat();
 
-  virtual
-  void forceCombat()
-  {
-    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:60: T: override this!");
-  }
-
-  ui virtual
-  void draw(RenderEvent event)
-  {
-    tt_Log.log("zscript/typist/player_handler/tt_player_handler.zs:66: T: override this!");
-  }
+  ui abstract
+  void draw(RenderEvent event);
 
 } // class tt_PlayerHandler

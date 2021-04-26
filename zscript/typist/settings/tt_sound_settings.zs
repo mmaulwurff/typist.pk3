@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,27 +21,13 @@
 class tt_SoundSettings abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  bool isEnabled();
 
-  virtual
-  bool isEnabled()
-  {
-    tt_Log.log("zscript/typist/settings/tt_sound_settings.zs:29: T: override this!");
-    return false;
-  }
+  abstract
+  bool isTypingEnabled();
 
-  virtual
-  bool isTypingEnabled()
-  {
-    tt_Log.log("zscript/typist/settings/tt_sound_settings.zs:36: T: override this!");
-    return false;
-  }
-
-  virtual
-  int getTheme()
-  {
-    tt_Log.log("zscript/typist/settings/tt_sound_settings.zs:43: T: override this!");
-    return 0;
-  }
+  abstract
+  int getTheme();
 
 } // class tt_SoundSettings

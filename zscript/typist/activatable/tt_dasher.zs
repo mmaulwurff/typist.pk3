@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -23,16 +23,10 @@
 class tt_Dasher : tt_Activatable abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  double getDashAngle() const;
 
-  virtual
-  double getDashAngle() const
-  {
-    tt_Log.log("zscript/typist/activatable/tt_dasher.zs:31: T: override this!");
-    return 0;
-  }
-
-// public: // tt_Activatable ///////////////////////////////////////////////////
+// tt_Activatable //////////////////////////////////////////////////////////////////////////////////
 
   override
   void activate()
@@ -45,6 +39,14 @@ class tt_Dasher : tt_Activatable abstract
   bool isVisible()
   {
     return true;
+  }
+
+  /// This function is defined only to satisfy brittle mock class generation script.
+  override
+  tt_Strings getCommands()
+  {
+    tt_Log.log("zscript/typist/activatable/tt_dasher.zs:48: T: override this!");
+    return NULL;
   }
 
 // private: ////////////////////////////////////////////////////////////////////

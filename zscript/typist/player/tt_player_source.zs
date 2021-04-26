@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,20 +21,10 @@
 class tt_PlayerSource abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  PlayerInfo getInfo();
 
-  virtual
-  PlayerInfo getInfo()
-  {
-    tt_Log.log("zscript/typist/player/tt_player_source.zs:29: T: override this!");
-    return NULL;
-  }
-
-  virtual
-  PlayerPawn getPawn()
-  {
-    tt_Log.log("zscript/typist/player/tt_player_source.zs:36: T: override this!");
-    return NULL;
-  }
+  abstract
+  PlayerPawn getPawn();
 
 } // class tt_PlayerSource

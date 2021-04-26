@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,27 +21,13 @@
 class tt_Question abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  bool isRight(tt_Answer answer);
 
-  virtual
-  bool isRight(tt_Answer answer)
-  {
-    tt_Log.log("zscript/typist/question/tt_question.zs:29: T: override this!");
-    return false;
-  }
+  abstract
+  String getDescription();
 
-  virtual
-  String getDescription()
-  {
-    tt_Log.log("zscript/typist/question/tt_question.zs:36: T: override this!");
-    return "override this!";
-  }
-
-  virtual
-  String getHintFor(tt_Answer answer)
-  {
-    tt_Log.log("zscript/typist/question/tt_question.zs:43: T: override this!");
-    return "override this!";
-  }
+  abstract
+  String getHintFor(tt_Answer answer);
 
 } // class tt_Question

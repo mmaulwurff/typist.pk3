@@ -59,7 +59,7 @@ def get_function_starts(token_list):
 
     functions = []
     for i, token in enumerate(token_list):
-        if token == 'virtual':
+        if token == 'virtual' or (token == 'abstract' and token_list[i + 1] != '{'):
             functions.append(i)
     return functions
 

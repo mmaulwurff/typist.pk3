@@ -23,8 +23,6 @@
 class tt_AnswerState
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
   static
   tt_AnswerState of(int state)
   {

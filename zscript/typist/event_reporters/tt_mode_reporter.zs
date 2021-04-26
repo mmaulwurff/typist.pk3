@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -22,12 +22,7 @@
 class tt_ModeReporter abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  virtual
-  void report(int mode)
-  {
-    tt_Log.log("zscript/typist/event_reporters/tt_mode_reporter.zs:30: T: override this!");
-  }
+  abstract
+  void report(int mode);
 
 } // class tt_ModeReporter

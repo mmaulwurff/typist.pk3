@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,12 +21,7 @@
 class tt_View abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
-  ui virtual
-  void draw(RenderEvent event)
-  {
-    tt_Log.log("zscript/typist/view/tt_view.zs:29: T: override this!");
-  }
+  ui abstract
+  void draw(RenderEvent event);
 
 } // class tt_View

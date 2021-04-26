@@ -68,6 +68,197 @@ class tt_InputManagerMock : tt_InputManager
 
 } // class tt_InputManagerMock
 
+class tt_RandomCharactersLessonSettingsMock : tt_RandomCharactersLessonSettings
+{
+
+  static tt_RandomCharactersLessonSettingsMock of() { return new("tt_RandomCharactersLessonSettingsMock"); } // construct
+
+  override
+  int getLessonLength()
+  {
+    ++_mock_getLessonLength_called;
+    return _mock_getLessonLength;
+  }
+
+  void expect_getLessonLength(int value, int expected = 1)
+  {
+    _mock_getLessonLength = value;
+    _mock_getLessonLength_expected = expected;
+    _mock_getLessonLength_called = 0;
+  }
+
+  bool isSatisfied_getLessonLength() const
+  {
+    return _mock_getLessonLength_expected == _mock_getLessonLength_called;
+  }
+
+  private int _mock_getLessonLength;
+  private int _mock_getLessonLength_expected;
+  private int _mock_getLessonLength_called;
+
+  override
+  bool isUppercaseLettersEnabled()
+  {
+    ++_mock_isUppercaseLettersEnabled_called;
+    return _mock_isUppercaseLettersEnabled;
+  }
+
+  void expect_isUppercaseLettersEnabled(bool value, int expected = 1)
+  {
+    _mock_isUppercaseLettersEnabled = value;
+    _mock_isUppercaseLettersEnabled_expected = expected;
+    _mock_isUppercaseLettersEnabled_called = 0;
+  }
+
+  bool isSatisfied_isUppercaseLettersEnabled() const
+  {
+    return _mock_isUppercaseLettersEnabled_expected == _mock_isUppercaseLettersEnabled_called;
+  }
+
+  private bool _mock_isUppercaseLettersEnabled;
+  private int _mock_isUppercaseLettersEnabled_expected;
+  private int _mock_isUppercaseLettersEnabled_called;
+
+  override
+  bool isLowercaseLettersEnabled()
+  {
+    ++_mock_isLowercaseLettersEnabled_called;
+    return _mock_isLowercaseLettersEnabled;
+  }
+
+  void expect_isLowercaseLettersEnabled(bool value, int expected = 1)
+  {
+    _mock_isLowercaseLettersEnabled = value;
+    _mock_isLowercaseLettersEnabled_expected = expected;
+    _mock_isLowercaseLettersEnabled_called = 0;
+  }
+
+  bool isSatisfied_isLowercaseLettersEnabled() const
+  {
+    return _mock_isLowercaseLettersEnabled_expected == _mock_isLowercaseLettersEnabled_called;
+  }
+
+  private bool _mock_isLowercaseLettersEnabled;
+  private int _mock_isLowercaseLettersEnabled_expected;
+  private int _mock_isLowercaseLettersEnabled_called;
+
+  override
+  bool isNumbersEnabled()
+  {
+    ++_mock_isNumbersEnabled_called;
+    return _mock_isNumbersEnabled;
+  }
+
+  void expect_isNumbersEnabled(bool value, int expected = 1)
+  {
+    _mock_isNumbersEnabled = value;
+    _mock_isNumbersEnabled_expected = expected;
+    _mock_isNumbersEnabled_called = 0;
+  }
+
+  bool isSatisfied_isNumbersEnabled() const
+  {
+    return _mock_isNumbersEnabled_expected == _mock_isNumbersEnabled_called;
+  }
+
+  private bool _mock_isNumbersEnabled;
+  private int _mock_isNumbersEnabled_expected;
+  private int _mock_isNumbersEnabled_called;
+
+  override
+  bool isPunctuationEnabled()
+  {
+    ++_mock_isPunctuationEnabled_called;
+    return _mock_isPunctuationEnabled;
+  }
+
+  void expect_isPunctuationEnabled(bool value, int expected = 1)
+  {
+    _mock_isPunctuationEnabled = value;
+    _mock_isPunctuationEnabled_expected = expected;
+    _mock_isPunctuationEnabled_called = 0;
+  }
+
+  bool isSatisfied_isPunctuationEnabled() const
+  {
+    return _mock_isPunctuationEnabled_expected == _mock_isPunctuationEnabled_called;
+  }
+
+  private bool _mock_isPunctuationEnabled;
+  private int _mock_isPunctuationEnabled_expected;
+  private int _mock_isPunctuationEnabled_called;
+
+  override
+  bool isSymbolsEnabled()
+  {
+    ++_mock_isSymbolsEnabled_called;
+    return _mock_isSymbolsEnabled;
+  }
+
+  void expect_isSymbolsEnabled(bool value, int expected = 1)
+  {
+    _mock_isSymbolsEnabled = value;
+    _mock_isSymbolsEnabled_expected = expected;
+    _mock_isSymbolsEnabled_called = 0;
+  }
+
+  bool isSatisfied_isSymbolsEnabled() const
+  {
+    return _mock_isSymbolsEnabled_expected == _mock_isSymbolsEnabled_called;
+  }
+
+  private bool _mock_isSymbolsEnabled;
+  private int _mock_isSymbolsEnabled_expected;
+  private int _mock_isSymbolsEnabled_called;
+
+  override
+  bool isCustomCharactersEnabled()
+  {
+    ++_mock_isCustomCharactersEnabled_called;
+    return _mock_isCustomCharactersEnabled;
+  }
+
+  void expect_isCustomCharactersEnabled(bool value, int expected = 1)
+  {
+    _mock_isCustomCharactersEnabled = value;
+    _mock_isCustomCharactersEnabled_expected = expected;
+    _mock_isCustomCharactersEnabled_called = 0;
+  }
+
+  bool isSatisfied_isCustomCharactersEnabled() const
+  {
+    return _mock_isCustomCharactersEnabled_expected == _mock_isCustomCharactersEnabled_called;
+  }
+
+  private bool _mock_isCustomCharactersEnabled;
+  private int _mock_isCustomCharactersEnabled_expected;
+  private int _mock_isCustomCharactersEnabled_called;
+
+  override
+  String getCustomCharacters()
+  {
+    ++_mock_getCustomCharacters_called;
+    return _mock_getCustomCharacters;
+  }
+
+  void expect_getCustomCharacters(String value, int expected = 1)
+  {
+    _mock_getCustomCharacters = value;
+    _mock_getCustomCharacters_expected = expected;
+    _mock_getCustomCharacters_called = 0;
+  }
+
+  bool isSatisfied_getCustomCharacters() const
+  {
+    return _mock_getCustomCharacters_expected == _mock_getCustomCharacters_called;
+  }
+
+  private String _mock_getCustomCharacters;
+  private int _mock_getCustomCharacters_expected;
+  private int _mock_getCustomCharacters_called;
+
+} // class tt_RandomCharactersLessonSettingsMock
+
 class tt_CommandSettingsMock : tt_CommandSettings
 {
 

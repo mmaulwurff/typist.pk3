@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,18 +21,10 @@
 class tt_AnswerReporter abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
+  abstract
+  void reportMatch();
 
-  virtual
-  void reportMatch()
-  {
-    tt_Log.log("zscript/typist/event_reporters/tt_answer_reporter.zs:29: T: override this!");
-  }
-
-  virtual
-  void reportNotMatch()
-  {
-    tt_Log.log("zscript/typist/event_reporters/tt_answer_reporter.zs:35: T: override this!");
-  }
+  abstract
+  void reportNotMatch();
 
 } // class tt_AnswerReporter

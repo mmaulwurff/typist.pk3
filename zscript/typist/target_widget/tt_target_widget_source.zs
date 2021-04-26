@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -21,18 +21,12 @@
 class tt_TargetWidgetSource abstract
 {
 
-// public: /////////////////////////////////////////////////////////////////////
-
   /**
    * Get a list of target widgets.
    *
    * @returns a list of target widgets.
    */
-  ui virtual
-  tt_TargetWidgets getWidgets(RenderEvent event)
-  {
-    tt_Log.log("zscript/typist/target_widget/tt_target_widget_source.zs:34: T: override this!");
-    return NULL;
-  }
+  ui abstract
+  tt_TargetWidgets getWidgets(RenderEvent event);
 
 } // class tt_TargetWidgetSource

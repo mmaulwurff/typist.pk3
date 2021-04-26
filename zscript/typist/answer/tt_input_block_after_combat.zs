@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -22,8 +22,6 @@
  */
 class tt_InputBlockAfterCombat : tt_AnswerSource
 {
-
-// public: /////////////////////////////////////////////////////////////////////
 
   static
   tt_InputBlockAfterCombat of( tt_AnswerSource answerSource
@@ -74,6 +72,9 @@ class tt_InputBlockAfterCombat : tt_AnswerSource
       _answerSource.processKey(character);
     }
   }
+
+  override
+  void reset() {}
 
 // private: ////////////////////////////////////////////////////////////////////
 
