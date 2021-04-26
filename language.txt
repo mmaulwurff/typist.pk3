@@ -2,7 +2,7 @@
 
 // Menus ///////////////////////////////////////////////////////////////////////
 
-TT_TITLE = "Typist.pk3 v0.7.1";
+TT_TITLE = "Typist.pk3 v0.7.2";
 
 TT_UNLOCK = "Unlock Game Mode";
 TT_COMBAT = "Force Combat Mode";
