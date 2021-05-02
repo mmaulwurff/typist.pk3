@@ -144,15 +144,11 @@ if __name__ == "__main__":
 
     SOURCES = list(Path("./zscript/typist").rglob("*.zs"))
 
-    #SOURCES = [
-    #    'zscript/typist/view/tt_View.zs',
-    #]
-
     for source in SOURCES:
         source_tokens = tokenize(source)
         if is_interface(source_tokens):
             MOCK_CONTENTS += generate_mock_class(source_tokens)
 
-    OUT_FILE = open('zscript/typist/tests/tt_mocks.zs', 'w')
+    OUT_FILE = open('zscript/typist/tests/mocks.zs', 'w')
     OUT_FILE.write(MOCK_CONTENTS)
     #print(MOCK_CONTENTS)

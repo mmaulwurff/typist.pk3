@@ -48,7 +48,7 @@ class tt_SelectedQuestionSource : tt_QuestionSource
 
     if (questionSourceIndex >= _questionSources.size())
     {
-      let message = String.Format("zscript/typist/lesson/tt_selected_question_source.zs:51: T:"
+      let message = String.Format("zscript/typist/lesson/selected_question_source.zs:51: T:"
                                   " no question source at index %d.", questionSourceIndex);
       tt_Log.log(message);
       return NULL;

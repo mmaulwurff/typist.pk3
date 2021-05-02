@@ -68,6 +68,86 @@ class tt_InputManagerMock : tt_InputManager
 
 } // class tt_InputManagerMock
 
+class tt_TargetSourceMock : tt_TargetSource
+{
+
+  static tt_TargetSourceMock of() { return new("tt_TargetSourceMock"); } // construct
+
+  override
+  tt_Targets getTargets()
+  {
+    ++_mock_getTargets_called;
+    return _mock_getTargets;
+  }
+
+  void expect_getTargets(tt_Targets value, int expected = 1)
+  {
+    _mock_getTargets = value;
+    _mock_getTargets_expected = expected;
+    _mock_getTargets_called = 0;
+  }
+
+  bool isSatisfied_getTargets() const
+  {
+    return _mock_getTargets_expected == _mock_getTargets_called;
+  }
+
+  private tt_Targets _mock_getTargets;
+  private int _mock_getTargets_expected;
+  private int _mock_getTargets_called;
+
+} // class tt_TargetSourceMock
+
+class tt_AnswerStateSourceMock : tt_AnswerStateSource
+{
+
+  static tt_AnswerStateSourceMock of() { return new("tt_AnswerStateSourceMock"); } // construct
+
+  override
+  tt_AnswerState getAnswerState()
+  {
+    ++_mock_getAnswerState_called;
+    return _mock_getAnswerState;
+  }
+
+  void expect_getAnswerState(tt_AnswerState value, int expected = 1)
+  {
+    _mock_getAnswerState = value;
+    _mock_getAnswerState_expected = expected;
+    _mock_getAnswerState_called = 0;
+  }
+
+  bool isSatisfied_getAnswerState() const
+  {
+    return _mock_getAnswerState_expected == _mock_getAnswerState_called;
+  }
+
+  private tt_AnswerState _mock_getAnswerState;
+  private int _mock_getAnswerState_expected;
+  private int _mock_getAnswerState_called;
+
+  override
+  void reset()
+  {
+    ++_mock_reset_called;
+  }
+
+  void expect_reset(int expected = 1)
+  {
+    _mock_reset_expected = expected;
+    _mock_reset_called = 0;
+  }
+
+  bool isSatisfied_reset() const
+  {
+    return _mock_reset_expected == _mock_reset_called;
+  }
+
+  private int _mock_reset_expected;
+  private int _mock_reset_called;
+
+} // class tt_AnswerStateSourceMock
+
 class tt_RandomCharactersLessonSettingsMock : tt_RandomCharactersLessonSettings
 {
 
@@ -404,6 +484,82 @@ class tt_CommandSettingsMock : tt_CommandSettings
 
 } // class tt_CommandSettingsMock
 
+class tt_SoundSettingsMock : tt_SoundSettings
+{
+
+  static tt_SoundSettingsMock of() { return new("tt_SoundSettingsMock"); } // construct
+
+  override
+  bool isEnabled()
+  {
+    ++_mock_isEnabled_called;
+    return _mock_isEnabled;
+  }
+
+  void expect_isEnabled(bool value, int expected = 1)
+  {
+    _mock_isEnabled = value;
+    _mock_isEnabled_expected = expected;
+    _mock_isEnabled_called = 0;
+  }
+
+  bool isSatisfied_isEnabled() const
+  {
+    return _mock_isEnabled_expected == _mock_isEnabled_called;
+  }
+
+  private bool _mock_isEnabled;
+  private int _mock_isEnabled_expected;
+  private int _mock_isEnabled_called;
+
+  override
+  bool isTypingEnabled()
+  {
+    ++_mock_isTypingEnabled_called;
+    return _mock_isTypingEnabled;
+  }
+
+  void expect_isTypingEnabled(bool value, int expected = 1)
+  {
+    _mock_isTypingEnabled = value;
+    _mock_isTypingEnabled_expected = expected;
+    _mock_isTypingEnabled_called = 0;
+  }
+
+  bool isSatisfied_isTypingEnabled() const
+  {
+    return _mock_isTypingEnabled_expected == _mock_isTypingEnabled_called;
+  }
+
+  private bool _mock_isTypingEnabled;
+  private int _mock_isTypingEnabled_expected;
+  private int _mock_isTypingEnabled_called;
+
+  override
+  int getTheme()
+  {
+    ++_mock_getTheme_called;
+    return _mock_getTheme;
+  }
+
+  void expect_getTheme(int value, int expected = 1)
+  {
+    _mock_getTheme = value;
+    _mock_getTheme_expected = expected;
+    _mock_getTheme_called = 0;
+  }
+
+  bool isSatisfied_getTheme() const
+  {
+    return _mock_getTheme_expected == _mock_getTheme_called;
+  }
+
+  private int _mock_getTheme;
+  private int _mock_getTheme_expected;
+  private int _mock_getTheme_called;
+
+} // class tt_SoundSettingsMock
+
 class tt_SettingsMock : tt_Settings
 {
 
@@ -526,243 +682,6 @@ class tt_SettingsMock : tt_Settings
 
 } // class tt_SettingsMock
 
-class tt_SoundSettingsMock : tt_SoundSettings
-{
-
-  static tt_SoundSettingsMock of() { return new("tt_SoundSettingsMock"); } // construct
-
-  override
-  bool isEnabled()
-  {
-    ++_mock_isEnabled_called;
-    return _mock_isEnabled;
-  }
-
-  void expect_isEnabled(bool value, int expected = 1)
-  {
-    _mock_isEnabled = value;
-    _mock_isEnabled_expected = expected;
-    _mock_isEnabled_called = 0;
-  }
-
-  bool isSatisfied_isEnabled() const
-  {
-    return _mock_isEnabled_expected == _mock_isEnabled_called;
-  }
-
-  private bool _mock_isEnabled;
-  private int _mock_isEnabled_expected;
-  private int _mock_isEnabled_called;
-
-  override
-  bool isTypingEnabled()
-  {
-    ++_mock_isTypingEnabled_called;
-    return _mock_isTypingEnabled;
-  }
-
-  void expect_isTypingEnabled(bool value, int expected = 1)
-  {
-    _mock_isTypingEnabled = value;
-    _mock_isTypingEnabled_expected = expected;
-    _mock_isTypingEnabled_called = 0;
-  }
-
-  bool isSatisfied_isTypingEnabled() const
-  {
-    return _mock_isTypingEnabled_expected == _mock_isTypingEnabled_called;
-  }
-
-  private bool _mock_isTypingEnabled;
-  private int _mock_isTypingEnabled_expected;
-  private int _mock_isTypingEnabled_called;
-
-  override
-  int getTheme()
-  {
-    ++_mock_getTheme_called;
-    return _mock_getTheme;
-  }
-
-  void expect_getTheme(int value, int expected = 1)
-  {
-    _mock_getTheme = value;
-    _mock_getTheme_expected = expected;
-    _mock_getTheme_called = 0;
-  }
-
-  bool isSatisfied_getTheme() const
-  {
-    return _mock_getTheme_expected == _mock_getTheme_called;
-  }
-
-  private int _mock_getTheme;
-  private int _mock_getTheme_expected;
-  private int _mock_getTheme_called;
-
-} // class tt_SoundSettingsMock
-
-class tt_TargetSourceMock : tt_TargetSource
-{
-
-  static tt_TargetSourceMock of() { return new("tt_TargetSourceMock"); } // construct
-
-  override
-  tt_Targets getTargets()
-  {
-    ++_mock_getTargets_called;
-    return _mock_getTargets;
-  }
-
-  void expect_getTargets(tt_Targets value, int expected = 1)
-  {
-    _mock_getTargets = value;
-    _mock_getTargets_expected = expected;
-    _mock_getTargets_called = 0;
-  }
-
-  bool isSatisfied_getTargets() const
-  {
-    return _mock_getTargets_expected == _mock_getTargets_called;
-  }
-
-  private tt_Targets _mock_getTargets;
-  private int _mock_getTargets_expected;
-  private int _mock_getTargets_called;
-
-} // class tt_TargetSourceMock
-
-class tt_AnswerStateSourceMock : tt_AnswerStateSource
-{
-
-  static tt_AnswerStateSourceMock of() { return new("tt_AnswerStateSourceMock"); } // construct
-
-  override
-  tt_AnswerState getAnswerState()
-  {
-    ++_mock_getAnswerState_called;
-    return _mock_getAnswerState;
-  }
-
-  void expect_getAnswerState(tt_AnswerState value, int expected = 1)
-  {
-    _mock_getAnswerState = value;
-    _mock_getAnswerState_expected = expected;
-    _mock_getAnswerState_called = 0;
-  }
-
-  bool isSatisfied_getAnswerState() const
-  {
-    return _mock_getAnswerState_expected == _mock_getAnswerState_called;
-  }
-
-  private tt_AnswerState _mock_getAnswerState;
-  private int _mock_getAnswerState_expected;
-  private int _mock_getAnswerState_called;
-
-  override
-  void reset()
-  {
-    ++_mock_reset_called;
-  }
-
-  void expect_reset(int expected = 1)
-  {
-    _mock_reset_expected = expected;
-    _mock_reset_called = 0;
-  }
-
-  bool isSatisfied_reset() const
-  {
-    return _mock_reset_expected == _mock_reset_called;
-  }
-
-  private int _mock_reset_expected;
-  private int _mock_reset_called;
-
-} // class tt_AnswerStateSourceMock
-
-class tt_SoundPlayerMock : tt_SoundPlayer
-{
-
-  static tt_SoundPlayerMock of() { return new("tt_SoundPlayerMock"); } // construct
-
-  override
-  void playSound(String soundId)
-  {
-    ++_mock_playSound_called;
-  }
-
-  void expect_playSound(int expected = 1)
-  {
-    _mock_playSound_expected = expected;
-    _mock_playSound_called = 0;
-  }
-
-  bool isSatisfied_playSound() const
-  {
-    return _mock_playSound_expected == _mock_playSound_called;
-  }
-
-  private int _mock_playSound_expected;
-  private int _mock_playSound_called;
-
-} // class tt_SoundPlayerMock
-
-class tt_ModeReporterMock : tt_ModeReporter
-{
-
-  static tt_ModeReporterMock of() { return new("tt_ModeReporterMock"); } // construct
-
-  override
-  void report(int mode)
-  {
-    ++_mock_report_called;
-  }
-
-  void expect_report(int expected = 1)
-  {
-    _mock_report_expected = expected;
-    _mock_report_called = 0;
-  }
-
-  bool isSatisfied_report() const
-  {
-    return _mock_report_expected == _mock_report_called;
-  }
-
-  private int _mock_report_expected;
-  private int _mock_report_called;
-
-} // class tt_ModeReporterMock
-
-class tt_KeyPressReporterMock : tt_KeyPressReporter
-{
-
-  static tt_KeyPressReporterMock of() { return new("tt_KeyPressReporterMock"); } // construct
-
-  override
-  void report()
-  {
-    ++_mock_report_called;
-  }
-
-  void expect_report(int expected = 1)
-  {
-    _mock_report_expected = expected;
-    _mock_report_called = 0;
-  }
-
-  bool isSatisfied_report() const
-  {
-    return _mock_report_expected == _mock_report_called;
-  }
-
-  private int _mock_report_expected;
-  private int _mock_report_called;
-
-} // class tt_KeyPressReporterMock
-
 class tt_AnswerReporterMock : tt_AnswerReporter
 {
 
@@ -809,6 +728,87 @@ class tt_AnswerReporterMock : tt_AnswerReporter
   private int _mock_reportNotMatch_called;
 
 } // class tt_AnswerReporterMock
+
+class tt_SoundPlayerMock : tt_SoundPlayer
+{
+
+  static tt_SoundPlayerMock of() { return new("tt_SoundPlayerMock"); } // construct
+
+  override
+  void playSound(String soundId)
+  {
+    ++_mock_playSound_called;
+  }
+
+  void expect_playSound(int expected = 1)
+  {
+    _mock_playSound_expected = expected;
+    _mock_playSound_called = 0;
+  }
+
+  bool isSatisfied_playSound() const
+  {
+    return _mock_playSound_expected == _mock_playSound_called;
+  }
+
+  private int _mock_playSound_expected;
+  private int _mock_playSound_called;
+
+} // class tt_SoundPlayerMock
+
+class tt_KeyPressReporterMock : tt_KeyPressReporter
+{
+
+  static tt_KeyPressReporterMock of() { return new("tt_KeyPressReporterMock"); } // construct
+
+  override
+  void report()
+  {
+    ++_mock_report_called;
+  }
+
+  void expect_report(int expected = 1)
+  {
+    _mock_report_expected = expected;
+    _mock_report_called = 0;
+  }
+
+  bool isSatisfied_report() const
+  {
+    return _mock_report_expected == _mock_report_called;
+  }
+
+  private int _mock_report_expected;
+  private int _mock_report_called;
+
+} // class tt_KeyPressReporterMock
+
+class tt_ModeReporterMock : tt_ModeReporter
+{
+
+  static tt_ModeReporterMock of() { return new("tt_ModeReporterMock"); } // construct
+
+  override
+  void report(int mode)
+  {
+    ++_mock_report_called;
+  }
+
+  void expect_report(int expected = 1)
+  {
+    _mock_report_expected = expected;
+    _mock_report_called = 0;
+  }
+
+  bool isSatisfied_report() const
+  {
+    return _mock_report_expected == _mock_report_called;
+  }
+
+  private int _mock_report_expected;
+  private int _mock_report_called;
+
+} // class tt_ModeReporterMock
 
 class tt_ClockMock : tt_Clock
 {
@@ -1096,6 +1096,36 @@ class tt_KnownTargetSourceMock : tt_KnownTargetSource
 
 } // class tt_KnownTargetSourceMock
 
+class tt_DasherMock : tt_Dasher
+{
+
+  static tt_DasherMock of() { return new("tt_DasherMock"); } // construct
+
+  override
+  double getDashAngle()
+  {
+    ++_mock_getDashAngle_called;
+    return _mock_getDashAngle;
+  }
+
+  void expect_getDashAngle(double value, int expected = 1)
+  {
+    _mock_getDashAngle = value;
+    _mock_getDashAngle_expected = expected;
+    _mock_getDashAngle_called = 0;
+  }
+
+  bool isSatisfied_getDashAngle() const
+  {
+    return _mock_getDashAngle_expected == _mock_getDashAngle_called;
+  }
+
+  private double _mock_getDashAngle;
+  private int _mock_getDashAngle_expected;
+  private int _mock_getDashAngle_called;
+
+} // class tt_DasherMock
+
 class tt_ActivatableMock : tt_Activatable
 {
 
@@ -1168,36 +1198,6 @@ class tt_ActivatableMock : tt_Activatable
   private int _mock_isVisible_called;
 
 } // class tt_ActivatableMock
-
-class tt_DasherMock : tt_Dasher
-{
-
-  static tt_DasherMock of() { return new("tt_DasherMock"); } // construct
-
-  override
-  double getDashAngle()
-  {
-    ++_mock_getDashAngle_called;
-    return _mock_getDashAngle;
-  }
-
-  void expect_getDashAngle(double value, int expected = 1)
-  {
-    _mock_getDashAngle = value;
-    _mock_getDashAngle_expected = expected;
-    _mock_getDashAngle_called = 0;
-  }
-
-  bool isSatisfied_getDashAngle() const
-  {
-    return _mock_getDashAngle_expected == _mock_getDashAngle_called;
-  }
-
-  private double _mock_getDashAngle;
-  private int _mock_getDashAngle_expected;
-  private int _mock_getDashAngle_called;
-
-} // class tt_DasherMock
 
 class tt_OriginSourceMock : tt_OriginSource
 {

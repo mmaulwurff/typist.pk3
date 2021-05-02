@@ -45,7 +45,7 @@ class tt_Dasher : tt_Activatable abstract
   override
   tt_Strings getCommands()
   {
-    tt_Log.log("zscript/typist/activatable/tt_dasher.zs:48: T: override this!");
+    tt_Log.log("zscript/typist/activatable/dasher.zs:48: T: override this!");
     return NULL;
   }
 

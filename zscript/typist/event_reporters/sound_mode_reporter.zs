@@ -38,7 +38,7 @@ class tt_SoundModeReporter : tt_ModeReporter
     switch (mode)
     {
     case tt_Mode.Unknown:
-      tt_Log.log("zscript/typist/event_reporters/tt_sound_mode_reporter.zs:41: T: unknown mode!");
+      tt_Log.log("zscript/typist/event_reporters/sound_mode_reporter.zs:41: T: unknown mode!");
       break;
     case tt_Mode.Combat:  _soundPlayer.playSound("tt/combat");  break;
     case tt_Mode.Explore: _soundPlayer.playSound("tt/explore"); break;

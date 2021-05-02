@@ -49,7 +49,7 @@ class tt_StringSet : tt_QuestionSource
     int nWords = int(_words.size());
     if (nWords == 0)
     {
-      let message = String.Format("zscript/typist/lesson/tt_string_set.zs:52: T:"
+      let message = String.Format("zscript/typist/lesson/string_set.zs:52: T:"
                                   "no words in lump %s.", _lumpName);
       tt_Log.log(message);
       return NULL;

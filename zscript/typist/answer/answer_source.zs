@@ -16,19 +16,24 @@
  */
 
 /**
- * This is an interface for storing and retrieving mode.
+ * This interface represents a source of answers.
  */
-class tt_ModeStorage : tt_ModeSource abstract
+class tt_AnswerSource : tt_KeyProcessor abstract
 {
 
   abstract
-  void setMode(int mode);
+  tt_Answer getAnswer();
+
+  /**
+   * Clears answer.
+   */
+  abstract
+  void reset();
 
   override
-  int getMode()
+  void processKey(tt_Character character)
   {
-    tt_Log.log("zscript/typist/mode/tt_mode_storage.zs:30: T: override this!");
-    return 0;
+    tt_Log.log("zscript/typist/answer/answer_source.zs:36: T: override this!");
   }
 
-} // class tt_ModeStorage
+} // class tt_AnswerSource

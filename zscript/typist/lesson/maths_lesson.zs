@@ -45,7 +45,7 @@ class tt_MathsLesson : tt_QuestionSource
     case Division:       return makeDivisionQuestion();
     }
 
-    tt_Log.log("zscript/typist/lesson/tt_maths_lesson.zs:48: T: unknown operation!");
+    tt_Log.log("zscript/typist/lesson/maths_lesson.zs:48: T: unknown operation!");
     return NULL;
   }
 

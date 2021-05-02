@@ -16,24 +16,21 @@
  */
 
 /**
- * This interface represents a source of answers.
+ * This interface provides access to tt_AnswerState.
  */
-class tt_AnswerSource : tt_KeyProcessor abstract
+class tt_AnswerStateSource : tt_KeyProcessor abstract
 {
 
   abstract
-  tt_Answer getAnswer();
+  tt_AnswerState getAnswerState();
 
-  /**
-   * Clears answer.
-   */
   abstract
   void reset();
 
   override
   void processKey(tt_Character character)
   {
-    tt_Log.log("zscript/typist/answer/tt_answer_source.zs:36: T: override this!");
+    tt_Log.log("zscript/typist/answer_state/answer_state_source.zs:33: T: override this!");
   }
 
-} // class tt_AnswerSource
+} // class tt_AnswerStateSource

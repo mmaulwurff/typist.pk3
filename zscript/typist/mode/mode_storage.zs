@@ -16,21 +16,19 @@
  */
 
 /**
- * This interface provides access to tt_AnswerState.
+ * This is an interface for storing and retrieving mode.
  */
-class tt_AnswerStateSource : tt_KeyProcessor abstract
+class tt_ModeStorage : tt_ModeSource abstract
 {
 
   abstract
-  tt_AnswerState getAnswerState();
-
-  abstract
-  void reset();
+  void setMode(int mode);
 
   override
-  void processKey(tt_Character character)
+  int getMode()
   {
-    tt_Log.log("zscript/typist/answer_state/tt_answer_state_source.zs:33: T: override this!");
+    tt_Log.log("zscript/typist/mode/mode_storage.zs:30: T: override this!");
+    return 0;
   }
 
-} // class tt_AnswerStateSource
+} // class tt_ModeStorage
