@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -58,10 +58,11 @@ class tt_DelayedCombatModeSource : tt_ModeSource
       return tt_Mode.None;
     }
 
-    if (  _oldMode == tt_Mode.Combat
-       &&  topMode == tt_Mode.Explore
-       && !_targetSource.getTargets().isEmpty()
-       )
+    bool wasCombat        = _oldMode == tt_Mode.Combat;
+    bool isExplore        =  topMode == tt_Mode.Explore;
+    bool areEnemiesAround = !_targetSource.getTargets().isEmpty();
+
+    if (wasCombat && isExplore && areEnemiesAround)
     {
       _switchDetected        = true;
       _switchToExploreMoment = _clock.getNow();

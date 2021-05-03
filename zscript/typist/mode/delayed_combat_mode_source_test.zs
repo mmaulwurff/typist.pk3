@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2021
  *
  * This file is a part of Typist.pk3.
  *
@@ -28,14 +28,15 @@ class tt_DelayedCombatModeSourceTest : tt_Clematis
    * E - Exploration Mode
    * N - None Mode (let other decide)
    *
-   * |-----|-----|-------------|--------|---------------------|
-   * | new | old | time is up? | result | test                |
-   * |-----|-----|-------------|--------|---------------------|
-   * |  C  |  *  |      *      |   N    | checkNewCombat      |
-   * |  E  |  C  |     no      |   C    | checkDelay          |
-   * |  E  |  C  |     yes     |   N    | checkDelay          |
-   * |  E  |  E  |      *      |   N    | checkOldExploration |
-   * |-----|-----|-------------|--------|---------------------|
+   * |-----|-----|---------|-------------|--------|-------------------------|
+   * | old | new | enemies | time is up? | result | test                    |
+   * |-----|-----|---------|-------------|--------|-------------------------|
+   * |  *  |  C  |    *    |      *      | None   | checkNewCombat          |
+   * |  C  |  E  |   no    |      *      | None   | checkNoEnemies          |
+   * |  C  |  E  |   yes   |     no      | Combat | checkEnemiesStillCombat |
+   * |  C  |  E  |   yes   |     yes     | None   | checkEnemiesTimeIsUp    |
+   * |  E  |  *  |    *    |      *      | None   | checkOldExploration     |
+   * |-----|-----|---------|-------------|--------|-------------------------|
    */
   override
   void TestSuites()
@@ -43,7 +44,9 @@ class tt_DelayedCombatModeSourceTest : tt_Clematis
     Describe("Checking tt_DelayedCombatModeSource");
 
     checkNewCombat();
-    checkDelay();
+    checkNoEnemies();
+    checkEnemiesStillCombat();
+    checkEnemiesTimeIsUp();
     checkOldExploration();
 
     EndDescribe();
@@ -64,32 +67,77 @@ class tt_DelayedCombatModeSourceTest : tt_Clematis
     It("New combat -> None", AssertEval(result1, "==", tt_Mode.None));
 
     int result2 = _delay.getMode();
-    It("Again,.of combat -> None", AssertEval(result2, "==", tt_Mode.None));
+    It("Again, combat -> None", AssertEval(result2, "==", tt_Mode.None));
 
     checkSatisfaction();
   }
 
   private
-  void checkDelay()
+  void checkNoEnemies()
   {
     initTest();
 
+    // set up history: it was combat.
     _modeSource.expect_getMode(tt_Mode.Combat);
+    _delay.getMode();
 
-    int result1 = _delay.getMode();
-    It("Delayed Combat: not yet", AssertEval(result1, "==", tt_Mode.None));
+    _modeSource.expect_getMode(tt_Mode.Explore);
+    _targetSource.expect_getTargets(tt_Targets.of());
 
-    _modeSource.expect_getMode(tt_Mode.Explore, 2);
+    int result = _delay.getMode();
+    It("Delayed Combat: no enemies", AssertEval(result, "==", tt_Mode.None));
 
-    _clock.expect_getNow(0);
-    _clock.expect_since(0);
+    checkSatisfaction();
+  }
 
-    int result2 = _delay.getMode();
-    It("Delayed Combat: yes", AssertEval(result2, "==", tt_Mode.Combat));
+  private
+  void checkEnemiesStillCombat()
+  {
+    initTest();
 
-    _clock.expect_since(9999);
-    int result3 = _delay.getMode();
-    It("Delayed Combat: no more", AssertEval(result3, "==", tt_Mode.None));
+    // set up history: it was combat.
+    _modeSource.expect_getMode(tt_Mode.Combat);
+    _delay.getMode();
+
+    { // set expectations
+      _modeSource.expect_getMode(tt_Mode.Explore);
+
+      let targets = tt_Targets.of();
+      targets.add(NULL);
+      _targetSource.expect_getTargets(targets);
+
+      _clock.expect_getNow(0);
+      _clock.expect_since(0);
+    }
+
+    int result = _delay.getMode();
+    It("Delayed Combat: still combat", AssertEval(result, "==", tt_Mode.Combat));
+
+    checkSatisfaction();
+  }
+
+  private
+  void checkEnemiesTimeIsUp()
+  {
+    initTest();
+
+    // set up history: it was combat.
+    _modeSource.expect_getMode(tt_Mode.Combat);
+    _delay.getMode();
+
+    { // set expectations
+      _modeSource.expect_getMode(tt_Mode.Explore);
+
+      let targets = tt_Targets.of();
+      targets.add(NULL);
+      _targetSource.expect_getTargets(targets);
+
+      _clock.expect_getNow(0);
+      _clock.expect_since(999);
+    }
+
+    int result = _delay.getMode();
+    It("Delayed Combat: no more combat", AssertEval(result, "==", tt_Mode.None));
 
     checkSatisfaction();
   }
@@ -102,6 +150,7 @@ class tt_DelayedCombatModeSourceTest : tt_Clematis
     _modeSource.expect_getMode(tt_Mode.Explore, 2);
     _clock.expect_getNow(0, 0);
     _clock.expect_since(0, 0);
+    _targetSource.expect_getTargets(tt_Targets.of());
 
     int result1 = _delay.getMode();
     It("Old Exploration -> None", AssertEval(result1, "==", tt_Mode.None));
