@@ -4,13 +4,13 @@
   Features: SSE2 SSE3 SSSE3 SSE4.1 SSE4.2 HyperThreading
   Name: .*
   Opened device HD-Audio Generic Analog Stereo
- adding ./maps/miniwad.wad, .* lumps
+ adding ./maps/miniwad.wad.*lumps
  adding /home/.*/Programs/Games/wads/doom/DOOM2.WAD, 2919 lumps
- adding /opt/gzdoom/game_support.pk3, .* lumps
- adding /opt/gzdoom/gzdoom.pk3, .* lumps
+ adding /opt/gzdoom/game_support.pk3.*lumps
+ adding /opt/gzdoom/gzdoom.pk3.*lumps
  adding /opt/gzdoom/zd_extra.pk3, .* lumps
  adding /usr/share/games/doom/freedoom2.wad, .* lumps
- adding typist-.*pk3, .* lumps
+ adding typist-.*pk3.*lumps
 ===========================================================================
 ============================================================================
 AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
@@ -48,8 +48,10 @@ Max. combined shader storage blocks: 96
 Max. texture size: .*
 Max. texture units: .*
 Max. uniform block size: .*
+Max. uniform buffer range: 65536
 Max. varying: .*
 Max. vertex shader storage blocks: 16
+Min. uniform buffer offset alignment: 256
 No bots.cfg, so no bots
 P_Init: Init Playloop state.
 ParseSBarInfo: Loading custom status bar definition.
@@ -60,8 +62,6 @@ Resolution: .*
 ST_Init: Init startup screen.
 S_Init: Setting up sound.
 S_InitData: Load sound definitions.
-Script warning, "gzdoom.pk3:zscript/ui/menu/conversationmenu.zs" line 159:
-Script warning, "gzdoom.pk3:zscript/ui/menu/conversationmenu.zs" line 161:
 Texman.Init: Init texture manager.
 This is Freedoom, the free content first person shooter.
 Truncation of floating point value
