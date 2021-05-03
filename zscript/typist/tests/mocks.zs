@@ -68,86 +68,6 @@ class tt_InputManagerMock : tt_InputManager
 
 } // class tt_InputManagerMock
 
-class tt_TargetSourceMock : tt_TargetSource
-{
-
-  static tt_TargetSourceMock of() { return new("tt_TargetSourceMock"); } // construct
-
-  override
-  tt_Targets getTargets()
-  {
-    ++_mock_getTargets_called;
-    return _mock_getTargets;
-  }
-
-  void expect_getTargets(tt_Targets value, int expected = 1)
-  {
-    _mock_getTargets = value;
-    _mock_getTargets_expected = expected;
-    _mock_getTargets_called = 0;
-  }
-
-  bool isSatisfied_getTargets() const
-  {
-    return _mock_getTargets_expected == _mock_getTargets_called;
-  }
-
-  private tt_Targets _mock_getTargets;
-  private int _mock_getTargets_expected;
-  private int _mock_getTargets_called;
-
-} // class tt_TargetSourceMock
-
-class tt_AnswerStateSourceMock : tt_AnswerStateSource
-{
-
-  static tt_AnswerStateSourceMock of() { return new("tt_AnswerStateSourceMock"); } // construct
-
-  override
-  tt_AnswerState getAnswerState()
-  {
-    ++_mock_getAnswerState_called;
-    return _mock_getAnswerState;
-  }
-
-  void expect_getAnswerState(tt_AnswerState value, int expected = 1)
-  {
-    _mock_getAnswerState = value;
-    _mock_getAnswerState_expected = expected;
-    _mock_getAnswerState_called = 0;
-  }
-
-  bool isSatisfied_getAnswerState() const
-  {
-    return _mock_getAnswerState_expected == _mock_getAnswerState_called;
-  }
-
-  private tt_AnswerState _mock_getAnswerState;
-  private int _mock_getAnswerState_expected;
-  private int _mock_getAnswerState_called;
-
-  override
-  void reset()
-  {
-    ++_mock_reset_called;
-  }
-
-  void expect_reset(int expected = 1)
-  {
-    _mock_reset_expected = expected;
-    _mock_reset_called = 0;
-  }
-
-  bool isSatisfied_reset() const
-  {
-    return _mock_reset_expected == _mock_reset_called;
-  }
-
-  private int _mock_reset_expected;
-  private int _mock_reset_called;
-
-} // class tt_AnswerStateSourceMock
-
 class tt_RandomCharactersLessonSettingsMock : tt_RandomCharactersLessonSettings
 {
 
@@ -681,6 +601,86 @@ class tt_SettingsMock : tt_Settings
   private int _mock_isFastConfirmation_called;
 
 } // class tt_SettingsMock
+
+class tt_TargetSourceMock : tt_TargetSource
+{
+
+  static tt_TargetSourceMock of() { return new("tt_TargetSourceMock"); } // construct
+
+  override
+  tt_Targets getTargets()
+  {
+    ++_mock_getTargets_called;
+    return _mock_getTargets;
+  }
+
+  void expect_getTargets(tt_Targets value, int expected = 1)
+  {
+    _mock_getTargets = value;
+    _mock_getTargets_expected = expected;
+    _mock_getTargets_called = 0;
+  }
+
+  bool isSatisfied_getTargets() const
+  {
+    return _mock_getTargets_expected == _mock_getTargets_called;
+  }
+
+  private tt_Targets _mock_getTargets;
+  private int _mock_getTargets_expected;
+  private int _mock_getTargets_called;
+
+} // class tt_TargetSourceMock
+
+class tt_AnswerStateSourceMock : tt_AnswerStateSource
+{
+
+  static tt_AnswerStateSourceMock of() { return new("tt_AnswerStateSourceMock"); } // construct
+
+  override
+  tt_AnswerState getAnswerState()
+  {
+    ++_mock_getAnswerState_called;
+    return _mock_getAnswerState;
+  }
+
+  void expect_getAnswerState(tt_AnswerState value, int expected = 1)
+  {
+    _mock_getAnswerState = value;
+    _mock_getAnswerState_expected = expected;
+    _mock_getAnswerState_called = 0;
+  }
+
+  bool isSatisfied_getAnswerState() const
+  {
+    return _mock_getAnswerState_expected == _mock_getAnswerState_called;
+  }
+
+  private tt_AnswerState _mock_getAnswerState;
+  private int _mock_getAnswerState_expected;
+  private int _mock_getAnswerState_called;
+
+  override
+  void reset()
+  {
+    ++_mock_reset_called;
+  }
+
+  void expect_reset(int expected = 1)
+  {
+    _mock_reset_expected = expected;
+    _mock_reset_called = 0;
+  }
+
+  bool isSatisfied_reset() const
+  {
+    return _mock_reset_expected == _mock_reset_called;
+  }
+
+  private int _mock_reset_expected;
+  private int _mock_reset_called;
+
+} // class tt_AnswerStateSourceMock
 
 class tt_AnswerReporterMock : tt_AnswerReporter
 {
