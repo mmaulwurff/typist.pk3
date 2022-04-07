@@ -156,6 +156,7 @@ version 4.5
 #include "zscript/typist/target/target_radar_test.zs"
 #include "zscript/typist/target/target_radar.zs"
 #include "zscript/typist/target/target_source_cache.zs"
+#include "zscript/typist/target/target_source_pruner.zs"
 #include "zscript/typist/target/target_source.zs"
 #include "zscript/typist/target/targets.zs"
 #include "zscript/typist/target/target.zs"

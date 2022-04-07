@@ -1,4 +1,4 @@
-/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2020
+/* Copyright Alexander 'm8f' Kromm (mmaulwurff@gmail.com) 2019-2022
  *
  * This file is a part of Typist.pk3.
  *
@@ -44,7 +44,8 @@ class tt_PlayerSupervisor : tt_PlayerHandler
     let originSource     = tt_PlayerOriginSource.of(playerSource);
     let targetRadar      = tt_TargetRadar       .of(originSource);
     let radarStaleMarker = tt_StaleMarkerImpl   .of(clock);
-    let radarCache       = tt_TargetSourceCache .of(targetRadar, radarStaleMarker);
+    let radarCacheDirty  = tt_TargetSourceCache .of(targetRadar, radarStaleMarker);
+    let radarCache       = tt_TargetSourcePruner.of(radarCacheDirty);
     let questionSource   = makeQuestionSource(settings, playerSource);
 
     let targetRegistry = makeTargetRegistry(radarCache, questionSource, deathReporter, clock);
