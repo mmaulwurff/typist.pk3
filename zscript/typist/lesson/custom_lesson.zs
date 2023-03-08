@@ -56,34 +56,31 @@ class tt_CustomLesson : tt_QuestionSource
 
   const SPACE = " ";
 
-  const MIN_WORD_LENGTH =  3;
-  const MAX_WORD_LENGTH = 10;
+  const MIN_WORD_LENGTH =  1;
 
 // private: ////////////////////////////////////////////////////////////////////
 
   private static
   String filterLetters(String text)
   {
-    String lowercase = text.MakeLower();
-
     // replace everything that is not a letter with a space
     for (int code = 0; code < tt_Ascii.End; ++code)
     {
-      bool isLetter = (tt_Ascii.LowercaseA <= code && code <= tt_Ascii.LowercaseZ);
-      if (isLetter)
+      bool isPrintable = (tt_Ascii.Space < code && code < tt_Ascii.Delete);
+      if (isPrintable)
       {
         continue;
       }
 
       String pattern = String.Format("%c", code);
-      lowercase.Replace(pattern, SPACE);
+      text.Replace(pattern, SPACE);
     }
 
-    return lowercase;
+    return text;
   }
 
   /**
-   * Removes too short and too long words, removes duplicates.
+   * Removes too short words, removes duplicates.
    *
    * Guarantees that wordSet has at least one word.
    */
@@ -100,7 +97,7 @@ class tt_CustomLesson : tt_QuestionSource
       String word   = words[i];
       uint   length = word.CodePointCount();
 
-      if (MIN_WORD_LENGTH <= length && length <= MAX_WORD_LENGTH)
+      if (MIN_WORD_LENGTH <= length)
       {
         wordDict.Insert(word, "");
       }
