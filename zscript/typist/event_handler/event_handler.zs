@@ -62,6 +62,16 @@ class tt_EventHandler : EventHandler
   }
 
   override
+  void WorldLoaded(WorldEvent event)
+  {
+    bool isTitlemap = (level.mapName ~== "TITLEMAP");
+    if (isTitlemap)
+    {
+      destroy();
+    }
+  }
+
+  override
   void WorldUnloaded(WorldEvent event)
   {
     self.IsUiProcessor = false;

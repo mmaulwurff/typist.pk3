@@ -144,3 +144,5 @@ It may be possible to compile this on Windows. Install Msys or something. You're
 - kadu522 for support
 - dard22 for bug reports
 - Jarewill for bug reports
+- SphericalCube for bug reports
+
