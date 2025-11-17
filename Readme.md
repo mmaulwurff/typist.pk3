@@ -1,5 +1,7 @@
 # Typist.pk3
 
+Project moved to https://github.com/mmaulwurff/doom-toolbox/
+
 <a href="https://github.com/mmaulwurff/typist.pk3/releases" alt="Downloads">
   <img src="https://img.shields.io/github/downloads/mmaulwurff/typist.pk3/total" />
 </a>
