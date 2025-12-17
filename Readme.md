@@ -2,17 +2,8 @@
 
 Project moved to https://github.com/mmaulwurff/doom-toolbox/
 
-<a href="https://github.com/mmaulwurff/typist.pk3/releases" alt="Downloads">
-  <img src="https://img.shields.io/github/downloads/mmaulwurff/typist.pk3/total" />
-</a>
-<a href="https://github.com/mmaulwurff/typist.pk3" alt="Stars">
-  <img src="https://img.shields.io/github/stars/mmaulwurff/typist.pk3" />
-</a>
 <a href="https://travis-ci.com/mmaulwurff/typist.pk3" alt="Build status">
   <img src="https://img.shields.io/travis/com/mmaulwurff/typist.pk3" />
-</a>
-<a href="https://discord.gg/cFpdvWZ" alt="Discord">
-  <img src="https://img.shields.io/discord/553717447077920800" />
 </a>
 
 [YouTube](https://www.youtube.com/playlist?list=PL13LmqbAWk2cE8d3vkG0zDuCiwSVlKtUZ)
